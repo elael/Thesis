@@ -1,0 +1,289 @@
+%%Created by jPicEdt 1.4.1_03: mixed JPIC-XML/LaTeX format
+%%Wed Mar 07 07:21:08 PST 2012
+%%Begin JPIC-XML
+%<?xml version="1.0" standalone="yes"?>
+%<jpic x-min="0" x-max="105" y-min="0" y-max="110" auto-bounding="true">
+%<parallelogram stroke-color= "#ffffff"
+%	 p3= "(68.5,100)"
+%	 p2= "(68.5,50)"
+%	 p1= "(50,50)"
+%	 fill-color= "#ffff00"
+%	 fill-style= "solid"
+%	 />
+%<parallelogram stroke-color= "#ffffff"
+%	 p3= "(90,70)"
+%	 p2= "(70,70)"
+%	 p1= "(50,50)"
+%	 fill-color= "#ffffff"
+%	 fill-style= "solid"
+%	 />
+%<parallelogram stroke-color= "#ffffff"
+%	 p3= "(90,85)"
+%	 p2= "(70,85)"
+%	 p1= "(55,100)"
+%	 fill-color= "#ffffff"
+%	 fill-style= "solid"
+%	 />
+%<smoothpolygon stroke-color= "#0000ff"
+%	 fill-color= "#ffffff"
+%	 closed= "false"
+%	 fill-style= "solid"
+%	 points= "(55,100);(60,60);(100,55)"
+%	 smoothness= "0.7;0.7;0.7"
+%	 />
+%<multicurve right-arrow= "head"
+%	 fill-style= "none"
+%	 points= "(0,50);(0,50);(105,50);(105,50)"
+%	 />
+%<multicurve right-arrow= "head"
+%	 fill-style= "none"
+%	 points= "(50,0);(50,0);(50,105);(50,105)"
+%	 />
+%<smoothpolygon stroke-color= "#0000ff"
+%	 closed= "false"
+%	 fill-style= "none"
+%	 points= "(45,0);(40,40);(0,45)"
+%	 smoothness= "0.7;0.7;0.7"
+%	 />
+%<text text-vert-align= "center-v"
+%	 anchor-point= "(105,45)"
+%	 fill-style= "none"
+%	 text-frame= "noframe"
+%	 text-hor-align= "center-h"
+%	 >
+%$k$
+%</text>
+%<text text-vert-align= "center-v"
+%	 anchor-point= "(45,105)"
+%	 fill-style= "none"
+%	 text-frame= "noframe"
+%	 text-hor-align= "right"
+%	 >
+%$\theta$
+%</text>
+%<text text-vert-align= "center-v"
+%	 anchor-point= "(69,98)"
+%	 fill-style= "none"
+%	 text-frame= "noframe"
+%	 text-hor-align= "left"
+%	 >
+%$S=0$
+%</text>
+%<text text-vert-align= "center-v"
+%	 anchor-point= "(38,65)"
+%	 fill-style= "none"
+%	 text-frame= "noframe"
+%	 text-hor-align= "right"
+%	 >
+%$S=-1$
+%</text>
+%<smoothpolygon stroke-width= "0.15"
+%	 closed= "false"
+%	 fill-style= "none"
+%	 points= "(50,60);(44,65);(40,65)"
+%	 left-arrow= "head"
+%	 smoothness= "0.7;0.7;0.7"
+%	 />
+%<text text-vert-align= "center-v"
+%	 anchor-point= "(70,57)"
+%	 fill-style= "none"
+%	 text-frame= "noframe"
+%	 text-hor-align= "center-h"
+%	 >
+%$S&lt;0$
+%</text>
+%<text text-vert-align= "center-v"
+%	 anchor-point= "(90,80)"
+%	 fill-style= "none"
+%	 text-frame= "noframe"
+%	 text-hor-align= "center-h"
+%	 >
+%\Ga
+%</text>
+%<text text-vert-align= "center-v"
+%	 anchor-point= "(90,20)"
+%	 fill-style= "none"
+%	 text-frame= "noframe"
+%	 text-hor-align= "center-h"
+%	 >
+%\Gb
+%</text>
+%<text text-vert-align= "center-v"
+%	 anchor-point= "(10,20)"
+%	 fill-style= "none"
+%	 text-frame= "noframe"
+%	 text-hor-align= "center-h"
+%	 >
+%\Gc
+%</text>
+%<text text-vert-align= "center-v"
+%	 anchor-point= "(10,80)"
+%	 fill-style= "none"
+%	 text-frame= "noframe"
+%	 text-hor-align= "center-h"
+%	 >
+%\Gd
+%</text>
+%<smoothpolygon stroke-width= "0.15"
+%	 closed= "false"
+%	 fill-style= "none"
+%	 points= "(40,50);(45,60);(40,65)"
+%	 left-arrow= "head"
+%	 smoothness= "0.7;0.7;0.7"
+%	 />
+%<multicurve right-arrow= "head"
+%	 stroke-color= "#ff0000"
+%	 stroke-width= "0.15"
+%	 fill-style= "none"
+%	 points= "(53,66);(53,66);(53,110);(53,110)"
+%	 />
+%<ellipse stroke-color= "#ff0000"
+%	 p3= "(53.75,66.75)"
+%	 p2= "(53.75,65.25)"
+%	 p1= "(52.25,65.25)"
+%	 closure= "open"
+%	 fill-style= "none"
+%	 angle-end= "0"
+%	 angle-start= "0"
+%	 />
+%<g>
+%<multicurve right-arrow= "head"
+%	 stroke-color= "#ff0000"
+%	 stroke-width= "0.15"
+%	 fill-style= "none"
+%	 points= "(85,35);(85,35);(85,58);(85,58)"
+%	 />
+%<ellipse stroke-color= "#ff0000"
+%	 p3= "(85.75,35.75)"
+%	 p2= "(85.75,34.25)"
+%	 p1= "(84.25,34.25)"
+%	 closure= "open"
+%	 fill-style= "none"
+%	 angle-end= "0"
+%	 angle-start= "0"
+%	 />
+%</g>
+%<g>
+%<multicurve right-arrow= "head"
+%	 stroke-color= "#ff0000"
+%	 stroke-width= "0.15"
+%	 fill-style= "none"
+%	 points= "(19.25,67);(19.25,67);(19.25,40);(19.25,40)"
+%	 />
+%<ellipse stroke-color= "#ff0000"
+%	 p3= "(20,67.75)"
+%	 p2= "(20,66.25)"
+%	 p1= "(18.5,66.25)"
+%	 closure= "open"
+%	 fill-style= "none"
+%	 angle-end= "0"
+%	 angle-start= "0"
+%	 />
+%</g>
+%<g>
+%<multicurve right-arrow= "head"
+%	 stroke-color= "#ff0000"
+%	 stroke-width= "0.15"
+%	 fill-style= "none"
+%	 points= "(34.25,5.75);(34.25,5.75);(34.25,28.75);(34.25,28.75)"
+%	 />
+%<ellipse stroke-color= "#ff0000"
+%	 p3= "(35,6.5)"
+%	 p2= "(35,5)"
+%	 p1= "(33.5,5)"
+%	 closure= "open"
+%	 fill-style= "none"
+%	 angle-end= "0"
+%	 angle-start= "0"
+%	 />
+%</g>
+%<multicurve stroke-width= "0.05"
+%	 fill-style= "none"
+%	 points= "(50,50);(50,50);(68.5,68.5);(68.5,68.5)"
+%	 />
+%<g>
+%<multicurve right-arrow= "head"
+%	 stroke-color= "#ff0000"
+%	 stroke-width= "0.15"
+%	 fill-style= "none"
+%	 points= "(75,90);(75,90);(75,63);(75,63)"
+%	 />
+%<ellipse stroke-color= "#ff0000"
+%	 p3= "(75.75,90.75)"
+%	 p2= "(75.75,89.25)"
+%	 p1= "(74.25,89.25)"
+%	 closure= "open"
+%	 fill-style= "none"
+%	 angle-end= "0"
+%	 angle-start= "0"
+%	 />
+%</g>
+%<smoothpolygon stroke-width= "0.15"
+%	 closed= "false"
+%	 fill-style= "none"
+%	 points= "(58,90);(61,98);(67,98)"
+%	 left-arrow= "head"
+%	 smoothness= "0.7;0.7;0.7"
+%	 />
+%<ellipse stroke-color= "#ff0000"
+%	 p3= "(50.75,40.75)"
+%	 p2= "(50.75,39.25)"
+%	 p1= "(49.25,39.25)"
+%	 closure= "open"
+%	 fill-style= "none"
+%	 angle-end= "0"
+%	 angle-start= "0"
+%	 />
+%<ellipse stroke-color= "#ff0000"
+%	 p3= "(50.75,85.75)"
+%	 p2= "(50.75,84.25)"
+%	 p1= "(49.25,84.25)"
+%	 closure= "open"
+%	 fill-style= "none"
+%	 angle-end= "0"
+%	 angle-start= "0"
+%	 />
+%</jpic>
+%%End JPIC-XML
+%PSTricks content-type (pstricks.sty package needed)
+%Add \usepackage{pstricks} in the preamble of your LaTeX file
+%You can rescale the whole picture (to 80% for instance) by using the command \def\JPicScale{0.8}
+\ifx\JPicScale\undefined\def\JPicScale{1}\fi
+\psset{unit=\JPicScale mm}
+\psset{linewidth=0.3,dotsep=1,hatchwidth=0.3,hatchsep=1.5,shadowsize=1,dimen=middle}
+\psset{dotsize=0.7 2.5,dotscale=1 1,fillcolor=black}
+\psset{arrowsize=1 2,arrowlength=1,arrowinset=0.25,tbarsize=0.7 5,bracketlength=0.15,rbracketlength=0.15}
+\begin{pspicture}(0,0)(105,110)
+\pspolygon[linecolor=white,fillcolor=yellow,fillstyle=solid](50,50)(68.5,50)(68.5,100)(50,100)
+\pspolygon[linecolor=white,fillcolor=white,fillstyle=solid](50,50)(70,70)(90,70)(70,50)
+\pspolygon[linecolor=white,fillcolor=white,fillstyle=solid](55,100)(70,85)(90,85)(75,100)
+\psbezier[linecolor=blue,fillcolor=white,fillstyle=solid](55,100)(58.5,72)(72,58.5)(100,55)
+\psline{->}(0,50)(105,50)
+\psline{->}(50,0)(50,105)
+\psbezier[linecolor=blue](45,0)(41.5,28)(28,41.5)(0,45)
+\rput(105,45){$k$}
+\rput[r](45,105){$\theta$}
+\rput[l](69,98){$S=0$}
+\rput[r](38,65){$S=-1$}
+\psbezier[linewidth=0.15]{<-}(50,60)(45.8,63.5)(42.8,65)(40,65)
+\rput(70,57){$S<0$}
+\rput(90,80){\Ga}
+\rput(90,20){\Gb}
+\rput(10,20){\Gc}
+\rput(10,80){\Gd}
+\psbezier[linewidth=0.15]{<-}(40,50)(43.5,57)(43.5,61.5)(40,65)
+\psline[linewidth=0.15,linecolor=red]{->}(53,66)(53,110)
+\rput{0}(53,66){\psellipse[linecolor=red](0,0)(0.75,0.75)}
+\psline[linewidth=0.15,linecolor=red]{->}(85,35)(85,58)
+\rput{0}(85,35){\psellipse[linecolor=red](0,0)(0.75,0.75)}
+\psline[linewidth=0.15,linecolor=red]{->}(19.25,67)(19.25,40)
+\rput{0}(19.25,67){\psellipse[linecolor=red](0,0)(0.75,0.75)}
+\psline[linewidth=0.15,linecolor=red]{->}(34.25,5.75)(34.25,28.75)
+\rput{0}(34.25,5.75){\psellipse[linecolor=red](0,0)(0.75,0.75)}
+\psline[linewidth=0.05](50,50)(68.5,68.5)
+\psline[linewidth=0.15,linecolor=red]{->}(75,90)(75,63)
+\rput{0}(75,90){\psellipse[linecolor=red](0,0)(0.75,0.75)}
+\psbezier[linewidth=0.15]{<-}(58,90)(60.1,95.6)(62.8,98)(67,98)
+\rput{0}(50,40){\psellipse[linecolor=red](0,0)(0.75,0.75)}
+\rput{0}(50,85){\psellipse[linecolor=red](0,0)(0.75,0.75)}
+\end{pspicture}

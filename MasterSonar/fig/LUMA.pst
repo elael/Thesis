@@ -1,0 +1,53 @@
+%%Created by jPicEdt 1.4.1_03: mixed JPIC-XML/LaTeX format
+%%Sat Apr 27 12:00:14 BRT 2013
+%%Begin JPIC-XML
+%<?xml version="1.0" standalone="yes"?>
+%<jpic x-min="0" x-max="177.5" y-min="0" y-max="60" auto-bounding="true">
+%<parallelogram fill-style= "none"
+%	 p3= "(85,0)"
+%	 p2= "(85.62,60)"
+%	 p1= "(0.62,60)"
+%	 />
+%<text fill-style= "none"
+%	 text-vert-align= "center-v"
+%	 anchor-point= "(40,35)"
+%	 text-frame= "noframe"
+%	 text-hor-align= "center-h"
+%	 >
+%LUMA
+%</text>
+%<text fill-style= "none"
+%	 text-vert-align= "center-v"
+%	 anchor-point= "(135,35)"
+%	 text-frame= "noframe"
+%	 text-hor-align= "center-h"
+%	 >
+%LUMA EM ACAO
+%</text>
+%<parallelogram fill-style= "none"
+%	 p3= "(177.5,0)"
+%	 p2= "(177.5,60)"
+%	 p1= "(92.5,60)"
+%	 />
+%</jpic>
+%%End JPIC-XML
+%LaTeX-picture environment using emulated lines and arcs
+%You can rescale the whole picture (to 80% for instance) by using the command \def\JPicScale{0.8}
+\ifx\JPicScale\undefined\def\JPicScale{1}\fi
+\unitlength \JPicScale mm
+\begin{picture}(177.5,60)(0,0)
+\linethickness{0.3mm}
+\put(0.62,60){\line(1,0){85}}
+\multiput(0,0)(0.12,12){5}{\line(0,1){12}}
+\multiput(85,0)(0.12,12){5}{\line(0,1){12}}
+\put(0,0){\line(1,0){85}}
+\put(40,35){\makebox(0,0)[cc]{LUMA}}
+
+\put(135,35){\makebox(0,0)[cc]{LUMA EM ACAO}}
+
+\linethickness{0.3mm}
+\put(92.5,60){\line(1,0){85}}
+\put(92.5,0){\line(0,1){60}}
+\put(177.5,0){\line(0,1){60}}
+\put(92.5,0){\line(1,0){85}}
+\end{picture}

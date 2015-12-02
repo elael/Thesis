@@ -1,0 +1,51 @@
+\noindent Considere novamente a expressão proposta em (\ref{eq::expretheta}) para ${\boldsymbol \Theta}$
+%
+\begin{equation}
+{\boldsymbol \Theta} = \begin{bmatrix} %
+							\vdots&\vdots\\
+							{\bf v}_1&{\bf v}_2\\%
+							\vdots&\vdots\\
+							\end{bmatrix} 
+\begin{bmatrix} 
+							d_1&r_{12}&r_{13}\\
+							r_{21}&d_2&r_{23}\\
+							\end{bmatrix} 
+\begin{bmatrix} 
+							\vdots&\vdots&\vdots\\
+							{\bf u}_1&{\bf u}_2&{\bf u}_3\\%
+							\vdots&\vdots&\vdots\\
+							\end{bmatrix} ^T.
+\end{equation}
+%
+Os elementos residuais $r_{13}$ e $r_{23}$ estão associados a ${\bf u}_3$. Para $r_{13}\neq 0$, $r_{23}\neq 0$ e ${\bf c} = \alpha {\bf u}_3$, tem-se ${\bf b} = {\boldsymbol \Theta} {\bf c} = r_{13}{\bf v}_1 + r_{23}{\bf v}_2 \neq {\bf 0}$, embora ${\bf c}$ seja uma saída inviável para o sistema. Neste caso, apenas a utilização da matriz de erro à direita ${\bf S}_r$ garantirá que estes elementos residuais convirjam para $0$ e assim ${\bf b} = {\boldsymbol \Theta} {\bf c} \rightarrow 0$. 
+
+\section{Solução para Cinemática Inversa}
+
+
+Como foi visto no capítulo \ref{chap::cinematica}, a solução para o problema de cinemática inversa pode ser obtida de forma analítica, envolvendo o uso de identidades algébricas e geométricas, ou através de métodos numéricos e técnicas de otimização. A solução diferencial, também denominada algoritmo iterativo, foi apresentada nas seções \ref{sec::nonred} e \ref{sec::red}, e tem como base o mapeamento linear realizado pela matriz Jacobiana entre as velocidades nos espaços das juntas e operacional. Como visto, a escolha%Como foi visto,
+%
+%
+%omo foi visto no capítulo \ref{chap::cine}, a solução para o problema de cinemática inversa pode ser obtida através da forma fechada, ou analítica, envolvendo o uso de identidades algébricas e geométricas para solucionar as equações não lineares que definem a cinemática do manipulador, ou através de métodos numéricos e técnicas de otimização. Como visto, as equacoes de cinematica diferencial representam um mapeamento linear entre as velocidades das juntas e no espaco operacional sugerindo a possibilidade de usar tal relacao para solucionar a cinematica inversa. A solucao atraves de uma abordagem diferencial, muitas vezes denominada algoritmo iterativo, foi apresentada nas seções \ref{sec::nred} e \ref{sec::red}, sendo aqui reescrita por conveniencia.
+%
+\begin{equation}
+\dot{\bf q} = {\bf J}^{-1}\,{\boldsymbol \nu},
+\end{equation}
+% 
+para ${\boldsymbol \Lambda} = {\boldsymbol \Lambda}^T > 0$ e ${\boldsymbol \nu}=\dot{\bf x}_d + {\boldsymbol \Lambda}{\bf e}$ garante a convergência exponencial do erro ${\bf e}$ para ${\bf 0}$. Para manipuladores redundantes, a pseudo-inversa à direita ${\bf J}^{\dagger} = {\bf J}^T({\bf J}{\bf J}^T)^{-1}$ é utilizada, fornecendo uma solução de norma mínima ou ótima desde que ${\boldsymbol \nu}(t)$ não conduza o manipulador para configurações singulares. Nestas configurações, a matriz ${\bf J}$ perde posto e sua inversa não se define. Na vizinhança de singularidades, a matriz Jacobiana se torna mal condicionada, apresentando pivôs muito pequenos e resultando em velocidades de juntas elevadas, indesejadas na prática. A proposta de aplicação da inversa filtrada como solução para a cinemática inversa de manipuladores robóticos é dada por 
+%
+\begin{equation}
+\dot{\bf q} = {\boldsymbol \Theta}\,{\boldsymbol \nu}
+\end{equation}
+%
+onde ${\boldsymbol \Theta}\!\in\!{\mathbb R}^{n \times m}$ é a inversa filtrada da matriz Jacobiana ${\bf J}$, sendo atualizada pela lei composta apresentada em (\ref{eq:adapcomp}), logo,
+%
+\begin{equation}
+\dot{\boldsymbol \Theta} = -{\boldsymbol \Gamma}({\bf J}^T{\bf S}_r + {\bf S}_\ell{\bf J}^T)
+\end{equation}
+%
+onde ${\boldsymbol \Gamma} = {\boldsymbol \Gamma}^T > 0$ é o ganho de atualização. As matrizes ${\bf S}_r$ e ${\bf S}_\ell$ correspondem às matrizes de erro à direita e à esquerda, respectivamente.
+%
+%
+
+%
+

@@ -1,0 +1,280 @@
+%%Created by jPicEdt 1.4.1_03: mixed JPIC-XML/LaTeX format
+%%Wed Nov 28 11:57:31 BRST 2012
+%%Begin JPIC-XML
+%<?xml version="1.0" standalone="yes"?>
+%<jpic x-min="2.32" x-max="156.2" y-min="-1.07" y-max="76.9" auto-bounding="true">
+%<text right-arrow= "head"
+%	 text-vert-align= "center-v"
+%	 anchor-point= "(83,33)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 >
+%{\bf o}$'$
+%</text>
+%<text right-arrow= "head"
+%	 text-vert-align= "center-v"
+%	 anchor-point= "(86.92,51.33)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 >
+%
+%</text>
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(38,20);(38,20);(125.62,50.73);(125.62,50.73)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%<text arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 text-vert-align= "center-v"
+%	 anchor-point= "(38,16)"
+%	 arrow-global-scale-width= "1.7"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 >
+%{\bf O}
+%</text>
+%<text arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 text-vert-align= "center-v"
+%	 anchor-point= "(53.93,-1.07)"
+%	 arrow-global-scale-width= "1.7"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 >
+%
+%</text>
+%<g>
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(37.93,19.93);(37.93,19.93);(2.32,1.29);(2.32,1.29)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(37.93,19.93);(37.93,19.93);(29.03,15.27);(29.03,15.27)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%</g>
+%<ellipse arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 p3= "(38.33,19.53)"
+%	 p2= "(38.33,20.33)"
+%	 p1= "(37.53,20.33)"
+%	 stroke-width= "0.1"
+%	 closure= "open"
+%	 angle-end= "0"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "solid"
+%	 angle-start= "0"
+%	 />
+%<g>
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(37.93,19.93);(37.93,19.93);(73.32,1.3);(73.32,1.3)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(37.93,19.93);(37.93,19.93);(46.78,15.27);(46.78,15.27)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%</g>
+%<text arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 text-vert-align= "center-v"
+%	 anchor-point= "(41,28)"
+%	 arrow-global-scale-width= "1.7"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 >
+%{\bf z}
+%</text>
+%<text arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 text-vert-align= "center-v"
+%	 anchor-point= "(29,19)"
+%	 arrow-global-scale-width= "1.7"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 >
+%{\bf x}
+%</text>
+%<text arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 text-vert-align= "center-v"
+%	 anchor-point= "(48,19)"
+%	 arrow-global-scale-width= "1.7"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 >
+%{\bf y}
+%</text>
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(37.93,19.93);(37.93,19.93);(37.93,59.93);(37.93,59.93)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(37.93,19.93);(37.93,19.93);(37.93,29.93);(37.93,29.93)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%<pscurve right-arrow= "head"
+%	 stroke-width= "0.5"
+%	 closed= "true"
+%	 curvature= "1;0.1;0"
+%	 points= "(120.22,45.95);(122.24,34.95);(142.21,51.97);(128.2,63.96);(110.21,57.93)"
+%	 fill-style= "none"
+%	 />
+%<text right-arrow= "head"
+%	 text-vert-align= "center-v"
+%	 anchor-point= "(130,50)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 >
+%{\bf O}$'$
+%</text>
+%<text right-arrow= "head"
+%	 text-vert-align= "center-v"
+%	 anchor-point= "(120.37,25)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 >
+%
+%</text>
+%<g>
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(125.87,50.82);(125.87,50.82);(88.52,65.67);(88.52,65.67)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(125.87,50.82);(125.87,50.82);(116.53,54.54);(116.53,54.54)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%</g>
+%<ellipse right-arrow= "head"
+%	 p3= "(125.83,50.26)"
+%	 p2= "(126.43,50.78)"
+%	 p1= "(125.91,51.39)"
+%	 stroke-width= "0.1"
+%	 closure= "open"
+%	 angle-end= "0"
+%	 fill-style= "solid"
+%	 angle-start= "0"
+%	 />
+%<g>
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(125.87,50.82);(125.87,50.82);(156.2,76.9);(156.2,76.9)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(125.87,50.82);(125.87,50.82);(133.45,57.34);(133.45,57.34)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%</g>
+%<g>
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(125.87,50.82);(125.87,50.82);(134.81,11.83);(134.81,11.83)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(125.87,50.82);(125.87,50.82);(128.1,41.08);(128.1,41.08)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%</g>
+%<text right-arrow= "head"
+%	 text-vert-align= "center-v"
+%	 anchor-point= "(135,55)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 >
+%{\bf z}$'$
+%</text>
+%<text right-arrow= "head"
+%	 text-vert-align= "center-v"
+%	 anchor-point= "(122,57)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 >
+%{\bf x}$'$
+%</text>
+%<text right-arrow= "head"
+%	 text-vert-align= "center-v"
+%	 anchor-point= "(132,43)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 >
+%{\bf y}$'$
+%</text>
+%</jpic>
+%%End JPIC-XML
+%PSTricks content-type (pstricks.sty package needed)
+%Add \usepackage{pstricks} in the preamble of your LaTeX file
+%You can rescale the whole picture (to 80% for instance) by using the command \def\JPicScale{0.8}
+\ifx\JPicScale\undefined\def\JPicScale{1}\fi
+\psset{unit=\JPicScale mm}
+\psset{linewidth=0.3,dotsep=1,hatchwidth=0.3,hatchsep=1.5,shadowsize=1,dimen=middle}
+\psset{dotsize=0.7 2.5,dotscale=1 1,fillcolor=black}
+\psset{arrowsize=1 2,arrowlength=1,arrowinset=0.25,tbarsize=0.7 5,bracketlength=0.15,rbracketlength=0.15}
+\begin{pspicture}(0,0)(156.2,76.9)
+\rput(83,33){{\bf o}$'$}
+\rput(86.92,51.33){}
+\psline[arrowscale=1.7 1.95]{->}(38,20)(125.62,50.73)
+\rput(38,16){{\bf O}}
+\rput(53.93,-1.07){}
+\psline[arrowscale=1.7 1.95]{->}(37.93,19.93)(2.32,1.29)
+\psline[arrowscale=1.7 1.95]{->}(37.93,19.93)(29.03,15.27)
+\rput{0}(37.93,19.93){\psellipse[linewidth=0.1,fillstyle=solid,arrowscale=1.7 1.95](0,0)(0.4,-0.4)}
+\psline[arrowscale=1.7 1.95]{->}(37.93,19.93)(73.32,1.3)
+\psline[arrowscale=1.7 1.95]{->}(37.93,19.93)(46.78,15.27)
+\rput(41,28){{\bf z}}
+\rput(29,19){{\bf x}}
+\rput(48,19){{\bf y}}
+\psline[arrowscale=1.7 1.95]{->}(37.93,19.93)(37.93,59.93)
+\psline[arrowscale=1.7 1.95]{->}(37.93,19.93)(37.93,29.93)
+\psccurve[linewidth=0.5,curvature=1.0 0.1 0.0](120.22,45.95)(122.24,34.95)(142.21,51.97)(128.2,63.96)(110.21,57.93)
+\rput(130,50){{\bf O}$'$}
+\rput(120.37,25){}
+\psline[arrowscale=1.7 1.95]{->}(125.87,50.82)(88.52,65.67)
+\psline[arrowscale=1.7 1.95]{->}(125.87,50.82)(116.53,54.54)
+\rput{110.34}(125.87,50.82){\psellipse[linewidth=0.1,fillstyle=solid](0,0)(0.4,-0.4)}
+\psline[arrowscale=1.7 1.95]{->}(125.87,50.82)(156.2,76.9)
+\psline[arrowscale=1.7 1.95]{->}(125.87,50.82)(133.45,57.34)
+\psline[arrowscale=1.7 1.95]{->}(125.87,50.82)(134.81,11.83)
+\psline[arrowscale=1.7 1.95]{->}(125.87,50.82)(128.1,41.08)
+\rput(135,55){{\bf z}$'$}
+\rput(122,57){{\bf x}$'$}
+\rput(132,43){{\bf y}$'$}
+\end{pspicture}

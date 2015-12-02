@@ -1,0 +1,51 @@
+%%Created by jPicEdt 1.4.1_03: mixed JPIC-XML/LaTeX format
+%%Wed Dec 12 15:57:38 BRST 2012
+%%Begin JPIC-XML
+%<?xml version="1.0" standalone="yes"?>
+%<jpic x-min="-2.5" x-max="20" y-min="-2.5" y-max="20" auto-bounding="true">
+%<g>
+%<multicurve arrow-global-scale-width= "1.75"
+%	 fill-style= "none"
+%	 arrow-global-scale-length= "1.95"
+%	 points= "(-0,0);(-0,0);(-0,20);(-0,20)"
+%	 right-arrow= "head"
+%	 />
+%<multicurve arrow-global-scale-width= "1.75"
+%	 fill-style= "none"
+%	 arrow-global-scale-length= "1.95"
+%	 points= "(-0,0);(-0,0);(20,0);(20,0)"
+%	 right-arrow= "head"
+%	 />
+%</g>
+%<text fill-style= "none"
+%	 text-vert-align= "bottom"
+%	 anchor-point= "(-2.5,20)"
+%	 text-frame= "noframe"
+%	 text-hor-align= "right"
+%	 >
+%$\bf y$
+%</text>
+%<text fill-style= "none"
+%	 text-vert-align= "top"
+%	 anchor-point= "(20,-2.5)"
+%	 text-frame= "noframe"
+%	 text-hor-align= "left"
+%	 >
+%$\bf x$
+%</text>
+%</jpic>
+%%End JPIC-XML
+%PSTricks content-type (pstricks.sty package needed)
+%Add \usepackage{pstricks} in the preamble of your LaTeX file
+%You can rescale the whole picture (to 80% for instance) by using the command \def\JPicScale{0.8}
+\ifx\JPicScale\undefined\def\JPicScale{1}\fi
+\psset{unit=\JPicScale mm}
+\psset{linewidth=0.3,dotsep=1,hatchwidth=0.3,hatchsep=1.5,shadowsize=1,dimen=middle}
+\psset{dotsize=0.7 2.5,dotscale=1 1,fillcolor=black}
+\psset{arrowsize=1 2,arrowlength=1,arrowinset=0.25,tbarsize=0.7 5,bracketlength=0.15,rbracketlength=0.15}
+\begin{pspicture}(0,0)(20,20)
+\psline[arrowscale=1.75 1.95]{->}(-0,0)(-0,20)
+\psline[arrowscale=1.75 1.95]{->}(-0,0)(20,0)
+\rput[br](-2.5,20){$\bf y$}
+\rput[tl](20,-2.5){$\bf x$}
+\end{pspicture}

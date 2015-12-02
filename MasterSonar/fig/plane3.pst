@@ -1,0 +1,204 @@
+%%Created by jPicEdt 1.4.1_03: mixed JPIC-XML/LaTeX format
+%%Thu Jan 10 14:49:19 BRST 2013
+%%Begin JPIC-XML
+%<?xml version="1.0" standalone="yes"?>
+%<jpic x-min="20" x-max="125" y-min="10" y-max="115" auto-bounding="true">
+%<g>
+%<parallelogram fill-hatch-color= "#fefeff"
+%	 stroke-style= "none"
+%	 fill-color= "#f0f0f0"
+%	 p3= "(20,10)"
+%	 p2= "(20,110)"
+%	 p1= "(70,110)"
+%	 stroke-width= "0"
+%	 fill-hatch-sep= "3.75"
+%	 fill-hatch-width= "1.5"
+%	 fill-style= "vlines-filled"
+%	 />
+%<text text-vert-align= "center-v"
+%	 anchor-point= "(125,50)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 >
+%$\sigma_i$
+%</text>
+%<parallelogram fill-color= "#ffffff"
+%	 p3= "(110,80)"
+%	 p2= "(90,80)"
+%	 p1= "(70,60)"
+%	 stroke-color= "#ffffff"
+%	 fill-style= "solid"
+%	 />
+%<parallelogram fill-color= "#ffffff"
+%	 p3= "(110,95)"
+%	 p2= "(90,95)"
+%	 p1= "(75,110)"
+%	 stroke-color= "#ffffff"
+%	 fill-style= "solid"
+%	 />
+%<smoothpolygon fill-color= "#ffffff"
+%	 stroke-color= "#0000ff"
+%	 closed= "false"
+%	 points= "(75,110);(80,70);(120,65)"
+%	 fill-style= "solid"
+%	 smoothness= "0.7;0.7;0.7"
+%	 />
+%<multicurve right-arrow= "head"
+%	 points= "(20,60);(20,60);(125,60);(125,60)"
+%	 fill-style= "none"
+%	 />
+%<multicurve right-arrow= "head"
+%	 points= "(70,10);(70,10);(70,115);(70,115)"
+%	 fill-style= "none"
+%	 />
+%<text text-vert-align= "center-v"
+%	 anchor-point= "(65,115)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "right"
+%	 >
+%$d_i$
+%</text>
+%<text text-vert-align= "center-v"
+%	 anchor-point= "(89,108)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "left"
+%	 >
+%$S_i=0$
+%</text>
+%<text text-vert-align= "center-v"
+%	 anchor-point= "(90,67)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 >
+%$S_i&lt;0$
+%</text>
+%<text text-vert-align= "center-v"
+%	 anchor-point= "(110,90)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 >
+%\Ga
+%</text>
+%<text text-vert-align= "center-v"
+%	 anchor-point= "(110,30)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 >
+%\Gb
+%</text>
+%<g>
+%<multicurve right-arrow= "head"
+%	 stroke-width= "0.15"
+%	 stroke-color= "#ff0000"
+%	 points= "(105,45);(105,45);(105,68);(105,68)"
+%	 fill-style= "none"
+%	 />
+%<ellipse p3= "(105.75,45.75)"
+%	 p2= "(105.75,44.25)"
+%	 p1= "(104.25,44.25)"
+%	 closure= "open"
+%	 stroke-color= "#ff0000"
+%	 angle-end= "0"
+%	 fill-style= "none"
+%	 angle-start= "0"
+%	 />
+%</g>
+%<g>
+%<multicurve right-arrow= "head"
+%	 stroke-width= "0.15"
+%	 stroke-color= "#ff0000"
+%	 points= "(95,100);(95,100);(95,73);(95,73)"
+%	 fill-style= "none"
+%	 />
+%<ellipse p3= "(95.75,100.75)"
+%	 p2= "(95.75,99.25)"
+%	 p1= "(94.25,99.25)"
+%	 closure= "open"
+%	 stroke-color= "#ff0000"
+%	 angle-end= "0"
+%	 fill-style= "none"
+%	 angle-start= "0"
+%	 />
+%</g>
+%<smoothpolygon stroke-width= "0.15"
+%	 left-arrow= "head"
+%	 closed= "false"
+%	 points= "(78,100);(81,108);(87,108)"
+%	 fill-style= "none"
+%	 smoothness= "0.7;0.7;0.7"
+%	 />
+%<ellipse p3= "(70.75,50.75)"
+%	 p2= "(70.75,49.25)"
+%	 p1= "(69.25,49.25)"
+%	 closure= "open"
+%	 stroke-color= "#ff0000"
+%	 angle-end= "0"
+%	 fill-style= "none"
+%	 angle-start= "0"
+%	 />
+%<ellipse p3= "(70.75,95.75)"
+%	 p2= "(70.75,94.25)"
+%	 p1= "(69.25,94.25)"
+%	 closure= "open"
+%	 stroke-color= "#ff0000"
+%	 angle-end= "0"
+%	 fill-style= "none"
+%	 angle-start= "0"
+%	 />
+%<multicurve right-arrow= "head"
+%	 stroke-width= "0.15"
+%	 stroke-color= "#ff0000"
+%	 points= "(80,70);(80,70);(80,90);(80,90)"
+%	 fill-style= "none"
+%	 />
+%<ellipse p3= "(80.75,70.75)"
+%	 p2= "(80.75,69.25)"
+%	 p1= "(79.25,69.25)"
+%	 closure= "open"
+%	 stroke-color= "#ff0000"
+%	 angle-end= "0"
+%	 fill-style= "none"
+%	 angle-start= "0"
+%	 />
+%</g>
+%</jpic>
+%%End JPIC-XML
+%PSTricks content-type (pstricks.sty package needed)
+%Add \usepackage{pstricks} in the preamble of your LaTeX file
+%You can rescale the whole picture (to 80% for instance) by using the command \def\JPicScale{0.8}
+\ifx\JPicScale\undefined\def\JPicScale{1}\fi
+\psset{unit=\JPicScale mm}
+\psset{linewidth=0.3,dotsep=1,hatchwidth=0.3,hatchsep=1.5,shadowsize=1,dimen=middle}
+\psset{dotsize=0.7 2.5,dotscale=1 1,fillcolor=black}
+\psset{arrowsize=1 2,arrowlength=1,arrowinset=0.25,tbarsize=0.7 5,bracketlength=0.15,rbracketlength=0.15}
+\begin{pspicture}(0,0)(125,115)
+\newrgbcolor{userFillColour}{0.94 0.94 0.94}
+\newrgbcolor{userHatchColour}{1 1 1}
+\pspolygon[linewidth=0,linestyle=none,fillcolor=userFillColour,fillstyle=vlines*,hatchwidth=1.5,hatchsep=3.75,hatchcolor=userHatchColour](70,110)(20,110)(20,10)(70,10)
+\rput(125,50){$\sigma_i$}
+\pspolygon[linecolor=white,fillcolor=white,fillstyle=solid](70,60)(90,80)(110,80)(90,60)
+\pspolygon[linecolor=white,fillcolor=white,fillstyle=solid](75,110)(90,95)(110,95)(95,110)
+\psbezier[linecolor=blue,fillcolor=white,fillstyle=solid](75,110)(78.5,82)(92,68.5)(120,65)
+\psline{->}(20,60)(125,60)
+\psline{->}(70,10)(70,115)
+\rput[r](65,115){$d_i$}
+\rput[l](89,108){$S_i=0$}
+\rput(90,67){$S_i<0$}
+\rput(110,90){\Ga}
+\rput(110,30){\Gb}
+\psline[linewidth=0.15,linecolor=red]{->}(105,45)(105,68)
+\rput{0}(105,45){\psellipse[linecolor=red](0,0)(0.75,0.75)}
+\psline[linewidth=0.15,linecolor=red]{->}(95,100)(95,73)
+\rput{0}(95,100){\psellipse[linecolor=red](0,0)(0.75,0.75)}
+\psbezier[linewidth=0.15]{<-}(78,100)(80.1,105.6)(82.8,108)(87,108)
+\rput{0}(70,50){\psellipse[linecolor=red](0,0)(0.75,0.75)}
+\rput{0}(70,95){\psellipse[linecolor=red](0,0)(0.75,0.75)}
+\psline[linewidth=0.15,linecolor=red]{->}(80,70)(80,90)
+\rput{0}(80,70){\psellipse[linecolor=red](0,0)(0.75,0.75)}
+\end{pspicture}

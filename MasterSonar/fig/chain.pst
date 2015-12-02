@@ -1,0 +1,399 @@
+%%Created by jPicEdt 1.4.1_03: mixed JPIC-XML/LaTeX format
+%%Fri Nov 30 23:10:46 BRST 2012
+%%Begin JPIC-XML
+%<?xml version="1.0" standalone="yes"?>
+%<jpic x-min="4.96" x-max="224.79" y-min="2.5" y-max="66.25" auto-bounding="true">
+%<multicurve right-arrow= "head"
+%	 points= "(20,25);(20,25);(65,45);(65,45)"
+%	 fill-style= "vlines"
+%	 />
+%<multicurve right-arrow= "head"
+%	 stroke-style= "dotted"
+%	 points= "(65,45);(65,45);(115,55);(115,55)"
+%	 fill-style= "vlines"
+%	 />
+%<multicurve right-arrow= "head"
+%	 points= "(115,55);(115,55);(165,45);(165,45)"
+%	 fill-style= "vlines"
+%	 />
+%<multicurve right-arrow= "head"
+%	 stroke-style= "dotted"
+%	 points= "(165,45);(165,45);(210,25);(210,25)"
+%	 fill-style= "vlines"
+%	 />
+%<smoothpolygon right-arrow= "head"
+%	 stroke-style= "dashed"
+%	 stroke-dasharray= "1;1"
+%	 closed= "false"
+%	 points= "(20,25);(35,12.5);(115,10);(195,12.5);(210,25)"
+%	 fill-style= "none"
+%	 smoothness= "0.7;0.7;0.7;0.7;0.7"
+%	 />
+%<text text-vert-align= "top"
+%	 anchor-point= "(107.5,7.5)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "left"
+%	 >
+%${\bf T}_{0n}({\bf q})$
+%</text>
+%<text text-vert-align= "center-v"
+%	 anchor-point= "(125,2.5)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 >
+%
+%</text>
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(65,45);(65,45);(79.6,41.56);(79.6,41.56)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(65,45);(65,45);(56.09,32.93);(56.09,32.93)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(65,45);(65,45);(61.8,59.65);(61.8,59.65)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%<ellipse p3= "(64.7,44.81)"
+%	 p2= "(65.19,44.7)"
+%	 p1= "(65.3,45.19)"
+%	 closure= "open"
+%	 angle-end= "360"
+%	 fill-style= "solid"
+%	 angle-start= "0"
+%	 />
+%<text text-vert-align= "top"
+%	 anchor-point= "(65,58.75)"
+%	 text-frame= "noframe"
+%	 fill-style= "vlines"
+%	 text-hor-align= "left"
+%	 >
+%${\bf x}_1$
+%</text>
+%<text text-vert-align= "top"
+%	 anchor-point= "(57.5,32.5)"
+%	 text-frame= "noframe"
+%	 fill-style= "vlines"
+%	 text-hor-align= "left"
+%	 >
+%${\bf y}_1$
+%</text>
+%<text text-vert-align= "top"
+%	 anchor-point= "(77.67,38.81)"
+%	 text-frame= "noframe"
+%	 fill-style= "vlines"
+%	 text-hor-align= "left"
+%	 >
+%${\bf z}_1$
+%</text>
+%<text text-vert-align= "top"
+%	 anchor-point= "(55,51.25)"
+%	 text-frame= "noframe"
+%	 fill-style= "vlines"
+%	 text-hor-align= "left"
+%	 >
+%${\bf O}_1$
+%</text>
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(115,55);(115,55);(102.05,62.58);(102.05,62.58)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(115,55);(115,55);(127.06,63.91);(127.06,63.91)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(115,55);(115,55);(113.75,40.05);(113.75,40.05)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%<ellipse p3= "(115.34,55.09)"
+%	 p2= "(114.91,55.34)"
+%	 p1= "(114.66,54.91)"
+%	 closure= "open"
+%	 angle-end= "360"
+%	 fill-style= "solid"
+%	 angle-start= "0"
+%	 />
+%<text text-vert-align= "top"
+%	 anchor-point= "(110,38.75)"
+%	 text-frame= "noframe"
+%	 fill-style= "vlines"
+%	 text-hor-align= "left"
+%	 >
+%${\bf x}_{i-1}$
+%</text>
+%<text text-vert-align= "top"
+%	 anchor-point= "(125,60)"
+%	 text-frame= "noframe"
+%	 fill-style= "vlines"
+%	 text-hor-align= "left"
+%	 >
+%${\bf y}_{i-1}$
+%</text>
+%<text text-vert-align= "top"
+%	 anchor-point= "(103.75,66.25)"
+%	 text-frame= "noframe"
+%	 fill-style= "vlines"
+%	 text-hor-align= "left"
+%	 >
+%${\bf z}_{i-1}$
+%</text>
+%<text text-vert-align= "top"
+%	 anchor-point= "(117.5,50)"
+%	 text-frame= "noframe"
+%	 fill-style= "vlines"
+%	 text-hor-align= "left"
+%	 >
+%${\bf O}_{i-1}$
+%</text>
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(165,45);(165,45);(176.52,35.4);(176.52,35.4)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(165,45);(165,45);(151.63,38.19);(151.63,38.19)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(165,45);(165,45);(168.69,59.54);(168.69,59.54)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%<ellipse p3= "(164.65,44.97)"
+%	 p2= "(165.03,44.65)"
+%	 p1= "(165.35,45.03)"
+%	 closure= "open"
+%	 angle-end= "360"
+%	 fill-style= "solid"
+%	 angle-start= "0"
+%	 />
+%<text text-vert-align= "top"
+%	 anchor-point= "(160,57.5)"
+%	 text-frame= "noframe"
+%	 fill-style= "vlines"
+%	 text-hor-align= "left"
+%	 >
+%${\bf x}_i$
+%</text>
+%<text text-vert-align= "top"
+%	 anchor-point= "(155,37.5)"
+%	 text-frame= "noframe"
+%	 fill-style= "vlines"
+%	 text-hor-align= "left"
+%	 >
+%${\bf y}_i$
+%</text>
+%<text text-vert-align= "top"
+%	 anchor-point= "(173.56,33.8)"
+%	 text-frame= "noframe"
+%	 fill-style= "vlines"
+%	 text-hor-align= "left"
+%	 >
+%${\bf z}_i$
+%</text>
+%<text text-vert-align= "top"
+%	 anchor-point= "(167.5,47.5)"
+%	 text-frame= "noframe"
+%	 fill-style= "vlines"
+%	 text-hor-align= "left"
+%	 >
+%${\bf O}_i$
+%</text>
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(210.35,24.96);(210.35,24.96);(200.94,36.64);(200.94,36.64)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(210.35,24.96);(210.35,24.96);(224.79,29.02);(224.79,29.02)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(210.35,24.96);(210.35,24.96);(203.88,11.43);(203.88,11.43)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%<ellipse p3= "(210.7,24.92)"
+%	 p2= "(210.39,25.31)"
+%	 p1= "(210,25)"
+%	 closure= "open"
+%	 angle-end= "360"
+%	 fill-style= "solid"
+%	 angle-start= "0"
+%	 />
+%<text text-vert-align= "top"
+%	 anchor-point= "(207.76,13.24)"
+%	 text-frame= "noframe"
+%	 fill-style= "vlines"
+%	 text-hor-align= "left"
+%	 >
+%${\bf x}_n$
+%</text>
+%<text text-vert-align= "top"
+%	 anchor-point= "(220,33.75)"
+%	 text-frame= "noframe"
+%	 fill-style= "vlines"
+%	 text-hor-align= "left"
+%	 >
+%${\bf y}_n$
+%</text>
+%<text text-vert-align= "top"
+%	 anchor-point= "(204.15,37.63)"
+%	 text-frame= "noframe"
+%	 fill-style= "vlines"
+%	 text-hor-align= "left"
+%	 >
+%${\bf z}_n$
+%</text>
+%<text text-vert-align= "top"
+%	 anchor-point= "(211.25,23.75)"
+%	 text-frame= "noframe"
+%	 fill-style= "vlines"
+%	 text-hor-align= "left"
+%	 >
+%${\bf O}_n$
+%</text>
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(19.5,24.76);(19.5,24.76);(29.11,36.28);(29.11,36.28)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(19.5,24.76);(19.5,24.76);(26.31,11.39);(26.31,11.39)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(19.5,24.76);(19.5,24.76);(4.96,28.45);(4.96,28.45)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%<ellipse p3= "(19.54,24.41)"
+%	 p2= "(19.86,24.79)"
+%	 p1= "(19.47,25.11)"
+%	 closure= "open"
+%	 angle-end= "360"
+%	 fill-style= "solid"
+%	 angle-start= "0"
+%	 />
+%<text text-vert-align= "top"
+%	 anchor-point= "(7.5,25)"
+%	 text-frame= "noframe"
+%	 fill-style= "vlines"
+%	 text-hor-align= "left"
+%	 >
+%${\bf x}_0$
+%</text>
+%<text text-vert-align= "top"
+%	 anchor-point= "(29.35,14.12)"
+%	 text-frame= "noframe"
+%	 fill-style= "vlines"
+%	 text-hor-align= "left"
+%	 >
+%${\bf y}_0$
+%</text>
+%<text text-vert-align= "top"
+%	 anchor-point= "(18.75,37.5)"
+%	 text-frame= "noframe"
+%	 fill-style= "vlines"
+%	 text-hor-align= "left"
+%	 >
+%${\bf z}_0$
+%</text>
+%<text text-vert-align= "top"
+%	 anchor-point= "(23.75,26.25)"
+%	 text-frame= "noframe"
+%	 fill-style= "vlines"
+%	 text-hor-align= "left"
+%	 >
+%${\bf O}_0$
+%</text>
+%</jpic>
+%%End JPIC-XML
+%PSTricks content-type (pstricks.sty package needed)
+%Add \usepackage{pstricks} in the preamble of your LaTeX file
+%You can rescale the whole picture (to 80% for instance) by using the command \def\JPicScale{0.8}
+\ifx\JPicScale\undefined\def\JPicScale{1}\fi
+\psset{unit=\JPicScale mm}
+\psset{linewidth=0.3,dotsep=1,hatchwidth=0.3,hatchsep=1.5,shadowsize=1,dimen=middle}
+\psset{dotsize=0.7 2.5,dotscale=1 1,fillcolor=black}
+\psset{arrowsize=1 2,arrowlength=1,arrowinset=0.25,tbarsize=0.7 5,bracketlength=0.15,rbracketlength=0.15}
+\begin{pspicture}(0,0)(224.79,66.25)
+\psline[fillstyle=vlines]{->}(20,25)(65,45)
+\psline[linestyle=dotted,fillstyle=vlines]{->}(65,45)(115,55)
+\psline[fillstyle=vlines]{->}(115,55)(165,45)
+\psline[linestyle=dotted,fillstyle=vlines]{->}(165,45)(210,25)
+\pscustom[linestyle=dashed,dash=1 1]{\psbezier{-}(20,25)(30.5,16.25)(47,12.12)(75,11.25)
+\psbezier(103,10.38)(127,10.38)(155,11.25)
+\psbezier{->}(183,12.12)(199.5,16.25)(210,25)
+}
+\rput[tl](107.5,7.5){${\bf T}_{0n}({\bf q})$}
+\rput(125,2.5){}
+\psline[arrowscale=1.7 1.95]{->}(65,45)(79.6,41.56)
+\psline[arrowscale=1.7 1.95]{->}(65,45)(56.09,32.93)
+\psline[arrowscale=1.7 1.95]{->}(65,45)(61.8,59.65)
+\rput{0}(65,45){\psellipse[fillstyle=solid](0,0)(0.25,-0.25)}
+\rput[tl](65,58.75){${\bf x}_1$}
+\rput[tl](57.5,32.5){${\bf y}_1$}
+\rput[tl](77.67,38.81){${\bf z}_1$}
+\rput[tl](55,51.25){${\bf O}_1$}
+\psline[arrowscale=1.7 1.95]{->}(115,55)(102.05,62.58)
+\psline[arrowscale=1.7 1.95]{->}(115,55)(127.06,63.91)
+\psline[arrowscale=1.7 1.95]{->}(115,55)(113.75,40.05)
+\rput{0}(115,55){\psellipse[fillstyle=solid](0,0)(0.25,-0.25)}
+\rput[tl](110,38.75){${\bf x}_{i-1}$}
+\rput[tl](125,60){${\bf y}_{i-1}$}
+\rput[tl](103.75,66.25){${\bf z}_{i-1}$}
+\rput[tl](117.5,50){${\bf O}_{i-1}$}
+\psline[arrowscale=1.7 1.95]{->}(165,45)(176.52,35.4)
+\psline[arrowscale=1.7 1.95]{->}(165,45)(151.63,38.19)
+\psline[arrowscale=1.7 1.95]{->}(165,45)(168.69,59.54)
+\rput{0}(165,45){\psellipse[fillstyle=solid](0,0)(0.25,-0.25)}
+\rput[tl](160,57.5){${\bf x}_i$}
+\rput[tl](155,37.5){${\bf y}_i$}
+\rput[tl](173.56,33.8){${\bf z}_i$}
+\rput[tl](167.5,47.5){${\bf O}_i$}
+\psline[arrowscale=1.7 1.95]{->}(210.35,24.96)(200.94,36.64)
+\psline[arrowscale=1.7 1.95]{->}(210.35,24.96)(224.79,29.02)
+\psline[arrowscale=1.7 1.95]{->}(210.35,24.96)(203.88,11.43)
+\rput{0}(210.35,24.96){\psellipse[fillstyle=solid](0,0)(0.25,-0.25)}
+\rput[tl](207.76,13.24){${\bf x}_n$}
+\rput[tl](220,33.75){${\bf y}_n$}
+\rput[tl](204.15,37.63){${\bf z}_n$}
+\rput[tl](211.25,23.75){${\bf O}_n$}
+\psline[arrowscale=1.7 1.95]{->}(19.5,24.76)(29.11,36.28)
+\psline[arrowscale=1.7 1.95]{->}(19.5,24.76)(26.31,11.39)
+\psline[arrowscale=1.7 1.95]{->}(19.5,24.76)(4.96,28.45)
+\rput{0}(19.5,24.76){\psellipse[fillstyle=solid](0,0)(0.25,-0.25)}
+\rput[tl](7.5,25){${\bf x}_0$}
+\rput[tl](29.35,14.12){${\bf y}_0$}
+\rput[tl](18.75,37.5){${\bf z}_0$}
+\rput[tl](23.75,26.25){${\bf O}_0$}
+\end{pspicture}

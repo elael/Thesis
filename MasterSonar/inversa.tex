@@ -1,0 +1,72 @@
+\section{Cinemática Inversa}
+
+O problema de cinemática inversa consiste em determinar as variáveis de juntas que resultam em uma determinada posição e orientação do efetuador. Dada uma função de cinemática direta ${\bf K} : {\bf Q} \rightarrow {\bf O}$ e uma postura desejada ${\bf x}_d \in {\mathbb R}^m$, deseja-se resolver a equação
+%
+\begin{equation}
+\label{eq::inver}
+{\bf h}({\bf q}) = {\bf x}_d,
+\end{equation}
+%
+\noindent para algum ${\bf q} \in {\mathbb R}^n$. O problema de cinemática inversa é de maior complexidade quando comparado a cinemática direta por alguns motivos: as equações para solucionar são, em geral, não lineares e por isso não é sempre possível encontrar uma solução na forma fechada; podem existir múltiplas ou infinitas soluções, como em manipuladores redundantes; e podem exisir soluções não admissíveis em vista da estrutura cinemática do manipulador. 
+%
+A solução é garantida somente se a postura dada pertence ao espaço de trabalho destro do manipulador \cite{SSVO:09}. Por outro lado, a existência de múltiplas soluções depende do número de graus de mobilidade e do número de parâmetros DH não nulos. Em geral, quanto maior o número de parâmetros DH não nulos, maior o número de soluções admissíveis. Tradicionalmente, as soluções para o problema de cinemática inversa são classificadas em duas classes: soluções na forma fechada e soluções numéricas. Soluções na forma fechada são obtidas através do uso de identidades geométricas e algébricas para resolver o conjunto de equações não lineares que definem a cinemática inversa. As soluções numéricas, por sua vez, se baseiam na utilização de métodos iterativos para resolver a equação (\ref{eq::inver}).
+%
+Assim como no problema de cinemática direta, em que a solução completa resulta da análise recursiva de soluções menores, para a cinemática inversa uma idéia semelhante pode ser aplicada. O método de sub-problemas de Paden-Kahan, apresentado originalmente em \cite{PD:86} e formalizado em \cite{KH:83}, permite a solução do problema proposto através da solução de subproblemas frequentes nas soluções de cinemática inversa de manipuladores. %Para maiores esclarecimentos sobre o método de sub-problemas de Paden-Kahan, o leitor é convidado a consultar \cite{MRY:94}.
+%
+
+\subsection{Abordagem Diferencial}
+
+Como foi visto na seção \ref{sec::dif}, a equação de cinemática diferencial representa um mapeamento linear entre as velocidades desenvolvidas no espaço de juntas e as velocidades no espaço operacional, sugerindo a possibilidade de utilizar tal abordagem para resolver o problema de cinemática inversa \cite{SSVO:09}. Portanto, seja ${\bf q}^*$ uma configuração de juntas que satisfaça \ref{eq::inver}. A solução diferencial consiste em, dada uma configuração inicial ${\bf q}(t_0)$, definir $\dot{\bf q}$ de forma que 
+%
+\begin{equation}
+\label{eq::abordif}
+{\bf q}(t) \rightarrow {\bf q}^*.
+\end{equation}
+%
+Note que ${\bf q}^*$ é desconhecido. Como será visto, a definição de $\dot{\bf q}$ a partir de variáveis de erro no espaço de operação e não no espaco das juntas resultará na utilização da inversa da matriz Jacobiana.
+
+\subsection{\label{sec::nonred}Manipuladores não-redundantes}
+
+O objetivo de controle é conduzir a estrutura mecânica de uma postura inicial ${\bf x}=({\bf p},{\boldsymbol \phi})$ para uma postura desejada ${\bf x}_d=({\bf p}_d,{\boldsymbol \phi}_d)$. A postura desejada pode ser invariante no tempo, o que define um problema de {\it regulação} ou variante no tempo, definindo um problema de {\it rastreamento}. Deseja-se, portanto, atuar nas juntas do manipulador de forma que o efetuador descreva uma trajetória desejada (posição e orientação). O objetivo de controle é então formalizado como:
+%
+\begin{equation}
+\label{eq::errocine}
+{\bf x}_e \rightarrow {\bf x}_d(t)\;\;\;\;\; \mbox{,}\;\;\;\;\;
+{\bf e} = {\bf x}_d - {\bf x}_e \rightarrow 0
+\end{equation}
+%
+\noindent onde ${\bf e}$ corresponde ao erro de rastreamento no espaço operacional. A obtenção da dinâmica do erro ${\bf e}$ torna-se necessária para estabelecer a análise da convergência do mesmo a zero. Assim, a equação do erro é obtida através da diferenciação de ambos os lados de (\ref{eq::errocine}) e a partir da cinemática diferencial.
+%
+\begin{equation}
+\label{eq::dinerro}
+\dot{\bf e} = \dot{\bf x}_d - \dot{\bf x}_e = \dot{\bf x}_d - {\bf {J}}_A({\bf q})\,\dot{{\bf q}}. 
+\end{equation} 
+%
+Nota-se que a utilização de grandezas no espaço operacional implica naturalmente na utilização do {\it Jacobiano Analítico} ao invés do {\it Jacobiano Geométrico}. O objetivo de controle consiste em escolher ${\bf u}$ tal que a variável de erro {\bf e} convirja para zero. Assumindo que a matriz ${\bf {J}}_A({\bf q})$ é quadrada e não singular, a escolha
+%
+\begin{equation}
+\label{eq::regra}
+{\bf u} = {\bf {J}}_A({\bf q})^{-1}(\dot{\bf x}_d + {\bf K}\,{\bf e})
+\end{equation}
+%
+\noindent conduz ao seguinte sistema linear
+%
+\begin{equation}
+\label{eq::sistemalinear}
+\dot{\bf e} + {\bf K}\,{\bf e} = 0
+\end{equation}
+%
+A escolha de uma matriz {\bf K} {\it positiva definida} garante a estabilidade assintótica do erro. O erro tende a zero ao longo da trajetória com uma taxa de convergência que depende dos autovalores da matriz de ganhos {\bf K}. O bloco correspondente ao algoritmo de controle implementado é apresentado na figura \ref{fig::controlealgo}.
+%
+\begin{figure}[htpb]
+  \centering
+  \def\JPicScale{0.8}
+  {\small
+  \input{fig/IKalg_1.pst}
+  }
+  \caption{Algoritmo de cinemática inversa (caso não-redundante)}
+  \label{fig::controlealgo}
+\end{figure}
+%
+
+A utilização de ${\bf {J}}_A({\bf q})^{-1}$ permite a linearização do sistema, compensando o termo não linear ${\bf {J}}_A({\bf q})$. A utilização do termo {\it feedfoward} $\dot{\bf x}_d$ garante a manutenção do erro em 0 ao longo da trajetória, independente do tipo de sinal de referência ${\bf x}_d$.

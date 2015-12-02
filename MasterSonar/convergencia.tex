@@ -1,0 +1,277 @@
+\section{\label{sec::convanalysis}Análise de Convergência}
+
+Considere a {\it decomposição de valor singular} 
+%ou {\it single value decomposition} 
+(SVD) da matriz de ganho ${\bf K}(t)\!\in\!\mathbb{R}^{m\times n}$ 
+%
+\begin{equation}
+{\bf K} = {\bf U}\,{\boldsymbol \Sigma}\,{\bf V}^T\,,
+\end{equation}
+%
+onde ${\bf U}\!\in\!\mathbb{R}^{m\times m}$, ${\boldsymbol \Sigma}\!\in\!\mathbb{R}^{m\times n}$ e ${\bf V}\!\in\!\mathbb{R}^{n\times n}$. As matrizes ${\bf U}$ e ${\bf V}$ são matrizes ortogonais %cujas colunas são os autovetores de ${\bf K}\,{\bf K}^T$ e ${\bf K}^T\,{\bf K}$, respectivamente, 
+que fornecem bases ortonormais para todos os subespaços fundamentais de ${\bf K}$, e a matriz ${\boldsymbol \Sigma}$ possui $r$ valores singulares em sua diagonal. %, as raízes dos autovalores não nulos de ${\bf K}\,{\bf K}^T$ e ${\bf K}^T\,{\bf K}$. 
+A fatoração SVD escolhe as bases de forma especial 
+e permite%: quando {\bf K} multiplica uma coluna ${\bf v}_j$ de ${\bf V}$, produz $\sigma_j$ vezes uma coluna de ${\bf U}$.% Isto se origina diretamente de 
+%
+%\begin{equation}
+%{\bf K}\,{\bf V} = {\bf U}\,{\boldsymbol \Sigma}\,,
+%\end{equation}
+%
+%observado uma coluna por vez \cite{STRANG}. 
+, para um sistema (\ref{eq:dy}), relacionar a entrada ${\bf u}$ e a saída $\dot{\bf y}$. Seja ${\bf u}$ uma combinação linear das colunas de ${\bf V}$. A saída $\dot{\bf y}$ será a mesma combinação linear das colunas de ${\bf U}$, multiplicadas pelos valores singulares $\sigma_i$ a elas associados. 
+%Assim, a fatoração SVD será utilizada para análise, se mostrando uma ferramenta muito poderosa. 
+Isto se origina diretamente de 
+%
+%\begin{equation}
+${\bf K}\,{\bf V} = {\bf U}\,{\boldsymbol \Sigma}$, observado uma coluna por vez \cite{STRANG}. 
+%
+Da mesma forma, pode-se expressar a matriz ${\boldsymbol \Theta}$ como
+%
+\begin{equation}
+  {\boldsymbol \Theta} = {\bf U}_{\Theta}\,{\boldsymbol \Sigma}_{\Theta}\,{\bf V}_{\Theta}^T\,.
+\end{equation}
+%
+A condição ${\bf K} {\boldsymbol \Theta} \rightarrow {\bf I}_m$ pode então ser dividida em:
+%
+\begin{eqnarray}
+\label{c1} {\bf U}_\Theta  &\rightarrow& {\bf V}\,, \\
+\label{c2} {\boldsymbol \Sigma}\,{\boldsymbol \Sigma}_\Theta  &\rightarrow& {\bf I}_m\,, \\ 
+\label{c3} {\bf V}_\Theta  &\rightarrow& {\bf U}\,. 
+\end{eqnarray}
+%
+Note que (\ref{c2}) representa um ajuste de amplitudes, similar ao caso escalar, e que para a condição ${\boldsymbol \Theta}\,{\bf K} \rightarrow {\bf I}_n$ se torna 
+%
+%\begin{equation}
+%\label{c4} 
+${\boldsymbol \Sigma}_\Theta\,{\boldsymbol \Sigma}  \rightarrow {\bf I}_n$. 
+%\end{equation}
+%
+Porém, adicionalmente a este problema, estão as condições (\ref{c1}) e (\ref{c3}), associadas ao alinhamento das bases ortonormais definidas por ${\bf V}$ e ${\bf U}_\Theta$, e também ${\bf U}$ e ${\bf V}_\Theta$. Isto é, para o caso multivariável, além do ajuste de amplitudes existente no caso escalar, há também a necessidade do ajuste de ângulos. A solução adotada para análise é expressar o mapeamento realizado por ${\boldsymbol \Theta}$ através das bases ortonormais definidas por ${\bf U}$ e ${\bf V}$. Assim, 
+%
+\begin{equation}
+\label{eq::expretheta}
+{\boldsymbol \Theta} = {\bf V}\,{\boldsymbol \Psi}\,{\bf U}^T\,.
+\end{equation}
+%
+Intuitivamente, o que se faz é utilizar o mapeamento contrário, razoável uma vez que ${\boldsymbol \Theta}$ deve evoluir para a inversa de ${\bf K}$. Note porém que a matriz ${\boldsymbol \Psi}$ não é diagonal e, portanto, quando ${\boldsymbol \Theta}$ multiplica uma coluna ${\bf u}_j$ de ${\bf U}$, produz uma combinação linear de todas as colunas de ${\bf V}$. 
+%A Figura \ref{fig:espacos} ilustra os subespaços fundamentais e o mapeamento realizado pelas matrizes $K$ e $\Theta$.
+%
+%A similaridade entre os casos escalar e multivariável pode ser verificada através da análise dos elementos diagonais e residuais de $\Psi = V^T \Theta U$. 
+Considere o caso mais simples em que $\dot{\bf K}\equiv {\bf 0}$ ($\dot{\bf U} \equiv {\bf 0}$ e $\dot{\bf V} \equiv {\bf 0}$). 
+Neste caso, a dinâmica de ${\boldsymbol \Psi}$ é dada por
+%
+\begin{equation}
+  \dot{\boldsymbol \Psi} = {\bf V}^T\,\dot{\boldsymbol \Theta}\,{\bf U}\,.
+\end{equation}	
+%
+Aplicando a lei de atualização composta, proposta em (\ref{eq:adapcomp}), e considerando um ganho escalar $\Gamma > 0$ tem-se
+%Using the composite update law proposed in (\ref{eq:adapcomp}) and considering a scalar gain $\Gamma > 0$ we obtain
+%
+\begin{align}
+\label{eq::phidyn}
+  \dot{\boldsymbol \Psi} &= -\Gamma {\bf V}^T({\bf S}_{\ell}\,{\bf K}^{T} + {\bf K}^{T}\,{\bf S}_{r}){\bf U} \nonumber \\
+	&= -\Gamma\,{\bf V}^T\,{\bf S}_{\ell}\,{\bf K}^{T}\,{\bf U} - \Gamma\,{\bf V}^T\,{\bf K}^{T}\,{\bf S}_{r}\,{\bf U} \notag \\
+	&= -\Gamma\,{\bf V}^T\,{\bf S}_{\ell}\,{\bf V}\,{\boldsymbol \Sigma}^{T}\,{\bf U}^T\,{\bf U} - \Gamma\,{\bf V}^T\,{\bf V}\,{\boldsymbol \Sigma}^{T}\,{\bf U}^T\,{\bf S}_{r}\,{\bf U} \notag \\
+	&= -\Gamma\,{\bf V}^T\,({\boldsymbol \Theta}\,{\bf K} - {\bf I}_n){\bf V}{\boldsymbol \Sigma}^T - \Gamma\,{\boldsymbol \Sigma}^T\,{\bf U}^T\,({\bf K} {\boldsymbol \Theta} - {\bf I}_m){\bf U} \notag \\
+   &= -\Gamma({\bf V}^T\,{\boldsymbol \Theta}\,{\bf U}{\boldsymbol \Sigma} - {\bf I}_n){\boldsymbol \Sigma}^T - \Gamma\,{\boldsymbol \Sigma}^T ({\boldsymbol \Sigma}\,{\bf V}^T\,{\boldsymbol \Theta}\,{\bf U} - {\bf I}_m) \notag \\%
+	&= -\Gamma({\boldsymbol \Psi}\,{\boldsymbol \Sigma} - {\bf I}_n ){\boldsymbol \Sigma}^T - \Gamma\,{\boldsymbol \Sigma}^T({\boldsymbol \Sigma}\,{\boldsymbol \Psi} - {\bf I}_m)\,.
+\end{align}					
+%
+A similaridade entre os casos escalar e multivariável pode ser verificada através da análise dos elementos diagonais e residuais de ${\boldsymbol \Psi}$. Desta forma, a matriz ${\boldsymbol \Psi}$ é decomposta em
+%The matrix $\Psi$ can be decomposed as
+%
+%%% analysis of the dynamics of $\Psi$ is divided in the analysis of its diagonal and off diagonal elements. Thus, it is considered
+%
+\begin{equation}
+\label{eq::decompRD1}
+  {\boldsymbol \Psi} = {\bf D}_{\Theta} + {\bf R}_{\Theta}\,,
+\end{equation}
+%
+onde ${\bf D}_{\Theta} \in {\mathbb R}^{n\times m}$ possui os elementos diagonais de ${\boldsymbol \Psi}$ e ${\bf R}_{\Theta} \in {\mathbb R}^{n\times m}$ possui os elementos fora da diagonal de ${\boldsymbol \Psi}$, denominados residuais, com zeros na diagonal. Por exemplo, ${\boldsymbol \Psi} \in {\mathbb R}^{4\times 3}$ pode ser expressa como
+%
+\begin{equation}
+{\boldsymbol \Psi} = \underbrace{\left[\begin{matrix} 
+							d_{1}&0&0\\
+							0&d_{2}&0\\
+							0&0&d_{3} \\
+							0&0&0 \\
+							\end{matrix} \right]}_{{\bf D}_{\Theta}}
+						+
+							\underbrace{\left[\begin{matrix} 
+							0&r_{12}&r_{13}\\
+							r_{21}&0&r_{23}\\
+							r_{31}&r_{32}&0 \\
+							r_{41}&r_{42}&r_{43} \\
+							\end{matrix} \right]}_{{\bf R}_{\Theta}}.
+\end{equation}
+%
+A derivada temporal de (\ref{eq::decompRD1}) é dada por 
+%
+\begin{equation}
+\label{eq::decompRD2}
+\dot{\boldsymbol \Psi} = \dot{\bf D}_{\Theta}+\dot{\bf R}_{\Theta}
+\end{equation} 
+%
+e, substituindo (\ref{eq::decompRD1}) e (\ref{eq::decompRD2}) em (\ref{eq::phidyn}), 
+%
+\begin{align}
+\label{eq:dynDeR}
+  \dot{\bf D}_{\Theta} + \dot{\bf R}_{\Theta} = &- \Gamma\,({{\bf D}_{\Theta}}\,{\boldsymbol \Sigma} + {{\bf R}_{\Theta}}\,{\boldsymbol \Sigma}
+    - {\bf I}_n){\boldsymbol \Sigma}^T \notag \\%
+	&- \Gamma\,{\boldsymbol \Sigma}^T({\boldsymbol \Sigma}\,{{\bf D}_{\Theta}} + {\boldsymbol \Sigma}\,{{\bf R}_{\Theta}} - {\bf I}_m)\,.
+\end{align}
+%
+Note que o produto de matrizes diagonais e matrizes residuais também é residual, apresentando zeros na diagonal principal. Desta forma, é possível separar a análise das dinâmicas de ${\bf D}_{\Theta}$ e ${\bf R}_{\Theta}$, presentes em (\ref{eq:dynDeR}). Assim, para a componente diagonal de ${\boldsymbol \Psi}$, tem-se
+%
+\begin{align}
+  \dot{\bf D}_{\Theta} = -\Gamma\,({\bf D}_{\Theta}\,{\boldsymbol \Sigma} - {\bf I}_n){\boldsymbol \Sigma}^T - \Gamma\,{\boldsymbol \Sigma}^T({\boldsymbol \Sigma}\,{\bf D}_{\Theta} - {\bf I}_m )\,.
+\end{align}
+%
+A dinâmica do elemento diagonal $d_i$ é dada por
+%
+\begin{align}
+  \dot{d}_i = - \Gamma (d_i \sigma_i - 1)\sigma_i - \Gamma \sigma_i(\sigma_i d_i - 1)% \notag \\
+	= - 2\Gamma S_i\sigma_i\,,
+\end{align}
+%
+apresentando uma forma similar ao caso escalar analisado inicialmente (note que $\sigma_i \in \mathbb{R}^{+}$). Note também que
+%
+%\begin{align}
+%  \dot{d}_i &= - 2\Gamma\sigma_i^2\,d_i + 2\Gamma \sigma_i\,,
+%\end{align}
+%
+%isto é, 
+os elementos da diagonal convergem exponencialmente para $1/\sigma_i$ quando $\sigma_i \neq 0$. Para $\sigma_i = 0$, tem-se que $\dot{d}_i = 0$. A Figura \ref{fig:locusS3} apresenta a evolução de $d_i$ para diferentes condições iniciais.
+
+\begin{figure}[htpb]
+\centering
+\def\Ga{\framebox{\parbox[c]{12mm}{$S_i>0$ \\ $\dot{d_i}<0$}}}
+\def\Gb{\framebox{\parbox[c]{12mm}{$S_i<0$ \\ $\dot{d_i}>0$}}}
+\def\JPicScale{0.65}
+{\small
+\input{fig/plane3.pst}
+}
+\caption{Plano $d_i \times \sigma_i$ (diferentes condições iniciais).}
+\label{fig:locusS3}
+\end{figure}
+
+Para os elementos residuais tem-se 
+%
+\begin{equation}
+\label{eq::residue}
+  \dot{{\bf R}_{\Theta}} = -\underbrace{{\Gamma {\bf R}_{\Theta}\,{\boldsymbol \Sigma}\,{\boldsymbol \Sigma}^T }}_{1}
+    - \underbrace{{\Gamma\,{\boldsymbol \Sigma}^T\,{\boldsymbol \Sigma}\,{\bf R}_{\Theta}}}_{2}\,.
+\end{equation}
+%
+As matrizes ${\boldsymbol \Sigma}\,{\boldsymbol \Sigma}^T\!\in\!{\mathbb R}^{m \times m}$ e ${\boldsymbol \Sigma}^T\,{\boldsymbol \Sigma}\!\in\!{\mathbb R}^{n \times n}$ são matrizes diagonais cujos elementos são os quadrados dos valores singulares de ${\bf K}$. Para os casos em que $m \neq n$, apresentam dimensões diferentes e uma delas também apresentará zeros na diagonal. %Por exemplo, para $\Sigma \in {\mathbb R}^{2\times 3}$:
+%
+%\begin{equation}
+%{\Sigma\Sigma^T} = \left[\begin{matrix} %
+%							\sigma_{1}^2&0\\
+%							0&\sigma_{2}^2\\
+%							\end{matrix} \right]
+%							\quad\quad \text{e} \quad\quad
+%{\Sigma^T\Sigma} = \left[\begin{matrix} 
+%							\sigma_{1}^2&0&0\\
+%							0&\sigma_{2}^2&0\\
+%							0&0&0\\
+%							\end{matrix} \right].			
+%\end{equation}
+%
+No termo 1 de (\ref{eq::residue}), obtido quando considerada a matriz de erro ${\bf S}_\ell$, os elementos diagonais multiplicam as colunas de ${\bf R}_\Theta$. Por outro lado, no termo 2, obtido com a utilização de ${\bf S}_r$, os elementos diagonais são aplicados às linhas de ${\bf R}_\Theta$. Assim, a dinâmica de um elemento residual $r_{ij}$ pode ser expressa por
+%
+\begin{equation}
+  \dot{r}_{ij} + \Gamma(\sigma_i^{*2}+\sigma_j^{*2})r_{ij} = 0\,,
+\end{equation}
+%
+onde $\sigma_k^* = \sigma_k$ se $k \leq \min(m,n)$ e $\sigma_k^* = 0$ caso contrário. A utilização de ambas as matrizes de erro ${\bf S}_r$ e ${\bf S}_\ell$ torna a convergência do elemento residual dependente de dois valores singulares distintos, associados à linha e à coluna. 
+
+\noindent {\bf Observação 1:} Considere o caso onde $m=n$ e $\sigma_m = 0$. O uso de uma lei de atualização baseada apenas em ${\bf S}_r$ (multiplicação das linhas) resultaria em $\dot{r}_{mj} = 0,\;\forall j$. Os elementos residuais de toda $m$-ésima linha não podem se alterar e portanto não se anulam. O algoritmo composto que também utiliza ${\bf S}_\ell$ (multiplicação das colunas) assegura a convergência desses elementos para $0$ desde que $\sigma_j \neq 0$. 
+\vskip 0.25cm
+
+\noindent {\bf Observação 2:} Para os casos onde $m\neq n$ a necessidade de uma lei de atualização composta se torna ainda mais evidente. Considere o caso ${\bf K} \in {\mathbb R}^{2\times 3}$% e com posto completo por linhas
+%
+\begin{equation}
+{\bf K} = \begin{bmatrix} %
+							\vdots&\vdots\\
+							{\bf u}_1&{\bf u}_2\\%
+							\vdots&\vdots\\
+							\end{bmatrix} 
+\begin{bmatrix} 
+							\sigma_1&0&0\\
+							0&\sigma_2&0\\
+							\end{bmatrix} 
+\begin{bmatrix} 
+							\vdots&\vdots&\vdots\\
+							{\bf v_1}&{\bf v_2}&{\bf v_3}\\%
+							\vdots&\vdots&\vdots\\
+							\end{bmatrix}^T,
+\end{equation}
+%
+onde $\sigma_1 \neq 0$ e $\sigma_2 \neq 0$ (posto completo por linhas). A última coluna de ${\bf V}$, ${\bf v}_3$, fornece uma base ortonormal para o espaço nulo de ${\bf K}$, isto é, seja ${\bf b} = \alpha {\bf v}_3$, tem-se ${\bf K}\,{\bf b} = {\bf 0}$, $\forall\,\alpha$. A matriz ${\boldsymbol \Theta}$ pode ser expressa, de acordo com (\ref{eq::expretheta}), como
+%
+\begin{equation}
+{\boldsymbol \Theta} = \begin{bmatrix} %
+							\vdots&\vdots&\vdots\\
+							{\bf v}_1&{\bf v}_2&{\bf v}_3\\%
+							\vdots&\vdots&\vdots\\
+							\end{bmatrix} 
+\begin{bmatrix} 
+							d_1&r_{12}\\
+							r_{21}&d_2\\
+							r_{31}&r_{32}\\
+							\end{bmatrix}
+\begin{bmatrix} 
+							\vdots&\vdots\\
+							{\bf u}_1&{\bf u}_2\\%
+							\vdots&\vdots\\
+							\end{bmatrix}^T.
+\end{equation}
+%
+Note que $r_{31}$ e $r_{32}$ estão associados a esta base (multiplicam ${\bf v}_3$) e, para $r_{31} \neq 0$ e $r_{32} \neq 0$, uma lei ${\bf b} = {\boldsymbol \Theta} {\bf c}$ apresentará componentes no espaço nulo de ${\bf K}$, não representando portanto uma lei de norma mínima ou ótima. Como foi visto, apenas a utilização de ${\bf S}_\ell$ permitirá que estes elementos evoluam para zero, uma vez que torna a convergência dependente do valor singular associado à coluna. 
+\vskip 0.25cm
+
+\noindent {\bf Observação 3:} Considere agora o caso ${\bf K} \in {\mathbb R}^{3\times 2}$, com posto completo por colunas ($\sigma_1 \neq 0$ e $\sigma_2 \neq 0$). %Da mesma forma, ${\bf K}$ pode ser escrito como
+%
+%\begin{equation}
+%{\bf K} = \left[\begin{matrix} %
+%							\vdots&\vdots&\vdots\\
+%							{\bf u}_1&{\bf u}_2&{\bf u}_3\\%
+%							\vdots&\vdots&\vdots\\
+%							\end{matrix} \right]
+%\							\sigma_1&0\\
+%							0&\sigma_2\\
+%							0&0\\
+%							\end{matrix} \right]
+%\left[\begin{matrix} 
+%							\vdots&\vdots\\
+%							{\bf v}_1&{\bf v}_2\\%
+%							\vdots&\vdots\\
+%							\end{matrix} \right]^T.
+%\end{equation}
+%
+Neste caso, a última coluna de ${\bf U}$, ${\bf u}_3$, fornece uma base ortonormal para o espaço nulo à esquerda de ${\bf K}$. Isto é, para um sistema ${\bf K} {\bf b} = {\bf c}$, não existe solução ${\bf b}$ para ${\bf c} = \alpha {\bf u}_3$. Representa portanto uma base para variáveis ${\bf c}$ inalcançáveis. Considere novamente a expressão proposta em (\ref{eq::expretheta}) para ${\boldsymbol \Theta}$
+%
+\begin{equation}
+{\boldsymbol \Theta} = \begin{bmatrix} %
+							\vdots&\vdots\\
+							{\bf v}_1&{\bf v}_2\\%
+							\vdots&\vdots\\
+							\end{bmatrix} 
+\begin{bmatrix} 
+							d_1&r_{12}&r_{13}\\
+							r_{21}&d_2&r_{23}\\
+							\end{bmatrix} 
+\begin{bmatrix} 
+							\vdots&\vdots&\vdots\\
+							{\bf u}_1&{\bf u}_2&{\bf u}_3\\%
+							\vdots&\vdots&\vdots\\
+							\end{bmatrix} ^T.
+\end{equation}
+%
+Os elementos residuais $r_{13}$ e $r_{23}$ estão associados a ${\bf u}_3$. Para $r_{13}\neq 0$, $r_{23}\neq 0$ e ${\bf c} = \alpha {\bf u}_3$, tem-se ${\bf b} = {\boldsymbol \Theta} {\bf c} \neq {\bf 0}$, embora ${\bf c}$ seja uma saída inviável para o sistema. Neste caso, apenas a utilização da matriz de erro à direita ${\bf S}_r$ garantirá que estes elementos residuais convirjam para $0$ e assim ${\bf b} = {\boldsymbol \Theta} {\bf c} \rightarrow 0$. 
+  
+%where $\sigma_k^* = \sigma_k$ if $k \leq \min(m,n)$ and $\sigma_k^* = 0$ otherwise (rectangular matrices). The use of the two error matrices $S_\ell$ and $S_r$ makes the residue convergence dependent of two distinct single values, related to the row and column. For instance, consider the case where $m=n$ and $\sigma_m = 0$. The use of an update law based only on $S_r$ (with zeros multiplying the lines) would result in $\dot{r}_{mj} = 0,\;\forall j$. The residual elements of the entire $m^{th}$ line cannot change and therefore cannot become null. The composite algorithm which also uses $S_{\ell}$ (with zeros multiplying the columns) ensures the convergence of these residues to 0 since $\sigma_j \neq 0$. For the $m<n$ case, with full rank, the residual elements $r_{ij}$ for $i>m$ are related with vectors in the nullspace of $K$. The use of $S_\ell$ ensures that these elements converge to zero. For the case where $m>n$, the residuals $r_{ij}$ for $j > n$ are associated with vectors in nullspace of $K^T$ and only the use of $S_r$ ensures convergence of these residual terms to 0.
+
+
+

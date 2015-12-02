@@ -1,0 +1,476 @@
+%%Created by jPicEdt 1.4.1_03: mixed JPIC-XML/LaTeX format
+%%Fri Feb 08 12:24:42 BRST 2013
+%%Begin JPIC-XML
+%<?xml version="1.0" standalone="yes"?>
+%<jpic x-min="-5.32" x-max="235.52" y-min="4.99" y-max="130.8" auto-bounding="true">
+%<multicurve fill-color= "#ffffff"
+%	 points= "(163.99,90.82);(163.99,90.82);(133.31,31.09);(133.31,31.09);(133.31,31.09);(132.2,30.24);
+%	(132.2,30.24);(132.2,30.24);(115.46,38.71);(115.46,38.71);(115.46,38.71);(115.48,40.11);
+%	(115.48,40.11);(115.48,40.11);(146.14,99.84);(146.14,99.84)"
+%	 fill-style= "solid"
+%	 />
+%<circle fill-color= "#ffffff"
+%	 p3= "(120.36,21.3)"
+%	 p2= "(131.98,29.35)"
+%	 p1= "(123.92,40.97)"
+%	 closure= "plain"
+%	 fill-style= "solid"
+%	 />
+%<circle p3= "(117.22,32.03)"
+%	 p2= "(121.24,26.21)"
+%	 p1= "(127.06,30.24)"
+%	 closure= "plain"
+%	 fill-hatch-width= "0.55"
+%	 fill-style= "vlines"
+%	 />
+%<multicurve points= "(163.99,90.82);(163.99,90.82);(164,92.22);(164,92.22);(164,92.22);(147.27,100.67);
+%	(147.27,100.67);(147.27,100.67);(146.14,99.84);(146.14,99.84)"
+%	 fill-style= "none"
+%	 />
+%<multicurve arrow-global-scale-length= "2"
+%	 right-arrow= "head"
+%	 fill-color= "#ff9966"
+%	 points= "(5.3,10.02);(5.3,10.02);(45.3,10.02);(45.3,10.02)"
+%	 arrow-global-scale-width= "2"
+%	 fill-style= "hlines-filled"
+%	 />
+%<multicurve arrow-global-scale-length= "2"
+%	 right-arrow= "head"
+%	 fill-color= "#ff9966"
+%	 points= "(5.3,11.27);(5.3,11.27);(5.3,51.27);(5.3,51.27)"
+%	 arrow-global-scale-width= "2"
+%	 fill-style= "hlines-filled"
+%	 />
+%<text fill-color= "#ff9966"
+%	 text-vert-align= "center-v"
+%	 anchor-point= "(41.55,45.65)"
+%	 text-frame= "noframe"
+%	 fill-style= "hlines-filled"
+%	 text-hor-align= "center-h"
+%	 >
+%\Lum
+%</text>
+%<g>
+%<multicurve fill-color= "#ff9966"
+%	 points= "(-0.55,9.99);(-0.55,9.99);(22.53,9.99);(22.53,9.99)"
+%	 fill-style= "vlines"
+%	 />
+%<multicurve fill-color= "#ff9966"
+%	 points= "(22.53,9.99);(22.53,9.99);(20.61,4.99);(20.61,4.99)"
+%	 fill-style= "vlines"
+%	 />
+%<multicurve fill-color= "#ff9966"
+%	 points= "(20.61,9.99);(20.61,9.99);(18.69,4.99);(18.69,4.99)"
+%	 fill-style= "vlines"
+%	 />
+%<multicurve fill-color= "#ff9966"
+%	 points= "(18.69,9.99);(18.69,9.99);(16.76,4.99);(16.76,4.99)"
+%	 fill-style= "vlines"
+%	 />
+%<multicurve fill-color= "#ff9966"
+%	 points= "(16.76,9.99);(16.76,9.99);(14.84,4.99);(14.84,4.99)"
+%	 fill-style= "vlines"
+%	 />
+%<multicurve fill-color= "#ff9966"
+%	 points= "(14.84,9.99);(14.84,9.99);(12.92,4.99);(12.92,4.99)"
+%	 fill-style= "vlines"
+%	 />
+%<multicurve fill-color= "#ff9966"
+%	 points= "(12.92,9.99);(12.92,9.99);(10.99,4.99);(10.99,4.99)"
+%	 fill-style= "vlines"
+%	 />
+%<multicurve fill-color= "#ff9966"
+%	 points= "(10.99,9.99);(10.99,9.99);(9.07,4.99);(9.07,4.99)"
+%	 fill-style= "vlines"
+%	 />
+%<multicurve fill-color= "#ff9966"
+%	 points= "(9.07,9.99);(9.07,9.99);(7.15,4.99);(7.15,4.99)"
+%	 fill-style= "vlines"
+%	 />
+%<multicurve fill-color= "#ff9966"
+%	 points= "(7.15,9.99);(7.15,9.99);(5.22,4.99);(5.22,4.99)"
+%	 fill-style= "vlines"
+%	 />
+%<multicurve fill-color= "#ff9966"
+%	 points= "(5.22,9.99);(5.22,9.99);(3.3,4.99);(3.3,4.99)"
+%	 fill-style= "vlines"
+%	 />
+%<multicurve fill-color= "#ff9966"
+%	 points= "(3.3,9.99);(3.3,9.99);(1.38,4.99);(1.38,4.99)"
+%	 fill-style= "vlines"
+%	 />
+%<multicurve fill-color= "#ff9966"
+%	 points= "(1.38,9.99);(1.38,9.99);(-0.55,4.99);(-0.55,4.99)"
+%	 fill-style= "vlines"
+%	 />
+%<multicurve fill-color= "#ff9966"
+%	 points= "(-0.55,9.99);(-0.55,9.99);(-2.47,4.99);(-2.47,4.99)"
+%	 fill-style= "vlines"
+%	 />
+%</g>
+%<multicurve points= "(81.74,94.72);(81.74,94.72);(80.61,93.9);(80.61,93.9);(80.61,93.9);(83.7,75.4);
+%	(83.7,75.4);(83.7,75.4);(85.03,74.99);(85.03,74.99)"
+%	 fill-style= "none"
+%	 />
+%<multicurve fill-color= "#ff9966"
+%	 points= "(81.74,94.72);(81.74,94.72);(81.74,94.72);(81.74,94.72)"
+%	 fill-style= "vlines"
+%	 />
+%<multicurve fill-color= "#ff9966"
+%	 points= "(163.72,102.1);(163.72,102.1);(163.72,102.1);(163.72,102.1)"
+%	 fill-style= "vlines"
+%	 />
+%<multicurve fill-color= "#ffffff"
+%	 points= "(81.74,94.72);(81.74,94.72);(148.05,105.35);(148.05,105.35);(148.05,105.35);(149.38,104.94);
+%	(149.38,104.94);(149.38,104.94);(152.47,86.45);(152.47,86.45);(152.47,86.45);(151.34,85.62);
+%	(151.34,85.62);(151.34,85.62);(85.03,74.99);(85.03,74.99)"
+%	 fill-style= "solid"
+%	 />
+%<g>
+%<multicurve points= "(5,23.64);(5,23.64);(68.64,87.28);(68.64,87.28);(68.64,87.28);(69.97,87.72);
+%	(69.97,87.72);(69.97,87.72);(83.22,74.46);(83.22,74.46);(83.22,74.46);(82.78,73.14);
+%	(82.78,73.14);(82.78,73.14);(19.14,9.5);(19.14,9.5)"
+%	 fill-style= "none"
+%	 />
+%<circle fill-color= "#ffffff"
+%	 p3= "(84.01,92.54)"
+%	 p2= "(70.45,88.51)"
+%	 p1= "(74.48,74.95)"
+%	 closure= "plain"
+%	 fill-style= "solid"
+%	 />
+%<circle p3= "(83.64,81.36)"
+%	 p2= "(81.63,88.14)"
+%	 p1= "(74.85,86.13)"
+%	 closure= "plain"
+%	 fill-hatch-width= "0.55"
+%	 fill-style= "vlines"
+%	 />
+%</g>
+%<circle fill-color= "#ffffff"
+%	 p3= "(163.61,100.7)"
+%	 p2= "(150.24,105.3)"
+%	 p1= "(145.64,91.92)"
+%	 closure= "plain"
+%	 fill-style= "solid"
+%	 />
+%<circle p3= "(156.82,91.82)"
+%	 p2= "(159.12,98.5)"
+%	 p1= "(152.43,100.8)"
+%	 closure= "plain"
+%	 fill-hatch-width= "0.55"
+%	 fill-style= "vlines"
+%	 />
+%<text fill-color= "#ff9966"
+%	 text-vert-align= "center-v"
+%	 anchor-point= "(117.8,90.65)"
+%	 text-frame= "noframe"
+%	 fill-style= "hlines-filled"
+%	 text-hor-align= "center-h"
+%	 >
+%\Ldois
+%</text>
+%<text fill-color= "#ff9966"
+%	 text-vert-align= "bottom"
+%	 anchor-point= "(-5.32,15.02)"
+%	 text-frame= "noframe"
+%	 fill-style= "hlines-filled"
+%	 text-hor-align= "right"
+%	 >
+%\Jum
+%</text>
+%<text fill-color= "#ff9966"
+%	 text-vert-align= "bottom"
+%	 anchor-point= "(59.68,83.77)"
+%	 text-frame= "noframe"
+%	 fill-style= "hlines-filled"
+%	 text-hor-align= "right"
+%	 >
+%\Jdois
+%</text>
+%<text fill-color= "#ff9966"
+%	 text-vert-align= "bottom"
+%	 anchor-point= "(152.8,113.77)"
+%	 text-frame= "noframe"
+%	 fill-style= "hlines-filled"
+%	 text-hor-align= "center-h"
+%	 >
+%\Jtres
+%</text>
+%<multicurve arrow-global-scale-length= "1.5"
+%	 fill-color= "#ff9966"
+%	 left-arrow= "disk-centered"
+%	 points= "(122.18,31.27);(122.18,31.27);(122.18,31.27);(122.18,31.27)"
+%	 arrow-global-scale-width= "1.5"
+%	 fill-style= "hlines-filled"
+%	 />
+%<text fill-color= "#ff9966"
+%	 text-vert-align= "top"
+%	 anchor-point= "(44.05,6.27)"
+%	 text-frame= "noframe"
+%	 fill-style= "hlines-filled"
+%	 text-hor-align= "center-h"
+%	 >
+%\X
+%</text>
+%<text fill-color= "#ff9966"
+%	 text-vert-align= "center-v"
+%	 anchor-point= "(1.55,48.77)"
+%	 text-frame= "noframe"
+%	 fill-style= "hlines-filled"
+%	 text-hor-align= "right"
+%	 >
+%\Y
+%</text>
+%<g>
+%<circle fill-color= "#ffffff"
+%	 p3= "(6.83,7.42)"
+%	 p2= "(20.43,11.29)"
+%	 p1= "(16.56,24.89)"
+%	 closure= "plain"
+%	 fill-style= "solid"
+%	 />
+%<circle p3= "(7.33,18.59)"
+%	 p2= "(9.26,11.78)"
+%	 p1= "(16.07,13.72)"
+%	 closure= "plain"
+%	 fill-hatch-width= "0.55"
+%	 fill-style= "vlines"
+%	 />
+%</g>
+%<text fill-color= "#ff9966"
+%	 text-vert-align= "center-v"
+%	 anchor-point= "(137.82,65.13)"
+%	 text-frame= "noframe"
+%	 fill-style= "hlines-filled"
+%	 text-hor-align= "center-h"
+%	 >
+%\Ltres
+%</text>
+%<text fill-color= "#ff9966"
+%	 text-vert-align= "top"
+%	 anchor-point= "(110,25)"
+%	 text-frame= "noframe"
+%	 fill-style= "hlines-filled"
+%	 text-hor-align= "right"
+%	 >
+%\Pos
+%</text>
+%<ellipse fill-hatch-color= "#ffffff"
+%	 stroke-style= "dashed"
+%	 fill-color= "#f0f0f0"
+%	 p3= "(207.06,32.57)"
+%	 p2= "(235.52,117.95)"
+%	 p1= "(196.98,130.8)"
+%	 stroke-dasharray= "1;1"
+%	 closure= "open"
+%	 angle-end= "0"
+%	 fill-style= "hlines-filled"
+%	 angle-start= "0"
+%	 />
+%<g>
+%<ellipse fill-hatch-color= "#ffffff"
+%	 stroke-style= "dashed"
+%	 fill-color= "#d2d2d2"
+%	 p3= "(205.38,48.94)"
+%	 p2= "(224.35,105.86)"
+%	 p1= "(198.66,114.43)"
+%	 stroke-dasharray= "1;1"
+%	 closure= "open"
+%	 angle-end= "0"
+%	 fill-style= "hlines-filled"
+%	 angle-start= "0"
+%	 />
+%<ellipse fill-hatch-color= "#ffffff"
+%	 stroke-style= "dashed"
+%	 fill-color= "#b4b4b4"
+%	 p3= "(203.7,65.31)"
+%	 p2= "(213.19,93.78)"
+%	 p1= "(200.34,98.06)"
+%	 stroke-dasharray= "1;1"
+%	 closure= "open"
+%	 angle-end= "0"
+%	 fill-style= "hlines-filled"
+%	 angle-start= "0"
+%	 />
+%</g>
+%<multicurve arrow-global-scale-length= "1.5"
+%	 fill-color= "#ff9966"
+%	 left-arrow= "disk-flushed"
+%	 points= "(201.72,81.78);(201.72,81.78);(201.72,81.78);(201.72,81.78)"
+%	 arrow-global-scale-width= "1.5"
+%	 fill-style= "hlines-filled"
+%	 />
+%<text fill-color= "#ff9966"
+%	 text-vert-align= "top"
+%	 anchor-point= "(200.93,79.41)"
+%	 text-frame= "noframe"
+%	 fill-style= "hlines-filled"
+%	 text-hor-align= "center-h"
+%	 >
+%\Ct
+%</text>
+%<text fill-color= "#ff9966"
+%	 text-vert-align= "top"
+%	 anchor-point= "(195,25)"
+%	 text-frame= "noframe"
+%	 fill-style= "hlines-filled"
+%	 text-hor-align= "center-h"
+%	 >
+%\Posmi
+%</text>
+%<g>
+%<multicurve arrow-global-scale-length= "1.5"
+%	 right-arrow= "t-bar-flushed"
+%	 fill-color= "#ff9966"
+%	 left-arrow= "t-bar-flushed"
+%	 points= "(210.77,32.31);(210.77,32.31);(225,75);(225,75)"
+%	 arrow-global-scale-width= "1.5"
+%	 fill-style= "hlines-filled"
+%	 />
+%<text fill-color= "#ff9966"
+%	 text-vert-align= "top"
+%	 anchor-point= "(221.25,52.25)"
+%	 text-frame= "noframe"
+%	 fill-style= "hlines-filled"
+%	 text-hor-align= "left"
+%	 >
+%\Dy
+%</text>
+%</g>
+%<g>
+%<text fill-color= "#ff9966"
+%	 text-vert-align= "bottom"
+%	 anchor-point= "(175.66,42.18)"
+%	 text-frame= "noframe"
+%	 fill-style= "hlines-filled"
+%	 text-hor-align= "center-h"
+%	 >
+%\Dx
+%</text>
+%<multicurve arrow-global-scale-length= "1.5"
+%	 right-arrow= "t-bar-flushed"
+%	 fill-color= "#ff9966"
+%	 left-arrow= "t-bar-flushed"
+%	 points= "(166.02,41.33);(166.02,41.33);(185,35);(185,35)"
+%	 arrow-global-scale-width= "1.5"
+%	 fill-style= "hlines-filled"
+%	 />
+%</g>
+%</jpic>
+%%End JPIC-XML
+%PSTricks content-type (pstricks.sty package needed)
+%Add \usepackage{pstricks} in the preamble of your LaTeX file
+%You can rescale the whole picture (to 80% for instance) by using the command \def\JPicScale{0.8}
+\ifx\JPicScale\undefined\def\JPicScale{1}\fi
+\psset{unit=\JPicScale mm}
+\psset{linewidth=0.3,dotsep=1,hatchwidth=0.3,hatchsep=1.5,shadowsize=1,dimen=middle}
+\psset{dotsize=0.7 2.5,dotscale=1 1,fillcolor=black}
+\psset{arrowsize=1 2,arrowlength=1,arrowinset=0.25,tbarsize=0.7 5,bracketlength=0.15,rbracketlength=0.15}
+\begin{pspicture}(0,0)(235.52,130.8)
+\psline[fillcolor=white,fillstyle=solid](163.99,90.82)
+(133.31,31.09)
+(132.2,30.24)
+(115.46,38.71)
+(115.48,40.11)(146.14,99.84)
+\rput{0}(122.15,31.13){\psellipse[fillcolor=white,fillstyle=solid](0,0)(10,10)}
+\rput{0}(122.14,31.13){\psellipse[fillstyle=vlines,hatchwidth=0.55](0,0)(5,5)}
+\psline(163.99,90.82)
+(164,92.22)
+(147.27,100.67)(146.14,99.84)
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\psline[fillcolor=userFillColour,fillstyle=hlines*,arrowscale=2 2]{->}(5.3,10.02)(45.3,10.02)
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\psline[fillcolor=userFillColour,fillstyle=hlines*,arrowscale=2 2]{->}(5.3,11.27)(5.3,51.27)
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\rput(41.55,45.65){\Lum}
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\psline[fillcolor=userFillColour,fillstyle=vlines](-0.55,9.99)(22.53,9.99)
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\psline[fillcolor=userFillColour,fillstyle=vlines](22.53,9.99)(20.61,4.99)
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\psline[fillcolor=userFillColour,fillstyle=vlines](20.61,9.99)(18.69,4.99)
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\psline[fillcolor=userFillColour,fillstyle=vlines](18.69,9.99)(16.76,4.99)
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\psline[fillcolor=userFillColour,fillstyle=vlines](16.76,9.99)(14.84,4.99)
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\psline[fillcolor=userFillColour,fillstyle=vlines](14.84,9.99)(12.92,4.99)
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\psline[fillcolor=userFillColour,fillstyle=vlines](12.92,9.99)(10.99,4.99)
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\psline[fillcolor=userFillColour,fillstyle=vlines](10.99,9.99)(9.07,4.99)
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\psline[fillcolor=userFillColour,fillstyle=vlines](9.07,9.99)(7.15,4.99)
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\psline[fillcolor=userFillColour,fillstyle=vlines](7.15,9.99)(5.22,4.99)
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\psline[fillcolor=userFillColour,fillstyle=vlines](5.22,9.99)(3.3,4.99)
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\psline[fillcolor=userFillColour,fillstyle=vlines](3.3,9.99)(1.38,4.99)
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\psline[fillcolor=userFillColour,fillstyle=vlines](1.38,9.99)(-0.55,4.99)
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\psline[fillcolor=userFillColour,fillstyle=vlines](-0.55,9.99)(-2.47,4.99)
+\psline(81.74,94.72)
+(80.61,93.9)
+(83.7,75.4)(85.03,74.99)
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\psbezier[fillcolor=userFillColour,fillstyle=vlines](81.74,94.72)(81.74,94.72)(81.74,94.72)(81.74,94.72)
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\psbezier[fillcolor=userFillColour,fillstyle=vlines](163.72,102.1)(163.72,102.1)(163.72,102.1)(163.72,102.1)
+\psline[fillcolor=white,fillstyle=solid](81.74,94.72)
+(148.05,105.35)
+(149.38,104.94)
+(152.47,86.45)
+(151.34,85.62)(85.03,74.99)
+\psline(5,23.64)
+(68.64,87.28)
+(69.97,87.72)
+(83.22,74.46)
+(82.78,73.14)(19.14,9.5)
+\rput{0}(79.24,83.75){\psellipse[fillcolor=white,fillstyle=solid](0,0)(10,10)}
+\rput{0}(79.24,83.75){\psellipse[fillstyle=vlines,hatchwidth=0.55](0,0)(5,5)}
+\rput{0}(154.62,96.31){\psellipse[fillcolor=white,fillstyle=solid](0,0)(10,10)}
+\rput{0}(154.63,96.31){\psellipse[fillstyle=vlines,hatchwidth=0.55](0,0)(5,5)}
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\rput(117.8,90.65){\Ldois}
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\rput[br](-5.32,15.02){\Jum}
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\rput[br](59.68,83.77){\Jdois}
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\rput[b](152.8,113.77){\Jtres}
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\psbezier[fillcolor=userFillColour,fillstyle=hlines*,arrowscale=1.5 1.5]{*-}(122.18,31.27)(122.18,31.27)(122.18,31.27)(122.18,31.27)
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\rput[t](44.05,6.27){\X}
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\rput[r](1.55,48.77){\Y}
+\rput{0}(11.69,16.16){\psellipse[fillcolor=white,fillstyle=solid](0,0)(10,10)}
+\rput{0}(11.7,16.15){\psellipse[fillstyle=vlines,hatchwidth=0.55](0,0)(5,5)}
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\rput(137.82,65.13){\Ltres}
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\rput[tr](110,25){\Pos}
+\newrgbcolor{userFillColour}{0.94 0.94 0.94}
+\rput{71.57}(202.02,81.68){\psellipse[linestyle=dashed,dash=1 1,fillcolor=userFillColour,fillstyle=hlines*,hatchcolor=white](0,0)(45,-20.31)}
+\newrgbcolor{userFillColour}{0.82 0.82 0.82}
+\rput{71.57}(202.02,81.68){\psellipse[linestyle=dashed,dash=1 1,fillcolor=userFillColour,fillstyle=hlines*,hatchcolor=white](0,0)(30,-13.54)}
+\newrgbcolor{userFillColour}{0.71 0.71 0.71}
+\rput{71.56}(202.02,81.68){\psellipse[linestyle=dashed,dash=1 1,fillcolor=userFillColour,fillstyle=hlines*,hatchcolor=white](0,0)(15.01,-6.77)}
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\psbezier[fillcolor=userFillColour,fillstyle=hlines*,arrowscale=1.5 1.5]{**-}(201.72,81.78)(201.72,81.78)(201.72,81.78)(201.72,81.78)
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\rput[t](200.93,79.41){\Ct}
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\rput[t](195,25){\Posmi}
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\psline[fillcolor=userFillColour,fillstyle=hlines*,arrowscale=1.5 1.5]{|*-|*}(210.77,32.31)(225,75)
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\rput[tl](221.25,52.25){\Dy}
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\rput[b](175.66,42.18){\Dx}
+\newrgbcolor{userFillColour}{1 0.6 0.4}
+\psline[fillcolor=userFillColour,fillstyle=hlines*,arrowscale=1.5 1.5]{|*-|*}(166.02,41.33)(185,35)
+\end{pspicture}

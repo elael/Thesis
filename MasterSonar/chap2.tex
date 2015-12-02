@@ -1,0 +1,763 @@
+\chapter{\label{chap::cinematica}Cinemática}
+
+Um manipulador robótico pode ser esquematicamente representado sob o ponto de vista mecânico como uma cadeia de corpos rígidos, os elos, conectados por meio de juntas, prismáticas ou de revolução. No início desta cadeia é estabelecida a origem, tipicamente a referência inercial escolhida para o sistema e, ao seu final, é montado o efetuador. O movimento resultante de toda a estrutura é obtido pela composição dos movimentos elementares de cada elo com respeito ao elo anterior. De forma a possibilitar a manipulação de um objeto no espaço de trabalho pelo efetuador, torna-se necessária a descrição de sua posição e orientação. Este capítulo, elaborado a partir de \cite{SSVO:09} e \cite{MRY:94}, dedica-se à apresentação das bases teóricas para a obtenção da equação que determina a posição e a orientação do efetuador a partir das variáveis das juntas, denominada equação de cinemática direta, e da equação que relaciona as velocidades desenvolvidas no espaço das juntas e no espaço operacional, denominada equação de cinemática diferencial. 
+%
+%Por fim, é apresentado o problema de determinação das variáveis de juntas a partir da configuração no espaço operacional, chamado de cinemática inversa.
+%Esta abordagem diferencial é utilizada para solucionar o problema inverso de determinação das variáveis das juntas a partir da configuração da estrutura no espaço operacional, chamado de cinemática inversa. 
+%
+O estudo da cinemática de manipuladores robóticos tem início, portanto, com o estudo do movimento do corpo rígido.
+
+\section{Posição e Orientação de um Corpo Rígido}
+
+O movimento de uma partícula no espaço Euclidiano ${\mathbb R}^3$ é descrito por sua localização relativa a um sistema de coordenadas Cartesiano inercial ${\mathbf O}{-xyz}$ definido por três eixos ortonormais ${\mathbf x}$, ${\mathbf y}$ e ${\mathbf z}$. A posição da partícula é especificada pela terna $(p_x,p_y,p_z) \in {\mathbb R}^3$, em que cada coordenada representa a projeção da posição ${\mathbf p}$ nos eixos do sistema de coordenadas inercial. Assim, a trajetória efetuada pela partícula pode ser representada pela curva ${\mathbf p}(t) = (p_x(t),p_y(t),p_z(t)) \in {\mathbb R}^3$. O interesse da robótica consiste na análise do movimento coletivo destas partículas, como em um elo de um manipulador. Assim, define-se formalmente um corpo rígido como um conjunto de partículas tal que a distância entre elas permanece fixa para todo tempo, independente do movimento realizado e das forças exercidas sobre o corpo. De maneira menos formal, o corpo rígido nada mais é do que um corpo imune a distorções. Os pontos ${\mathbf p}$ e ${\mathbf q}$ de um corpo rígido satisfazem
+%
+\begin{equation}
+\label{eq::rigid}
+\left\|{\mathbf p}(t) - {\mathbf q}(t)\right\| = \left\|{\mathbf p}(0) - {\mathbf q}(0)\right\| = C \quad \forall t. 
+\end{equation}
+%
+O corpo rígido é completamente descrito no espaço por sua posição e orientação relativas ao sistema de coordenadas inercial. A Figura \ref{fig::rigid} mostra o sistema de coordenadas de referência (ou inercial) e um corpo rígido, onde quaisquer dois pontos a ele pertencentes satisfazem (\ref{eq::rigid}). 
+%
+%\begin{figure}[!htb]
+%\centering
+%\includegraphics[scale=0.35]{figeps/rigid.eps}
+%\caption{Posição e orientação do corpo rígido}
+%\label{fig::rigid}
+%\end{figure}
+
+\begin{figure}[htpb]
+  \centering
+  \def\JPicScale{0.68}
+  {\small
+  \input{fig/rigid.pst}
+  }
+  \caption{Posição e orientação do corpo rígido}
+  \label{fig::rigid}
+\end{figure}
+
+A posição de um ponto ${\mathbf O}'$ pertencente ao corpo rígido com relação ao sistema de coordenadas ${\mathbf O}{-xyz}$ é expressa pela relação
+%
+\begin{equation}
+{\mathbf o}' = o'_x{\mathbf x} + o'_y{\mathbf y} + o'_z{\mathbf z},
+\end{equation}
+%
+em que $o'_x$, $o'_y$ e $o'_z$ correspondem as projeções do vetor ${\mathbf o}'$ nos eixos do sistema de coordenadas inercial. De maneira mais compacta tem-se que
+%
+\begin{equation}
+{\mathbf o}' = \left[\begin{array}{c} 
+o'_x\\ 
+o'_y\\ 
+o'_z\\
+\end{array} \right].
+\end{equation}
+
+A orientação do corpo é descrita através da orientação relativa entre um sistema de coordenadas ortonormal fixado ao corpo e o sistema de coordenadas inercial. Denomina-se ${\mathbf O}'{-x'y'z'}$ o sistema de coordenadas do corpo e ${\mathbf x}'$, ${\mathbf y}'$, ${\mathbf z}'$ $\in {\mathbb R}^3$ as coordenadas dos eixos principais deste novo sistema relativos ao sistema de coordenadas ${\mathbf O}{-xyz}$ ( ver Figura \ref{fig::rigid}). Estes vetores são expressos como:
+%
+\begin{eqnarray}
+{\mathbf x}' &=& x'_x{\mathbf x} + x'_y{\mathbf z} + x'_z{\mathbf z},\nonumber \\
+{\mathbf y}' &=& y'_x{\mathbf x} + y'_y{\mathbf z} + y'_z{\mathbf z},\nonumber \\
+\label{eq::vector}
+{\mathbf z}' &=& z'_x{\mathbf x} + z'_y{\mathbf z} + z'_z{\mathbf z}. 
+\end{eqnarray}
+%
+Adotando uma notação compacta, os vetores unitários em (\ref{eq::vector}) descrevendo a orientação do corpo com respeito ao sistema de coordenadas de referência podem ser combinados em uma matriz
+%
+\begin{equation}
+\label{rotation}
+{\mathbf R} = \left[\begin{matrix} 
+							& &\\
+							{\mathbf x}' & {\mathbf y}' &{\mathbf z}' \\
+							& & \\
+							\end{matrix} \right]
+					= \left[\begin{matrix} 
+							x'_x & y'_x & z'_x\\
+							x'_y & y'_y & z'_y\\
+							x'_z & y'_z & z'_z\\
+							\end{matrix} \right]
+					= \left[\begin{matrix} 
+							{\mathbf x}'^T{\mathbf x} & {\mathbf y}'^T{\mathbf x} & {\mathbf z}'^T{\mathbf x}\\
+							{\mathbf x}'^T{\mathbf y} & {\mathbf y}'^T{\mathbf y} & {\mathbf z}'^T{\mathbf y}\\
+							{\mathbf x}'^T{\mathbf z} & {\mathbf y}'^T{\mathbf z} & {\mathbf z}'^T{\mathbf z}\\
+							\end{matrix} \right],
+\end{equation} 
+%
+denominada matriz de rotação. As matrizes de rotação, portanto, descrevem a rotação em torno de um eixo no espaço necessária para alinhar os eixos do sistema de referência ao sistema do corpo. Há ainda outro significado geométrico, referente à representação de um mesmo vetor em sistemas de coordenadas diferentes. Seja {\bf p} a representação do ponto ${\mathbf P}$ com respeito ao sistema de coordenadas ${\mathbf O}{-xyz}$ e {\bf p'} a representação deste mesmo ponto ${\mathbf P}$ com respeito ao sistema de coordenadas ${\mathbf O}'{-x'y'z'}$. Como {\bf p} e {\bf p'} são representações para o mesmo ponto {\bf P}, obtem-se
+%
+\begin{equation}
+\label{eq::relation}
+{\bf p} = p'_x{\bf x}' + p'_y{\bf y}' + p'_z{\bf z}'  = \left[\begin{matrix} 
+							& &\\
+							{\mathbf x}' & {\mathbf y}' &{\mathbf z}' \\
+							& & \\
+							\end{matrix} \right]
+							\left[\begin{matrix} 
+							p'_x\\
+							p'_y \\
+							p'_z\\
+							\end{matrix} \right]
+ 				= {\bf R}{\bf p}'.
+\end{equation}
+%
+As colunas das matrizes de rotação correspondem aos eixos de um sistema de coordenadas, que são ortogonais e de módulo unitário, o que implica na ortonormalidade da matriz {\bf R}. Desta forma, ${\mathbf R}^T{\mathbf R} = {\mathbf I}_{3\times3}$ e, portanto, $det\, {\mathbf R} = \pm 1$. O determinante da matriz de rotação pode ser encontrado através da seguinte relação algébrica:
+%
+\begin{equation}
+\label{eq::detR}
+det\, {\mathbf R} = {\mathbf x}'^T({\mathbf y}' \times {\mathbf z}').
+\end{equation}
+%
+Para sistemas de coordenadas construídos através da regra da mão direita, $det\, {\mathbf R} = 1$, e as matrizes de rotação assim definidas são ditas pertencentes ao {\it Grupo Especial Ortonormal} $SO(3) = \{{\bf R} \in {\mathbb R}^{3\times3}:{\bf R}^T{\bf R} = {\bf I},\, det{\bf R} = 1\}$. As matrizes de rotação elementares, em torno dos eixos {\bf x, y} e {\bf z}, são obtidas com facilidade e %apresentadas abaixo. As colunas destas matrizes constituem os vetores unitários do sistema de coordenadas rotacionado com respeito ao sistema original.
+dadas por:
+%
+\begin{equation}
+{\mathbf R_x(\alpha)} = \left[\begin{matrix}
+						  1&0&0\\ 
+							0&c\alpha&-s\alpha\\
+							0&s\alpha&c\alpha\\
+							\end{matrix}\right];
+{\mathbf R_y(\beta)} = \left[\begin{matrix} 
+							c\beta&0&s\beta\\
+							0&1&0\\
+							-s\beta&0&c\beta\\
+							\end{matrix}\right];
+{\mathbf R_z(\gamma)} = \left[\begin{matrix} 
+							c\gamma&-s\gamma&0\\
+							s\gamma&c\gamma&0\\
+							0&0&1\\
+							\end{matrix}\right]						
+\end{equation} 
+%
+onde $c \upsilon = \cos(\upsilon)$ e $s \upsilon = \sin(\upsilon)$ para $\upsilon = \alpha, \beta, \gamma$. 
+As colunas destas matrizes constituem os vetores unitários do sistema de coordenadas rotacionado com respeito ao sistema original. 
+Uma representação compacta \cite{SSVO:09} da posição e orientação de um corpo rígido é realizada através das transformações homogêneas. Sejam ${\bf O}_1{-x_1y_1z_1}$ e ${\bf O}_2{-x_2y_2z_2}$ dois sistemas de coordenadas ortonormais. A matriz de transformação homogênea ${\bf T}_{12}$ representa de forma compacta a transformação de coordenadas (translação e rotação) entre os dois sistemas de coordenadas por
+%
+\begin{equation}
+\label{eq::thomo}
+{\bf T}_{12} = \left[\begin{matrix}
+							%& & & & \\
+						  {\bf R}_{12}& &{(\bf p}_{12})_1\\
+						  %& & & \\ 
+							{\bf 0}& &1\\
+							%& & & & \\
+							\end{matrix}\right],
+\end{equation}
+%
+e uma vez que ${\bf p}_{12} \in {\mathbb R}^{3}$ e ${\bf R}_{12} \in SO(3)$, esta matriz pertence ao {\it Grupo Especial Euclidiano} $SE(3) = {\mathbb R}^3\times SO(3)$. No que se segue, assim como em (\ref{eq::thomo}), é utilizado um subíndice para explicitar o sistema de coordenadas escolhido como referência, sendo $({\bf p})_i$ a representação do ponto ${\bf p}$ no sistema de coordenadas ${\bf O}_{i}{-x_iy_iz_i}$. A equação (\ref{eq::relation}) é então reescrita:
+%
+\begin{equation}
+\label{eq::mudando}
+({\bf p})_0 = {\bf R}_{0i} ({\bf p})_i.
+\end{equation}
+%
+Note que para a matriz de transformação homogênea a propriedade de ortogonalidade não permanece dado que, em geral, ${\bf T}^{-1} \neq {\bf T}^T$.
+
+\section{\label{sec::cd}Cinemática Direta}
+
+Como foi visto na seção anterior, um manipulador robótico consiste numa cadeia cinemática de corpos rígidos, conectados por meio de juntas, tipicamente prismáticas ou de revolução. O início da estrutura mecânica é denominada base e a extremidade final é chamada efetuador, uma vez que corresponde ao ponto da cadeia que realizará efetivamente a manipulação de objetos no espaço de trabalho. Um exemplo de manipulador robótico é mostrado na Figura \ref{fig::manip}.
+%
+%\begin{figure}[!htb]
+%\centering
+%\includegraphics[scale=0.175]{figeps/scara.eps}
+%\caption{Manipulador SCARA}
+%\label{fig::manip}
+%\end{figure}
+
+\begin{figure}[htpb]
+  \centering
+  \def\JPicScale{0.35}
+  {\tiny
+  \input{fig/scara.pst}
+  }
+  \caption{Manipulador SCARA}
+  \label{fig::manip}
+\end{figure}
+
+A estrutura mecânica formada pela composição de elos pode ser caracterizada pelo seu número de graus de mobilidade, que determinam de forma única a configuração de todos os corpos rígidos da cadeia cinemática. Cada grau de mobilidade está tipicamente associado a uma articulação de junta, definindo uma {\it variável de junta}. Ângulos constituem as variáveis de juntas de revolução e deslocamentos as variáveis de juntas prismáticas. As cadeias cinemáticas podem ainda ser caracterizadas como {\it fechadas} ou {\it abertas}. As cadeias fechadas correspondem a estruturas em que uma sequência de elos forma um laço, enquanto cadeias {\it abertas} correspondem a estruturas em que há apenas uma sequência de elos que conecta suas extremidades. O objetivo da cinemática direta consiste em, a partir do conhecimento das variáveis das juntas, calcular a posição e orientação da extremidade final da cadeia cinemática  com respeito a um sistema de coordenadas de referência, tipicamente posicionado na base da estrutura mecânica.
+%
+%\begin{figure}[!htb]
+%\centering
+%\includegraphics[scale=0.27]{figeps/desc.eps}
+%\caption{Descrição da orientação e posição do sistema de coordenadas do efetuador}
+%\label{fig::descr}
+%\end{figure}
+
+\begin{figure}[htpb]
+  \centering
+  \def\JPicScale{0.54}
+  {\small
+  \input{fig/desc.pst}
+  }
+  \caption{Descrição da orientação e posição do sistema de coordenadas do efetuador}
+  \label{fig::descr}
+\end{figure}
+
+A configuração de um corpo rígido em relação a um determinado sistema de coordenadas de referência é completamente descrito pela posição da origem e pelos vetores unitários que definem o sistema de coordenadas do corpo. Assim, relativamente ao sistema de coordenadas de referência ${\bf O}_b{-x_by_bz_b}$, a cinemática direta é expressa pela matriz de transformação homogênea
+%
+\begin{equation}
+{\bf T}_{be}({\bf q}) = \left[\begin{matrix}
+						  & {\bf n}_{e}({\bf q})& {\bf s}_{e}({\bf q})& {\bf a}_{e}({\bf q}) & {(\bf p}_{e}({\bf q}))_b\\
+						  %& & & & \\ 
+							& 0 & 0 & 0 & 1 \\
+							\end{matrix}\right],
+\end{equation}
+%
+\noindent onde ${\mathbf q}$ corresponde ao vetor de variáveis das juntas, ${\bf n}_{e}$, ${\bf s}_{e}$ e ${\bf a}_{e}$ são os vetores unitários que definem os eixos do sistema de coordenadas do efetuador, convenientemente escolhido de acordo com a geometria da tarefa, e $({\bf p}_{e})_{b}$ corresponde ao vetor de posição da origem deste sistema de coordenadas em relação ao sistema de coordenadas de referência ${\bf O}_b{-x_by_bz_b}$. A Figura \ref{fig::descr} define uma escolha típica para os vetores ${\bf n}_{e}$, ${\bf s}_{e}$ e ${\bf a}_{e}$. A cinemática direta pode então ser calculada a partir de uma análise geométrica da estrutura do manipulador em questão. Porém, a complexidade da estrutura e o grande número de juntas pode tornar o cálculo extremamente trabalhoso. Para o caso de cadeias fechadas, tal análise se mostra ainda mais complexa. Desta forma, torna-se interessante a utilização de um procedimento sistemático e geral para obter a cinemática direta de um manipulador: a convenção de Denavit-Hartenberg \cite{DH:55,SSVO:09}.
+
+\subsection{Cadeia Cinemática Aberta}
+
+Considera-se um manipulador de cadeia aberta constituído por $n + 1$ elos conectados por $n$ juntas, onde o Elo 0 é convenientemente fixado ao solo. Assume-se que cada junta adiciona à estrutura mecânica um único grau de liberdade, correspondente a variável da junta. A construção de um procedimento operacional para o cálculo das equações de cinemática direta é naturalmente derivada de uma típica cadeia cinemática aberta da estrutura do manipulador. De fato, já que cada junta conecta dois elos consecutivos, é razoável considerar primeiramente a descrição da relação cinemática entre estes e, de maneira recursiva, obter a descrição total do manipulador. Assim, define-se um sistema de coordenadas em cada elo, do elo 0 para o elo n. 
+%
+%\begin{figure}[!htb]
+%\centering
+%\includegraphics[scale=0.31]{figeps/chain.eps}
+%\caption{Transformação de coordenadas em uma cadeia cinemática aberta}
+%\label{fig::chain}
+%\end{figure}
+
+\begin{figure}[htpb]
+  \centering
+  \def\JPicScale{0.6}
+  {\small
+  \input{fig/chain.pst}
+  }
+  \caption{Transformação de coordenadas em uma cadeia cinemática aberta}
+  \label{fig::chain}
+\end{figure}
+
+A transformação homogênea que descreve a posição e orientação do sistema de coordenadas $n$ tendo o sistema de coordenadas 0 ( Figura \ref{fig::chain}) como referência é obtida pelo produto de matrizes de transformação homogênea entre elos consecutivos
+%
+\begin{equation}
+\label{eq::recurs}
+{\bf T}_{0n}({\bf q}) = {\bf T}_{01}(q_1)\,{\bf T}_{12}(q_2)\, ... \,{\bf T}_{n-1,\,n}(q_n), 
+\end{equation}
+%
+onde ${\bf q} = [q_1 \; q_2 \; ... \;  q_n]^T$ é o vetor de variáveis das juntas. Como pretendido, o cálculo da cinemática direta é recursivo e obtido de maneira sistemática através de simples produtos de matriz de transformação homogênea ${\bf T}_{i-1,i}(q_i)$ (para $i = 1, 2, ..., n)$, onde cada uma é uma função de uma única variável de junta. A transformação homogênea que descreve a posição e orientação do efetuador tendo como referência o sistema de coordenadas da base pode ser obtida, portanto, por
+%
+\begin{equation}
+\label{eq::cinedi}
+{\bf T}_{be}({\bf q}) = {\bf T}_{b0} {\bf T}_{0n}({\bf q}) {\bf T}_{ne},
+\end{equation}
+%
+onde ${\bf T}_{b0}$ e ${\bf T}_{ne}$ são transformações homogêneas tipicamente constantes que descrevem, respectivamente, a posição e orientação do sistema 0 com respeito a base, e do sistema de coordenadas do efetuador com respeito ao sistema $n$. 
+
+\subsection{Espaço das juntas e espaço operacional}
+
+A equação de cinemática direta de um determinado manipulador permite expressar a posição e orientação do sistema de coordenadas do efetuador relativas ao sistema de coordenadas da base como função das variáveis das juntas. Quando uma tarefa é especificada para o efetuador, é necessário associar a posição e orientação do efetuador, eventualmente como uma função do tempo. Para a posição, isto se torna simples e a trajetória desejada é facilmente expressa como função do tempo. Porém, para o caso da orientação, existe uma grande dificuldade em especificar 9 elementos de uma matriz e garantir que suas colunas satisfaçam as condições de ortonormalidade a cada instante de tempo. A solução natural para este problema consiste na utilização de representações mínimas para a orientação: ângulos de Euler ou ângulo e eixo \cite{SSVO:09}. Portanto, a posição é dada por um número mínimo de coordenadas em respeito a geometria da estrutura e a orientação pode ser especificada em termos de representações mínimas que descrevem a rotação do sistema de coordenadas do efetuador relativa ao sistema de coordenadas da base. Desta forma, torna-se possível descrever a postura do efetuador por 
+%
+\begin{equation}
+{\bf x}_e = \left[\begin{matrix}
+							{\bf p}_e \\
+							{\boldsymbol \phi}_e \\
+							\end{matrix}\right] \in {\mathbb R}^m\,,\; m \leq n,
+\end{equation}
+%
+onde ${\bf p}_e$ descreve a posição do efetuador e ${\boldsymbol \phi}_e$ sua orientação. A orientação pode também ser especificada através de uma representação adequada, como quaternions unitários. Esta representação de posição e orientação permite a descrição da tarefa designada ao efetuador, em termos de um número de parâmetros independentes. O vetor ${\bf x}_e$ é definido no espaço onde a tarefa do manipulador é especificada, isto é, no espaço de operação do robô. Por isso, este espaço é tipicamente chamado {\it espaço operacional} (${\mathcal O}$). Por outro lado, o espaço de configuração onde o vetor ${\bf q} \in {\mathbb R}^n$ é definido é chamado {\it espaço das juntas} (${\mathcal Q}$). A cinemática direta pode ser escrita, de forma alternativa a (\ref{eq::cinedi}), como:
+%
+\begin{equation}
+\label{eq::cinedire}
+{\bf x}_e = {\bf h}({\bf q}),
+\end{equation}
+%
+onde a postura (posição e orientação) do efetuador é uma função das variáveis das juntas, geralmente não linear. Tipicamente, variáveis de juntas de revolução são designadas por $\theta_i$ e variáveis de juntas prismáticas por $d_i$.
+%\section{Cinemática Inversa}
+%
+%O problema de cinemática inversa consiste em determinar as variáveis de juntas que resultam em uma determinada posição e orientação do efetuador. Dada uma função %de cinemática direta ${\bf K} : {\bf Q} \rightarrow {\bf O}$ e uma postura desejada ${\bf x}_d \in {\mathbb R}^m$, deseja-se resolver a equação
+%
+%\begin{equation}
+%\label{eq::inver}
+%{\bf h}({\bf q}) = {\bf x}_d,
+%\end{equation}
+%
+%\noindent para algum ${\bf q} \in {\mathbb R}^n$. O problema de cinemática inversa é de maior complexidade quando comparado a cinemática direta por alguns motivos: as equações para solucionar são, em geral, não lineares e por isso não é sempre possível encontrar uma solução na forma fechada; podem existir múltiplas ou infinitas soluções, como em manipuladores redundantes; e podem exisir soluções não admissíveis em vista da estrutura cinemática do manipulador. 
+%
+%A solução é garantida somente se a postura dada pertence ao espaço de trabalho destro do manipulador \cite{SSVO:09}. Por outro lado, a existência de múltiplas soluções depende do número de graus de mobilidade e do número de parâmetros DH não nulos. Em geral, quanto maior o número de parâmetros DH não nulos, maior o número de soluções admissíveis. Tradicionalmente, as soluções para o problema de cinemática inversa são classificadas em duas classes: soluções na forma fechada e soluções numéricas. Soluções na forma fechada são obtidas através do uso de identidades geométricas e algébricas para resolver o conjunto de equações não lineares que definem a cinemática inversa. As soluções numéricas, por sua vez, se baseiam na utilização de métodos iterativos para resolver a equação (\ref{eq::inver}).
+
+%Assim como no problema de cinemática direta, em que a solução completa resulta da análise recursiva de soluções menores, para a cinemática inversa uma idéia semelhante pode ser aplicada. O método de sub-problemas de Paden-Kahan, apresentado originalmente em \cite{PD:86} e formalizado em \cite{KH:83}, permite a solução do problema proposto através da solução de subproblemas frequentes nas soluções de cinemática inversa de manipuladores. Para maiores esclarecimentos sobre o método de sub-problemas de Paden-Kahan, o leitor é convidado a consultar \cite{MRY:94}. 
+
+\section{\label{sec::dif}Cinemática Diferencial}
+
+Na seção \ref{sec::cd} foi obtida uma descrição da postura (posição e orientação) do efetuador ${\bf x}_e$ no instante $t$ a partir do vetor {\bf q} das variáveis das juntas neste mesmo instante. A cinemática diferencial, por sua vez, estabelece a relação entra a variação temporal da postura do efetuador em função da variação temporal das variáveis das juntas. Isto é, deseja-se descrever a relação entre as velocidades linear e angular do efetuador e as velocidades das juntas. Este mapeamento, como será visto, é realizado pelo {\it Jacobiano Geométrico}. A matriz Jacobiana constitui uma das principais ferramentas para o estudo de sistemas robóticos, sendo essencial para implementação do controle cinemático, planejamento e execução de trajetórias suaves, identificação de configurações singulares, análise de redundância e mapeamento de forças e torques realizados no efetuador para as juntas \cite{SSVO:09}. A postura do efetuador pode ser expressa, como visto na seção \ref{sec::cd}, por seu vetor de posição e por uma representação mínima da orientação, como ângulos de Euler, ou apenas adequada, como é o caso de quaternions unitários. Estas relações podem ser diferenciadas em função das variáveis das juntas, sendo obtida uma relação entre a velocidade linear e a derivada da representação da orientação, e as velocidades das juntas. Este mapeamento, por sua vez, é realizado pelo {\it Jacobiano Analítico}. A relação entre as duas matrizes de mapeamento também é obtida, sendo estabelecia por outra matriz, denominada {\it Jacobiano de Representação}. 
+
+\subsection{Jacobiano Geométrico}
+
+O objetivo da cinemática diferencial é estabelecer uma relação entre as velocidades linear e angular do efetuador e as velocidades das juntas. É necessário analisar a contribuição da velocidade de cada junta para as velocidades angular e linear do efetuador. A contribuição de uma junta de revolução é dada por
+%
+\begin{eqnarray}
+{\boldsymbol \omega}_i &=& \dot{q}_i \, {\bf h}_i \\
+{\bf v}_i &=& {\boldsymbol \omega}_i \times {\bf p}_{ie} = \dot{q}_i \, {\bf h}_i \times {\bf p}_{ie},
+\end{eqnarray}
+%
+%\begin{figure}
+%\centering
+%\includegraphics[scale=0.28]{figeps/controt.eps}
+%\caption{Contribuição de uma junta de revolução}
+%\label{fig::controt}
+%\end{figure}
+%
+em que ${\bf h}_i$ constitui o vetor unitário na direção do eixo de rotação da i-ésima junta e $q_i = \theta_i$. Para uma junta prismática
+%
+\begin{eqnarray}
+{\boldsymbol \omega}_i &=& {\bf 0} \\
+{\bf v}_i &=& \dot{q}_i \, {\bf h}_i.
+\end{eqnarray}
+%
+onde $q_i = d_i$. As velocidades linear e angular são obtidas considerando as contribuições de todas as juntas. Por exemplo, para um manipulador composto apenas por juntas de revolução, podemos expressar os vetores ${\bf v}_e$ e ${\boldsymbol \omega}_e$ por
+%
+\begin{equation}
+{\bf V}_e =	
+							\left[\begin{matrix}
+							{\bf v}_e\\
+							{\boldsymbol \omega}_e \\
+							\end{matrix}\right]
+							=
+							\left[\begin{matrix}
+							{\bf h}_1 \times {\bf p}_{1e} & {\bf h}_2 \times {\bf p}_{2e} & ... & {\bf h}_n \times {\bf p}_{ne} \\
+							{\bf h}_1 & {\bf h}_2 & ... & {\bf h}_n  \\
+							\end{matrix}\right]
+							\dot{{\bf q}},
+\end{equation}
+%
+ou ainda, 
+%
+\begin{equation}
+\label{eq::jacobgeo}
+{\bf V}_{e} = 
+							\left[\begin{matrix}
+							{\bf \,{J}}_p ({\bf q})\,\\
+							{\bf \,{J}}_o ({\bf q})\, \\
+							\end{matrix}\right] \dot{{\bf q}} = {\bf {J}}_{G}({\bf q}) \, \dot{{\bf q}}.
+\end{equation}
+%
+%Desta forma, o vetor de velocidades linear e angular do efetuador com respeito ao sistema de coordenadas da base é dado por
+%
+%\begin{equation}
+%({\bf V}_e)_b = \left[\begin{matrix}
+%							({\bf v}_{e})_b \\
+%							({\boldsymbol \omega}_{e})_b \\
+%							\end{matrix}\right]
+%							= ({\bf {J}}_{e})_b \, \dot{{\bf q}}.
+%\end{equation}
+%
+Nota-se que a matriz Jacobiana depende do sistema de coordenadas escolhido como referência. Assim, se for desejado representar o Jacobiano em um determinado sistema de coordenadas ${\bf O}_b-{x_by_bz_b}$, basta utilizar a representação no eixo de interesse dos vetores presentes na matriz Jacobiana, conforme (\ref{eq::mudando}).
+
+\subsection{Jacobiano Analítico}
+
+Como visto na seção \ref{sec::cd}, a postura do efetuador pode ser descrita pelo seu vetor posição ${\bf p}$ e uma representação mínima ou adequada da orientação ${\boldsymbol \phi}$. Esta configuração, como visto, depende das variáveis das juntas e pode ser expressa de forma compacta por (\ref{eq::cinedire}). Com o intuito de relacionar a variação temporal da postura do efetuador com a variação temporal das variáveis de juntas, a diferenciação da equação de cinemática direta se mostra um passo natural ao desenvolvimento. %De fato, o método analítico de obtenção da matriz jacobiana consiste na obtenção das derivadas temporais da posição e da representação da orientação. 
+A velocidade translacional do efetuador pode ser expressa como a derivada temporal de sua posição, ou seja,
+%
+\begin{equation}
+\dot{{\bf p}} = \frac{\partial {\bf p}}{\partial {\bf q}}\, \dot{{\bf q}} = {\bf {J}}_p({\bf q})\,\dot{{\bf q}}.
+\end{equation}
+%
+Dada a representação da orientação ${\boldsymbol \phi}$, a sua derivada temporal é obtida:
+%
+\begin{equation}
+\dot{{\boldsymbol \phi}} = \frac{\partial {\boldsymbol \phi}}{\partial {\bf q}}\, \dot{{\bf q}} = {\bf {J}}_{\phi}({\bf q})\,\dot{{\bf q}}.
+\end{equation}
+%
+Desta forma, a equação de cinemática diferencial é obtida analiticamente como
+%
+\begin{equation}
+\label{eq:sys}
+\dot{{\bf x}} = \left[\begin{matrix}
+							\dot{{\bf p}}\\
+							\dot{{\boldsymbol \phi}}\\
+							\end{matrix}\right]
+							= 
+							\left[\begin{matrix}
+							{\bf {J}}_p({\bf q})\\
+							{\bf {J}}_{\phi}({\bf q})\\
+							\end{matrix}\right] \dot{{\bf q}}
+							={\bf {J}} ({\bf q}) \dot{{\bf q}},
+\end{equation}
+%
+onde o {\it Jacobiano Analítico} do manipulador é dado por
+%
+\begin{equation}
+{\bf {J}} = \frac{\partial {\bf h}({\bf q})}{\partial {\bf q}}.
+\end{equation}
+% 
+É importante observar que a matriz jacobiana ${\bf J}_{\phi}({\bf q})$ não é facilmente calculada, uma vez que a representação da orientação ${\boldsymbol \phi}$, em geral, não está na forma direta e requer o cálculo de elementos de uma matriz de rotação relativa.
+
+\subsection{Jacobiano de Representação}
+
+Considera-se uma representação ${\boldsymbol \phi}$, mínima ou apenas adequada da orientação. A relação entre a velocidade angular ${\boldsymbol \omega}$ e a derivada temporal $\dot{{\boldsymbol \phi}}$, ou velocidade rotacional, é estabelecida pelo {\it Jacobiano de Representação} através da seguinte igualdade:
+%
+\begin{equation}
+\dot{{\boldsymbol \phi}} = {\bf {J}}_R({\bf \phi}) \, {\boldsymbol \omega}.
+\end{equation}
+%
+\noindent onde a função ${\bf {J}}_R({\bf \phi})$ depende da representação escolhida. Estabelecida a relação entre ${\boldsymbol \omega}$ e $\dot{\boldsymbol \phi}$, a relação entre o {\it Jacobiano Analítico} e o {\it Jacobiano Geométrico} é obtida:
+%
+\begin{equation}
+{\bf J} = 
+							\left[\begin{matrix}
+							{\bf I} & 0\\
+							0 & {\bf {J}}_R({\boldsymbol \phi}) \\
+							\end{matrix}\right]\,{\bf {J}}_G
+							= {\bf M}_R \, {\bf {J}}_G. 
+\end{equation} 
+%
+%Tttttttt ttttttt ttttt ttttttttt tt tttt ttttt t ttt t tttt ttttt t ttt t.
+
+\subsection{\label{sec::sincin}Singularidades Cinemáticas}
+
+A matriz Jacobiana na equação de cinemática diferencial de um determinado manipulador robótico define um mapeamento 
+%
+\begin{equation}
+{\bf V}_e = {\bf J}_G({\bf q})\dot{\bf q} 
+\end{equation}
+%
+entre o vetor $\dot{\bf q}$ de velocidades das juntas e o vetor ${\bf V}_e = [{\bf v}_e^T \;{\boldsymbol \omega}_e^T]^T$ de velocidades do efetuador. O Jacobiano é geralmente uma função da configuração do manipulador e, para algumas configurações específicas, perde posto. Estas configurações são chamadas de {\it singularidades cinemáticas} e devem ser evitadas no momento do planejamento de trajetórias pois representam configurações em que a mobilidade da estrutura é reduzida, se tornando inviável mover o efetuador em algumas direções. Na proximidade de singularidades, grandes velocidades no espaço das juntas são desenvolvidas para pequenas velocidades no espaço operacional. Além disso, em tais configurações, podem haver infinitas soluções para o problema de cinemática inversa.
+%No capítulo \ref{chap::control} será abordado o controle cinemático de manipuladores e, como será visto, tal controle será calculado a partir da inversa do Jacobiano. Assim, trajetórias que resultam em configurações singulares serão evitadas. Caso contrário, métodos alternativos devem ser utilizados.
+%Serão vistas também algumas configurações singulares para o caso estudado.
+%\newpage
+
+\section{Cinemática Inversa}
+
+O problema de cinemática inversa consiste em determinar as variáveis de juntas que resultam em uma determinada posição e orientação do efetuador. Dada uma função de cinemática direta ${\bf h} : {\mathcal Q} \rightarrow {\mathcal O}$ e uma postura desejada ${\bf x}_d \in {\mathbb R}^m$, deseja-se resolver a equação
+%
+\begin{equation}
+\label{eq::inver}
+{\bf h}({\bf q}) = {\bf x}_d,
+\end{equation}
+%
+\noindent para algum ${\bf q} \in {\mathbb R}^n$. O problema de cinemática inversa é de maior complexidade quando comparado a cinemática direta por alguns motivos: as equações para solucionar são, em geral, não lineares e por isso não é sempre possível encontrar uma solução na forma fechada; podem existir múltiplas ou infinitas soluções, como em manipuladores redundantes; e podem existir soluções não admissíveis em vista da estrutura cinemática do manipulador. 
+%
+A solução é garantida somente se a postura dada pertence ao espaço de trabalho destro do manipulador \cite{SSVO:09}. Por outro lado, a existência de múltiplas soluções depende do número de graus de mobilidade e parâmetros DH não nulos. Em geral, quanto maior o número de parâmetros DH não nulos, maior o número de soluções admissíveis. Tradicionalmente, as soluções para o problema de cinemática inversa são classificadas em duas classes: soluções na forma fechada e soluções numéricas. Soluções na forma fechada são obtidas através do uso de identidades geométricas e algébricas para resolver o conjunto de equações não lineares que definem a cinemática inversa. As soluções numéricas, por sua vez, se baseiam na utilização de métodos iterativos para resolver a equação (\ref{eq::inver}).
+%
+Assim como no problema de cinemática direta, em que a solução completa resulta da análise recursiva de soluções menores, para a cinemática inversa uma idéia semelhante pode ser aplicada. O método de sub-problemas de Paden-Kahan, apresentado originalmente em \cite{PD:86}% e formalizado em \cite{KH:83}
+, permite a solução do problema proposto através da solução de subproblemas frequentes nas soluções de cinemática inversa de manipuladores. Para maiores esclarecimentos sobre o método de sub-problemas de Paden-Kahan, o leitor é convidado a consultar \cite{MRY:94}.
+%
+
+\subsection{Abordagem Diferencial}
+
+Como foi visto na seção \ref{sec::dif}, a equação de cinemática diferencial representa um mapeamento linear entre as velocidades desenvolvidas no espaço de juntas e as velocidades no espaço operacional, sugerindo a possibilidade de utilizar tal abordagem para resolver o problema de cinemática inversa \cite{SSVO:09}.
+A solução diferencial consiste em, dada uma configuração inicial ${\bf q}(t_0)$, definir $\dot{\bf q}$ de forma que 
+%
+\begin{equation}
+\label{eq::abordif}
+{\bf q}(t) \rightarrow {\bf q}^*,
+\end{equation}
+%
+onde ${\bf q}^*$ corresponde a uma configuração de juntas que satisfaz (\ref{eq::inver}). Nota-se que ${\bf q}^*$ é desconhecido. Como será visto, a definição de $\dot{\bf q}$ a partir de variáveis de erro no espaço de operação ${\mathcal O}$ e não no espaco das juntas ${\mathcal Q}$ resultará na utilização da inversa (ou pseudo-inversa) da matriz Jacobiana.
+
+\subsection{\label{sec::nonred}Manipuladores não-redundantes}
+
+O objetivo de controle é conduzir a estrutura mecânica de uma postura inicial ${\bf x}(t_0)=({\bf p}(t_0),{\boldsymbol \phi}(t_0))$ para uma postura desejada ${\bf x}_d(t)=({\bf p}_d(t),{\boldsymbol \phi}_d(t))$. A postura desejada pode ser invariante no tempo, o que define um problema de {\it regulação} ou variante no tempo, definindo um problema de {\it rastreamento}. Deseja-se, portanto, atuar nas juntas do manipulador de forma que o efetuador descreva uma trajetória desejada (posição e orientação). O objetivo de controle é então formalizado como:
+%
+%\begin{equation}
+%\label{eq::errocine}
+%{\bf x}_e \rightarrow {\bf x}_d(t)\;\;\;\;\; \mbox{,}\;\;\;\;\;
+%{\bf e} = {\bf x}_d - {\bf x}_e \rightarrow 0
+%\end{equation}
+%
+\begin{equation}
+\label{eq::errocine}
+{\bf x} \rightarrow {\bf x}_d \quad\quad \text{ou} \quad\quad {\bf e}:= {\bf x}_d - {\bf x} \rightarrow {\bf 0},
+\end{equation}
+%
+%ou ainda,
+% 
+%\begin{equation}
+%\label{eq::errocine}
+%{\bf e}:= {\bf x}_d - {\bf x}_e \rightarrow 0,
+%\end{equation}
+%
+onde ${\bf e} \in {\mathbb R}^m$ corresponde ao erro de rastreamento no espaço operacional. A obtenção da dinâmica do erro ${\bf e}$ torna-se necessária para estabelecer a análise da convergência do mesmo a zero. Assim, a equação do erro é obtida através da diferenciação de ambos os lados de (\ref{eq::errocine}) e a partir da cinemática diferencial.
+%
+\begin{equation}
+\label{eq::dinerro}
+\dot{\bf e} = \dot{\bf x}_d - \dot{\bf x} = \dot{\bf x}_d - {\bf {J}}({\bf q})\,\dot{{\bf q}}. 
+\end{equation} 
+%
+Nota-se que a utilização de grandezas no espaço operacional implica naturalmente na utilização do {\it Jacobiano Analítico} ao invés do {\it Jacobiano Geométrico}. O objetivo de controle consiste em escolher $\dot{\bf q}$ tal que a variável de erro {\bf e} convirja para zero. A matriz ${\bf {J}}({\bf q})$ é quadrada $(m=n)$, e assumindo posto completo (não singular e portanto inversível), a escolha
+%
+\begin{equation}
+\label{eq::regra}
+\dot{{\bf q}} = {\bf {J}}({\bf q})^{-1}\underbrace{(\dot{\bf x}_d + {\boldsymbol \Lambda}\,{\bf e})}_{\boldsymbol \nu}
+\end{equation}
+%
+conduz ao seguinte sistema linear
+%
+\begin{equation}
+\label{eq::sistemalinear}
+\dot{\bf e} + {\boldsymbol \Lambda}\,{\bf e} = 0.
+\end{equation}
+%
+A escolha de uma matriz ${\boldsymbol \Lambda} \in {\mathbb R}^{m \times m}$ {\it positiva definida} garante a estabilidade assintótica do erro. O erro tende a zero ao longo da trajetória com uma taxa de convergência que depende dos autovalores da matriz de ganho ${\boldsymbol \Lambda}$. A utilização de ${\bf {J}}({\bf q})^{-1}$ permite a linearização do sistema, compensando o termo não linear ${\bf {J}}({\bf q})$. A utilização do termo {\it feedfoward} $\dot{\bf x}_d$ garante a manutenção do erro em ${\bf 0}$ ao longo da trajetória, independente do tipo de sinal de referência ${\bf x}_d$. O bloco correspondente ao algoritmo implementado é apresentado na Figura \ref{fig::controlealgo1}.
+\vskip 0.2cm
+
+\begin{figure}[htpb]
+  \centering
+  \def\JPicScale{0.85}
+  {\small
+  \input{fig/IKalg_1.pst}
+  }
+  \caption{Algoritmo de cinemática inversa (caso não-redundante)}
+  \label{fig::controlealgo1}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Erro de posição}
+
+A definição do erro de posição é bastante natural
+%
+\begin{equation}
+\label{eq::errop}
+{\bf e}_p = {\bf p}_d - {\bf p}({\bf q}),
+\end{equation}
+%
+onde ${\bf p}_d$ e ${\bf p}({\bf q})$ correspondem a posição desejada e a atual do efetuador, respectivamente. A derivada temporal do erro de posição é dada por
+%
+\begin{equation}
+\dot{\bf e}_p = \dot{\bf p}_d - \dot{\bf p}.
+\end{equation}
+%
+
+\subsection{Erro de orientação}
+
+Por outro lado, a expressão do erro de orientação depende da representação particular escolhida para a orientação do efetuador, como ângulos de Euler ou quaternions unitários. 
+
+\subsubsection{\label{eulersec}Ângulos de Euler}
+
+A expressão para o erro de orientação é escolhida de forma análoga à equação(\ref{eq::errop}), ou seja,
+%
+\begin{equation}
+\label{eq::erroeuler}
+{\bf e}_o = {\boldsymbol \phi}_d - {\boldsymbol \phi}({\bf q}),
+\end{equation}
+%
+e sua dinâmica é expressa por
+%
+\begin{equation}
+\dot{\bf e}_o = \dot{\boldsymbol \phi}_d - \dot{\boldsymbol \phi}.
+\end{equation}
+%
+Assim, assumindo que não haja singularidades cinemáticas ou de representação, a solução de controle é obtida de (\ref{eq::regra}), isto é,
+%
+\begin{equation}
+\dot{{\bf q}} = {\bf J}({\bf q})^{-1}					
+					\left[\begin{matrix}
+							\dot{\bf p}_d + {\boldsymbol \Lambda}_p\,{\bf e}_p\,\\
+							\dot{\boldsymbol \phi}_d + {\boldsymbol \Lambda}_o\,{\bf e}_o\, \\
+							\end{matrix}\right],
+\end{equation}
+%
+onde ${\boldsymbol \Lambda}_p$ e ${\boldsymbol \Lambda}_o$ são matrizes {\it positivas definidas}, garantindo a {\it estabilidade assintótica} do erro ${\bf e}$.
+
+\subsubsection{\label{quatsec}Quaternion unitário}
+
+A representação da orientação por quaternions requer a definição de um erro de orientação adequado. Assim, sejam ${\bf Q}_d = \{\eta_d,{\boldsymbol \epsilon}_d\}$ e ${\bf Q}_e = \{\eta_e,{\boldsymbol \epsilon}_e\}$ os quaternions associados a ${\bf R}_d$ e ${\bf R}_{0e}$, respectivamente. O erro de orientação será descrito pela matriz de rotação (ou atitude) ${\bf R}_{\phi}$. Esta matriz pode ser definida, através do enfoque inercial, como ${\bf R}_{\phi} = {\bf R}_d\,{\bf R}_{0e}^T$. O objetivo de controle é então formalizado:
+%
+\begin{equation}
+{\bf R}_{0e} \rightarrow {\bf R}_d(t) \quad\quad \text{ou} \quad\quad {\bf R}_{\phi} \rightarrow {\bf I}.
+\end{equation}
+%
+A representação da matriz ${\bf R}_{\phi}$ em quaternions é dada por ${\bf \Delta Q} = \{\Delta_{\eta},{\boldsymbol \Delta{\boldsymbol \epsilon}}\}$.
+%
+\begin{equation}
+{\bf \Delta Q} = {\bf Q}_d \ast {\bf Q}_e^{-1}.
+\end{equation}
+%
+A representação da matriz identidade ${\bf I}$ em quaternions unitários é dada por ${\bf Q}_I = \{1, {\bf 0}\}$. Assim, ${\bf \Delta Q} = \{1, {\bf 0}\}$ se e somente se ${\bf R}_d$ e ${\bf R}_{0e}$ estiverem alinhadas. Portanto, é suficiente definir o erro de orientação como
+%
+\begin{equation}
+{\bf e}_o = {\boldsymbol \Delta}{{\boldsymbol \epsilon}} = \eta_e({\bf q})\,{\boldsymbol \epsilon}_d - \eta_d\,{\boldsymbol \epsilon}_e({\bf q}) - {\boldsymbol \epsilon}_d\times{\boldsymbol \epsilon}_e({\bf q}).
+\end{equation}
+%
+Desta forma, a solução para o controle pode ser computada como
+%
+\begin{equation}
+\label{eq::quatcont}
+\dot{{\bf q}} = {\bf {J}}_G({\bf q})^{-1}					
+					\left[\begin{matrix}
+							\dot{\bf p}_d + {\boldsymbol \Lambda}_p\,{\bf e}_p\,\\
+							{\boldsymbol \omega}_d + {\boldsymbol \Lambda}_o\,{\bf e}_o\, \\
+							\end{matrix}\right],
+\end{equation}
+%
+\noindent onde o {\it Jacobiano Geométrico} foi utilizado. Substituindo (\ref{eq::quatcont}) em (\ref{eq::jacobgeo})
+%
+\begin{equation}
+\label{eq::eodin}
+{\boldsymbol \omega}_d - {\boldsymbol \omega}_e + {\boldsymbol \Lambda}_o\,{\bf e}_o = {\bf 0}.
+\end{equation}
+%
+A equação obtida é não linear em ${\bf e}_o$ uma vez que contém a velocidade angular do efetuador ao invés da derivada temporal do erro de orientação. Assim, torna-se importante conhecer a relação entre a derivada temporal do quaternion ${\bf Q}_e$ e a velocidade angular ${\boldsymbol \omega}_e$ (\cite{SSVO:09}, pg. 140):
+%
+\begin{eqnarray}
+\label{eq::quat1}
+\dot{\eta}_e = - \frac{1}{2}{\boldsymbol \epsilon}_e^T {\boldsymbol \omega}_e \\
+\label{eq::quat2}
+\dot{\boldsymbol \epsilon}_e = \frac{1}{2}(\eta_e\,{\bf I}_{3\times3} - {\boldsymbol \epsilon}_e\, \times){\boldsymbol \omega}_e,
+\end{eqnarray}
+% 
+que é a conhecida equação de propagação do quaternion, estando explícito o {\it Jacobiano de Representação}. O estudo da estabilidade de (\ref{eq::eodin}) considera a seguinte função de Lyapunov \cite{SLT:91}:
+%
+\begin{equation}
+\label{eq::lyapun}
+V(\Delta \eta,{\boldsymbol \Delta}{{\boldsymbol \epsilon}}) = (\eta_d - \eta_e)^2 + ({\boldsymbol \epsilon}_d - {\boldsymbol \epsilon}_e)^T({\boldsymbol \epsilon}_d - {\boldsymbol \epsilon}_e).
+\end{equation}
+%
+Considerando as equações (\ref{eq::eodin}), (\ref{eq::quat1}) e (\ref{eq::quat2}), a diferenciação temporal de (\ref{eq::lyapun}) resulta em 
+%
+\begin{equation}
+\dot{V}(\Delta \eta,{\boldsymbol \Delta}{{\boldsymbol \epsilon}}) = - {\bf e}_o^T\,{\boldsymbol \Lambda}_o\,{\bf e}_o < 0,
+\end{equation}
+%
+\noindent que será negativa definida uma vez que ${\boldsymbol \Lambda}_o$ é positiva definida. Desta forma, conclui-se a respeito da estabilidade assintótica do sistema e o erro ${\bf e}_o$ converge para zero, como pretendido. A prova de estabilidade para o sistema completo (posição e orientação) se dá pela função de Lyapunov $V({\bf e}_p,{\bf \Delta Q}) = {\bf e}_p^T{\bf e}_p  + V(\Delta \eta,{\boldsymbol \Delta}{{\boldsymbol \epsilon}})$, \cite{SLT:91}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{simulation}
+\label{sim::ntred} 
+\end{simulation}
+Considere um manipulador planar com 3 juntas de revolução (Figura \ref{fig::ntred}) cuja postura é descrita pela posição ${\bf p}\!\in\!\mathbb{R}^2$ e pela orientação $\phi\!\in\!\mathbb{R}$.
+
+\begin{figure}[htpb]
+  \centering
+  \def\Cd{$
+ 	{\bf x} = 
+ 	\begin{bmatrix}
+ 	p_x \\
+ 	p_y \\
+ 	\phi \\
+ 	\end{bmatrix}
+ 	=
+ 	\begin{bmatrix}
+ 	\ell_1\,c1 + \ell_2\,c12 + \ell_3\,c123\\
+ 	\ell_1\,s1 + \ell_2\,s12 + \ell_3\,s123\\
+ 	q_1 + q_2 + q_3\\ 
+ 	\end{bmatrix}
+ 	= {\bf h}({\bf q})
+  $}
+  \def\JPicScale{0.69}
+  {\small
+  \input{fig/simu1_robo.pst}
+  }
+  \caption{Robô planar não-redundante com 3 juntas de revolução}
+  \label{fig::ntred}
+\end{figure}
+
+No que se segue, são apresentados resultados de simulação para rastreamento de posição (\nameref{traj1}) e regulação da orientação ($\phi_d = \frac{\pi}{2}$). Considera-se uma configuração inicial ${\bf q}(0)\,=\,[\frac{\pi}{6}\;\frac{\pi}{6}\;\frac{\pi}{6}]^T rad$ e ganho ${\boldsymbol \Lambda = \lambda\,{\bf I}}$.	
+
+\begin{figure}[!htp]
+  \centering
+  \label{fig::simu1_data}
+  \begin{tabular}{cc}
+	\includegraphics[trim = 2.7cm 0cm 2.7cm 0cm, scale = 0.49]{sim/sim1_norm.eps}\\ %\tiny{\;(a)} \\
+	\includegraphics[trim = 2.7cm 0cm 2.7cm 0cm, scale = 0.49]{sim/sim1_qdot.eps}\\ %\tiny{\,(b)} \\
+	\includegraphics[trim = 2.7cm 0cm 2.7cm 0cm, scale = 0.49]{sim/sim1_q.eps}\\ %\tiny{\!(c)} \\
+  \end{tabular}
+\caption{Simulação \ref{sim::ntred}: (a) norma do erro para diferentes ganhos $\lambda$; (b) velocidades das juntas para $\lambda = 2$; e (c) ângulos das juntas para $\lambda = 2$.}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{\label{sec::red}Manipuladores redundantes}
+
+Para o caso onde $m\!<\!n$ o sinal de controle $\dot{\bf q}$ nas juntas pode     ser
+obtido por 
+%
+\begin{equation}
+\label{eq:udag}
+\dot{\bf q} = {\bf J}^{\dagger}({\bf q})\, {\boldsymbol \nu}\,,
+\end{equation}
+%
+onde ${\bf J}^{\dagger}\!=\!{\bf J}^{T}\,({\bf J}\,{\bf J}^{T})^{-1} \in {\mathbb R}^{n \times m}$ é a               matriz
+pseudo-inversa à direita de ${\bf J}$. A solução obtida a partir          de
+(\ref{eq:udag}) minimiza localmente a norma das velocidades das juntas,
+desde que ${\boldsymbol \nu}(t)$ não conduza o robô para configurações singulares.
+%
+A falha desta última condição ainda é um tema de pesquisa relevante na
+área da robótica, e será discutido a seguir. Para uma lei de controle {\it feedforward} e proporcional
+%
+\begin{equation}
+\label{eq:vp}
+{\boldsymbol \nu} = {\dot{\bf x}}_{d} + {\boldsymbol \Lambda}{\bf e} \,,
+\end{equation}
+%
+a dinâmica do erro de postura é governada por
+${\dot{\bf e}} + {{\boldsymbol \Lambda}\,{\bf e}}\!=\!{\bf 0}$. Novamente, a partir de uma escolha
+apropriada  de  ${\boldsymbol \Lambda}$ como  uma  matriz positiva definida,  o sistema  em
+malha fechada é exponencialmente estável e, consequentemente, $\lim_{t\to\infty}{\bf e}(t)={\bf 0}$.
+%
+Contudo, quando o robô manipulador é redundante ($m\!<\!n)$   a matriz
+Jacobiana possui mais colunas do que linhas e, por isso,       existem
+infinitas soluções para (\ref{eq::inver}).
+%
+%Uma abordagem interessante consiste em formular o problema de controle
+%cinemático como um problema de otimização linear com        restrições
+%\cite{SSVO:09}.
+%
+Então, devido à presença de $n-m$ graus de liberdade redundantes, a solução \eqref{eq:udag} pode ser modificada introduzindo-se um termo de projeção no espaço nulo de ${\bf J}$, isto é,
+%
+\begin{equation}
+\label{eq:u2}
+\dot{\bf q} = {\bf J}^{\dagger}\,{\boldsymbol \nu} + \left({\bf I} - {\bf J}^{\dagger}\,{\bf J} \right)\,\dot{\bf q}_{0} \,,
+\end{equation}
+%
+onde ${\dot{\bf q}}_{0} \in {\mathbb R}^n$ é um vetor de velocidades arbitrárias das juntas que pode ser especificado para satisfazer uma restrição adicional ao problema, com prioridade secundária, como evitar singularidades ou desviar de obstáculos \cite{KLE:83,KLE:85,NH:85}. 
+A solução obtida localmente minimiza a norma das velocidades
+das juntas e permite a geração de movimentos internos             para
+reconfigurar a estrutura do manipulador sem modificar a postura     do
+efetuador \cite{SSVO:09}. O algoritmo diferencial projetado para solucionar o problema de cinemática inversa é ilustrado no diagrama em blocos da Figura \ref{fig::controlealgo2}.
+\vskip 0.2cm
+
+%---------------------------------------------------------------------
+\begin{figure}[htpb]
+  \centering
+  \def\JPicScale{0.85}
+  {\small
+  \input{fig/IKalg_2.pst}
+  }
+  \caption{Algoritmo de cinemática inversa (caso redundante)}
+  \label{fig::controlealgo2}
+\end{figure}
+%
+%---------------------------------------------------------------------
+%Note que, a solução obtida localmente minimiza a norma das velocidades
+%das juntas e permite a geração de movimentos internos             para
+%reconfigurar a estrutura do manipulador sem modificar a postura     do
+%efetuador \cite{SSVO:09}. 
+\begin{simulation}
+\label{sim::red} 
+\end{simulation}
+Considere um manipulador planar com 3 juntas de revolução (Figura \ref{fig::red}) cuja postura é descrita apenas pela posição ${\bf p}\!\in\!\mathbb{R}^2$, configurando um problema redundante.
+
+\begin{figure}[htpb]
+  \centering
+  \def\Cd{$
+ 	{\bf x} = 
+ 	\begin{bmatrix}
+ 	p_x \\
+ 	p_y \\
+ 	%\phi \\
+ 	\end{bmatrix}
+ 	=
+ 	\begin{bmatrix}
+ 	\ell_1\,c1 + \ell_2\,c12 + \ell_3\,c123\\
+ 	\ell_1\,s1 + \ell_2\,s12 + \ell_3\,s123\\
+ 	%q_1 + q_2 + q_3\\ 
+ 	\end{bmatrix}
+ 	= {\bf h}({\bf q})
+  $}
+  \def\JPicScale{0.69}
+  {\small
+  \input{fig/simu1_robo.pst}
+  }
+  \caption{Robô planar redundante com 3 juntas de revolução}
+  \label{fig::red}
+\end{figure}
+
+A seguir, são apresentados os resultados de simulação obtidos para rastreamento de posição (\nameref{traj1}) e pela lei de norma mínima (\ref{eq:udag}). Considera-se novamente uma configuração inicial ${\bf q}(0)\,=\,[\frac{\pi}{6}\;\frac{\pi}{6}\;\frac{\pi}{6}]^T rad$ e ganho ${\boldsymbol \Lambda = \lambda\,{\bf I}}$.	
+
+\begin{figure}[!htp]
+  \centering
+  \label{fig::simu2_data}
+  \begin{tabular}{cc}
+	\includegraphics[trim = 2.7cm 0cm 2.7cm 0cm, scale = 0.49]{sim/sim2_norm.eps}\\ %\tiny{\;(a)} \\
+	\includegraphics[trim = 2.7cm 0cm 2.7cm 0cm, scale = 0.49]{sim/sim2_qdot.eps}\\ %\tiny{\,(b)} \\
+	\includegraphics[trim = 2.7cm 0cm 2.7cm 0cm, scale = 0.49]{sim/sim2_q.eps}\\ %\tiny{\!(c)} \\
+  \end{tabular}
+\caption{Simulação \ref{sim::red}: (a) norma do erro para diferentes ganhos $\lambda$; (b) velocidades das juntas para $\lambda = 2$; e (c) ângulos das juntas para $\lambda = 2$.}
+\end{figure}
+
+

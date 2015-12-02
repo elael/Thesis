@@ -1,0 +1,101 @@
+\noindent Considere novamente a expressão proposta em (\ref{eq::expretheta}) para ${\boldsymbol \Theta}$
+%
+\begin{equation}
+{\boldsymbol \Theta} = \begin{bmatrix} %
+							\vdots&\vdots\\
+							{\bf v}_1&{\bf v}_2\\%
+							\vdots&\vdots\\
+							\end{bmatrix} 
+\begin{bmatrix} 
+							d_1&r_{12}&r_{13}\\
+							r_{21}&d_2&r_{23}\\
+							\end{bmatrix} 
+\begin{bmatrix} 
+							\vdots&\vdots&\vdots\\
+							{\bf u}_1&{\bf u}_2&{\bf u}_3\\%
+							\vdots&\vdots&\vdots\\
+							\end{bmatrix} ^T.
+\end{equation}
+%
+Os elementos residuais $r_{13}$ e $r_{23}$ estão associados a ${\bf u}_3$. Para $r_{13}\neq 0$, $r_{23}\neq 0$ e ${\bf c} = \alpha {\bf u}_3$, tem-se ${\bf b} = {\boldsymbol \Theta} {\bf c} = r_{13}{\bf v}_1 + r_{23}{\bf v}_2 \neq {\bf 0}$, embora ${\bf c}$ seja uma saída inviável para o sistema. Neste caso, apenas a utilização da matriz de erro à direita ${\bf S}_r$ garantirá que estes elementos residuais convirjam para $0$ e assim ${\bf b} = {\boldsymbol \Theta} {\bf c} \rightarrow 0$. 
+
+
+\section{Solução para Cinemática Inversa}
+
+Como foi visto no capítulo \ref{chap::cinematica}, a solução para o problema de cinemática inversa pode ser obtida de forma analítica, envolvendo o uso de identidades algébricas e geométricas, ou através de métodos numéricos e técnicas de otimização. A solução diferencial, também denominada algoritmo iterativo, foi apresentada nas seções \ref{sec::nonred} e \ref{sec::red}, e tem como base o mapeamento linear realizado pela matriz Jacobiana entre as velocidades nos espaços das juntas e operacional. Como visto, a escolha%Como foi visto,
+%
+%
+%omo foi visto no capítulo \ref{chap::cine}, a solução para o problema de cinemática inversa pode ser obtida através da forma fechada, ou analítica, envolvendo o uso de identidades algébricas e geométricas para solucionar as equações não lineares que definem a cinemática do manipulador, ou através de métodos numéricos e técnicas de otimização. Como visto, as equacoes de cinematica diferencial representam um mapeamento linear entre as velocidades das juntas e no espaco operacional sugerindo a possibilidade de usar tal relacao para solucionar a cinematica inversa. A solucao atraves de uma abordagem diferencial, muitas vezes denominada algoritmo iterativo, foi apresentada nas seções \ref{sec::nred} e \ref{sec::red}, sendo aqui reescrita por conveniencia.
+%
+\begin{equation}
+\dot{\bf q} = {\bf J}^{-1}\,{\boldsymbol \nu},
+\end{equation}
+% 
+para ${\boldsymbol \Lambda} = {\boldsymbol \Lambda}^T > 0$ e ${\boldsymbol \nu}=\dot{\bf x}_d + {\boldsymbol \Lambda}{\bf e}$ garante a convergência exponencial do erro ${\bf e}$ para ${\bf 0}$. Para manipuladores redundantes, a pseudo-inversa à direita ${\bf J}^{\dagger} = {\bf J}^T({\bf J}{\bf J}^T)^{-1}$ é utilizada, fornecendo uma solução de norma mínima ou ótima desde que ${\boldsymbol \nu}(t)$ não conduza o manipulador para configurações singulares. Nestas configurações, a matriz ${\bf J}$ perde posto e sua inversa não se define. Na vizinhança de singularidades, a matriz Jacobiana se torna mal condicionada, apresentando pivôs muito pequenos e resultando em velocidades de juntas elevadas, indesejadas na prática. A proposta de aplicação da inversa filtrada como solução para a cinemática inversa de manipuladores robóticos é dada por 
+%
+\begin{equation}
+\label{eq::cinvini}
+\dot{\bf q} = {\boldsymbol \Theta}\,{\boldsymbol \nu}
+\end{equation}
+%
+onde ${\boldsymbol \Theta}\!\in\!{\mathbb R}^{n \times m}$ é a inversa filtrada da matriz Jacobiana ${\bf J}$, sendo atualizada pela lei composta apresentada em (\ref{eq:adapcomp}), logo,
+%
+\begin{equation}
+\dot{\boldsymbol \Theta} = -{\boldsymbol \Gamma}({\bf J}^T{\bf S}_r + {\bf S}_\ell{\bf J}^T)
+\end{equation}
+%
+onde ${\boldsymbol \Gamma} = \gamma {\bf I} > 0$ é o ganho de atualização. As matrizes ${\bf S}_r$ e ${\bf S}_\ell$ correspondem às matrizes de erro à direita e à esquerda, respectivamente. Considere a decomposição em valores singulares da matriz Jacobiana, apresentada anteriormente em (\ref{eq::svdexp}) e aqui reescrita por conveniência:
+%
+\begin{equation}
+\label{eq::svdexp}
+{\bf J} = \sum_{i = 1}^{m}\sigma_i {\bf u}_i {\bf v}_i^T. 
+\end{equation}
+%
+Em vista de (\ref{eq::inversemapping}), a solução (\ref{eq::cinvini}) pode ser reescrita como
+%
+\begin{equation}
+\dot{\bf q} = \sum_{i = 1}^{m} d_i {\bf v}_i {\bf u}_i^T {\boldsymbol \nu} + \sum_{i \neq j} r_{ij} {\bf v}_i {\bf u}_j^T {\boldsymbol \nu}.
+\end{equation}
+%
+Para valores singulares não nulos, os elementos diagonais $d_i$ convergem para $1/\sigma_i$. Os elementos residuais $r_{ij}$ representam pareamentos incorretos entre as colunas de ${\bf V}$ e ${\bf U}$. Como visto na Seção \ref{sec::sec::convanalysis}, a convergência destes termos para zero depende dos valores singulares associados tanto à linha quanto à coluna. O diagrama de blocos referente à utilização da inversa filtrada para solucionar o problema de cinemática inversa é apresentado na Figura \ref{fig:IF_blocos}. 
+
+\begin{figure}[htpb]
+  \centering
+  %\def\At{$\dot{\boldsymbol \Theta} = -\gamma({\bf J}^T{\bf S}_r + {\bf S}_\ell{\bf J}^T)$}  
+  \def\At{$\dot{\boldsymbol \Theta} = -\gamma({\bf J}^T{\bf J}{\boldsymbol \Theta} + {\boldsymbol \Theta}{\bf J}{\bf J}^T - 2{\bf J}^T)$}  
+  \def\JPicScale{0.85}
+  {\small
+  \input{fig/Filtered_algorithm.pst}
+  }
+  \caption{Solução para cinemática inversa (inversa filtrada).}
+  \label{fig:IF_blocos}
+\end{figure}
+
+A Tabela \ref{table::resumo} resume as equações referentes à solução proposta, assim como apresenta suas correspondentes discretas para aplicações práticas.  
+
+\def\tablename{Tabela}
+\begin{table}[!htb]
+\centering
+\begin{tabular}{ll} \hline
+Inversa filtrada contínua				
+														& Correspondente discreta (período $T$)\\ \hline \hline   
+${\bf e}(t) = {\bf x}_d(t) - {\bf x}(t)$ 						
+														& ${\bf e}(k) = {\bf x}_d(k) - {\bf x}(k)$ \\
+${\boldsymbol \nu}(t) = \dot{\bf x}_d(t) + {\boldsymbol \Lambda}{\bf e}(t)$
+														&		${\boldsymbol \nu}(k) = \dot{\bf x}_d(k) + {\boldsymbol \Lambda}{\bf e}(k)$ \\
+${\bf S}_r(t) = {\bf J}(t){\boldsymbol \Theta}(t) - {\bf I}_m$
+														&   ${\bf S}_r(k) = {\bf J}(k){\boldsymbol \Theta}(k) - {\bf I}_m$ \\
+${\bf S}_\ell(t) = {\boldsymbol \Theta}(t){\bf J}(t) - {\bf I}_n$
+														&   ${\bf S}_\ell(k) = {\boldsymbol \Theta}(k){\bf J}(k) - {\bf I}_n$ \\
+${\boldsymbol \Theta}(t) = {\boldsymbol \Theta}(0) + \int^{t}_{0}\dot{\boldsymbol \Theta}dt$ 				
+														&		${\boldsymbol \Theta}(k) = {\boldsymbol \Theta}(k - 1) + {\boldsymbol \Delta}_{\boldsymbol \Theta}(k - 1) T$ 		\\			
+$\dot{\boldsymbol \Theta}(t) = - \gamma({\bf J}^T(t) {\bf S}_r(t) + {\bf S}_\ell(t) {\bf J}^T(t))$
+														&		${\boldsymbol \Delta}_{\boldsymbol \Theta}(k) = - \gamma({\bf J}^T(k) {\bf S}_r(k) + {\bf S}_\ell(k) {\bf J}^T(k))$		\\				
+${\bf q}(t) = {\bf q}(0) + \int^{t}_{0}\dot{\bf q}dt$ 				
+														&		${\bf q}(k) = {\bf q}(k - 1) + {\boldsymbol \Delta}_{\bf q}(k - 1) T$ 		\\			
+$\dot{\bf q}(t) = {\boldsymbol \Theta}(t){\boldsymbol \nu}(t)$  			 
+														&   ${\boldsymbol \Delta}_{\bf q}(k) = {\boldsymbol \Theta}(k){\boldsymbol \nu}(k)$ \\\hline
+\end{tabular}
+\caption{Inversa filtrada e solução para cinemática inversa.}
+\label{table::resumo}
+\end{table}

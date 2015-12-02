@@ -1,0 +1,652 @@
+%%Created by jPicEdt 1.4.1_03: mixed JPIC-XML/LaTeX format
+%%Sun Mar 10 18:58:16 BRT 2013
+%%Begin JPIC-XML
+%<?xml version="1.0" standalone="yes"?>
+%<jpic x-min="8.12" x-max="461.71" y-min="-2.5" y-max="122.5" auto-bounding="true">
+%<text text-vert-align= "bottom"
+%	 anchor-point= "(64.33,1.87)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 >
+%(a)
+%</text>
+%<parallelogram p3= "(142.62,-2.5)"
+%	 p2= "(32.62,-2.5)"
+%	 p1= "(8.12,32.5)"
+%	 stroke-width= "0.4"
+%	 fill-style= "none"
+%	 />
+%<parallelogram fill-hatch-angle= "20"
+%	 p3= "(18.49,6.32)"
+%	 p2= "(18.49,17.7)"
+%	 p1= "(8.12,32.58)"
+%	 stroke-width= "0.4"
+%	 fill-hatch-sep= "3.45"
+%	 fill-hatch-width= "0.15"
+%	 fill-style= "hlines"
+%	 />
+%<text text-vert-align= "center-v"
+%	 stroke-width= "0.4"
+%	 anchor-point= "(147.87,21.87)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 >
+%
+%</text>
+%<ellipse fill-color= "#fefeff"
+%	 p3= "(43.13,37.5)"
+%	 p2= "(43.13,42.5)"
+%	 p1= "(33.13,42.5)"
+%	 stroke-width= "0.4"
+%	 closure= "open"
+%	 angle-end= "0"
+%	 fill-style= "solid"
+%	 angle-start= "0"
+%	 />
+%<multicurve fill-color= "#fefeff"
+%	 stroke-width= "0.4"
+%	 points= "(43.13,40);(43.13,41.38);(40.89,42.5);(38.13,42.5);(35.37,42.5);(33.13,41.38);
+%	(33.13,40);(33.13,38.62);(35.37,37.5);(38.13,37.5);(40.89,37.5);(43.13,38.62);
+%	(43.13,40);(43.13,40);(43.13,40);(43.13,40);(43.13,40);(43.13,20);
+%	(43.13,20);(43.13,18.62);(40.89,17.5);(38.13,17.5);(35.37,17.5);(33.13,18.62);
+%	(33.13,20);(33.13,20);(33.13,40);(33.13,40)"
+%	 fill-style= "solid"
+%	 />
+%<ellipse arrow-global-scale-length= "1.5"
+%	 p3= "(43.08,44.26)"
+%	 p2= "(43.08,49.26)"
+%	 p1= "(33.08,49.26)"
+%	 stroke-width= "0.4"
+%	 left-arrow= "head"
+%	 closure= "open"
+%	 angle-end= "129.83"
+%	 arrow-global-scale-width= "1.5"
+%	 fill-style= "none"
+%	 angle-start= "45"
+%	 />
+%<multicurve stroke-width= "0.4"
+%	 points= "(37.87,40);(37.87,40);(37.87,57.5);(37.87,57.5)"
+%	 fill-style= "none"
+%	 />
+%<multicurve stroke-width= "0.4"
+%	 points= "(45.37,64.37);(45.37,64.37);(67.87,64.37);(67.87,64.37)"
+%	 fill-style= "none"
+%	 />
+%<multicurve stroke-style= "dotted"
+%	 stroke-width= "0.4"
+%	 points= "(42.37,59.74);(42.37,59.74);(51.12,48.5);(51.12,48.5)"
+%	 fill-style= "none"
+%	 />
+%<ellipse arrow-global-scale-length= "1.5"
+%	 p3= "(51.12,51)"
+%	 p2= "(51.12,58.5)"
+%	 p1= "(43.62,58.5)"
+%	 stroke-width= "0.4"
+%	 left-arrow= "head"
+%	 closure= "open"
+%	 angle-end= "144.79"
+%	 arrow-global-scale-width= "1.5"
+%	 fill-style= "none"
+%	 angle-start= "71.57"
+%	 />
+%<g>
+%<ellipse p3= "(47.37,54.74)"
+%	 p2= "(47.37,64.74)"
+%	 p1= "(37.37,64.74)"
+%	 stroke-width= "0.4"
+%	 closure= "open"
+%	 angle-end= "0"
+%	 fill-style= "none"
+%	 angle-start= "0"
+%	 />
+%<multicurve stroke-width= "0.4"
+%	 points= "(38.37,56.74);(38.37,56.74);(31.37,65.74);(31.37,65.74)"
+%	 fill-style= "none"
+%	 />
+%<multicurve stroke-width= "0.4"
+%	 points= "(46.37,62.74);(46.37,62.74);(39.37,71.74);(39.37,71.74)"
+%	 fill-style= "none"
+%	 />
+%</g>
+%<ellipse p3= "(40.37,63.74)"
+%	 p2= "(40.37,73.74)"
+%	 p1= "(30.37,73.74)"
+%	 stroke-width= "0.4"
+%	 closure= "open"
+%	 angle-end= "210.14"
+%	 fill-style= "none"
+%	 angle-start= "43.9"
+%	 />
+%<multicurve stroke-width= "0.4"
+%	 left-arrow= "disk-centered"
+%	 points= "(107.87,64.37);(107.87,64.37);(78.5,64.37);(78.5,64.37)"
+%	 fill-style= "none"
+%	 />
+%<g>
+%<multicurve stroke-style= "dotted"
+%	 stroke-width= "0.4"
+%	 points= "(75.75,59.88);(75.75,59.88);(84.5,48.63);(84.5,48.63)"
+%	 fill-style= "none"
+%	 />
+%<ellipse arrow-global-scale-length= "1.5"
+%	 p3= "(84.5,51.13)"
+%	 p2= "(84.5,58.63)"
+%	 p1= "(77,58.63)"
+%	 stroke-width= "0.4"
+%	 left-arrow= "head"
+%	 closure= "open"
+%	 angle-end= "164.23"
+%	 arrow-global-scale-width= "1.5"
+%	 fill-style= "none"
+%	 angle-start= "71.57"
+%	 />
+%<g>
+%<ellipse p3= "(80.75,54.88)"
+%	 p2= "(80.75,64.88)"
+%	 p1= "(70.75,64.88)"
+%	 stroke-width= "0.4"
+%	 closure= "open"
+%	 angle-end= "0"
+%	 fill-style= "none"
+%	 angle-start= "0"
+%	 />
+%<multicurve stroke-width= "0.4"
+%	 points= "(71.75,56.88);(71.75,56.88);(64.74,65.87);(64.74,65.87)"
+%	 fill-style= "none"
+%	 />
+%<multicurve stroke-width= "0.4"
+%	 points= "(79.75,62.88);(79.75,62.88);(72.75,71.87);(72.75,71.87)"
+%	 fill-style= "none"
+%	 />
+%</g>
+%<ellipse p3= "(73.74,63.87)"
+%	 p2= "(73.74,73.87)"
+%	 p1= "(63.74,73.87)"
+%	 stroke-width= "0.4"
+%	 closure= "open"
+%	 angle-end= "210.14"
+%	 fill-style= "none"
+%	 angle-start= "45"
+%	 />
+%</g>
+%<text text-vert-align= "bottom"
+%	 anchor-point= "(244.33,1.87)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 >
+%(b)
+%</text>
+%<g>
+%<text text-vert-align= "center-v"
+%	 stroke-width= "0.4"
+%	 anchor-point= "(325.01,21.87)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 >
+%
+%</text>
+%<parallelogram p3= "(327.01,-2.5)"
+%	 p2= "(212,-2.5)"
+%	 p1= "(187.5,32.5)"
+%	 stroke-width= "0.4"
+%	 fill-style= "none"
+%	 />
+%<parallelogram fill-hatch-angle= "20"
+%	 p3= "(197.87,6.32)"
+%	 p2= "(197.87,17.7)"
+%	 p1= "(187.5,32.58)"
+%	 stroke-width= "0.4"
+%	 fill-hatch-sep= "3.45"
+%	 fill-hatch-width= "0.15"
+%	 fill-style= "hlines"
+%	 />
+%<multicurve stroke-width= "0.4"
+%	 points= "(222.51,66.87);(222.51,66.87);(240.63,87.49);(240.63,87.49)"
+%	 fill-style= "none"
+%	 />
+%<multicurve stroke-style= "dotted"
+%	 stroke-width= "0.4"
+%	 points= "(217,122.5);(217,122.5);(217.25,72.5);(217.25,72.5)"
+%	 fill-style= "none"
+%	 />
+%<multicurve stroke-width= "0.4"
+%	 left-arrow= "disk-centered"
+%	 points= "(217,122.5);(217,122.5);(240.13,96.87);(240.13,96.87)"
+%	 fill-style= "none"
+%	 />
+%<g>
+%<multicurve stroke-style= "dotted"
+%	 stroke-width= "0.4"
+%	 points= "(247,87.5);(247,87.5);(255.76,76.24);(255.76,76.24)"
+%	 fill-style= "none"
+%	 />
+%<ellipse arrow-global-scale-length= "1.5"
+%	 p3= "(255.76,78.74)"
+%	 p2= "(255.76,86.24)"
+%	 p1= "(248.26,86.24)"
+%	 stroke-width= "0.4"
+%	 left-arrow= "head"
+%	 closure= "open"
+%	 angle-end= "164.23"
+%	 arrow-global-scale-width= "1.5"
+%	 fill-style= "none"
+%	 angle-start= "71.57"
+%	 />
+%<g>
+%<ellipse p3= "(252,82.5)"
+%	 p2= "(252,92.5)"
+%	 p1= "(242,92.5)"
+%	 stroke-width= "0.4"
+%	 closure= "open"
+%	 angle-end= "0"
+%	 fill-style= "none"
+%	 angle-start= "0"
+%	 />
+%<multicurve stroke-width= "0.4"
+%	 points= "(243,84.5);(243,84.5);(236,93.49);(236,93.49)"
+%	 fill-style= "none"
+%	 />
+%<multicurve stroke-width= "0.4"
+%	 points= "(251,90.5);(251,90.5);(244,99.49);(244,99.49)"
+%	 fill-style= "none"
+%	 />
+%</g>
+%<ellipse p3= "(245,91.49)"
+%	 p2= "(245,101.49)"
+%	 p1= "(235,101.49)"
+%	 stroke-width= "0.4"
+%	 closure= "open"
+%	 angle-end= "210.14"
+%	 fill-style= "none"
+%	 angle-start= "45"
+%	 />
+%</g>
+%<g>
+%<ellipse fill-color= "#fefeff"
+%	 p3= "(222.51,37.5)"
+%	 p2= "(222.51,42.5)"
+%	 p1= "(212.51,42.5)"
+%	 stroke-width= "0.4"
+%	 closure= "open"
+%	 angle-end= "0"
+%	 fill-style= "solid"
+%	 angle-start= "0"
+%	 />
+%<multicurve fill-color= "#fefeff"
+%	 stroke-width= "0.4"
+%	 points= "(222.51,40);(222.51,41.38);(220.27,42.5);(217.51,42.5);(214.75,42.5);(212.51,41.38);
+%	(212.51,40);(212.51,38.62);(214.75,37.5);(217.51,37.5);(220.27,37.5);(222.51,38.62);
+%	(222.51,40);(222.51,40);(222.51,40);(222.51,40);(222.51,40);(222.51,20);
+%	(222.51,20);(222.51,18.62);(220.27,17.5);(217.51,17.5);(214.75,17.5);(212.51,18.62);
+%	(212.51,20);(212.51,20);(212.51,40);(212.51,40)"
+%	 fill-style= "solid"
+%	 />
+%<ellipse arrow-global-scale-length= "1.5"
+%	 p3= "(222.46,44.26)"
+%	 p2= "(222.46,49.27)"
+%	 p1= "(212.46,49.27)"
+%	 stroke-width= "0.4"
+%	 left-arrow= "head"
+%	 closure= "open"
+%	 angle-end= "129.83"
+%	 arrow-global-scale-width= "1.5"
+%	 fill-style= "none"
+%	 angle-start= "45"
+%	 />
+%<multicurve stroke-width= "0.4"
+%	 points= "(217.25,40);(217.25,40);(217.25,57.5);(217.25,57.5)"
+%	 fill-style= "none"
+%	 />
+%</g>
+%<g>
+%<ellipse p3= "(219.75,63.74)"
+%	 p2= "(219.75,73.74)"
+%	 p1= "(209.75,73.74)"
+%	 stroke-width= "0.4"
+%	 closure= "open"
+%	 angle-end= "210.14"
+%	 fill-style= "none"
+%	 angle-start= "43.9"
+%	 />
+%<g>
+%<multicurve stroke-style= "dotted"
+%	 stroke-width= "0.4"
+%	 points= "(221.75,59.74);(221.75,59.74);(230.5,48.5);(230.5,48.5)"
+%	 fill-style= "none"
+%	 />
+%<ellipse arrow-global-scale-length= "1.5"
+%	 p3= "(230.5,51)"
+%	 p2= "(230.5,58.5)"
+%	 p1= "(223,58.5)"
+%	 stroke-width= "0.4"
+%	 left-arrow= "head"
+%	 closure= "open"
+%	 angle-end= "144.79"
+%	 arrow-global-scale-width= "1.5"
+%	 fill-style= "none"
+%	 angle-start= "71.57"
+%	 />
+%<g>
+%<ellipse p3= "(226.75,54.74)"
+%	 p2= "(226.75,64.74)"
+%	 p1= "(216.75,64.74)"
+%	 stroke-width= "0.4"
+%	 closure= "open"
+%	 angle-end= "0"
+%	 fill-style= "none"
+%	 angle-start= "0"
+%	 />
+%<multicurve stroke-width= "0.4"
+%	 points= "(217.75,56.74);(217.75,56.74);(210.75,65.74);(210.75,65.74)"
+%	 fill-style= "none"
+%	 />
+%<multicurve stroke-width= "0.4"
+%	 points= "(225.75,62.74);(225.75,62.74);(218.75,71.74);(218.75,71.74)"
+%	 fill-style= "none"
+%	 />
+%</g>
+%</g>
+%</g>
+%</g>
+%<text text-vert-align= "bottom"
+%	 anchor-point= "(414.33,1.87)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 >
+%(c)
+%</text>
+%<g>
+%<multicurve stroke-width= "0.4"
+%	 points= "(368.08,20.62);(368.92,21.51);(370.84,21.09);(372.35,19.66);(373.87,18.22);(374.41,16.35);
+%	(373.57,15.45);(374.41,16.35);(376.31,15.91);(377.83,14.49);(379.35,13.06);(379.9,11.18);
+%	(379.05,10.28)"
+%	 fill-style= "none"
+%	 />
+%<multicurve stroke-width= "0.4"
+%	 points= "(369.84,22.77);(370.69,23.67);(372.6,23.23);(374.11,21.81);(375.62,20.39);(376.17,18.5);
+%	(375.32,17.61);(376.17,18.5);(378.08,18.07);(379.6,16.64);(381.1,15.21);(381.65,13.33);
+%	(380.8,12.44)"
+%	 fill-style= "none"
+%	 />
+%</g>
+%<g>
+%<multicurve stroke-width= "0.4"
+%	 points= "(401.83,48.12);(401.83,48.12);(410.58,58.12);(410.58,58.12)"
+%	 fill-style= "none"
+%	 />
+%<g>
+%<ellipse fill-color= "#fefeff"
+%	 p3= "(384.84,36.45)"
+%	 p2= "(381.54,32.69)"
+%	 p1= "(389.05,26.09)"
+%	 stroke-width= "0.4"
+%	 closure= "open"
+%	 angle-end= "0"
+%	 fill-style= "solid"
+%	 angle-start= "0"
+%	 />
+%<multicurve fill-color= "#fefeff"
+%	 stroke-width= "0.4"
+%	 points= "(383.19,34.57);(382.28,33.53);(383.22,31.21);(385.29,29.39);(387.37,27.57);(389.79,26.93);
+%	(390.7,27.96);(391.61,29);(390.67,31.32);(388.6,33.14);(386.53,34.97);(384.1,35.61);
+%	(383.19,34.57);(383.19,34.57);(383.19,34.57);(383.19,34.57);(383.19,34.57);(396.4,49.58);
+%	(396.4,49.58);(397.32,50.62);(399.74,49.98);(401.81,48.16);(403.88,46.33);(404.82,44.01);
+%	(403.91,42.98);(403.91,42.98);(390.7,27.96);(390.7,27.96)"
+%	 fill-style= "solid"
+%	 />
+%<ellipse arrow-global-scale-length= "1.5"
+%	 p3= "(380.41,31.33)"
+%	 p2= "(377.11,27.58)"
+%	 p1= "(384.61,20.97)"
+%	 stroke-width= "0.4"
+%	 left-arrow= "head"
+%	 closure= "open"
+%	 angle-end= "129.83"
+%	 arrow-global-scale-width= "1.5"
+%	 fill-style= "none"
+%	 angle-start= "45"
+%	 />
+%<multicurve stroke-width= "0.4"
+%	 points= "(387.14,31.09);(387.14,31.09);(375.58,17.96);(375.58,17.96)"
+%	 fill-style= "none"
+%	 />
+%</g>
+%</g>
+%<multicurve stroke-width= "0.4"
+%	 points= "(443.84,95.78);(443.84,95.78);(452.59,105.78);(452.59,105.78)"
+%	 fill-style= "none"
+%	 />
+%<g>
+%<ellipse fill-color= "#fefeff"
+%	 p3= "(426.85,84.11)"
+%	 p2= "(423.55,80.36)"
+%	 p1= "(431.05,73.75)"
+%	 stroke-width= "0.4"
+%	 closure= "open"
+%	 angle-end= "0"
+%	 fill-style= "solid"
+%	 angle-start= "0"
+%	 />
+%<multicurve fill-color= "#fefeff"
+%	 stroke-width= "0.4"
+%	 points= "(425.2,82.23);(424.29,81.2);(425.23,78.88);(427.3,77.05);(429.37,75.23);(431.79,74.59);
+%	(432.71,75.63);(433.62,76.66);(432.68,78.98);(430.6,80.81);(428.53,82.63);(426.11,83.27);
+%	(425.2,82.23);(425.2,82.23);(425.2,82.23);(425.2,82.23);(425.2,82.23);(438.41,97.25);
+%	(438.41,97.25);(439.32,98.28);(441.74,97.64);(443.82,95.82);(445.89,94);(446.83,91.68);
+%	(445.92,90.64);(445.92,90.64);(432.71,75.63);(432.71,75.63)"
+%	 fill-style= "solid"
+%	 />
+%<ellipse arrow-global-scale-length= "1.5"
+%	 p3= "(422.42,78.99)"
+%	 p2= "(419.11,75.24)"
+%	 p1= "(426.62,68.63)"
+%	 stroke-width= "0.4"
+%	 left-arrow= "head"
+%	 closure= "open"
+%	 angle-end= "129.83"
+%	 arrow-global-scale-width= "1.5"
+%	 fill-style= "none"
+%	 angle-start= "45"
+%	 />
+%<multicurve stroke-width= "0.4"
+%	 points= "(429.15,78.76);(429.15,78.76);(417.59,65.62);(417.59,65.62)"
+%	 fill-style= "none"
+%	 />
+%</g>
+%<multicurve stroke-width= "0.4"
+%	 points= "(455.37,104.35);(455.37,104.35);(461.71,113.66);(461.71,113.66);(461.71,113.66);(457.84,102.45);
+%	(457.84,102.45);(457.84,102.45);(447.92,110.05);(447.92,110.05);(447.92,110.05);(457.99,116.19);
+%	(457.99,116.19);(457.99,116.19);(450.41,108.15);(450.41,108.15);(450.41,108.15);(447.92,110.05);
+%	(447.92,110.05);(447.92,110.05);(447.45,109.77);(447.45,109.77);(447.45,109.77);(457.62,101.92);
+%	(457.62,101.92);(457.62,101.92);(457.84,102.45);(457.84,102.45)"
+%	 fill-style= "none"
+%	 />
+%<ellipse p3= "(416.65,61.58)"
+%	 p2= "(413.35,71.02)"
+%	 p1= "(403.91,67.73)"
+%	 stroke-width= "0.4"
+%	 closure= "open"
+%	 angle-end= "329.51"
+%	 fill-style= "none"
+%	 angle-start= "148.47"
+%	 />
+%<g>
+%<multicurve stroke-style= "dotted"
+%	 stroke-width= "0.4"
+%	 points= "(419.86,58.47);(419.86,58.47);(431.83,50.73);(431.83,50.73)"
+%	 fill-style= "none"
+%	 />
+%<ellipse arrow-global-scale-length= "1.5"
+%	 p3= "(431.01,53.09)"
+%	 p2= "(428.53,60.17)"
+%	 p1= "(421.45,57.7)"
+%	 stroke-width= "0.4"
+%	 left-arrow= "head"
+%	 closure= "open"
+%	 angle-end= "144.79"
+%	 arrow-global-scale-width= "1.5"
+%	 fill-style= "none"
+%	 angle-start= "71.57"
+%	 />
+%<g>
+%<ellipse p3= "(426.23,55.4)"
+%	 p2= "(422.93,64.84)"
+%	 p1= "(413.49,61.54)"
+%	 stroke-width= "0.4"
+%	 closure= "open"
+%	 angle-end= "0"
+%	 fill-style= "none"
+%	 angle-start= "0"
+%	 />
+%<multicurve stroke-width= "0.4"
+%	 points= "(417.07,54.32);(417.07,54.32);(407.5,60.5);(407.5,60.5)"
+%	 fill-style= "none"
+%	 />
+%<multicurve stroke-width= "0.4"
+%	 points= "(422.64,62.62);(422.64,62.62);(413.07,68.81);(413.07,68.81)"
+%	 fill-style= "none"
+%	 />
+%</g>
+%</g>
+%</jpic>
+%%End JPIC-XML
+%PSTricks content-type (pstricks.sty package needed)
+%Add \usepackage{pstricks} in the preamble of your LaTeX file
+%You can rescale the whole picture (to 80% for instance) by using the command \def\JPicScale{0.8}
+\ifx\JPicScale\undefined\def\JPicScale{1}\fi
+\psset{unit=\JPicScale mm}
+\psset{linewidth=0.3,dotsep=1,hatchwidth=0.3,hatchsep=1.5,shadowsize=1,dimen=middle}
+\psset{dotsize=0.7 2.5,dotscale=1 1,fillcolor=black}
+\psset{arrowsize=1 2,arrowlength=1,arrowinset=0.25,tbarsize=0.7 5,bracketlength=0.15,rbracketlength=0.15}
+\begin{pspicture}(0,0)(461.71,122.5)
+\rput[b](64.33,1.87){(a)}
+\pspolygon[linewidth=0.4](8.12,32.5)(32.62,-2.5)(142.62,-2.5)(118.12,32.5)
+\pspolygon[linewidth=0.4,fillstyle=hlines,hatchwidth=0.15,hatchsep=3.45,hatchangle=20](8.12,32.58)(18.49,17.7)(18.49,6.32)(8.12,21.2)
+\rput(147.87,21.87){}
+\newrgbcolor{userFillColour}{1 1 1}
+\rput{0}(38.13,40){\psellipse[linewidth=0.4,fillcolor=userFillColour,fillstyle=solid](0,0)(5,-2.5)}
+\newrgbcolor{userFillColour}{1 1 1}
+\pscustom[linewidth=0.4,fillcolor=userFillColour,fillstyle=solid]{\psbezier(43.13,40)(43.13,41.38)(40.89,42.5)(38.13,42.5)
+\psbezier(35.37,42.5)(33.13,41.38)(33.13,40)
+\psbezier(33.13,38.62)(35.37,37.5)(38.13,37.5)
+\psbezier(40.89,37.5)(43.13,38.62)(43.13,40)
+\psbezier(43.13,40)(43.13,40)(43.13,40)
+\psline(43.13,40)(43.13,20)
+\psbezier(43.13,18.62)(40.89,17.5)(38.13,17.5)
+\psbezier(35.37,17.5)(33.13,18.62)(33.13,20)
+\psline(33.13,20)(33.13,40)
+}
+\rput{0}(38.08,46.76){\psellipticarc[linewidth=0.4,arrowscale=1.5 1.5]{<-}(0,0)(5,-2.5){45}{129.83}}
+\psline[linewidth=0.4](37.87,40)(37.87,57.5)
+\psline[linewidth=0.4](45.37,64.37)(67.87,64.37)
+\psline[linewidth=0.4,linestyle=dotted](42.37,59.74)(51.12,48.5)
+\rput{0}(47.37,54.75){\psellipticarc[linewidth=0.4,arrowscale=1.5 1.5]{<-}(0,0)(3.75,-3.75){71.57}{144.79}}
+\rput{0}(42.37,59.74){\psellipse[linewidth=0.4](0,0)(5,-5)}
+\psline[linewidth=0.4](38.37,56.74)(31.37,65.74)
+\psline[linewidth=0.4](46.37,62.74)(39.37,71.74)
+\rput{0}(35.37,68.74){\psellipticarc[linewidth=0.4](0,0)(5,-5){43.9}{210.14}}
+\psline[linewidth=0.4]{*-}(107.87,64.37)(78.5,64.37)
+\psline[linewidth=0.4,linestyle=dotted](75.75,59.88)(84.5,48.63)
+\rput{0}(80.75,54.88){\psellipticarc[linewidth=0.4,arrowscale=1.5 1.5]{<-}(0,0)(3.75,-3.75){71.57}{164.23}}
+\rput{0}(75.75,59.88){\psellipse[linewidth=0.4](0,0)(5,-5)}
+\psline[linewidth=0.4](71.75,56.88)(64.74,65.87)
+\psline[linewidth=0.4](79.75,62.88)(72.75,71.87)
+\rput{0}(68.74,68.87){\psellipticarc[linewidth=0.4](0,0)(5,-5){45}{210.14}}
+\rput[b](244.33,1.87){(b)}
+\rput(325.01,21.87){}
+\pspolygon[linewidth=0.4](187.5,32.5)(212,-2.5)(327.01,-2.5)(302.51,32.5)
+\pspolygon[linewidth=0.4,fillstyle=hlines,hatchwidth=0.15,hatchsep=3.45,hatchangle=20](187.5,32.58)(197.87,17.7)(197.87,6.32)(187.5,21.2)
+\psline[linewidth=0.4](222.51,66.87)(240.63,87.49)
+\psline[linewidth=0.4,linestyle=dotted](217,122.5)(217.25,72.5)
+\psline[linewidth=0.4]{*-}(217,122.5)(240.13,96.87)
+\psline[linewidth=0.4,linestyle=dotted](247,87.5)(255.76,76.24)
+\rput{0}(252.01,82.49){\psellipticarc[linewidth=0.4,arrowscale=1.5 1.5]{<-}(0,0)(3.75,-3.75){71.57}{164.23}}
+\rput{0}(247,87.5){\psellipse[linewidth=0.4](0,0)(5,-5)}
+\psline[linewidth=0.4](243,84.5)(236,93.49)
+\psline[linewidth=0.4](251,90.5)(244,99.49)
+\rput{0}(240,96.49){\psellipticarc[linewidth=0.4](0,0)(5,-5){45}{210.14}}
+\newrgbcolor{userFillColour}{1 1 1}
+\rput{0}(217.51,40){\psellipse[linewidth=0.4,fillcolor=userFillColour,fillstyle=solid](0,0)(5,-2.5)}
+\newrgbcolor{userFillColour}{1 1 1}
+\pscustom[linewidth=0.4,fillcolor=userFillColour,fillstyle=solid]{\psbezier(222.51,40)(222.51,41.38)(220.27,42.5)(217.51,42.5)
+\psbezier(214.75,42.5)(212.51,41.38)(212.51,40)
+\psbezier(212.51,38.62)(214.75,37.5)(217.51,37.5)
+\psbezier(220.27,37.5)(222.51,38.62)(222.51,40)
+\psbezier(222.51,40)(222.51,40)(222.51,40)
+\psline(222.51,40)(222.51,20)
+\psbezier(222.51,18.62)(220.27,17.5)(217.51,17.5)
+\psbezier(214.75,17.5)(212.51,18.62)(212.51,20)
+\psline(212.51,20)(212.51,40)
+}
+\rput{0}(217.46,46.76){\psellipticarc[linewidth=0.4,arrowscale=1.5 1.5]{<-}(0,0)(5,-2.5){45}{129.83}}
+\psline[linewidth=0.4](217.25,40)(217.25,57.5)
+\rput{0}(214.75,68.74){\psellipticarc[linewidth=0.4](0,0)(5,-5){43.9}{210.14}}
+\psline[linewidth=0.4,linestyle=dotted](221.75,59.74)(230.5,48.5)
+\rput{0}(226.75,54.75){\psellipticarc[linewidth=0.4,arrowscale=1.5 1.5]{<-}(0,0)(3.75,-3.75){71.57}{144.79}}
+\rput{0}(221.75,59.74){\psellipse[linewidth=0.4](0,0)(5,-5)}
+\psline[linewidth=0.4](217.75,56.74)(210.75,65.74)
+\psline[linewidth=0.4](225.75,62.74)(218.75,71.74)
+\rput[b](414.33,1.87){(c)}
+\pscustom[linewidth=0.4]{\psbezier(368.08,20.62)(368.92,21.51)(370.84,21.09)(372.35,19.66)
+\psbezier(373.87,18.22)(374.41,16.35)(373.57,15.45)
+\psbezier(374.41,16.35)(376.31,15.91)(377.83,14.49)
+\psbezier(379.35,13.06)(379.9,11.18)(379.05,10.28)
+}
+\pscustom[linewidth=0.4]{\psbezier(369.84,22.77)(370.69,23.67)(372.6,23.23)(374.11,21.81)
+\psbezier(375.62,20.39)(376.17,18.5)(375.32,17.61)
+\psbezier(376.17,18.5)(378.08,18.07)(379.6,16.64)
+\psbezier(381.1,15.21)(381.65,13.33)(380.8,12.44)
+}
+\psline[linewidth=0.4](401.83,48.12)(410.58,58.12)
+\newrgbcolor{userFillColour}{1 1 1}
+\rput{-41.32}(386.94,31.27){\psellipse[linewidth=0.4,fillcolor=userFillColour,fillstyle=solid](0,0)(5,-2.5)}
+\newrgbcolor{userFillColour}{1 1 1}
+\pscustom[linewidth=0.4,fillcolor=userFillColour,fillstyle=solid]{\psbezier(383.19,34.57)(382.28,33.53)(383.22,31.21)(385.29,29.39)
+\psbezier(387.37,27.57)(389.79,26.93)(390.7,27.96)
+\psbezier(391.61,29)(390.67,31.32)(388.6,33.14)
+\psbezier(386.53,34.97)(384.1,35.61)(383.19,34.57)
+\psbezier(383.19,34.57)(383.19,34.57)(383.19,34.57)
+\psline(383.19,34.57)(396.4,49.58)
+\psbezier(397.32,50.62)(399.74,49.98)(401.81,48.16)
+\psbezier(403.88,46.33)(404.82,44.01)(403.91,42.98)
+\psline(403.91,42.98)(390.7,27.96)
+}
+\rput{-41.41}(382.51,26.15){\psellipticarc[linewidth=0.4,arrowscale=1.5 1.5]{<-}(0,0)(5,-2.5){-135.03}{-50.2}}
+\psline[linewidth=0.4](387.14,31.09)(375.58,17.96)
+\psline[linewidth=0.4](443.84,95.78)(452.59,105.78)
+\newrgbcolor{userFillColour}{1 1 1}
+\rput{-41.41}(428.95,78.93){\psellipse[linewidth=0.4,fillcolor=userFillColour,fillstyle=solid](0,0)(5,-2.5)}
+\newrgbcolor{userFillColour}{1 1 1}
+\pscustom[linewidth=0.4,fillcolor=userFillColour,fillstyle=solid]{\psbezier(425.2,82.23)(424.29,81.2)(425.23,78.88)(427.3,77.05)
+\psbezier(429.37,75.23)(431.79,74.59)(432.71,75.63)
+\psbezier(433.62,76.66)(432.68,78.98)(430.6,80.81)
+\psbezier(428.53,82.63)(426.11,83.27)(425.2,82.23)
+\psbezier(425.2,82.23)(425.2,82.23)(425.2,82.23)
+\psline(425.2,82.23)(438.41,97.25)
+\psbezier(439.32,98.28)(441.74,97.64)(443.82,95.82)
+\psbezier(445.89,94)(446.83,91.68)(445.92,90.64)
+\psline(445.92,90.64)(432.71,75.63)
+}
+\rput{-41.33}(424.52,73.81){\psellipticarc[linewidth=0.4,arrowscale=1.5 1.5]{<-}(0,0)(5,-2.5){-134.95}{-50.12}}
+\psline[linewidth=0.4](429.15,78.76)(417.59,65.62)
+\psline[linewidth=0.4](455.37,104.35)
+(461.71,113.66)
+(457.84,102.45)
+(447.92,110.05)
+(457.99,116.19)
+(450.41,108.15)
+(447.92,110.05)
+(447.45,109.77)
+(457.62,101.92)(457.84,102.45)
+\rput{-35.38}(410.28,64.66){\psellipticarc[linewidth=0.4](0,0)(5,-5){93.85}{274.89}}
+\psline[linewidth=0.4,linestyle=dotted](419.86,58.47)(431.83,50.73)
+\rput{-35.37}(426.23,55.39){\psellipticarc[linewidth=0.4,arrowscale=1.5 1.5]{<-}(0,0)(3.75,-3.75){16.94}{90.16}}
+\rput{0}(419.86,58.47){\psellipse[linewidth=0.4](0,0)(5,-5)}
+\psline[linewidth=0.4](417.07,54.32)(407.5,60.5)
+\psline[linewidth=0.4](422.64,62.62)(413.07,68.81)
+\end{pspicture}

@@ -1,0 +1,465 @@
+\chapter{\label{chap::control}Controle Cinemático}
+
+O controle de manipuladores consiste em atuar a nível de juntas de forma que o efetuador final da estrutura mecânica realize uma tarefa estabelecida, descrevendo uma trajetória desejada (posição e orientação). A hipótese do controle cinemático é admitida no que se segue, mostrando-se bastante razoável para aplicações em que baixas velocidades são desenvolvidas ou, ainda, para manipuladores com elevadas taxas de redução nas engrenagens. Neste capítulo é analisada uma forma geral de controle de posição e orientação para manipuladores robóticos e sua aplicação para manipuladores antropomórficos assim como para manipuladores redundantes. Neste ponto, configurações singulares impedem a aplicação do controle proposto e dois algoritmos consolidados na literatura também são apresentados: {\it Damped Least Square} ou {\it DLS}, \cite{NH:86} e {\it Filtered Inverse Kinematics} ou {\it FIK}, \cite{P:08},\cite{AP:09}.
+
+\section{A Hipótese Cinemática}
+
+Na hipótese de controle cinemático, considera-se que a dinâmica do manipulador pode ser desprezada. Como visto, tal hipótese é bastante aceitável para manipuladores que operam com baixas velocidades, por exemplo. Considera-se também a existência de uma malha de controle de velocidade a nível de juntas, mostrada na Figura \ref{fig::malha} para uma junta.
+%
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=0.4]{figeps/malha.eps}
+\caption{Malha de controle de velocidade}
+\label{fig::malha}
+\end{figure}
+%
+Admitindo-se um controle de alto ganho, tem-se que $\dot{\theta_i} \approx \dot{\theta}_{id} = u_i$. Desta forma, o sinal de controle para cada junta corresponde a velocidade de sua variável de junta.
+
+\section{\label{contdemanip}Controle Cinemático de Manipuladores}
+
+O objetivo de controle é conduzir a estrutura mecânica de uma postura inicial ${\bf x}=({\bf p},{\boldsymbol \phi})$ para uma postura desejada ${\bf x}_d=({\bf p}_d,{\boldsymbol \phi}_d)$. A postura desejada pode ser invariante no tempo, o que define um problema de {\it regulação} ou variante no tempo, definindo um problema de {\it rastreamento}. Deseja-se, portanto, atuar nas juntas do manipulador de forma que o efetuador descreva uma trajetória desejada (posição e orientação). O objetivo de controle é então formalizado como:
+%
+\begin{equation}
+\label{eq::errocine}
+{\bf x}_e \rightarrow {\bf x}_d(t)\;\;\;\;\; \mbox{,}\;\;\;\;\;
+{\bf e} = {\bf x}_d - {\bf x}_e \rightarrow 0
+\end{equation}
+%
+\noindent onde ${\bf e}$ corresponde ao erro de rastreamento no espaço operacional. A obtenção da dinâmica do erro ${\bf e}$ torna-se necessária para estabelecer a análise da convergência do mesmo a zero. Assim, a equação do erro é obtida através da diferenciação de ambos os lados de (\ref{eq::errocine}) e a partir da cinemática diferencial.
+%
+\begin{equation}
+\label{eq::dinerro}
+\dot{\bf e} = \dot{\bf x}_d - \dot{\bf x}_e = \dot{\bf x}_d - {\bf {J}}_A({\bf q})\,\dot{{\bf q}}. 
+\end{equation} 
+%
+Nota-se que a utilização de grandezas no espaço operacional implica naturalmente na utilização do {\it Jacobiano Analítico} ao invés do {\it Jacobiano Geométrico}. Como foi discutido, a hipótese cinemática assume que o vetor $\dot{{\bf q}}$ corresponde ao vetor  ${\bf u}$ de sinais de controle das juntas. Desta forma, a equação (\ref{eq::dinerro}) pode ser reescrita como
+%
+\begin{equation}
+\label{eq::dinerro2}
+\dot{\bf e} = \dot{\bf x}_d - {\bf {J}}_A({\bf q})\,{\bf u}. 
+\end{equation} 
+%
+O objetivo de controle consiste em escolher ${\bf u}$ tal que a variável de erro {\bf e} convirja para zero. Assumindo que a matriz ${\bf {J}}_A({\bf q})$ é quadrada e não singular, a escolha
+%
+\begin{equation}
+\label{eq::regra}
+{\bf u} = {\bf {J}}_A({\bf q})^{-1}(\dot{\bf x}_d + {\bf K}\,{\bf e})
+\end{equation}
+%
+\noindent conduz ao seguinte sistema linear
+%
+\begin{equation}
+\label{eq::sistemalinear}
+\dot{\bf e} + {\bf K}\,{\bf e} = 0
+\end{equation}
+%
+A escolha de uma matriz {\bf K} {\it positiva definida} garante a estabilidade assintótica do erro. O erro tende a zero ao longo da trajetória com uma taxa de convergência que depende dos autovalores da matriz de ganhos {\bf K}. O bloco correspondente ao algoritmo de controle implementado é apresentado na figura \ref{fig::controlealgo}.
+%
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=0.53]{figeps/algoritmo.eps}
+\caption{Algoritmo de controle}
+\label{fig::controlealgo}
+\end{figure}
+%
+A utilização de ${\bf {J}}_A({\bf q})^{-1}$ permite a linearização do sistema, compensando o termo não linear ${\bf {J}}_A({\bf q})$. A utilização do termo {\it feedfoward} $\dot{\bf x}_d$ garante a manutenção do erro em 0 ao longo da trajetória, independente do tipo de sinal de referência ${\bf x}_d$.
+
+\section{Erro de posição}
+
+A definição do erro de posição é bastante natural
+%
+\begin{equation}
+\label{eq::errop}
+{\bf e}_p = {\bf p}_d - {\bf p}({\bf q}),
+\end{equation}
+%
+\noindent onde ${\bf p}_d$ e ${\bf p}({\bf q})$ correspondem a posição desejada e a atual do efetuador, respectivamente. A derivada temporal do erro de posição é dada por
+%
+\begin{equation}
+\dot{\bf e}_p = \dot{\bf p}_d - \dot{\bf p}.
+\end{equation}
+%
+
+\section{Erro de orientação}
+
+Por outro lado, a expressão do erro de orientação depende da representação particular escolhida para a orientação do efetuador, como ângulos de Euler ou quaternion unitário. 
+
+\subsection{\label{eulersec}Ângulos de Euler}
+
+A expressão para o erro de orientação é escolhida de forma análoga a equação(\ref{eq::errop}), ou seja,
+%
+\begin{equation}
+\label{eq::erroeuler}
+{\bf e}_o = {\boldsymbol \phi}_d - {\boldsymbol \phi}({\bf q}),
+\end{equation}
+%
+\noindent e sua dinâmica é expressa por
+%
+\begin{equation}
+\dot{\bf e}_o = \dot{\boldsymbol \phi}_d - \dot{\boldsymbol \phi}.
+\end{equation}
+%
+Assim, assumindo que não haja singularidades cinemáticas ou de representação, a solução de controle é obtida de (\ref{eq::regra}), isto é,
+%
+\begin{equation}
+{\bf u} = {\bf \bar{J}}_A({\bf q})^{-1}					
+					\left[\begin{matrix}
+							\dot{\bf p}_d + {\bf K}_p\,{\bf e}_p\,\\
+							\dot{\boldsymbol \phi}_d + {\bf K}_o\,{\bf e}_o\, \\
+							\end{matrix}\right],
+\end{equation}
+%
+\noindent onde ${\bf K}_p$ e ${\bf K}_o$ são matrizes {\it positivas definidas}, garantindo a {\it estabilidade assintótica} do erro ${\bf e}$.
+
+\subsection{\label{quatsec}Quaternion unitário}
+
+A representação da orientação por quaternions requer a definição de um erro de orientação adequado. Assim, sejam ${\bf Q}_d = \{\eta_d,{\boldsymbol \epsilon}_d\}$ e ${\bf Q}_e = \{\eta_e,{\boldsymbol \epsilon}_e\}$ os quaternions associados a ${\bf R}_d$ e ${\bf R}_{0e}$, respectivamente. O erro de orientação será descrito pela matriz de rotação (ou atitude) ${\bf R}_{\phi}$. Esta matriz pode ser definida, através do enfoque inercial, como ${\bf R}_{\phi} = {\bf R}_d\,{\bf R}_{0e}^T$. O objetivo de controle é então formalizado:
+%
+\begin{equation}
+{\bf R}_{0e} \rightarrow {\bf R}_d(t) \;\;\;\;\;\mbox{, }\;\;\;\;\;{\bf R}_{\phi} \rightarrow {\bf I}.
+\end{equation}
+%
+A representação da matriz ${\bf R}_{\phi}$ em quaternions é dada por ${\bf \Delta Q} = \{\Delta_{\eta},\Delta{\epsilon}\}$.
+%
+\begin{equation}
+{\bf \Delta Q} = {\bf Q}_d \ast {\bf Q}_e^{-1}
+\end{equation}
+%
+A representação da matriz identidade ${\bf I}$ em quaternions unitários é dada por ${\bf Q}_I = \{1, {\bf 0}\}$. Assim, ${\bf \Delta Q} = \{1, {\bf 0}\}$ se e somente se ${\bf R}_d$ e ${\bf R}_{0e}$ estiverem alinhadas. Portanto, é suficiente definir o erro de orientação como
+%
+\begin{equation}
+{\bf e}_o = \Delta{{\boldsymbol \epsilon}} = \eta_e({\bf q})\,{\boldsymbol \epsilon}_d - \eta_d\,{\boldsymbol \epsilon}_e({\bf q}) - {\boldsymbol \epsilon}_d\times{\boldsymbol \epsilon}_e({\bf q}).
+\end{equation}
+%
+Desta forma, a solução para o controle cinemático pode ser computada como
+%
+\begin{equation}
+\label{eq::quatcont}
+{\bf u} = {\bf \bar{J}}({\bf q})^{-1}					
+					\left[\begin{matrix}
+							\dot{\bf p}_d + {\bf K}_p\,{\bf e}_p\,\\
+							{\boldsymbol \omega}_d + {\bf K}_o\,{\bf e}_o\, \\
+							\end{matrix}\right],
+\end{equation}
+%
+\noindent onde o {\it Jacobiano Geométrico} foi utilizado. Substituindo (\ref{eq::quatcont}) em (\ref{eq::jacobgeo})
+%
+\begin{equation}
+\label{eq::eodin}
+{\boldsymbol \omega}_d - {\boldsymbol \omega}_e + {\bf K}_o\,{\bf e}_o = {\bf 0}.
+\end{equation}
+%
+A equação obtida é não linear em ${\bf e}_o$ uma vez que contém a velocidade angular do efetuador ao invés da derivada temporal do erro de orientação. Assim, torna-se importante conhecer a relação entre a derivada temporal do quaternion ${\bf Q}_e$ e a velocidade angular ${\boldsymbol \omega}_e$ (\cite{SSVO:09}:
+%
+\begin{eqnarray}
+\label{eq::quat1}
+\dot{\eta}_e = - \frac{1}{2}{\boldsymbol \epsilon}_e^T {\boldsymbol \omega}_e, \\
+\label{eq::quat2}
+\dot{\boldsymbol \epsilon}_e = \frac{1}{2}(\eta_e\,{\bf I}_{3\times3} - {\boldsymbol \epsilon}_e\, \times){\boldsymbol \omega}_e,
+\end{eqnarray}
+% 
+\noindent que é a conhecida equação de propagação do quaternion. O estudo da estabilidade de (\ref{eq::eodin}) considera a seguinte função de Lyapunov candidata \cite{SLT:91}
+%
+\begin{equation}
+\label{eq::lyapun}
+V = (\eta_d - \eta_e)^2 + ({\boldsymbol \epsilon}_d - {\boldsymbol \epsilon}_e)^T({\boldsymbol \epsilon}_d - {\boldsymbol \epsilon}_e).
+\end{equation}
+%
+Considerando as equações (\ref{eq::eodin}), (\ref{eq::quat1}) e (\ref{eq::quat2}), a diferenciação temporal de (\ref{eq::lyapun}) resulta em 
+%
+\begin{equation}
+\dot{V} = - {\bf e}_o^T\,{\bf K}_o\,{\bf e}_o < 0,
+\end{equation}
+%
+\noindent que será negativa definida uma vez que ${\bf K}_o$ é positiva definida. Desta forma, conclui-se a respeito da estabilidade assintotica do sistema e o erro ${\bf e}_o$ converge para zero, como pretendido.
+
+\section{Controle de Manipuladores Antropomórficos}
+
+A maioria dos manipuladores existentes são cinematicamente simples, uma vez que eles são tipicamente constituídos por um braço e um punho esférico. Esta escolha é parcialmente motivada pela dificuldade de encontrar soluções para o problema de cinemática inversa no caso geral. Felizmente, a estrutura de um manipulador antropomórfico permite articular o problema de cinemática inversa em dois subproblemas, uma vez que a solução para a posição é desacoplada da orientação \cite{SSVO:09}. Neste contexto, manipuladores antropomórficos constituem uma classe de manipuladores de particular interesse para o trabalho desenvolvido. A análise deste tipo de estrutura mecânica, que recebe este nome devido sua similaridade com um braço humano, será realizada de forma mais detalhada e simulações específicas serão incluídas. O estudo deste caso particular visa possibilitar uma futura aplicação prática de toda teoria desenvolvida neste trabalho, dada a disponibilidade de manipuladores robóticos deste tipo no Laboratório de Controle (LABCON). Assim, a estrutura mecânica desta classe de manipuladores é introduzida, na Figura \ref{fig::antropomorfico}.
+%
+\begin{figure}[!htb]
+\label{fig::antropomorfico}
+\centering
+\includegraphics[scale=0.22]{figeps/antropomorfico.eps}
+\caption{Manipulador antropomórfico com punho esférico}
+\end{figure}
+%
+Um {\it manipulador antropomórfico com punho esférico} é composto por seis juntas de revolução, cada uma adicionando um grau de liberdade ao movimento da estrutura mecânica. Uma característica física importante neste tipo de manipulador é o desacoplamento de posição do punho e da orientação, como pode ser visto na Figura \ref{fig::antropomorfico}. Nota-se que a escolha da origem do sistema de coordenadas do efetuador no punho implicaria no desacoplamento da posição deste, o que simplifica o problema. Porém, a escolha conveniente e natural para a origem deste sistema de coordenadas é na extremidade do efetuador, onde geralmente ocorre o contato com superfícies ou objetos no espaço de trabalho. Sejam ${\bf p}_w$ e ${\bf R}_{0e}$ a posição do punho e a orientação do efetuador com respeito ao sistema de coordenadas da base, respectivamente (neste caso, note que o sistema de coordenadas da base é coincidente com o sistema de coordenadas 0), dadas por 
+%
+\begin{eqnarray}
+\label{eq::antro1}
+{\bf p}_w &=& f_1({\boldsymbol \theta}_1,{\boldsymbol \theta}_2,{\boldsymbol \theta}_3) \\
+\label{eq::antro2}
+{\bf R}_{0e} &=& f_2({\boldsymbol \theta}_1,{\boldsymbol \theta}_2,{\boldsymbol \theta}_3,{\boldsymbol \theta}_4,{\boldsymbol \theta}_5,{\boldsymbol \theta}_6)
+\end{eqnarray}
+%
+\noindent onde $f_1 : {\mathbb R}^3 \rightarrow {\mathbb R}^3$ e $f_2 : {\mathbb R}^6 \rightarrow {\mathbb R}^{3\times3}$ são tais que a relação entre a velocidade linear ${\bf p}_w$ e a velocidade angular ${\boldsymbol \omega}_e$ com as velocidades das variáveis de juntas é dada por
+%
+\begin{equation}
+\label{eq::desacoplamento}
+\left[\begin{matrix}
+							\dot{\bf p}_w \\
+							{\boldsymbol \omega}_e\\
+							\end{matrix}\right]
+							= \left[\begin{matrix}
+							{\bf J}_{11} & {\bf 0}_{3\times3}\\
+							{\bf J}_{21} & {\bf J}_{22}\\
+							\end{matrix}\right]
+							\left[\begin{matrix}
+							\dot{{\boldsymbol \theta}_p}	\\
+							\dot{{\boldsymbol \theta}_o}	\\
+							\end{matrix}\right]
+\end{equation}
+%
+Note a partir de (\ref{eq::desacoplamento}) que o {\it Jacobiano Geométrico} assume uma forma bloco triangular, em que a posição do punho depende apenas das velocidades das três primeiras juntas, como esperado. Por isso, uma estratégia de controle pode ser projetada para realizar o controle de posição do punho desacoplado do controle de orientação.  
+
+\subsection{\label{cpo}Controle de Posição do Punho}
+
+O objetivo do controle de posição do punho é atuar nas juntas do manipulador de forma que o punho descreva uma trajetória desejada. No caso de uma estrutura antropomórfica, o variável de controle ${\bf u}_p$ corresponde ao vetor das velocidades das três primeiras juntas $\dot{{\boldsymbol \theta}_p} = [\dot {\theta_1}\;\dot {\theta_2}\; \dot{\theta_3} ]^T$. O problema é então formalizado:
+%
+\begin{equation}
+\label{eq::controledepos}
+{\bf p}_w \rightarrow {\bf p}_{wd}(t) \;\;\;\;\;\;\;\;\;\;
+{\bf e}_{pw} = {\bf p}_{wd} - {\bf p}_w \rightarrow 0
+\end{equation}
+%
+A dinâmica do erro de posição do punho ${\bf e}_{pw}$ é então calculada:
+%
+\begin{equation}
+\label{eq::sistepos}
+\dot{{\bf e}}_{pw} = \dot{{\bf p}}_{wd} - \dot{{\bf p}}_{w} = \dot{{\bf p}}_{wd} - {\bf J}_{11}\,{\bf u}_p
+\end{equation}
+%
+O control ${\bf u}_p$ que deixa o sistema (\ref{eq::sistepos}) na forma linear de (\ref{eq::sistemalinear}) é
+%
+\begin{equation}
+{\bf u}_p = {\bf J}^{-1}_{11}\, (\dot{\bf p}_{wd} + {\bf K}_p\,{\bf e}_{pw})
+\end{equation}
+%
+\noindent e a {\it estabilidade assintótica} no erro ${\bf e}_{pw}$ depende da positividade da matriz ${\bf K}_p$, como visto na seção \ref{contdemanip}.
+%
+\subsection{\label{cor}Controle de Orientação}
+
+O controle de posição, nas três primeiras juntas, é estabelecido de forma que o punho do manipulador descreva uma trajetória específica no espaço de trabalho. O controle de orientação, por sua vez, visa atuar nas juntas restantes para que se estabelecer uma orientação desejada. Desta forma, a variável de controle ${\bf u}_o$ corresponde ao vetor das velocidades das três últimas juntas $\dot{{\boldsymbol \theta}_o} = [\dot {\theta_4}\;\dot {\theta_5}\; \dot{\theta_6} ]^T$. 
+%
+Neste ponto, uma questão deve ser abordada: a escolha da representação ${\boldsymbol \phi}$ da orientação. Nas seções \ref{eulersec} e \ref{quatsec} foram descritas duas formas de representação e estabelecidas suas condições de estabilidade. Deve-se, portanto, escolher de forma justificada a representação utilizada no projeto de controle. Pelo fato de ser uma representação livre de singularidades e, do ponto de vista computacional, mais eficiente, a representação por quaternion unitário é escolhida. O problema de controle de orientação é então formalizado:
+%
+\begin{equation}
+{\bf R}_{\phi} = {\bf R}_d\,{\bf R}_{0e}^T \rightarrow {\bf I},
+\end{equation}
+%
+\noindent em que ${\bf R}_{\phi}$ é a matriz de atitude definida através do enfoque inercial. A representação da matriz ${\bf R}_{\phi}$ em quaternions é dada por ${\bf \Delta Q} = \{\Delta_{\eta},\Delta{\epsilon}\}$
+%
+\begin{equation}
+{\bf \Delta Q} = {\bf Q}_d \ast {\bf Q}_e^{-1},
+\end{equation}
+%
+\noindent e o erro de orientação é definido como ${\bf e}_o = \Delta{{\boldsymbol \epsilon}}$. A partir da equação (\ref{eq::desacoplamento}),
+%
+\begin{equation}
+\label{eq::sistemaor}
+{\boldsymbol \omega}_e = {\bf J}_{21}{\bf u}_p + {\bf J}_{22}{\bf u}_o. 
+\end{equation}
+%
+O controle ${\bf u}_o$ que deixa o sistema (\ref{eq::sistemaor}) na forma (\ref{eq::eodin}) é
+%
+\begin{equation}
+{\bf u}_o = {\bf J}_{22}({\boldsymbol \omega}_d + {\bf K}_o\,{\bf e}_o - {\bf J}_{21}{\bf u}_p),
+\end{equation}
+%
+\noindent e a {\it estabilidade assintótica} no erro ${\bf e}_o$ depende da positividade da matriz ${\bf K}_o$, como visto na seção \ref{quatsec}.
+%
+\subsection{Configurações singulares}
+
+Para manipulador antropomórficos com punho esférico, é possível dividir o cálculo das singularidades em dois problemas:
+%
+\begin{itemize}
+	\item singularidade do braço - resultante do movimento dos 3 primeiros elos; 
+	\item singularidade de punho - resultante do movimento das juntas do punho.
+\end{itemize}
+%
+Tendo em vista a equação (\ref{desacoplamento}), o Jacobiano é triangular por blocos e seu determinando pode então ser calculado a partir dos determinantes de cada bloco. Assim, para o caso considerado,
+%
+\begin{equation}
+det({\bf J}) = det({\bf J}_{11})\,det({\bf J}_{22}). 
+\end{equation}
+%
+A igualdade $det({\bf J}_{11}) = 0$ corresponderá a uma singularidade de braço ( singularidade de ombro e de cotovelo) e $det({\bf J}_{22}) = 0$ a uma singularidade de punho. Deve-se notar que o Jacobiano considerado não fornece a relação entre as velocidades das juntas e as velocidades do efetuador, e sim do punho. Porém, permite o cálculo simplificado das configurações singulares. Na figura \ref{fig::singularidades} são apresentados ambos os tipos de singularidades existentes para o manipulador em questão.
+%
+\begin{figure}[!htb]
+\label{fig::singularidades}
+\centering
+\includegraphics[scale=0.18]{figeps/singularidades.eps}
+\caption{Configurações singulares: singularidade de cotovelo(i), ombro(ii) e punho (iii)}
+\end{figure}
+%
+Como visto na seção \ref{sec::sincin}, as singularidades são configurações que se deseja evitar. Desta forma, nas simulações desenvolvidas, as trajetórias desejadas não implicarão em configurações como as mostradas na Figura \ref{fig::singularidades}.
+
+\section{Controle de Manipuladores Redundantes}
+
+Para o caso onde $m\!<\!n$ o sinal de controle nas juntas pode     ser
+obtido por
+%
+\begin{equation}
+\label{eq:udag}
+u = {J}^{\dagger}(q)\, v\,,
+\end{equation}
+%
+onde $J^{\dagger}\!=\!J^{T}\,(J\,J^{T})^{-1}$ é a               matriz
+pseudo-inversa à direita de $J$. A solução obtida a partir          de
+\ref{eq:udag} minimiza localmente a norma das velocidades das juntas,
+desde que $v(t)$ não conduza o robô para configurações singulares.
+%
+A falha desta última condição ainda é um tema de pesquisa relevante na
+área da robótica, e será discutido a seguir.
+
+Então, considere o problema de controle de posição para um manipulador
+cinemático de n-DoF (no inglês, {\it degrees of freedom}).       Neste
+trabalho, por simplicidade, o problema de controle de orientação   não
+será considerado.
+%
+Aqui, assume-se que o objetivo de controle é rastrear uma   trajetória
+desejada variante no tempo $p_{d}(t)$ a partir da posição atual     do
+efetuador $p$, isto é:
+%
+\begin{equation}
+p \to p_d(t)\,, \quad \quad e_p = p_d - p \to 0 \,, \nonumber
+\label{eq:ep}
+\end{equation}
+%
+onde $e_p\in\!\mathbb{R}^{m}$ é o erro de posição do efetuador.
+%
+Combinando \ref{eq:sys} e \ref{eq:u1} tem-se que ${\dot p}\!=\!v$  e,
+deste modo, a equação  do   erro    de    posição    é    dada     por
+${\dot e}_{p}\!=\!{\dot p}_{d} - v$.
+%
+Então, usando uma lei de controle {\it feedforward} e proporcional
+%
+\begin{equation}
+\label{eq:vp}
+v = {\dot p}_{d} + K_{p}\,e_{p} \,,
+\end{equation}
+%
+onde $K_{p}\!=\!k_p\,I$, a dinâmica do erro de posição é governada por
+${\dot e}_{p} + K_{p}\,e_{p}\!=\!0$. Portanto, a partir de uma escolha
+apropriada  de  $k_{p}$ como  uma  constante  positiva,  o sistema  em
+malha-fechada é exponencialmente estável e, consequentemente, $\lim_{t\to\infty}e_{p}(t)=0$.
+
+Note que, a partir das equações \ref{eq:p} a \ref{eq:vp}, é possível
+projetar um algoritmo de controle cinemático para solucionar         o
+problema de cinemática inversa, conforme ilustrado no diagrama      em
+blocos da Figura \ref{fig:IK}.
+%
+Contudo, quando o robô manipulador é redundante ($m\!<\!n)$   a matriz
+Jacobiana possui mais colunas do que linhas e, por isso,       existem
+infinitas soluções para \ref{eq:sys}.
+%
+Uma abordagem interessante consiste em formular o problema de controle
+cinemático como um problema de otimização linear com        restrições
+\cite{SSVO:09}.
+%
+%---------------------------------------------------------------------
+\begin{figure}[htpb]
+\centering
+\psfrag{P}[c][c][0.8]{$p$}
+\psfrag{Pd}[c][c][0.8]{$p_{d}$}
+\psfrag{dPd}[c][c][0.8]{${\dot p}_{d}$}
+\psfrag{v}[c][c][0.8]{$v$}
+\psfrag{Jinv}[c][c][0.8]{$J^{\dagger}(\cdot)$}
+\psfrag{a}[c][c][0.6]{$+$}
+\psfrag{b}[c][c][0.6]{$-$}
+\psfrag{s}[c][c][0.8]{$\Sigma$}
+\psfrag{k}[c][c][0.8]{$h(\cdot)$}
+\psfrag{I}[c][c][0.8]{$\int$}
+\psfrag{T}[c][c][0.8]{$q$}
+\psfrag{dT}[c][c][0.8]{$u$}
+\psfrag{Kp}[c][c][0.8]{$K_p$}
+\includegraphics[width=8cm]{figeps/IKalgorithm.eps}
+\caption{Algoritmo de Cinemática Inversa.}
+\label{fig:IK}
+\end{figure}
+%---------------------------------------------------------------------
+
+Então, devido à presença de $n-m$ graus de liberdade redundantes, a solução \ref{eq:udag} pode ser modificada introduzindo-se um termo de projeção no espaço nulo de $J$, isto é,
+%
+\begin{equation}
+\label{eq:u2}
+u = J^{\dagger}\,v + \left(I - J^{\dagger}\,J \right)\,{\dot q}_{0} \,,
+\end{equation}
+%
+onde $J^{\dagger}\!=\!J^{T}\,(J\,J^{T})^{-1}$ é a matriz pseudo-inversa à direita de $J$ e ${\dot q}_{0}$ é um vetor de velocidades arbitrárias das juntas que pode ser especificado para satisfazer uma restrição adicional ao problema, com prioridade secundária (e.g., evitar singularidades, desviar de obstáculos ou maximizar a manipulabilidade).
+%
+Note que, a solução obtida localmente minimiza a norma das velocidades
+das juntas e permite a geração de movimentos internos             para
+reconfigurar a estrutura do manipulador sem modificar a postura     do
+efetuador \cite{SSVO:09}.
+
+\section{Controle e singularidades}
+
+A solução de \ref{eq:u1} pode ser computada  somente  quando a
+matriz Jacobiana possui posto completo. Entretanto, ela pode tornar-se
+sem sentido quando o manipulador está em  uma  {\it       configuração
+singular} e neste caso o sistema  de  controle  \ref{eq:sys}   possui
+equações linearmente dependentes.
+%
+% Note que, é possível encontrar uma solução para $u$ extraindo todas as
+% equações linearmente independentes se ${\bf v}\!\in\!{\mathcal R}(J)$.
+% A ocorrência dessa situação significa que o caminho atribuído       ao
+% manipulador é fisicamente realizável, mesmo  que  ele  esteja  em  uma
+% configuração singular. Por outro lado,                              se
+% ${\bf v}\!\notin\!{\mathcal R}(J)$, o  sistema de equações  não possui
+% solução e isto significa que o  caminho do  espaço         operacional
+% ${\mathcal O}$  não  pode  ser   realizado  pelo manipulador para  uma
+% determinada postura \cite{SSVO:08}.
+%
+É importante ressaltar que a inversão da matriz Jacobiana pode representar um grande incoveniente não  apenas  em  uma   configuração
+singular mas  também  na  vizinhança  de  uma  singularidade, onde a matriz se torna mal condicionada, apresentando pivôs muito pequenos e resultando em grandes valores de velocidades das juntas.
+
+%É importante ressaltar que a inversão da matriz Jacobiana         pode
+%representar um grande inconveniente não  apenas  em  uma   configuração
+%singular mas  também  na  vizinhança  de  uma  singularidade. De fato,
+%sabe-se  que  o  cálculo  da  inversa  da  matriz  Jacobiana  requer a
+%computação  do  seu  determinante,  e  que  na  vizinhança  de     uma
+%singularidade este valor torna-se relativamente pequeno resultando  em
+%grandes valores de velocidades das juntas.
+
+% Neste contexto, uma análise mais rigorosa do comportamento  da solução
+% na vizinhança  de  uma configuração  singular  pode  ser  desenvolvida
+% recorrendo-se  a {\it decomposição  em  valores  singulares} da matriz
+% Jacobiana \cite{MK:89}.
+
+\subsection{Algoritmo DLS}
+
+Uma solução para superar o problema da inversão da equação
+de  cinemática  diferencial  na  vizinhança  de  uma  singularidade  é
+fornecida pelo método DLS proposto em \cite{NH:86}, onde a inversa  do
+Jacobiano é substituída por
+%
+\begin{equation}
+J^{\ast} = J^{T}(JJ^{T} + \lambda\,I)^{-1}\,,
+\end{equation}
+%
+onde $\lambda$ é  um  fator  de  amortecimento  que  torna a  inversão
+melhor condicionada de um ponto de vista numérico, e é dado por:
+%
+\begin{equation}
+\lambda = \left \{\begin{array}{cc} 0 & \,,\quad \mbox{$w \geq w_{0}$} \\  \lambda_{0} \left(1-\frac{w}{w_0}\right)^{2} & \,,\quad \mbox{$w < w_0$} \end{array} \right.
+\end{equation}
+%
+onde $w\!=\!\sqrt{\det{J(q)J^{T}(q)}}$ é  a  medida                 de
+manipulabilidade do manipulador, $\lambda_{0}$ é uma         constante
+que estabelece um fator de escalamento nas configurações singulares  e
+$w_{0}$ é um parâmetro que define o limite da vizinhança de        uma
+configuração singular.
+%
+% onde $w\!=\!\sqrt{\det{JJ^{T}}}$ é  a  medida de manipulabilidade   do
+% manipulador, $w_{0}$ é um parâmetros escolhido de acordo com         a
+% estrutura mecânica do manipulador, e $\lambda_{0}$ é um parâmetro   de
+% projeto relacionado ao desempenho do algoritmo.
+%
+A principal ideia por trás do método é amortecer as velocidades    das
+juntas não-factíveis na vizinhança  de  uma  configuração    singular,
+permitindo ao efetuador desviar da trajetória de referência desejada, estando o desvio na direção e magnitude do movimento \cite{SSVO:09}. O fator de amortecimento introduzido estabelece um compromisso entre a exatidão e a viabilidade da solução.
+
+\subsection{Algoritmo FIK}
+

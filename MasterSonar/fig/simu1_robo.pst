@@ -1,0 +1,193 @@
+%%Created by jPicEdt 1.4.1_03: mixed JPIC-XML/LaTeX format
+%%Tue Jan 15 14:14:48 BRST 2013
+%%Begin JPIC-XML
+%<?xml version="1.0" standalone="yes"?>
+%<jpic x-min="3.75" x-max="190" y-min="2.5" y-max="58.93" auto-bounding="true">
+%<g>
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(6.25,5);(6.25,5);(6.25,35);(6.25,35)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%<multicurve arrow-global-scale-length= "1.95"
+%	 right-arrow= "head"
+%	 points= "(6.25,5);(6.25,5);(35,5);(35,5)"
+%	 arrow-global-scale-width= "1.7"
+%	 fill-style= "none"
+%	 />
+%</g>
+%<multicurve stroke-style= "dotted"
+%	 stroke-width= "0.4"
+%	 points= "(61.25,30);(61.25,30);(71.25,40);(71.25,40)"
+%	 fill-style= "none"
+%	 />
+%<multicurve stroke-style= "dotted"
+%	 stroke-width= "0.4"
+%	 points= "(46.25,15);(46.25,15);(66.25,20);(66.25,20)"
+%	 fill-style= "none"
+%	 />
+%<multicurve stroke-width= "0.4"
+%	 points= "(6.25,5);(6.25,5);(46.25,15);(46.25,15)"
+%	 fill-style= "none"
+%	 />
+%<multicurve stroke-width= "0.4"
+%	 points= "(46.25,15);(46.25,15);(61.25,30);(61.25,30)"
+%	 fill-style= "none"
+%	 />
+%<multicurve stroke-width= "0.4"
+%	 points= "(61.25,30);(61.25,30);(56.25,50);(56.25,50)"
+%	 fill-style= "none"
+%	 />
+%<ellipse fill-color= "#f0f0f0"
+%	 p3= "(8.75,2.5)"
+%	 p2= "(8.75,7.5)"
+%	 p1= "(3.75,7.5)"
+%	 stroke-width= "0.4"
+%	 closure= "open"
+%	 angle-end= "360"
+%	 fill-style= "solid"
+%	 angle-start= "0"
+%	 />
+%<ellipse fill-color= "#f0f0f0"
+%	 p3= "(48.75,12.5)"
+%	 p2= "(48.75,17.5)"
+%	 p1= "(43.75,17.5)"
+%	 stroke-width= "0.4"
+%	 closure= "open"
+%	 angle-end= "360"
+%	 fill-style= "solid"
+%	 angle-start= "0"
+%	 />
+%<ellipse fill-color= "#f0f0f0"
+%	 p3= "(63.75,27.5)"
+%	 p2= "(63.75,32.5)"
+%	 p1= "(58.75,32.5)"
+%	 stroke-width= "0.4"
+%	 closure= "open"
+%	 angle-end= "360"
+%	 fill-style= "solid"
+%	 angle-start= "0"
+%	 />
+%<ellipse fill-color= "#ffffff"
+%	 p3= "(58.75,47.5)"
+%	 p2= "(58.75,52.5)"
+%	 p1= "(53.75,52.5)"
+%	 stroke-width= "0.4"
+%	 closure= "open"
+%	 angle-end= "360"
+%	 fill-style= "solid"
+%	 angle-start= "0"
+%	 />
+%<parallelogram stroke-style= "none"
+%	 fill-color= "#ffffff"
+%	 p3= "(67.3,53.42)"
+%	 p2= "(57.25,58.93)"
+%	 p1= "(39,53.57)"
+%	 stroke-width= "0.4"
+%	 fill-style= "solid"
+%	 />
+%<text text-vert-align= "bottom"
+%	 anchor-point= "(33.75,12.5)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "right"
+%	 >
+%$\ell_1 = 2$
+%</text>
+%<text text-vert-align= "bottom"
+%	 anchor-point= "(53.75,25)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "right"
+%	 >
+%$\ell_2 = 1$
+%</text>
+%<text text-vert-align= "bottom"
+%	 anchor-point= "(56.25,37.5)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "right"
+%	 >
+%$\ell_3 = 1$
+%</text>
+%<text text-vert-align= "bottom"
+%	 anchor-point= "(56.25,20)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "left"
+%	 >
+%$q_2$
+%</text>
+%<text text-vert-align= "bottom"
+%	 anchor-point= "(63.75,37.5)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 >
+%$q_3$
+%</text>
+%<text text-vert-align= "bottom"
+%	 anchor-point= "(25.62,5.62)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "left"
+%	 >
+%$q_1$
+%</text>
+%<text text-vert-align= "bottom"
+%	 anchor-point= "(56.25,52.5)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "center-h"
+%	 >
+%$(p_x,p_y)$
+%</text>
+%<text text-vert-align= "bottom"
+%	 anchor-point= "(91.25,21.25)"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 text-hor-align= "left"
+%	 >
+%\Cd
+%</text>
+%<multicurve stroke-style= "none"
+%	 points= "(190,48.75);(190,48.75);(190,32.5);(190,32.5)"
+%	 fill-style= "none"
+%	 />
+%</jpic>
+%%End JPIC-XML
+%PSTricks content-type (pstricks.sty package needed)
+%Add \usepackage{pstricks} in the preamble of your LaTeX file
+%You can rescale the whole picture (to 80% for instance) by using the command \def\JPicScale{0.8}
+\ifx\JPicScale\undefined\def\JPicScale{1}\fi
+\psset{unit=\JPicScale mm}
+\psset{linewidth=0.3,dotsep=1,hatchwidth=0.3,hatchsep=1.5,shadowsize=1,dimen=middle}
+\psset{dotsize=0.7 2.5,dotscale=1 1,fillcolor=black}
+\psset{arrowsize=1 2,arrowlength=1,arrowinset=0.25,tbarsize=0.7 5,bracketlength=0.15,rbracketlength=0.15}
+\begin{pspicture}(0,0)(190,58.93)
+\psline[arrowscale=1.7 1.95]{->}(6.25,5)(6.25,35)
+\psline[arrowscale=1.7 1.95]{->}(6.25,5)(35,5)
+\psline[linewidth=0.4,linestyle=dotted](61.25,30)(71.25,40)
+\psline[linewidth=0.4,linestyle=dotted](46.25,15)(66.25,20)
+\psline[linewidth=0.4](6.25,5)(46.25,15)
+\psline[linewidth=0.4](46.25,15)(61.25,30)
+\psline[linewidth=0.4](61.25,30)(56.25,50)
+\newrgbcolor{userFillColour}{0.94 0.94 0.94}
+\rput{0}(6.25,5){\psellipse[linewidth=0.4,fillcolor=userFillColour,fillstyle=solid](0,0)(2.5,-2.5)}
+\newrgbcolor{userFillColour}{0.94 0.94 0.94}
+\rput{0}(46.25,15){\psellipse[linewidth=0.4,fillcolor=userFillColour,fillstyle=solid](0,0)(2.5,-2.5)}
+\newrgbcolor{userFillColour}{0.94 0.94 0.94}
+\rput{0}(61.25,30){\psellipse[linewidth=0.4,fillcolor=userFillColour,fillstyle=solid](0,0)(2.5,-2.5)}
+\rput{0}(56.25,50){\psellipse[linewidth=0.4,fillcolor=white,fillstyle=solid](0,0)(2.5,-2.5)}
+\pspolygon[linewidth=0.4,linestyle=none,fillcolor=white,fillstyle=solid](39,53.57)(57.25,58.93)(67.3,53.42)(49.06,48.05)
+\rput[br](33.75,12.5){$\ell_1 = 2$}
+\rput[br](53.75,25){$\ell_2 = 1$}
+\rput[br](56.25,37.5){$\ell_3 = 1$}
+\rput[bl](56.25,20){$q_2$}
+\rput[b](63.75,37.5){$q_3$}
+\rput[bl](25.62,5.62){$q_1$}
+\rput[b](56.25,52.5){$(p_x,p_y)$}
+\rput[bl](91.25,21.25){\Cd}
+\psline[linestyle=none](190,48.75)(190,32.5)
+\end{pspicture}

@@ -1,0 +1,92 @@
+\begin{simulation}
+\label{sim::desvio}
+\end{simulation}
+
+\noindent Considere agora uma função objetivo definida no espaço operacional por ${\boldsymbol \mu} = (\mu_x,\mu_y) = (2,0.75)$, ${\bf R}_f = {\bf I}$ e ${\bf D}_f = (0.2)^2{\bf I}$, avaliada no efetuador. Os resultados obtidos com o algoritmo da inversa filtrada para ${\boldsymbol \Gamma} = 5{\bf I}$, ${\boldsymbol \Lambda = 5{\bf I}}$ e rastreamento da \nameref{traj1} são apresentados na Figura \ref{fig::desviofixo}.
+ 
+\begin{figure}[!htp]
+\centering
+\begin{tabular}{cc}
+\includegraphics[trim = 0cm 1.3cm 0cm 0cm, clip = true, scale = 0.34]{sim/obstaculo/plano1.eps}\\
+\includegraphics[trim = 10.5cm 0cm 9cm 17.2cm, clip = true, scale = 0.39]{sim/obstaculo/indice_a.eps}\\%indice
+\includegraphics[trim = 0cm 1.3cm 0cm 0cm, clip = true, scale = 0.34]{sim/obstaculo/3dim.eps}\\
+\includegraphics[trim = 10.5cm 0cm 9cm 17.6cm, clip = true, scale = 0.39]{sim/obstaculo/indice_b.eps}\\
+\includegraphics[trim = 0cm 1.3cm 0cm 0cm, clip = true, scale = 0.34]{sim/obstaculo/plano2_comp.eps}\\
+\includegraphics[trim = 10.5cm 0cm 9cm 17.2cm, clip = true, scale = 0.39]{sim/obstaculo/indice_c.eps}\\
+\end{tabular}
+\caption{Simulação \ref{sim::desvio}: (a) trajetórias com e sem desvio; (b) dimensão ampliada (função $f$); e (c) desvio para diferentes ganhos $\alpha_f$.}
+\label{fig::desviofixo}
+\end{figure}
+
+A utilização de $\alpha_f > 0$ permite que o efetuador desvie do obstáculo definido pela função $f$, sendo observado um erro de posição (Figuras \ref{fig::desviofixo}.a e \ref{fig::desviofixo}.b). A Figura \ref{fig::desviofixo}.c apresenta as trajetórias obtidas para diferentes ganhos $\alpha_f$ e curvas de nível da função $f$ normalizada ($f/\alpha_f$). Como esperado, quanto maior o ganho ${\alpha_f}$ considerado, maior o desvio. A função objetivo $f$ pode ser avaliada em pontos intermediários, ao longo dos elos do robô, permitindo sua reconfiguração interna e evitando colisões dos elos com obstáculos. A Figura \ref{fig::reconfigobst} apresenta resultados de simulação para rastreamento da \nameref{traj5} e diferentes posições ${\boldsymbol \mu}$. 
+%Como previsto, o manipulador se reconfigura internamente, permitindo o rastreamento com erro praticamente nulo desde que o obstáculo esteja afastado da posição de referência do efetuador. Para obstáculos pequenos, o número de pontos intermediários em que $f$ é avaliada deve ser elevado de forma a garantir o bom desempenho do algoritmo proposto.
+
+\begin{figure}[!htp]
+\centering
+\begin{tabular}{cc}
+\includegraphics[trim = 9cm 1.3cm 9cm 0cm, clip = true, scale = 0.39]{sim/obstaculo/posicao1.eps}&
+\includegraphics[trim = 9cm 1.3cm 9cm 0cm, clip = true, scale = 0.39]{sim/obstaculo/posicao2.eps}\\
+\includegraphics[trim = 9cm 0cm 9cm 17.2cm, clip = true, scale = 0.39]{sim/obstaculo/indice_a.eps}& %indice
+\includegraphics[trim = 9cm 0cm 9cm 17.2cm, clip = true, scale = 0.39]{sim/obstaculo/indice_b.eps}\\%indice\end{tabular}
+\includegraphics[trim = 9cm 1.3cm 9cm 0cm, clip = true, scale = 0.39]{sim/obstaculo/posicao3.eps}&
+\includegraphics[trim = 9cm 1.3cm 9cm 0cm, clip = true, scale = 0.39]{sim/obstaculo/posicao4.eps}\\
+\includegraphics[trim = 9cm 0cm 9cm 17.2cm, clip = true, scale = 0.39]{sim/obstaculo/indice_c.eps}& %indice
+\includegraphics[trim = 9cm 0cm 9cm 17.2cm, clip = true, scale = 0.39]{sim/obstaculo/indice_d.eps}\\%indice\end{tabular}
+\end{tabular}
+\caption{Obstáculo operacional e reconfiguração interna.}
+\label{fig::reconfigobst}
+\end{figure}
+%
+Como previsto, o manipulador se reconfigura internamente, permitindo o rastreamento com erro praticamente nulo desde que o obstáculo esteja afastado da posição de referência do efetuador. Para obstáculos pequenos, o número de pontos intermediários em que $f$ é avaliada deve ser elevado de forma a garantir o bom desempenho do algoritmo proposto.
+
+\newpage
+Em ambientes industriais, manipuladores cooperativos dividem um espaço de trabalho ou uma parcela deste. Neste caso, colisões são possíveis e representam eventos indesejados. Uma estratégia para evitar tais colisões é definir para um dos manipuladores uma função objetivo $f = \sum{f_i}$ (variante no tempo) que represente o outro manipulador (Figuras \ref{fig::cooperativo} e \ref{fig::reconhecimento}).
+%A Figura \ref{} apresenta um manipulador 3R em duas configurações e a função $f$ obtida. Os centros das funções são posicionados nos centros dos elos, os elementos $d_fi^j$ são proporcionais ao tamanho do elo e ${\bf R}_f$ é obtida trivialmente através das variáveis de juntas do manipulador-obstáculo. 
+%\vskip 0.3cm
+
+\begin{figure}[!htp]
+  \centering
+  \def\JPicScale{0.24}
+  \def\Lum{$\ell_1$}
+  \def\Ldois{$\ell_2$}
+  \def\Ltres{$\ell_3$}
+  \def\LumL{$\ell'_1$}
+  \def\LdoisL{$\ell'_2$}
+  \def\LtresL{$\ell'_3$}
+  \def\Ct{}
+  \def\EQF{$f = f_1 + f_2 + f_3$}
+  \def\Jum{Junta 1}
+  \def\Jdois{Junta 2}
+  \def\Jtres{Junta 3}
+  \def\JumL{Junta 1'}
+  \def\JdoisL{Junta 2'}
+  \def\JtresL{Junta 3'}
+  \def\Pos{${\bf p}_1$}
+  \def\PosL{${\bf p}_2$}
+  \def\X{$x$}
+  \def\Y{$y$}
+  \def\Posmi{${\boldsymbol \mu} = (\mu_x,\mu_y)$}
+  {\small
+  \input{fig/coop.pst}
+  }
+  \caption{Ambiente cooperativo}
+  \label{fig::cooperativo}
+\end{figure}
+
+\begin{figure}[!htp]
+\centering
+\begin{tabular}{cc}
+\includegraphics[trim = 9cm 1.3cm 9cm 0.3cm, clip = true, scale = 0.39]{sim/obstaculo/reconhecimento1.eps}&
+\includegraphics[trim = 9cm 1.3cm 9cm 0.3cm, clip = true, scale = 0.39]{sim/obstaculo/reconhecimento2.eps}\\
+\includegraphics[trim = 9cm 0cm 9cm 17.2cm, clip = true, scale = 0.39]{sim/obstaculo/indice_a.eps}& %indice
+\includegraphics[trim = 9cm 0cm 9cm 17.2cm, clip = true, scale = 0.39]{sim/obstaculo/indice_b.eps}\\%indice\end{tabular}
+\includegraphics[trim = 9cm 1.3cm 9cm 0cm, clip = true, scale = 0.39]{sim/obstaculo/reconhecimento3.eps}&
+\includegraphics[trim = 9cm 1.3cm 9cm 0cm, clip = true, scale = 0.39]{sim/obstaculo/reconhecimento4.eps}\\
+\includegraphics[trim = 9cm 0cm 9cm 17.2cm, clip = true, scale = 0.39]{sim/obstaculo/indice_c.eps}& %indice
+\includegraphics[trim = 9cm 0cm 9cm 17.2cm, clip = true, scale = 0.39]{sim/obstaculo/indice_d.eps}\\%indice\end{tabular}
+\end{tabular}
+\caption{Manipulador planar 3R e função $f$ correspondente.}
+\label{fig::reconhecimento}
+\end{figure}
+
+

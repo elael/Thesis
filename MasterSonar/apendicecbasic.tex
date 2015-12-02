@@ -1,0 +1,185 @@
+\chapter{\label{cbasic}Conceitos Básicos}
+
+\section{Propriedades da função traço}
+
+Considere uma matriz quadrada ${\bf A}\!\in\!\mathbb{R}^{m \times m}$. A função traço de ${\bf A}$, denotada por $\text{tr}({\bf A})$, corresponde à soma dos elementos de sua diagonal principal \cite{MAG:07}, %. Seja $a_{ij}$ o elemento da $i$-ésima linha e $j$-ésima coluna. A função traço de ${\bf A}$ pode ser escrita como
+podendo ser escrita como
+%
+\begin{equation}
+\text{tr}({\bf A}) = a_{11} + a_{22} + ... + a_{mm} = \sum_{i=1}^{m}a_{ii},
+\end{equation}
+%
+onde $a_{ij}$ denota o elemento da $i$-ésima linha e $j$-ésima coluna de ${\bf A}$. As propriedades da função $\text{tr}(\cdot)$ são apresentadas a seguir:
+
+\begin{enumerate}
+\item{$\text{tr}(\alpha{\bf A}) = \alpha\,\text{tr}({\bf A})$, onde $\alpha\!\in\!\mathbb{R}$;}
+\item{$\text{tr}({\bf A}+{\bf B}) = \text{tr}({\bf A}) + \text{tr}({\bf B})$;}
+\item{$\text{tr}({\bf A}) = \text{tr}({\bf A}^T)$;}
+\item{$\frac{d}{dt}\text{tr}({\bf A}) = \text{tr}(\frac{d{\bf A}}{dt})$;}
+\item{$\text{tr}({\bf B}{\bf C}) = \text{tr}({\bf C}{\bf B})$, onde ${\bf B}\!\in\!\mathbb{R}^{m \times n}$ e ${\bf C}\!\in\!\mathbb{R}^{n \times m}$;}
+\item{$\text{tr}({\bf A}) = \sum{\lambda_i}$, onde $\lambda_i$ é autovalor de ${\bf A}$.}
+\end{enumerate}
+%
+A partir das propriedades 1 e 2, tem-se
+\vskip 0.3cm
+2'. $\text{tr}(\alpha{\bf A}+\beta{\bf B}) = \alpha\,\text{tr}({\bf A}) + \beta\,\text{tr}({\bf B})$, onde $\alpha\!\in\!\mathbb{R}$ e $\beta\!\in\!\mathbb{R}$. \qquad\;\;\;\;\;(linearidade)
+\vskip 0.3cm
+%\noindent Logo, o traço é uma função linear.
+
+\section{\label{apsec::fund}Subespaços fundamentais}
+
+Considere uma matriz ${\bf A}\!\in\!\mathbb{R}^{m \times n}$ com posto $r$. Os subespaços fundamentais de ${\bf A}$ são apresentados a seguir \cite{STRANG}:
+
+\newpage
+\begin{enumerate}
+\item{O {\bf espaço-coluna} de ${\bf A}$ é denotado por $Col({\bf A})$ e é gerado pelas colunas de ${\bf A}$. Sua dimensão é $r$;}
+\item{O {\bf espaço nulo} de ${\bf A}$ é denotado por $Nul({\bf A})$. Ele contém todos os vetores ${\bf x}$ tal que ${\bf A}{\bf x} = {\bf 0}$. Sua dimensão é $n-r$;}
+\item{O {\bf espaço-linha} de ${\bf A}$ é o espaço-coluna de ${\bf A}^T$. Ele é denotado por $Col({\bf A}^T)$ e é gerado pelas linhas de ${\bf A}$. Sua dimensão também é $r$;}
+\item{O {\bf espaço nulo à esquerda} de ${\bf A}$ é o espaço nulo de ${\bf A}^T$. Ele é denotado por $Nul({\bf A}^T)$ e contém todos os vetores ${\bf y}$ tal que ${\bf y}^T{\bf A} = {\bf 0}$. Sua dimensão é $m-r$.}
+\end{enumerate}
+
+\noindent{\bf Teorema fundamental de ortogonalidade: } O espaço nulo $Nul({\bf A})$ e o espaço-linha $Col({\bf A}^T)$ são ortogonais e subespaços de ${\mathbb{R}^n}$. O espaço nulo à esquerda $Nul({\bf A}^T)$ e o espaço-coluna $Col({\bf A})$ são ortogonais e subespaços de ${\mathbb{R}^m}$. %A Figura \ref{fig::subespacos}
+
+\section{Decomposição de Valor Singular (SVD)}
+
+A decomposição de valor singular, ou simplesmente SVD, constitui uma ferramenta extremamente poderosa para análise em álgebra linear. Qualquer matriz ${\bf A}\!\in\!\mathbb{R}^{m \times n}$ pode ser fatorada em \cite{STRANG}
+%
+\begin{equation}
+\label{eq::svd1}
+{\bf A} = {\bf U}\,{\boldsymbol \Sigma}\,{\bf V}^T = \text{{\bf (ortogonal)(diagonal)(ortogonal)}}.
+\end{equation}
+%
+Os $r$ valores singulares (denotados por $\sigma$) na diagonal de ${\boldsymbol \Sigma}\!\in\!\mathbb{R}^{m \times n}$ são as raízes quadradas de autovalores não nulos de ${\bf A}{\bf A}^T$ e ${\bf A}^T{\bf A}$. As colunas de ${\bf U}\!\in\!\mathbb{R}^{m \times m}$ são autovetores de ${\bf A}{\bf A}^T$ e as colunas de ${\bf V}\!\in\!\mathbb{R}^{n \times n}$ são autovetores de ${\bf A}^T{\bf A}$. As matrizes ${\bf U}$ e ${\bf V}$ fornecem bases ortonormais para todos os quatros subespaços fundamentais apresentados em \ref{apsec::fund}:
+
+\vskip 0.5cm
+\begin{tabular}{lccl}
+Primeiras & $r$ & colunas de ${\bf U}$: & {\bf espaço-coluna} de ${\bf A}$ \\
+Últimas & $m-r$ & colunas de ${\bf U}$: & {\bf espaço nulo à esquerda} de ${\bf A}$ \\
+Primeiras & $r$ & colunas de ${\bf V}$: & {\bf espaço-linha} de ${\bf A}$ \\
+Últimas & $n-r$ & colunas de ${\bf V}$: & {\bf espaço-nulo} de ${\bf A}$ \\
+\end{tabular}
+\vskip 0.5cm
+
+\noindent A partir de (\ref{eq::svd1}), tem-se
+%
+\begin{equation}
+{\bf A}{\bf V} = {\bf U}\,{\boldsymbol \Sigma},
+\end{equation}
+%
+e, portanto, quando a matriz ${\bf A}$ multiplica uma coluna ${\bf v}_j$ de ${\bf V}$, produz $\sigma_j$ vezes uma coluna de ${\bf U}$. %A razão $\sigma_{max}/\sigma_{min}$ é o número de condicionamento de uma matriz $n$ por $n$ inversa e a disponibilidade dessa informação
+
+\newpage
+
+\section{Produto de Kronecker}
+
+Considere as matrizes ${\bf A}\!\in\!\mathbb{R}^{m \times n}$ e ${\bf B}\!\in\!\mathbb{R}^{p \times q}$. O produto de Kronecker (ou produto tensor) de ${\bf A}$ e ${\bf B}$ é definido como a matriz:
+%
+\begin{equation}
+{\bf A}\otimes{\bf B} =
+\begin{bmatrix}
+a_{11}{\bf B}& \cdots & a_{1n}{\bf B} \\
+\vdots & \ddots & \vdots \\
+a_{m1}{\bf B}& \cdots & a_{mn}{\bf B} \\
+\end{bmatrix} \in \mathbb{R}^{mp \times nq}.
+\end{equation}
+%
+As propriedades básicas do produto de Kronecker são apresentadas a seguir \cite{LAUB:05}:
+%
+\begin{enumerate}
+\item $(\alpha {\bf A})\otimes {\bf B} = {\bf A} \otimes (\alpha{\bf B}) = \alpha ({\bf A} \otimes {\bf B})$, onde $\alpha\!\in\!\mathbb{R}$;
+\item ${\bf A}\otimes({\bf B} + {\bf C}) = ({\bf A}\otimes{\bf B})+({\bf A}\otimes{\bf C})$;
+\item $({\bf A} + {\bf B})\otimes{\bf C} = ({\bf A}\otimes{\bf C})+({\bf B}\otimes{\bf C})$;
+\item $({\bf A}\otimes{\bf B})\otimes{\bf C} = {\bf A}\otimes({\bf B}\otimes{\bf C})$;
+\item $({\bf A}\otimes{\bf B})^* = {\bf A}^*\otimes{\bf B}^*$, $({\bf A}\otimes{\bf B})^T = {\bf A}^T\otimes{\bf B}^T$ e $({\bf A}\otimes{\bf B})^{\dagger} =
+{\bf A}^{\dagger}\otimes{\bf B}^{\dagger}$;
+\item $({\bf A}\otimes{\bf B})({\bf C}\otimes{\bf D}) = {\bf AC}\otimes{\bf BD}$;
+% quadradas
+%\item $tr({\bf A}\otimes{\bf B}) = tr({\bf A}) tr({\bf B})$;
+%\item $det({\bf A}\otimes{\bf B}) = (det({\bf A}))^n (det({\bf B}))^m$;
+%
+%Considere as decomposições de valores singulares de ${\bf A} = {\bf U}_A{\boldsymbol \Sigma}_A{\bf V}_A^T$ e ${\bf B} = {\bf U}_B{\boldsymbol \Sigma}_B{\bf V}^T_B$.
+%
+\item $({\bf A}\otimes{\bf B}) = ({\bf U}^{}_A{\boldsymbol \Sigma}^{}_A{\bf V}_A^T\otimes{\bf U}^{}_B{\boldsymbol \Sigma}^{}_B{\bf V}^T_B) = ({\bf U}^{}_A\otimes{\bf U}^{}_B)({\boldsymbol \Sigma}^{}_A\otimes{\boldsymbol \Sigma}^{}_B)({\bf V}^{}_A\otimes{\bf V}^{}_B)^T$
+\item $\text{posto}({\bf A}\otimes{\bf B}) = \text{posto}({\bf A})\text{posto}({\bf B}) = \text{posto}({\bf B}\otimes{\bf A}) $;
+\end{enumerate}
+%
+Para matrizes quadradas ${\bf A}\!\in\!\mathbb{R}^{m \times m}$ e ${\bf B}\!\in\!\mathbb{R}^{n \times n}$, tem-se que:
+%
+\begin{enumerate}
+\item[9.] $\text{tr}({\bf A}\otimes{\bf B}) = \text{tr}({\bf A}) \text{tr}({\bf B})$ e $\det({\bf A}\otimes{\bf B}) = (\det({\bf A}))^n (\det({\bf B}))^m$.
+\end{enumerate}
+
+\section{Operador Vec}
+
+O operador $\text{vec}(\cdot)$ cria um vetor coluna a partir de uma matriz ${\bf A}\!\in\!\mathbb{R}^{m \times n}$ ao empilhar as colunas de ${\bf A} = [{\bf a}_1\,{\bf a}_2\,\cdots\,{\bf a}_n]$ uma embaixo da outra \cite{LAUB:05}:
+%
+\begin{equation}
+\text{vec}({\bf A}) =
+\begin{bmatrix}
+{\bf a}_1 \\
+{\bf a}_2 \\
+\vdots \\
+{\bf a}_n \\
+\end{bmatrix}.
+\end{equation}
+%
+Para ${\bf A}\!\in\!\mathbb{R}^{m \times n}$, ${\bf X}\!\in\!\mathbb{R}^{n \times p}$ e ${\bf B}\!\in\!\mathbb{R}^{p \times q}$, tem-se que:
+%
+\begin{equation}
+\text{vec}({\bf AXB}) =({\bf B}^T \otimes {\bf A})\text{vec}({\bf X}).
+\end{equation}
+%
+
+\section{\label{sec::apsylv}Equação de Sylvester}
+
+Considere as matrizes ${\bf A}\!\in\!\mathbb{R}^{n \times n}$, ${\bf B}\!\in\!\mathbb{R}^{m \times m}$ e ${\bf C}\!\in\!\mathbb{R}^{n \times m}$. Uma equação matricial linear dada por
+%
+\begin{equation}
+\label{eq::sylvesterform}
+{\bf A}{\bf X} + {\bf X}{\bf B} = {\bf C}
+\end{equation}
+%
+é denominada uma equação de Sylvester em homenagem a J. J. Sylvester, que estudou equações matriciais lineares descritas por
+%
+\begin{equation}
+\sum_{i=1}^{k}{\bf A}_i{\bf X}_i{\bf B}_i = {\bf C}.
+\end{equation}
+%
+A equação (\ref{eq::sylvesterform}) pode ser reescrita utilizando o operador $\text{vec}(\cdot)$ e o produto de Kronecker da seguinte forma \cite{LAUB:05}:
+%
+\begin{equation}
+\label{eq::sylvesterap}
+[({\bf I}_m \otimes {\bf A}) + ({\bf B}^T \otimes {\bf I}_n)]\text{vec}({\bf X}) = \text{vec}({\bf C}).
+\end{equation}
+%
+Uma única solução ${\bf X}\!\in\!\mathbb{R}^{n \times m}$ existirá para (\ref{eq::sylvesterap}) se e somente se $[({\bf I}_m \otimes {\bf A}) + ({\bf B}^T \otimes {\bf I}_n)]$ for não-singular e, portanto, não apresentar autovalores nulos. Sejam $\lambda_1,...,\lambda_n$ e $\mu_1,...,\mu_m$ os autovalores de ${\bf A}$ e ${\bf B}$, respectivamente. A matriz $[({\bf I}_m \otimes {\bf A}) + ({\bf B}\, \otimes {\bf I}_n)]$, também denominada soma de Kronecker (${\bf A}\oplus{\bf B}$), apresenta $mn$ autovalores
+%
+\begin{equation}
+\lambda_1 + \mu_1, ... , \lambda_1 + \mu_m, \lambda_2 + \mu_1, ... , \lambda_2 + \mu_m, ... , \lambda_n + \mu_1, ... , \lambda_n + \mu_m.
+\end{equation}
+%
+Assim, uma condição necessária e suficiente para que a equação ${\bf A}{\bf X} + {\bf X}{\bf B} = {\bf C}$ apresente uma solução única é dada por
+%
+\begin{equation}
+\sigma({\bf A}) \cap \sigma({\bf -B}) = {\emptyset},
+\end{equation}
+%
+onde $\sigma({\bf A})$ e $\sigma({\bf -B})$ correspondem aos espectros de ${\bf A}$ e ${\bf -B}$, respectivamente. Isto é, existe uma única solução ${\bf X}$ para (\ref{eq::sylvesterform}) se e somente se ${\bf A}$ e ${\bf -B}$ não apresentarem autovalores em comum \cite{RAJ:97}. Uma condição para a existência da solução é que
+%
+\begin{equation}
+\begin{bmatrix}
+{\bf A} & {\bf C} \\
+{\bf 0} & {\bf -B}
+\end{bmatrix}
+\text{\quad e \quad}
+\begin{bmatrix}
+{\bf A} & {\bf 0} \\
+{\bf 0} & {\bf -B}
+\end{bmatrix}
+\end{equation}
+%
+sejam similares, como demonstrado em \cite{ROTH:52}. Supondo ${\bf A}$ e ${\bf B}$ assintoticamente estáveis (autovalores com parcelas reais estritamente negativas), a solução para a equação de Sylvester pode ser escrita como \cite{LAUB:05}
+%
+\begin{equation}
+{\bf X} = - \int^{+\infty}_{0} e^{t{\bf A}} {\bf C} e^{t{\bf B}}dt.
+\end{equation} 

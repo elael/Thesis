@@ -1,0 +1,68 @@
+\subsection{\label{sec::fjoint} Função $f$ para limite das juntas}
+
+A função objetivo é definida a partir de potências pares das variáveis de desvio das juntas normalizadas ($\Delta q_i/\zeta_i$), sendo apresentada e ilustrada abaixo. O objetivo desta função é manter a variável de junta $q_i$ no intervalo $[q_{id} - \zeta_i, q_{id} + \zeta_i]$.
+
+\begin{figure}[!htp]
+  \centering
+  \def\JPicScale{0.26}
+  \def\Lum{$\ell_1$}
+  \def\Ldois{$\ell_2$}
+  \def\Ltres{$\ell_3$}
+  \def\Jum{Junta 1}
+  \def\Jdois{Junta 2}
+  \def\Jtres{Junta 3}
+  \def\QD{${q}_{3d}$}
+  \def\Plus{$+\zeta_3$}
+  \def\Minus{$-\zeta_3$}
+  \def\X{$x$}
+  \def\Y{$y$}
+  {\small
+  \input{fig/limite_juntas.pst}
+  }
+  \caption{Função objetivo no espaço das juntas.}
+  \label{fig::draw_joint}
+\end{figure}
+
+\begin{equation}
+f(q_1,...,q_n) = \sum_{i = 1}^{n}
+{\alpha_i\left(\frac{q_i - q_{id}}{\zeta_i}\right)^{2k_i}}
+= \sum_{i = 1}^{n}\alpha_i \left(\frac{\Delta q_i}{\zeta_i}\right)^{2k_i}
+\end{equation}
+%
+onde $\alpha_i \geq 0$ e $\zeta_i > 0$. Ganhos $k_i$ elevados impõem pouca restrição aos ângulos das juntas, desde que permaneçam dentro das faixas determinadas, e uma ação de controle forte uma vez fora destas.
+
+\subsection{\label{sec::fpos} Função $f$ para desvio de obstáculo}
+
+Neste caso, a função objetivo é inspirada na função gaussiana e definida a partir das distâncias dos pontos ${\bf p}_j$ ao centro ${\boldsymbol \mu}$, ponto que se deseja evitar. As curvas de nível são elipsóides, definidos pela matriz ${\bf M}_f = {\bf M}_f^T = {\bf R}_f {\bf D}_f {\bf R}_f^T > 0$. A matriz de rotação ${\bf R}_f$ define os eixos do elipsóide e a matriz ${\bf D}_f$ apresenta elementos positivos em sua diagonal, inversamente proporcionais ao alongamento da curva de nível nesses eixos.
+\begin{figure}[!htp]
+  \centering
+  \def\JPicScale{0.26}
+  \def\Lum{$\ell_1$}
+  \def\Ldois{$\ell_2$}
+  \def\Ltres{$\ell_3$}
+  \def\Jum{Junta 1}
+  \def\Jdois{Junta 2}
+  \def\Jtres{Junta 3}
+  \def\Ct{${\boldsymbol \mu}$}
+  %\def\Dx{$3\sigma_{x'}$}
+  %\def\Dy{$3\sigma_{y'}$}
+  \def\Pos{${\bf p} = (p_x,p_y)$}
+  \def\X{$x$}
+  \def\Y{$y$}
+  \def\Posmi{${\boldsymbol \mu} = (\mu_x,\mu_y)$}  
+  {\small
+  \input{fig/obstaculo.pst}
+  }
+  \caption{Função objetivo no espaço operacional (posição).}
+  \label{fig:parishilton}
+\end{figure}
+%
+%
+\begin{equation}
+f({\bf p}_1,...,{\bf p}_c) = \sum_{j = 1}^{c}
+{\alpha_j e^{-({\bf p}_j - {\boldsymbol \mu})^T{\bf M}_f({\bf p}_j - {\boldsymbol \mu})}}
+= \sum_{j = 1}^{c}
+{\alpha_j e^{-(\Delta p)'^T{\bf D}_f(\Delta p)'}},
+\end{equation}
+%
+onde $\alpha_j \geq 0$ e $(\Delta p_j)' = {\bf R}_f^T\Delta p_j$ é a representação de $\Delta p_j$ no sistema de coordenadas rotacionado por ${\bf R}_f$, conforme (\ref{eq::relation}).

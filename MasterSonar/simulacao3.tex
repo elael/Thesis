@@ -1,0 +1,126 @@
+
+\newpage
+\begin{simulation}
+\label{sim::dlsfik5} 
+\end{simulation}
+\noindent Considere o manipulador planar redundante apresentado na Figura \ref{fig::red} e, inicialmente, uma trajetória livre e afastada de singularidades  (Trajetória \ref{traj2}). No que se segue são apresentados os resultados obtidos por simulação para os métodos DLS e FIK. Os ganhos de controle e parâmetros de simulação são obtidos de \cite{NH:86} e \cite{P:08}.% ($\omega_o = 1$, $\alpha_0 = 0.3$ e ${\bf K}(s)\,=\,{\bf J}^T
+
+\begin{figure}[!htp]
+  \centering
+			\includegraphics[trim = 2.7cm 0cm 2.7cm 0.8cm, scale = 0.46]{sim/sim5_data.eps}\\ %\tiny{\,(b)} \\
+\caption{Simulação \ref{sim::dlsfik5}: (a) trajetórias; (b) norma do erro; e (c) condicionamento}
+\label{fig::dlsfik5_1}
+\end{figure}
+
+Ambos os algoritmos permitem o rastreamento da trajetória desejada. Para o algoritmo DLS, tem-se que $\lambda = 0\,,\, \forall t$, uma vez que a trajetória esta afastada da região de pouca manipulabilidade definida por $\omega_o$, e $\lim_{t\to\infty}{\bf e}(t)={\bf 0}$.
+
+\begin{figure}[!htp]
+  		\includegraphics[trim = 1.7cm 1.5cm 4.4cm 0cm, scale = 0.46]{sim/sim5_data2.eps}\\ %\tiny{\,(b)} \\
+\caption{Simulação \ref{sim::dlsfik5}: variáveis (a) $\dot{\bf q}_{DLS}$; (b) ${\bf q}_{DLS}$; (c) $\dot{\bf q}_{FIK}$; e (d) ${\bf q}_{FIK}$}
+\label{fig::dlsfik5_2}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% 2
+
+\begin{simulation}
+\label{sim::dlsfik3} 
+\end{simulation}
+\noindent Considere agora uma trajetória que se aproxima de uma configuração singular (Trajetória \ref{traj4}). A seguir, são apresentados os resultados de simulação obtidos para os mesmos parâmetros de simulação considerados anteriormente. 
+
+\begin{figure}[!htp]
+  \centering
+			\includegraphics[trim = 2.7cm 0cm 2.7cm 0.8cm, scale = 0.46]{sim/sim3_data.eps}\\ %\tiny{\,(b)} \\
+\caption{Simulação \ref{sim::dlsfik3}: (a) trajetórias; (b) norma do erro; e (c) condicionamento}
+\label{fig::dlsfik3_1}
+\end{figure}
+
+A partir da Figura \ref{fig::dlsfik3_1}.c, nota-se que, para $t \approx 26s$, a trajetória desejada se aproxima da origem e os algoritmos conseguem evitar esta configuração singular. 
+
+\begin{figure}[!htp]
+  		\includegraphics[trim = 1.7cm 1.5cm 4.4cm 0cm, scale = 0.46]{sim/sim3_data2.eps}\\ %\tiny{\,(b)} \\
+\caption{Simulação \ref{sim::dlsfik3}: variáveis (a) $\dot{\bf q}_{DLS}$; (b) ${\bf q}_{DLS}$; (c) $\dot{\bf q}_{FIK}$; e (d) ${\bf q}_{FIK}$}
+\label{fig::dlsfik3_2}
+\end{figure}
+
+Como visto nas Figuras \ref{fig::dlsfik3_2}.a e \ref{fig::dlsfik3_2}.c, ambos algoritmos mantêm as velocidades $\dot{\bf q}$ das juntas numa região adequada, abaixo de 1.2 rad/s. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%% 3
+
+\newpage
+\begin{simulation}
+\label{sim::dlsfik6} 
+\end{simulation}
+\noindent Neste caso, considera-se uma trajetória que se inicia (${\bf q}(0) = [\frac{\pi}{2}\;0\;0])$ e que passa por uma configuração singular  (Trajetória \ref{traj5}).
+
+\begin{figure}[!htp]
+  \centering
+			\includegraphics[trim = 2.7cm 0.2cm 2.7cm 0.8cm, scale = 0.46]{sim/sim6_data.eps}\\ %\tiny{\,(b)} \\
+\caption{Simulação \ref{sim::dlsfik6}: (a) trajetórias; (b) norma do erro; e (c) condicionamento}
+\label{fig::dlsfik6_1}
+\end{figure}
+
+Uma vez que a postura inicial configura uma singularidade cinemática, todo sinal de velocidade na direção degenerada será anulado pelo algoritmo DLS e este se torna incapaz de alterar a configuração do manipulador. Por outro lado, o algoritmo FIK permite alterar a configuração inicial do manipulador, dado o formato não-diagonal da matriz ${\mathcal G}$, e mantém o erro de rastreamento pequeno ao longo da trajetória.
+  
+\begin{figure}[!htp]
+  		\includegraphics[trim = 1.7cm 1.7cm 4.4cm 0cm, scale = 0.46]{sim/sim6_data2.eps}\\ %\tiny{\,(b)} \\
+\caption{Simulação \ref{sim::dlsfik6}: variáveis (a) $\dot{\bf q}_{DLS}$; (b) ${\bf q}_{DLS}$; (c) $\dot{\bf q}_{FIK}$; e (d) ${\bf q}_{FIK}$}
+\label{fig::dlsfik6_2}
+\end{figure}
+
+
+\newpage
+\begin{simulation}
+\label{sim::dlsfik4} 
+\end{simulation}
+\noindent Considere novamente a trajetória \ref{traj5}. Para uma configuração inicial ${\bf q}(0) = [\frac{\pi}{2}\;\frac{1}{10}\;\frac{1}{10}]$, não singular, o desempenho dos algoritmos é novamente comparado.
+
+\begin{figure}[!htp]
+  \centering
+			\includegraphics[trim = 2.7cm 0.2cm 2.7cm 0.8cm, scale = 0.46]{sim/sim4_data.eps}\\ %\tiny{\,(b)} \\
+\caption{Simulação \ref{sim::dlsfik4}: (a) trajetórias; (b) norma do erro; e (c) condicionamento}
+\label{fig::dlsfik4_1}
+\end{figure}
+
+Nota-se que, para uma configuração inicial não singular, o algoritmo DLS é capaz de rastrear a trajetória com erro nulo quando afastado da singularidade e permite, na vizinhança desta, o desvio da trajetória (Figuras \ref{fig::dlsfik4_1}.a e \ref{fig::dlsfik4_1}.b).
+   
+\begin{figure}[!htp]
+  		\includegraphics[trim = 1.7cm 1.7cm 4.4cm 0cm, scale = 0.46]{sim/sim4_data2.eps}\\ %\tiny{\,(b)} \\
+\caption{Simulação \ref{sim::dlsfik4}: variáveis (a) $\dot{\bf q}_{DLS}$; (b) ${\bf q}_{DLS}$; (c) $\dot{\bf q}_{FIK}$; e (d) ${\bf q}_{FIK}$}
+\label{fig::dlsfik4_2}
+\end{figure}
+
+Novamente, os algoritmos DLS e FIK mantêm o vetor de velocidades $\dot{\bf q}$ numa faixa adequada, abaixo de 0.7 rad/s, como visto nas Figuras \ref{fig::dlsfik4_2}.a e \ref{fig::dlsfik4_2}.c.
+
+
+
+

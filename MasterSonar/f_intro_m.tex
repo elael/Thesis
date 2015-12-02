@@ -1,0 +1,128 @@
+\section{Função objetivo e Jacobiano ampliado}
+
+O algoritmo da inversa filtrada fornece uma solução para o problema de cinemática inversa de manipuladores robóticos mesmo quando posturas desejadas inviáveis ou inalcançáveis são consideradas. Como visto, o método proposto permite priorizar um dos objetivos de controle através do ajuste de ganhos. Nesta seção, utiliza-se o método proposto para satisfazer também uma restrição adicional ao sistema, expressada pela função escalar $f({\bf q})$. O objetivo de controle para o problema ampliado pode ser formalizado como
+%
+\begin{equation}
+\label{eq::prob_amp}
+\begin{bmatrix}
+	{\bf x} \\
+	f \\
+\end{bmatrix}
+\rightarrow
+\begin{bmatrix}
+	{\bf x}_d \\
+	0 \\
+\end{bmatrix},
+\end{equation}
+%
+onde ${\bf x}\!\in\!{\mathbb R}^{m}$ e ${\bf x}_d\!\in\!{\mathbb R}^{m}$ correspondem às posturas atual e desejada do efetuador, respectivamente. A partir da derivação temporal de (\ref{eq::prob_amp}), tem-se
+%
+\begin{equation}
+\label{eq::addfdyn}
+\begin{bmatrix}
+\dot{\bf x} \\
+\dot{f}
+\end{bmatrix}
+=
+\underbrace{\begin{bmatrix}
+{\bf J}({\bf q}) \\
+{\bf J}_f({\bf q})
+\end{bmatrix}}_{{\bf J}_{+}({\bf q})}
+\dot{\bf q},
+\end{equation}
+%
+onde ${\bf J}_f({\bf q}) = \partial f/\partial {\bf q}\!\in\!{\mathbb R}^{1 \times n}$. Note que ${\bf J}_{+}({\bf q})\!\in\!{\mathbb R}^{m' \times n}$ e $m' = m + 1$. Para problemas de cinemática inversa bem definidos\footnote{Um problema de rastreamento da posição ${\bf p}_d\!\in\!{\mathbb R}^3$ constitui um problema de cinemática inversa mal definido para um manipulador planar, por exemplo.}, tem-se $m \leq n$. Desta forma, para o problema ampliado, é possível que $m' > n$, justificando a utilização da matriz de erro à direita, definida em (\ref{eq:er}). Assim, de forma similar à (\ref{eq::cinvmod}), a solução para o problema ampliado de cinemática inversa é dada por
+%
+\begin{equation}
+\dot{\bf q} = {\boldsymbol \Theta}_{+}^{}{\boldsymbol \Theta}_{+}^T{\bf J}_{+}^T\,{\boldsymbol \nu}_{+}^{},
+\end{equation}
+%
+onde
+%
+\begin{equation}
+\label{eq::mu_multi}
+{\boldsymbol \nu}_{+} =
+\begin{bmatrix}
+{\boldsymbol \nu} \\
+{\nu}_f
+\end{bmatrix}
+=
+\begin{bmatrix}
+{\bf x}_d + {\boldsymbol \Lambda}\,{\bf e}\\
+-f
+\end{bmatrix}
+\end{equation}			
+\vskip 0.5cm
+
+\noindent é o sinal de referência. A matriz ${\boldsymbol \Theta}_+$ é a inversa filtrada de ${\bf J}_+$ e ${\boldsymbol \Lambda} = {\boldsymbol \Lambda}^T > 0$. Inicialmente, considerou-se $\nu_f = - \lambda_f f$, onde $\lambda_f \geq 0$ seria o ganho proporcional referente à função objetivo. Porém, em (\ref{eq::mu_multi}), escolhe-se $\lambda_f = 1$ e, como será visto, a ponderação será incluída no cálculo de $f$. A principal vantagem desta escolha alternativa é que, para os casos em que não há restrição ou esta apresenta baixa prioridade, os elementos de ${\bf J}_f$ são nulos ou pequenos. No que se segue, são  apresentadas duas propostas de funções objetivo, definidas a partir de variáveis de desvio angular ou de posição.
+
+\newpage
+\subsection{\label{sec::fjoint} Função \texorpdfstring{$f$}{TEXT} para limite de juntas}
+
+A função objetivo é definida a partir de potências pares das variáveis de desvio das juntas normalizadas ($\Delta q_i/\zeta_i$), sendo apresentada e ilustrada abaixo. O objetivo é manter a variável de junta $q_i$ no intervalo $[q_{id} - \zeta_i, q_{id} + \zeta_i]$.
+\vskip -0.3cm
+\begin{figure}[!htp]
+  \centering
+  \def\JPicScale{0.26}
+  \def\Lum{$\ell_1$}
+  \def\Ldois{$\ell_2$}
+  \def\Ltres{$\ell_3$}
+  \def\Jum{Junta 1}
+  \def\Jdois{Junta 2}
+  \def\Jtres{Junta 3}
+  \def\QD{${q}_{3d}$}
+  \def\Plus{$+\zeta_3$}
+  \def\Minus{$-\zeta_3$}
+  \def\X{$x$}
+  \def\Y{$y$}
+  {\small
+  \input{fig/limite_juntas.pst}
+  }
+  \caption{Função objetivo para limite de juntas.}
+  \label{fig::draw_joint}
+\end{figure}
+\vskip -0.5cm
+\begin{equation}
+f(q_1,...,q_n) = \sum_{i = 1}^{n}
+{\alpha_i\left(\frac{q_i - q_{id}}{\zeta_i}\right)^{2k_i}}
+= \sum_{i = 1}^{n}\alpha_i \left(\frac{\Delta q_i}{\zeta_i}\right)^{2k_i},
+\end{equation}
+\vskip 0.2cm
+\noindent onde $\alpha_i \geq 0$ e $\zeta_i > 0$. Ganhos $k_i$ elevados impõem pouca restrição aos ângulos das juntas, desde que permaneçam dentro das faixas determinadas, e uma ação de controle acentuada uma vez fora destas faixas.
+
+\subsection{\label{sec::fpos} Função \texorpdfstring{$f$}{TEXT} para desvio de obstáculo}
+
+Neste caso, a função objetivo é inspirada na função Gaussiana e definida a partir das distâncias dos pontos ${\bf p}_j$ ao centro do obstáculo ${\boldsymbol \mu}$. As curvas de nível são elipsoides, definidos pela matriz ${\bf M}_f = {\bf M}_f^T = {\bf R}_f {\bf D}_f^{-1}{\bf R}_f^T > 0$. A matriz de rotação ${\bf R}_f$ define os eixos do elipsoide e a matriz ${\bf D}_f$ apresenta elementos positivos em sua diagonal, cujas raízes são proporcionais ao alongamento da curva de nível nesses eixos.
+\vskip 0.1cm
+
+\begin{figure}[!htp]
+  \centering
+  \def\JPicScale{0.26}
+  \def\Lum{$\ell_1$}
+  \def\Ldois{$\ell_2$}
+  \def\Ltres{$\ell_3$}
+  \def\Jum{Junta 1}
+  \def\Jdois{Junta 2}
+  \def\Jtres{Junta 3}
+  \def\Ct{${\boldsymbol \mu}$}
+  %\def\Dx{$3\sigma_{x'}$}
+  %\def\Dy{$3\sigma_{y'}$}
+  \def\Pos{${\bf p} = (p_x,p_y)$}
+  \def\X{$x$}
+  \def\Y{$y$}
+  \def\Posmi{${\boldsymbol \mu} = (\mu_x,\mu_y)$}
+  {\small
+  \input{fig/obstaculo_new.pst}
+  }
+  \caption{Função objetivo para desvio de obstáculo.}
+  \label{fig:parishilton}
+\end{figure}
+\vskip -0.8cm
+\begin{equation}
+f({\bf p}_1,...,{\bf p}_c) = \sum_{j = 1}^{c}
+{\alpha_j e^{-({\bf p}_j - {\boldsymbol \mu})^T{\bf M}_f({\bf p}_j - {\boldsymbol \mu})}}
+= \sum_{j = 1}^{c}
+{\alpha_j e^{-({\boldsymbol \Delta} {\bf p}_j)'^T{\bf D}_f^{-1}({\boldsymbol \Delta} {\bf p}_j)'}},
+\end{equation}
+\vskip 0.2cm
+\noindent onde $\alpha_j \geq 0$ e $({\boldsymbol \Delta} {\bf p}_j)' = {\bf R}_f^T{\boldsymbol \Delta} {\bf p}_j$ é a representação de ${\boldsymbol \Delta} {\bf p}_j = {\bf p}_j - {\boldsymbol \mu}$ no sistema de coordenadas rotacionado por ${\bf R}_f$, conforme (\ref{eq::relation}).

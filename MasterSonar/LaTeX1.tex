@@ -1,0 +1,28 @@
+\subsection{Solução para cinemática inversa}
+
+\begin{frame}{Solução para cinemática inversa}
+Como visto, a escolha
+%
+\begin{equation}
+\dot{\bf q} = {\bf J}^{-1}\,{\boldsymbol \nu},
+\end{equation}
+% 
+para ${\boldsymbol \Lambda} = {\boldsymbol \Lambda}^T > 0$ e ${\boldsymbol \nu}=\dot{\bf x}_d + {\boldsymbol \Lambda}{\bf e}$ garante a convergência exponencial do erro ${\bf e}$ para ${\bf 0}$.
+
+Para manipuladores redundantes ($m \leq n$), utiliza-se ${\bf J}^{\dagger} = {\bf J}^T({\bf J}{\bf J}^T)^{-1}$.
+
+Proposta:
+
+\begin{equation}
+\label{eq::cinvini}
+\dot{\bf q} = {\boldsymbol \Theta}\,{\boldsymbol \nu}
+\end{equation}
+
+onde ${\boldsymbol \Theta}\!\in\!{\mathbb R}^{n \times m}$ é a inversa filtrada da matriz Jacobiana ${\bf J}$ e
+
+\begin{equation}
+\dot{\boldsymbol \Theta} = -{\boldsymbol \Gamma}({\bf J}^T{\bf S}_r + {\bf S}_\ell{\bf J}^T)
+\end{equation}
+%
+onde ${\boldsymbol \Gamma} = \gamma {\bf I} > 0$ (escalar).
+\end{frame}

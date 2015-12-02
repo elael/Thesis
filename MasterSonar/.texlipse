@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Thu Nov 26 09:13:14 BRST 2015
+markTmpDer=true
+builderNum=2
+outputDir=
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=principal.tex
+outputFile=MasterSonar.pdf
+langSpell=en
+markDer=true
+srcDir=

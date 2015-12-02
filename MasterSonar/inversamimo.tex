@@ -1,0 +1,152 @@
+\section{Inversa Filtrada de Matrizes (MIMO)}
+O algoritmo (\ref{eq:dtheta}) pode ser generalizado para inverter matrizes.
+%
+Considere a seguinte planta MIMO não-linear de $1^{a}$ ordem  descrita por
+%
+\begin{equation}
+\label{eq:dy}
+{\dot {\bf y}} = {\bf K}(t)\,{\bf u} \,,
+\end{equation}
+%
+onde ${\bf u}\!\in\!\mathbb{R}^{n}$ é a entrada da planta% ou a  variável  de
+%controle do sistema
+, ${\bf y}\!\in\!\mathbb{R}^{m}$ é a saída da planta    e
+${\bf K}\!\in\!\mathbb{R}^{m\times n}$ é uma função matricial não-linear. Assumindo que o objetivo de controle seja rastrear uma trajetória
+%   de
+%referência 
+desejada ${\bf y}_d(t)$, uma lei de controle ${\bf u}$ que lineariza
+o sistema e garante a estabilidade assintótica do erro de rastreamento ${\bf e}\!:=\!{\bf y}_d-{\bf y}$ é dada por
+%
+\begin{equation}
+\label{eq:um}
+{\bf u} = {\boldsymbol \Theta}(t)\,{\boldsymbol \nu} \,, \qquad {\boldsymbol \nu}={\dot{\bf y}}_d + {\boldsymbol \Lambda}\,{\bf e} \,,
+\end{equation}
+%
+onde ${\boldsymbol \Theta}(t)$ é a inversa da matriz ${\bf K}(t)$ e ${\boldsymbol \Lambda}\!=\!{\boldsymbol \Lambda}^T > 0$. Novamente, considera-se que a inversa não é computada instantaneamente como ${\bf K}^{-1}(t)$, mas é atualizada dinamicamente. Assim, para estabelecer uma dinâmica adequada para ${\boldsymbol \Theta}(t)$, introduz-se os seguintes sinais de erro não-lineares para a inversa à direita
+%
+\begin{equation}
+\label{eq:er}
+{\bf S}_{r} = {\bf K} {\boldsymbol \Theta} - {\bf I} \in \mathbb{R}^{m\times m},
+\end{equation}
+%
+e para a inversa à esquerda
+%
+\begin{equation}
+\label{eq:el}
+{\bf S}_{\ell} = {\boldsymbol \Theta} {\bf K} - {\bf I} \in \mathbb{R}^{n\times n}.
+\end{equation}
+%
+\newpage
+\subsection{Matriz de Erro à Direita}
+
+Considere inicialmente o erro (\ref{eq:er}) e a função de
+Lyapunov
+%
+%\begin{equation}
+$2\,V_{r}\!=\!\text{tr}({\bf S}_{r}^{T}\,{\bf S}_{r})$, % = \sum_{i=1}^m{\sum_{j=1}^m{s^2_{r_{ij}}}},$%\end{equation}
+%
+onde $\text{tr}(\cdot)$ corresponde à função traço. 
+%
+A partir de (\ref{eq:er}), a derivada temporal de $V_{r}$ ao longo  das
+trajetórias do sistema é dada por
+%
+\begin{eqnarray}
+\label{eq:dVr}
+2\,{\dot V}_{r} &=& \text{tr}({\dot {\bf S}}_{r}^{T}\,{\bf S}_{r} + {\bf S}_{r}^{T}\,{\dot {\bf S}}_{r}) \nonumber \\
+                &=& 2\text{tr}({{\bf S}}_{r}^{T}\,{\dot {\bf K}}\,{\boldsymbol \Theta}) + 2\text{tr}({{\bf S}}_{r}^{T}\,{\bf K}\,{\dot {\boldsymbol \Theta}}) \,.
+\end{eqnarray}
+%
+Em vista de (\ref{eq:dVr}), escolhe-se a seguinte lei de atualização
+%
+\begin{equation}
+\label{eq:dThetaR}
+{\dot {\boldsymbol \Theta}} = -{\boldsymbol \Gamma} {\bf K}^{T}\,{\bf S}_{r},
+\end{equation}
+%
+onde ${\boldsymbol \Gamma} = {\boldsymbol \Gamma}^{T} > 0 $ é uma matriz de ganho de atualização. Como resultado, tem-se
+%
+\begin{equation}
+\label{eq:dVr1}
+{\dot V}_{r} = \text{tr}({{\bf S}}_{r}^{T}\,{\dot {\bf K}}\,{\boldsymbol \Theta})\, \underbrace{- \,\text{tr}({{\bf S}}_{r}^{T}\,{\bf K}\,{\boldsymbol \Gamma}\,{\bf K}^{T}\,{\bf S}_{r})}_{\leq 0}\,,
+\end{equation}
+%
+que depende de $\dot{\bf K}$. Para $\dot{\bf K} \equiv {\bf 0}$, tem-se que $\dot{V}_r = 0$ quando ${\bf K}^T\,{\bf S}_r = {\bf 0}$, isto é, quando as colunas de ${\bf S}_r$ pertencerem ao espaço nulo à esquerda de ${\bf K}$. Note que a igualdade ${\bf K}^T\,{\bf S}_r = {\bf 0}$ corresponde à equação normal para as colunas de ${\boldsymbol \Theta}$.
+%e ${\bf K}$ apresenta posto completo por colunas, tem-se que $V_r < 0$. Para o caso em que ${\bf K}$ apresenta posto imcompleto, $V_r = 0$ também quando as colunas de $S_r$ pertencerem ao espaco nulo à esquerda de ${\bf K}$. 
+%\newpage
+
+\subsection{Matriz de Erro à Esquerda}
+
+Similarmente, para o erro (\ref{eq:el}) considera-se a função 
+de Lyapunov %, definida positiva
+%
+%
+$2\,V_{\ell}\!=\!\text{tr}({\bf S}_{\ell}^{T}\,{\bf S}_{\ell})$,
+%
+com derivada temporal ao longo das trajetórias do sistema dada por
+%
+\begin{eqnarray}
+\label{eq:dVl}
+2\,{\dot V}_{\ell} &=& \text{tr}({\dot {\bf S}}_{\ell}^{T}\,{\bf S}_{\ell} + {\bf S}_{\ell}^{T}\,{\dot {\bf S}}_{\ell}) \nonumber \\
+                &=& 2\text{tr}({{\bf S}}_{\ell}^{T}\,{\boldsymbol \Theta}\,{\dot {\bf K}}) + 2\text{tr}({{\bf S}}_{\ell}^{T}\,{\dot {\boldsymbol \Theta}}\,{\bf K}) \,.
+\end{eqnarray}
+%
+Novamente, uma escolha para a lei de adaptação é:
+%
+\begin{equation}
+\label{eq:dThetaL}
+{\dot {\boldsymbol \Theta}} = -{\boldsymbol \Gamma} {\bf S}_{\ell}\,{\bf K}^{T} \,,
+\end{equation}
+%
+onde $\Gamma = \Gamma^T > 0$ é a matriz de ganho de atualização, resultando em
+%
+\begin{equation}
+\label{eq:dVl1}
+{\dot V}_{\ell} = \text{tr}({{\bf S}}_{\ell}^{T}\,{\boldsymbol \Theta}\,{\dot {\bf K}})\,\underbrace{-\, \text{tr}({\bf K}\,{{\bf S}}_{\ell}^{T}\,{\boldsymbol \Gamma}\,{\bf S}_{\ell}\,{\bf K}^{T})}_{\leq 0}\,.
+\end{equation}
+%
+que também depende de $\dot{\bf K}$. Para $\dot{\bf K} \equiv {\bf 0}$, tem-se que $\dot{V}_{\ell} = 0$ quando $ {\bf S}_\ell\,{\bf K}^T = {\bf 0}$, ou seja, quando as linhas de ${\bf S}_\ell$ pertencerem ao espaço nulo de ${\bf K}$. Neste caso, a igualdade ${\bf S}_\ell\,{\bf K}^T = {\bf 0}$ corresponde à equação normal para as linhas de ${\boldsymbol \Theta}$.
+
+\subsection{Lei de Atualização Composta}
+%Para matrizes $A$ retangulares com posto completo por linhas, {\it{rank($A$)}} $= m$, configura-se um caso de existência, em que o número de soluções para $A x = b$ é $1$ ou $\infty$. Neste caso, a melhor inversa à direita é $C = A^T(A A^T)^{-1}$ e $x = C b$ não apresentará componentes no espaço nulo de $A$. Para matrizes $A$ retangulares com posto completo por colunas, {\it{rank($A$)}} $= n$, configura-se um caso de unicidade. Se houver solução para $A x = b$, ela deve ser $x = BA x = B b$. Pode não haver solução, isto é, o número de soluções é $0$ ou $1$. A melhor inversa à esquerda é $B = (A^TA)^{-1}A^T$ e $p = A(B b)$ corresponde à projeção de $b$ no espaço coluna de $A$. Note que em matrizes retangulares não se pode ter ambas as condições de existência e unicidade. 
+
+Para casos não-redundantes ($m\!=\!n$) e com posto completo, as leis de atualização (\ref{eq:dThetaR}) e (\ref{eq:dThetaL}) são capazes de resolver individualmente o problema de determinação da inversa, uma vez que as matrizes inversa à esquerda e inversa à direita são iguais. Para os casos em que $m\!\neq n$, configuram-se os casos de existência (posto completo por linhas) ou unicidade (posto completo por colunas). Nota-se que as próprias matrizes de erro ${\bf S}_r$ e ${\bf S}_{\ell}$ apresentam dimensões diferentes, sugerindo também propriedades diferentes. A lei de atualização composta que envolve as duas matrizes de erro simultaneamente pode ser obtida a partir da análise de estabilidade da função de Lyapunov $2{V}_c = 2{V}_{r} + 2{V}_{\ell}$, com derivada temporal dada por
+
+\begin{equation}
+\label{eq:dVc}
+2\,{\dot V}_c = 2g(\dot{{\bf K}}) + 2\text{tr}({{\bf S}}_{r}^{T}\,{\bf K}\,{\dot {\boldsymbol \Theta}}) + 2\text{tr}({{\bf S}}_{\ell}^{T}\,{\dot {\boldsymbol \Theta}}\,{\bf K}) \,,
+\end{equation}
+
+\noindent onde $g(\dot{\bf K}) = {\text{tr}({{\bf S}}_{\ell}^{T}\,{\boldsymbol \Theta}\,{\dot {\bf K}}) + \text{tr}({{\bf S}}_{r}^{T}\,{\dot {\bf K}}\,{\boldsymbol \Theta})}$. Assim, de (\ref{eq:dVc}) tem-se
+%
+%\begin{equation}
+%g(\dot{\bf K}) = {\text{tr}({{\bf S}}_{\ell}^{T}\,{\boldsymbol \Theta}\,{\dot {\bf K}}) + \text{tr}({{\bf S}}_{r}^{T}\,{\dot {\bf K}}\,{\boldsymbol \Theta})}.
+%\end{equation}
+%
+%Assim, de (\ref{eq:dVc}) tem-se
+%
+\begin{equation}
+{\dot V}_c = g(\dot{\bf K}) + \text{tr}(({{\bf S}}_{r}^{T}\,{\bf K}\, + {\bf K}\,{{\bf S}}_{\ell}^{T}\,){\dot {\boldsymbol \Theta}}).
+\end{equation}
+%
+Desta forma, a lei de atualização proposta é 
+%
+\begin{equation}
+\label{eq:adapcomp}
+{\dot {\boldsymbol \Theta}} = -{\boldsymbol \Gamma}( {\bf S}_{\ell}\,{\bf K}^{T} + {\bf K}^{T}\,{\bf S}_{r}) \,.
+\end{equation} 
+%
+onde ${\boldsymbol \Gamma} = {\boldsymbol \Gamma}^T > 0$. Como resultado, tem-se
+%
+\begin{equation}
+{\dot V}_c = g(\dot{\bf K})\,\underbrace{-\,\text{tr}(({{\bf S}}_{r}^{T}\,{\bf K}\, + {\bf K}\,{{\bf S}}_{\ell}^{T}\,){\boldsymbol \Gamma}( {\bf S}_{\ell}\,{\bf K}^{T} + {\bf K}^{T}\,{\bf S}_{r}))}_{\leq 0}.
+\end{equation}
+%
+Na próxima seção, esta nova proposta é analisada, sendo justificada a utilização das duas matrizes de erro ${\bf S}_{\ell}$ e ${\bf S}_r$. Além disso, será estabelecida uma relação entre os casos escalar e multivariável.% A única exigência para a convergência do método é que a trajetória desejada não tenda (mais lentamente do que uma exponencial) para uma singularidade. 
+%Como será visto na seção \ref{sec::convanalysis}, a utilização de cada uma das matrizes de erro possui . Desta forma, é proposta uma lei de atualização que considere as duas matrizes de erro, , simultaneamente.
+
+%$\begin{equation}
+%\label{eq:adapcomp}
+%{\dot \Theta} = -\Gamma( S_{\ell} K^{T} + K^{T} S_{r}) \,.
+%\end{equation} 
+%
+%Na próxima seção, esta nova proposta é analisada, sendo justificada a utilização das duas matrizes de erro $S_{\ell}$ e $S_r$. Além disso, é estabelecida uma relação entre os casos escalar e multivariável.% A única exigência para a convergência do método é que a trajetória desejada não tenda (mais lentamente do que uma exponencial) para uma singularidade. 
