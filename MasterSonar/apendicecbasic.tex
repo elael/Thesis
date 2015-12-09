@@ -1,36 +1,5 @@
-\chapter{\label{cbasic}Conceitos Básicos}
+\chapter{\label{cbasic}Conceitos sicos}
 
-\section{Propriedades da função traço}
+\section{Propriedades da f}
 
 
-
-\section{\label{apsec::fund}Subespaços fundamentais}
-\noindent{\bf Teorema fundamental de ortogonalidade: } O espaço nulo $Nul({\bf A})$ e o espaço-linha $Col({\bf A}^T)$ são ortogonais e subespaços de ${\mathbb{R}^n}$. O espaço nulo à esquerda $Nul({\bf A}^T)$ e o espaço-coluna $Col({\bf A})$ são ortogonais e subespaços de ${\mathbb{R}^m}$. %A Figura \ref{fig::subespacos}
-
-\section{Decomposição de Valor Singular (SVD)}
-
-A decomposição de valor singular, ou simplesmente SVD, constitui uma ferramenta extremamente poderosa para análise em álgebra linear. Qualquer matriz ${\bf A}\!\in\!\mathbb{R}^{m \times n}$ pode ser fatorada em \cite{STRANG}
-%
-\begin{equation}
-\label{eq::svd1}
-{\bf A} = {\bf U}\,{\boldsymbol \Sigma}\,{\bf V}^T = \text{{\bf (ortogonal)(diagonal)(ortogonal)}}.
-\end{equation}
-%
-Os $r$ valores singulares (denotados por $\sigma$) na diagonal de ${\boldsymbol \Sigma}\!\in\!\mathbb{R}^{m \times n}$ são as raízes quadradas de autovalores não nulos de ${\bf A}{\bf A}^T$ e ${\bf A}^T{\bf A}$. As colunas de ${\bf U}\!\in\!\mathbb{R}^{m \times m}$ são autovetores de ${\bf A}{\bf A}^T$ e as colunas de ${\bf V}\!\in\!\mathbb{R}^{n \times n}$ são autovetores de ${\bf A}^T{\bf A}$. As matrizes ${\bf U}$ e ${\bf V}$ fornecem bases ortonormais para todos os quatros subespaços fundamentais apresentados em \ref{apsec::fund}:
-
-\vskip 0.5cm
-\begin{tabular}{lccl}
-Primeiras & $r$ & colunas de ${\bf U}$: & {\bf espaço-coluna} de ${\bf A}$ \\
-Últimas & $m-r$ & colunas de ${\bf U}$: & {\bf espaço nulo à esquerda} de ${\bf A}$ \\
-Primeiras & $r$ & colunas de ${\bf V}$: & {\bf espaço-linha} de ${\bf A}$ \\
-Últimas & $n-r$ & colunas de ${\bf V}$: & {\bf espaço-nulo} de ${\bf A}$ \\
-\end{tabular}
-\vskip 0.5cm
-
-\noindent A partir de (\ref{eq::svd1}), tem-se
-%
-\begin{equation}
-{\bf A}{\bf V} = {\bf U}\,{\boldsymbol \Sigma},
-\end{equation}
-%
-e, portanto, quando a matriz ${\bf A}$ multiplica uma coluna ${\bf v}_j$ de ${\bf V}$, produz $\sigma_j$ vezes uma coluna de ${\bf U}$. %A razão $\sigma_{max}/\sigma_{min}$ é o número de condicionamento de uma matriz $n$ por $n$ inversa e a disponibilidade dessa informação

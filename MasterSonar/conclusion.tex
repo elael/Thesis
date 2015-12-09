@@ -1,32 +1,5 @@
-\chapter{Conclusões e Trabalhos Futuros}
+\chapter{Conclues e Trabalhos Futuros}
 
-\section{Conclusões}
+\section{Concluses}
 
-\begin{itemize}
-
-	\item Este trabalho apresenta um algoritmo alternativo para o cálculo da cinemática inversa de robôs manipuladores, que pode ser interpretado como uma inversa filtrada. A ideia básica do algoritmo proposto consiste em calcular a inversa dinamicamente, com rapidez determinada pelo condicionamento da matriz. Foram apresentados diversos resultados de simulação que ilustram o bom desempenho do algoritmo proposto. %Resultados de simulação para dois algoritmos consolidados na literatura (DLS e FIK) também são apresentados para análise e comparação.
-	\item Neste trabalho, o algoritmo da inversa filtrada é generalizado para matrizes retangulares com a utilização de uma lei de atualização composta, garantindo ao método uma forma geral independente das dimensões da matriz considerada.
-	\item A utilização do algoritmo proposto e o ajuste de ganhos permite a priorização de um dos objetivos de controle quando estes são inalcançáveis (e.g., posição e orientação). Um problema de dimensão ampliada também pode ser definido, considerando uma restrição adicional cuja prioridade está da mesma forma relacionada ao ajuste de ganhos. São propostas duas funções objetivo, associadas a limite de juntas e desvio de obstáculos.
-	\item Comparado com outros algoritmos descritos na literatura, uma vantagem do algoritmo proposto é sua facilidade de sintonia pois possui apenas um parâmetro de ajuste: um ganho de adaptação. Este ganho está diretamente relacionado ao desempenho do método. Do ponto de vista computacional, o método proposto se mostra eficiente por não requerer a inversão da matriz Jacobiana, assim como o cálculo de valores singulares.
-	\item O desenvolvimento de um ambiente de realidade virtual para \emph{Simulink} também constitui uma contribuição deste trabalho, permitindo a visualização em tempo real do movimento da estrutura mecânica.
-\end{itemize}
-
-%\begin{itemize}
-%	\item Neste trabalho são propostos dois métodos de controle adaptativo, aplicados a manipuladores robóticos com cinemática incerta, em que os parâmetros da estrutura mecânica são aproximados ou até desconhecidos.
-%	\item O método de identificação paramétrica, ou método de adaptação indireta, se baseia na identificação dos parâmetros incertos através de um estimador e a utilização destes, pelo {\it Princípio da Equivalência Certa}, no cálculo das variáveis de controle.
-%	\item O método de adaptação direta da lei de controle apresentou restrições a sua aplicação pois algumas condições devem ser satisfeitas, como a existência de uma parametrização linear da variável de controle.
-%	\item Simulações foram realizadas para o método de identificação paramétrica, evidenciando o desempenho pouco satisfatório no rastreamento de trajetórias com a utilização de parâmetros aproximados e a superioridade de um sistema de controle com adaptação. Este foi capaz de estimar rápida e corretamente os parâmetros incertos do manipulador, mesmo com a presença de ruídos.
-%	\item O desenvolvimento de um ambiente de realidade virtual constitui outra grande contribuição deste trabalho, podendo ser utilizado para a visualização do movimento do manipulador considerado e, portanto, para o diagnóstico de qualquer possível falha no desenvolvimento de algum tópico de controle, sem maiores riscos materiais.
-%\end{itemize}
-
-\newpage
 \section{Propostas de Trabalhos Futuros}
-
-Com o intuito de aprimorar a pesquisa desenvolvida, no que se segue são apresentados tópicos para trabalhos futuros:
-\begin{itemize}
-	\item Análise de uma proposta alternativa $\dot{\bf q} = {\boldsymbol \Theta}_p {\bf J}^T {\boldsymbol \nu}$, onde ${\boldsymbol \Theta}_P$ é a inversa filtrada de ${\bf J}^T{\bf J}$. Esta análise deve incluir as vantagens da utilização de uma lei de atualização composta, uma comparação das matrizes ${\boldsymbol \Theta}_P$ e ${\boldsymbol \Theta}{\boldsymbol \Theta}^T$, onde ${\boldsymbol \Theta}$ é a inversa filtrada de ${\bf J}$, e o estudo do condicionamento do bom desempenho do método à escolha inicial ${\boldsymbol \Theta}_P(0)$.
-	\item Inclusão de um termo \emph{feedforward} na lei de atualização. O termo ${\bf F}_{\boldsymbol \Theta} = -{\boldsymbol \Theta} \dot{\bf J} {\boldsymbol \Theta}$ foi considerado durante a pesquisa, porém não foi incluído na proposta final para a lei de atualização de ${\boldsymbol \Theta}$, apenas proporcional às matrizes de erro à esquerda e à direita. Para o caso escalar, a utilização do termo correspondente $f_\theta = - \theta^2\dot{k}$ ($\dot{\theta}$ para $\theta = k^{-1}$) permite que o erro escalar $S$ permaneça nulo após o transitório. Desta forma, a trajetória no plano $\theta \times k$ se desenvolve na hipérbole onde $S = 0$, impedindo que o ganho $k$ passe por $0$ e, portanto, troque de sinal. No caso multivariável, a utilização do termo ${\bf F}_{\boldsymbol \Theta}$ resulta no cálculo exato da matriz inversa (após o transitório), impedindo que a matriz Jacobiana passe por um ponto de singularidade, principal motivação deste trabalho. Por outro lado, sua consideração permite um melhor desempenho para matrizes bem condicionadas e afastadas de singularidades, sugerindo o chaveamento deste termo como tópico futuro de pesquisa.
-	\item Realização de ensaios experimentais. A implementação prática do algoritmo proposto é de grande relevância e deve ser considerada em trabalhos futuros. A aplicação destes estudos de caso deve ser acompanhada de uma análise da aproximação discreta da inversa filtrada, %(\emph{backward}, \emph{forward} ou \emph{trapezoidal}),
-de seu custo computacional e da influência do período de amostragem no desempenho do método proposto. Durante a pesquisa, resultados experimentais foram obtidos para o problema de posição e orientação de um manipulador planar 3R, porém através da proposta escalar para $k = sin(q_2)$.
-	\item Aplicação em tópicos de controle adaptativo. Um tópico de pesquisa a ser desenvolvido consiste na utilização da abordagem proposta para solucionar o problema de cinemática inversa de manipuladores com incertezas em seu modelo cinemático (e.g., robô manipulando um objeto de tamanho desconhecido com ângulo desconhecido). Em geral, uma solução adaptativa indireta utiliza a inversão da matriz Jacobiana estimada, cuja invertibilidade pode não ser garantida.
-\end{itemize} 

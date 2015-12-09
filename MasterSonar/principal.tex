@@ -1,18 +1,18 @@
 \documentclass[msc,numbers]{formating/coppe}
-\usepackage{amsmath,amssymb}    % simbolos matemï¿½ticos providos pela AMS
+\usepackage{amsmath,amssymb}    % simbolos macos providos pela AMS
 %\usepackage{hyperref}
 %\usepackage[breaklinks]{hyperref}
 \usepackage[linktocpage=true,a4paper]{hyperref}
 \usepackage{float}
 \usepackage{subfig}
-\bibliographystyle{unsrt}
 
-\usepackage[brazil]{babel}
-\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+%\usepackage[brazil]{babel}
 \usepackage{ae}
-\usepackage[latin1]{inputenc}
+%\usepackage[latin1]{inputenc}
 %%% CBA
-\usepackage{graphics}
+\usepackage{graphicx}
 %\usepackage{graphicx, subfigure}
 \usepackage{psfrag}
 \usepackage{epsfig}
@@ -57,8 +57,8 @@
 
 % Macros
 \newtheorem{teorema}{Theorem}
-\newtheorem{simulation}[teorema]{Simulação}%\newcommand{\tr}{\mbox{tr}}
-\newtheorem{traj}[teorema]{Trajetória}%\newcommand{\tr}{\mbox{tr}}
+\newtheorem{simulation}[teorema]{Simulaï¿½ï¿½o}%\newcommand{\tr}{\mbox{tr}}
+\newtheorem{traj}[teorema]{Trajetï¿½ria}%\newcommand{\tr}{\mbox{tr}}
 %\newcommand{\ve}{\mbox{vec}}
 %\newcommand{\h}{\mbox{herm}}
 %\newcommand{\posto}{\mbox{posto}}
@@ -83,13 +83,13 @@
 
 \begin{document}
 
-\title{Inversa Filtrada: uma Solução Alternativa para a Cinemática Inversa de Manipuladores Robóticos}
+\title{Inversa Filtrada: uma Solo Alternativa para a Cinemtica Inversa de Manipuladores Robicos}
 \foreigntitle{Filtered Inverse: an Alternative Solution to Inverse Kinematics of Robotic Manipulators}
 \author{Lucas Vares}{Vargas}
 \advisor{Prof.}{Ramon Romankevicius}{Costa}{D.Sc.}
 \advisor{Prof.}{Antonio Candea}{Leite}{D.Sc.}
 %\examiner{Prof.}{Ramon Romankevicius}{Costa}{D.Sc.}
-%\examiner{Prof.}{Antônio Candea}{Leite}{D.Sc.}
+%\examiner{Prof.}{Antï¿½nio Candea}{Leite}{D.Sc.}
 %\examiner{Prof.}{Amit Bhaya}{Ph.D.}
 
 \examiner{Prof.}{Ramon Romankevicius Costa}{D.Sc.}
@@ -97,90 +97,48 @@
 \examiner{Prof.}{Amit Bhaya}{Ph.D.}
 \examiner{Prof.}{Marco Antonio Meggiolaro}{Ph.D.}
 \department{PEE} \date{03}{2013}
-\keyword{Cinemática Inversa} \keyword{Singularidades}
-\keyword{Manipuladores Robóticos} \keyword{Inversa Filtrada}
+\keyword{Cinematica Inversa} \keyword{Singularidades}
+\keyword{Manipuladores Roticos} \keyword{Inversa Filtrada}
 \maketitle
 \frontmatter
 
-\dedication{À minha mãe Maria, ao meu pai Edson e às minhas irmãs Juliana e Gabriela, com muita gratidão e carinho.}
+\dedication{Mammy.}
 
 \chapter*{Agradecimentos}
 %%%
 A Deus,
-%
-sempre presente em minha vida. Agradeço a Ele por me dar forças nesta jornada, por tudo que pude concretizar e, principalmente, pelas pessoas maravilhosas que tenho ao meu lado.
-
 %%% ORIENTADORES
-Aos meus orientadores, os professores Ramon Romankevicius Costa e Antonio Candea Leite,
-%
-pela confiança, incentivo, disponibilidade e apoio que permitiram o desenvolvimento deste trabalho.
 
 %%% PROFESSORES
-Aos professores Afonso Celso del Nero Gomes, Amit Bhaya, Fernando Lizarralde, João Carlos dos Santos Basílio, José Luís Lopes da Silveira e Liu Hsu,
-%
-pelos valiosos ensinamentos, essenciais para a pesquisa realizada.
 
 %%% LABCON LEAD
-Aos colegas Alessandro Jacoud, Alex Neves, Andrei Battistel, Eduardo Leão, Evandro Costa, Fábio Soares, Gabriel Casulari, Gustavo Freitas, Ighor Marcovistz, Ivanko Yanque, Maurício Silva, Nerito Oliveira, Rafael Pereira, Roberto Calvet, Rodrigo Carneiro, Thiago Braga e Wanderley de Almeida, pelas conversas e por proporcionar um excelente ambiente de trabalho.
-%
+
 
 %%% AMIGOS QUE AJUDARAM
-Aos amigos Alex Neves, Andrei Battistel e Ivanko Yanque,
-%
-pela amizade, prestatividade e inestimáveis contribuições.
 
 %%% AMIGOS
-Aos amigos Anderson Sangreman, André Barbosa, Aurélio Lima, Daniel Vaz, Diogo Nomiya, Gabriel Gleizer, Gabriel Kyosuke, Henrique Ferraz, Leonardo Orenstein, Marcelo Prado, Maurício Silva, Raphael Cota, Thiago Camanho e Trevor Dobbin,
-%
-pela amizade e companheirismo.
 
-%%% ZÉ LUIS
-%Ao professor José Luís da Silveira,
+%%% Ze LUIS
+%Ao professor Josï¿½ Luï¿½s da Silveira,
 %
 
 %%%
-Aos membros da banca, os professores Amit Bhaya e Marco Antonio Meggiolaro,
-%
-pelas valiosas sugestões e comentários que possibilitaram o aprimoramento da pesquisa desenvolvida.
 
 %%%
-À COPPE
-%
-pela oportunidade de realizar o mestrado em uma instituição de pesquisa e ensino de excelência.
-
+% COPPE
 %%%
-Ao CNPq e à CAPES,
-%
-pelo suporte financeiro.
 
 \begin{abstract}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ABSTRACT
-Este trabalho apresenta uma solução alternativa para o problema de cinemática inversa de robôs manipuladores baseado na cinemática diferencial e em um algoritmo que calcula a inversa da matriz Jacobiana dinamicamente.
-%
-A saída do algoritmo proposto pode ser interpretada como uma inversa filtrada da matriz Jacobiana.
-%
-Uma propriedade interessante do algoritmo de inversão é a sua habilidade para lidar com o problema de singularidades cinemáticas, permitindo também a ponderação ou priorização dos diferentes objetivos de controle e a consideração de restrições adicionais.
-%
-A análise de estabilidade e convergência é baseada na teoria de estabilidade de Lyapunov.
-%
-Estudos de caso para diversos manipuladores são apresentados e resultados de simulação ilustram o desempenho da metodologia proposta.
 \end{abstract}
 
 \begin{foreignabstract}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ABSTRACT
-In this work we present an alternative solution to the problem of inverse kinematics for robot manipulators based on differential kinematics and on an algorithm that calculates the inverse of the Jacobian matrix dynamically.
-%
-The output of the proposed algorithm can be interpreted as a filtered inverse of the Jacobian matrix.
-%
-An interesting property of the inversion algorithm is its ability to deal with the problem of kinematic singularities, also allowing the prioritization or weighting of the different control objectives and the consideration of additional constraints.
-%
-The convergence and stability analysis is based on the Lyapunov stability theory.
-%
-Case  studies for various manipulators are presented and simulation results illustrate the performance of the proposed methodology.
 \end{foreignabstract}
 
 \tableofcontents
 \listoffigures
+\printloabbreviations
 \printlosymbols
 
 %\pagestyle{plain}
@@ -188,40 +146,32 @@ Case  studies for various manipulators are presented and simulation results illu
 \noindent
 {\small
 \begin{tabular}{lp{12cm}}
-{\bf{SISO:}} & \raggedright {Uma entrada e uma saída - Escalar} \\ {\emph{(Single-input-single-output)}}\tabularnewline
-{\bf{MIMO:}} & \raggedright {Múltiplas entradas e múltiplas saídas - Multivariável} \\ {\emph{(Multiple-input-multiple-output)}}\tabularnewline
-{\bf{SVD:}} & \raggedright {Decomposição de Valor Singular} \\ {\emph{(Singular Value Decomposition)}}\tabularnewline
-{\bf{DLS:}} & \raggedright {Mínimos Quadrados Amortecido} \\ {\emph{(Damped Least Square)}}\tabularnewline
-{\bf{FIK:}} & \raggedright {Cinemática Inversa Realimentada} \\ {\emph{(Feedback Inverse Kinematics)}}\tabularnewline
 {\bf{IF:}} & \raggedright {Inversa Filtrada} \\ {\emph{(Filtered Inverse)}}\tabularnewline
-%{\bf{PDJ}} & \raggedright {Forma de Jordan diagonal com autovalores reais e positivos} \\ {\emph{(Positive real Diagonal Jordan form)}}\tabularnewline
-{\bf{PDS}} & \raggedright {Positiva Definida Simétrica} \\ {\emph{(Positive Definite Symmetric)}} \tabularnewline
-{\bf{nR:}} & \raggedright {$n$ Juntas de Revolução} \\ {\emph{($n$ Revolute Joints)}}\tabularnewline
 {\bf{DoF:}} & \raggedright {Graus de liberdade} \\ {\emph{(Degrees of Freedom)}}\tabularnewline
 {\bf{DH:}} & \raggedright {Denavit-Hartenberg} \\ \tabularnewline
 %{\bf{SPR}} & \raggedright {Estritamente Real Positivo} \\ {\emph{(Strictly Positive Real)}} \tabularnewline
 %{\bf{WSPR}} & \raggedright {W-Estritamente Real Positivo} \\ {\emph{(W-Strictly Positive Real)}} \tabularnewline
-%{\bf{MRC}} & \raggedright {Controle por Modelo de Referência} \\ {\emph{(Model Reference Control)}} \tabularnewline
-%{\bf{MRAC}} & \raggedright {Controle Adaptativo por Modelo de Referência} \\ {\emph{(Model Reference Adaptive Control)}} \tabularnewline
+%{\bf{MRC}} & \raggedright {Controle por Modelo de Referï¿½ncia} \\ {\emph{(Model Reference Control)}} \tabularnewline
+%{\bf{MRAC}} & \raggedright {Controle Adaptativo por Modelo de Referï¿½ncia} \\ {\emph{(Model Reference Adaptive Control)}} \tabularnewline
 %{\bf{SMC}} & \raggedright {Controle por Modos Deslizantes} \\ {\emph{(Sliding Mode Control)}} \tabularnewline
-%{\bf{VSC}} & \raggedright {Controle a Estrutura Variável} \\ {\emph{(Variable Structure Control)}} \tabularnewline
-%{\bf{VS-MRAC}} & \raggedright {Controle Adaptativo por Modelo de Referência a Estrutura Variável} \\ {\emph{(Variable Structure MRAC)}} \tabularnewline
-%{\bf{UVC}} & \raggedright {Controle Vetorial Unitário} \\ {\emph{(Unit Vector Control)}} \tabularnewline
+%{\bf{VSC}} & \raggedright {Controle a Estrutura Variï¿½vel} \\ {\emph{(Variable Structure Control)}} \tabularnewline
+%{\bf{VS-MRAC}} & \raggedright {Controle Adaptativo por Modelo de Referï¿½ncia a Estrutura Variï¿½vel} \\ {\emph{(Variable Structure MRAC)}} \tabularnewline
+%{\bf{UVC}} & \raggedright {Controle Vetorial Unitï¿½rio} \\ {\emph{(Unit Vector Control)}} \tabularnewline
 %{\bf{LTI}} & \raggedright {Linear Invariante no Tempo} \\ {\emph{(Linear Time Invariant)}} \tabularnewline
 %{\bf{LMI}} & \raggedright {Desigualdade Matricial Linear} \\ {\emph{(Linear Matrix Inequality)}} \tabularnewline
-%{\bf{HFG}} & \raggedright {Ganho de Alta Frequência} \\ {\emph{(High Frequency Gain)}} \tabularnewline
+%{\bf{HFG}} & \raggedright {Ganho de Alta Frequï¿½ncia} \\ {\emph{(High Frequency Gain)}} \tabularnewline
 \end{tabular}
 }
 \mainmatter
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\include{chap1_m}
+\include{Chap1/Intro}
 \include{chap2_m}
 \include{chap3_m}	
 \include{chap4_m}
 \include{conclusion}
 \backmatter
-\bibliographystyle{unsrt}
+\bibliographystyle{formatin/coppe-unsrt}
 \bibliography{biblio}
 
 \appendix
