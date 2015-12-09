@@ -1,8 +1,8 @@
-\documentclass[msc,numbers]{coppe}
+\documentclass[msc,numbers]{formating/coppe}
 \usepackage{amsmath,amssymb}    % simbolos matem�ticos providos pela AMS
 %\usepackage{hyperref}
 %\usepackage[breaklinks]{hyperref}
-\usepackage[linktocpage=true]{hyperref}
+\usepackage[linktocpage=true,a4paper]{hyperref}
 \usepackage{float}
 \usepackage{subfig}
 \bibliographystyle{unsrt}
@@ -22,7 +22,6 @@
 \usepackage{xcolor}
 \usepackage{pstricks}
 %%%
-\usepackage[a4paper]{hyperref}
 %\usepackage[hypertex]{hyperref} %Make sure it comes last of your loaded packages
 \hypersetup{
   verbose,
@@ -220,10 +219,6 @@ Case  studies for various manipulators are presented and simulation results illu
 \include{chap2_m}
 \include{chap3_m}	
 \include{chap4_m}
-\include{sim_multi_m}
-\include{f_intro_m}
-\include{sim_juntas_m}	
-\include{sim_operacional_m} 	
 \include{conclusion}
 \backmatter
 \bibliographystyle{unsrt}
@@ -232,7 +227,5 @@ Case  studies for various manipulators are presented and simulation results illu
 \appendix
 
 \include{apendicecbasic}
-\include{apendicezebra}
-\include{apendicetraj}
 
 \end{document}
