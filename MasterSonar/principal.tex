@@ -1,19 +1,17 @@
 \documentclass[msc,numbers]{formating/coppe}
 \usepackage{amsmath,amssymb}    % simbolos macos providos pela AMS
-%\usepackage{hyperref}
-%\usepackage[breaklinks]{hyperref}
+
 \usepackage[linktocpage=true,a4paper]{hyperref}
 \usepackage{float}
 \usepackage{subfig}
 
 \usepackage[utf8]{inputenc}
 
-%\usepackage[brazil]{babel}
+\usepackage[english]{babel}
 \usepackage{ae}
-%\usepackage[latin1]{inputenc}
-%%% CBA
+
 \usepackage{graphicx}
-%\usepackage{graphicx, subfigure}
+
 \usepackage{psfrag}
 \usepackage{epsfig}
 %
@@ -37,28 +35,11 @@
   pagecolor=red,
   urlcolor=blue
 }
-%%%
-%\usepackage{indentfirst}        % indenta os primeiros par�grafos
-%\usepackage{color}              % para letras e caixas coloridas
-%\usepackage{makeidx}            % �ndice remissivo
-%\usepackage{setspace}           % para a dist�ncia entre linhas
-%\usepackage{fancyhdr,lastpage}
-%\usepackage{mathrsfs}
-%\usepackage{marvosym}
-%\usepackage{array}
-%\usepackage{nicefrac}
-%\usepackage{xspace}
-%\usepackage{nomencl}
-%\usepackage{lscape}
-%\usepackage{longtable}
-%\usepackage{rotating}
-%\usepackage{multirow}
-%\usepackage{graphics}
 
 % Macros
 \newtheorem{teorema}{Theorem}
-\newtheorem{simulation}[teorema]{Simula��o}%\newcommand{\tr}{\mbox{tr}}
-\newtheorem{traj}[teorema]{Trajet�ria}%\newcommand{\tr}{\mbox{tr}}
+\newtheorem{simulation}[teorema]{Simulacao}%\newcommand{\tr}{\mbox{tr}}
+\newtheorem{traj}[teorema]{Trajetoria}%\newcommand{\tr}{\mbox{tr}}
 %\newcommand{\ve}{\mbox{vec}}
 %\newcommand{\h}{\mbox{herm}}
 %\newcommand{\posto}{\mbox{posto}}
@@ -82,6 +63,7 @@
 \makeindex
 
 \begin{document}
+\selectlanguage{english}
 
 \title{Inversa Filtrada: uma Solo Alternativa para a Cinemtica Inversa de Manipuladores Robicos}
 \foreigntitle{Filtered Inverse: an Alternative Solution to Inverse Kinematics of Robotic Manipulators}
