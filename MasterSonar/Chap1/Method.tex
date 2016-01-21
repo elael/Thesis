@@ -1,5 +1,64 @@
 
 
 \section{Methodology}
+%\section{Metodology and Expected Results}
+%But to get there it is important to describe some facts first.
+ 
 
-..
+
+% Using de aforementioned ideas, the main goal of the thesis reported here is to
+% implement state of the art techniques for mapping, using binary bayesian
+% filters. Fuse all the data on a octree structure using a robotic framework,
+% named ROCK, and implement a visualization for the reconstruct underwater map.
+% The data source shall be a imaging sonar mounted on a pan-tilt unit, so to
+% provide the sonar extra degrees of freedom.
+% 
+% Optimization of the visible surface for based on the expected response of a
+% sonar beam in a given direction will also be attempted. It might supply
+% information about the surface material, specifically its reflectance. A
+% technique based on previously articles.
+
+
+The work is divided into tree main branches. Each having a theoretical research
+(followed by implementation and testing ???).
+
+The sonar model definition starts with a compilation on the description of sonar
+variaties, sound waves physical properties on the water, reflection, sonar
+directional gain and sources of noise. Then tests are realised on known
+environments so to fit and validate the proposed model. The test results are
+finally used create the full sonar model, including metric conventions by the
+sonar protocol.
+
+
+-------------------REVIEW-----------------------
+The second branch deal with the map filling, basically the Binary Bayesian
+Filter implementation. A review on Bayesian Filtering is scheduled before the
+coding writing to be done on the robotics framework, ROCK. The implementation
+will make use of the Octotree data structure, through the Octomap library, to
+store the map.
+
+The integration of the sonar model with the Bayesian Filter give the means to
+process sonar data. So data acquired on the LNDC/UFRJ tank (Laboratório de
+Ensaios Não Destrutivos, Corrosão e Soldagem), which loosely translated means
+Non-Destructive Testing, Corrosion and Welding Laboratory, and on the Jirau
+Power Plant, by means of the ROSA/COPPETEC project, will be processed and
+compared to the tank and power plant entry layout, respectively.
+ 
+In a more complex endeavor, which is the third branch, a theoretical derivation
+for the optimization of 2D surfaces embed on 3D environments will take place.
+It uses sonar response as expectation, and must take into account the
+probabilistic nature of the map grid. The objective is, instead of having a
+fixed sonar model, be able to better infer the underlying geometry of a sonar
+responde, and also recover some information about the surrounding materials
+reflectivity properties. This optimization algorithm will then be implemented on
+ROCK so it can also be integrated to the Bayesian Filter, instead of the sonar
+model. The same data processed by the combination ``Filter + Sonar Model'' shall
+now be processed by ``Filter + Optimization''.
+ 
+Based on the literature, even with not much similar works, the reconstruction
+with \textit{a priori} sonar model will probably experience problems when
+reconstructing corners, shallow angle surfaces, very complex (intense multipath)
+or on highly noise environments. For the optimization, it shall encounter
+similar issues, but a less accentuated shallow angle quality degradation and an
+overall less blurry reconstruction.
+---------------------------------------------------

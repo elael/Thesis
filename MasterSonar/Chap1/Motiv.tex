@@ -1,3 +1,30 @@
 \section{Purpose and Significance}
+%\section{Motivation}
 
-..
+The mapping of underwater environments is not just a part of a SLAM system. It
+might have importance on its own, it can be used for humans to visualize things
+that could not be seeing otherwise. 
+
+In the ROSA (\textit{Robô para Operações de Stoplogs Alagados}) project,
+developed by LEAD/COPPETEC to ESBR, one of the goals is to make a reconstruction
+of the hydroelectric power plant turbine entrance to spot any underwater debris
+that could block the lowering of stoplogs, used to block the water flow, and
+then cause delays and setbacks. When it happens for a stoplock to stuck the need
+for a diver also incur in further human risk, so even then it is important to
+know the surroundings.
+
+On a developing perspective, besides the importance for the ROSA project, it has
+characteristics that makes it appropriate for mapping. It has a lifting beam for
+inserting the stoplogs into the water that can act as stable fixation point for
+any sonar structure. So reducing the impact of poor a localization system on the
+mapping. It also has a known and not-so-complex ground truth environment
+(besides possible debris). Thus data collected there is suitable for testing the mapping
+algorithm in a real world environment, as opposed to lab testing.
+Although the noise environment might impair greatly the mapping, and subsequent
+visual reconstruction.
+
+
+It is also a integral part ROV's, where it gives feedback to the operator for
+him to know where it is or/and what he is doing, especially because cameras do
+not have a very useful range. And glaringly its automated counterpart (AUV's) as
+a requisite for SLAM.
