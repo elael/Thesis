@@ -1,7 +1,7 @@
 \documentclass[msc,numbers]{formating/coppe}
 \usepackage{amsmath,amssymb}    % simbolos macos providos pela AMS
 
-\usepackage[linktocpage=true,a4paper]{hyperref}
+\usepackage[linktocpage=true]{hyperref}
 \usepackage{float}
 \usepackage{subfig}
 
@@ -14,6 +14,7 @@
 
 \usepackage{psfrag}
 \usepackage{epsfig}
+\usepackage{enumerate}
 %
 \usepackage{latexsym}
 \usepackage{fancybox,fancyhdr}
@@ -23,29 +24,20 @@
 %\usepackage[hypertex]{hyperref} %Make sure it comes last of your loaded packages
 \hypersetup{
   verbose,
-  %dvips={true},
   plainpages=false,
-  bookmarks=true,
   colorlinks=true,
   linkcolor=blue,
   anchorcolor=red,
   citecolor=green,
   filecolor=magenta,
   menucolor=red,
-  pagecolor=red,
   urlcolor=blue
 }
 
 % Macros
 \newtheorem{teorema}{Theorem}
-\newtheorem{simulation}[teorema]{Simulacao}%\newcommand{\tr}{\mbox{tr}}
-\newtheorem{traj}[teorema]{Trajetoria}%\newcommand{\tr}{\mbox{tr}}
-%\newcommand{\ve}{\mbox{vec}}
-%\newcommand{\h}{\mbox{herm}}
-%\newcommand{\posto}{\mbox{posto}}
-%\newcommand{\diag}{\mbox{diag}}
-%\newcommand{\sign}{\mbox{sign}}
-%\newcommand{\R}{\mathbb{R}}
+\newtheorem{simulation}[teorema]{Simulacao}
+\newtheorem{traj}[teorema]{Trajetoria}
 
 \newcommand{\Appendix}{\par
   \setcounter{chapter}{0}
@@ -69,15 +61,8 @@
 \foreigntitle{Underwater Mapping Using Imaging Sonar}
 \author{Eduardo}{Elael de Melo Soares}
 \advisor{Prof.}{Ramon Romankevicius}{Costa}{D.Sc.}
-%\advisor{Prof.}{Antonio Candea}{Leite}{D.Sc.}
-%\examiner{Prof.}{Ramon Romankevicius}{Costa}{D.Sc.}
-%\examiner{Prof.}{Antnio Candea}{Leite}{D.Sc.}
-%\examiner{Prof.}{Amit Bhaya}{Ph.D.}
 
 \examiner{Prof.}{Ramon Romankevicius Costa}{D.Sc.}
-%\examiner{Prof.}{Antonio Candea Leite}{D.Sc.}
-%\examiner{Prof.}{Amit Bhaya}{Ph.D.}
-%\examiner{Prof.}{Marco Antonio Meggiolaro}{Ph.D.}
 \department{PEE} \date{01}{2016}
 \keyword{Sonar} \keyword{Mapping}
 \keyword{3D Reconstruction} \keyword{Underwater}
@@ -89,69 +74,20 @@
 \chapter*{Agradecimentos}
 %%%
 A Zeus,
-%%% ORIENTADORES
-
-%%% PROFESSORES
-
-%%% LABCON LEAD
-
-%%% AMIGOS QUE AJUDARAM
-
-%%% AMIGOS
-
-%%%
-% COPPE
-%%%
-
-% \begin{abstract}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ABSTRACT
-% \end{abstract}
-
 \begin{foreignabstract}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ABSTRACT
 \input{Chap0/abstract_en}
 \end{foreignabstract}
 
 \tableofcontents
-% \listoffigures
-% \printloabbreviations
-% \printlosymbols
-% 
-% %\pagestyle{plain}
-% \chapter*{Abreviaturas}
 \noindent
-% {\small
-% \begin{tabular}{lp{12cm}}
-% {\bf{IF:}} & \raggedright {Inversa Filtrada} \\ {\emph{(Filtered Inverse)}}\tabularnewline
-% {\bf{DoF:}} & \raggedright {Graus de liberdade} \\ {\emph{(Degrees of Freedom)}}\tabularnewline
-% {\bf{DH:}} & \raggedright {Denavit-Hartenberg} \\ \tabularnewline
-% %{\bf{SPR}} & \raggedright {Estritamente Real Positivo} \\ {\emph{(Strictly Positive Real)}} \tabularnewline
-% %{\bf{WSPR}} & \raggedright {W-Estritamente Real Positivo} \\ {\emph{(W-Strictly Positive Real)}} \tabularnewline
-% %{\bf{MRC}} & \raggedright {Controle por Modelo de Refer�ncia} \\ {\emph{(Model Reference Control)}} \tabularnewline
-% %{\bf{MRAC}} & \raggedright {Controle Adaptativo por Modelo de Refer�ncia} \\ {\emph{(Model Reference Adaptive Control)}} \tabularnewline
-% %{\bf{SMC}} & \raggedright {Controle por Modos Deslizantes} \\ {\emph{(Sliding Mode Control)}} \tabularnewline
-% %{\bf{VSC}} & \raggedright {Controle a Estrutura Vari�vel} \\ {\emph{(Variable Structure Control)}} \tabularnewline
-% %{\bf{VS-MRAC}} & \raggedright {Controle Adaptativo por Modelo de Refer�ncia a Estrutura Vari�vel} \\ {\emph{(Variable Structure MRAC)}} \tabularnewline
-% %{\bf{UVC}} & \raggedright {Controle Vetorial Unit�rio} \\ {\emph{(Unit Vector Control)}} \tabularnewline
-% %{\bf{LTI}} & \raggedright {Linear Invariante no Tempo} \\ {\emph{(Linear Time Invariant)}} \tabularnewline
-% %{\bf{LMI}} & \raggedright {Desigualdade Matricial Linear} \\ {\emph{(Linear Matrix Inequality)}} \tabularnewline
-% %{\bf{HFG}} & \raggedright {Ganho de Alta Frequ�ncia} \\ {\emph{(High Frequency Gain)}} \tabularnewline
-% \end{tabular}
-% }
 \mainmatter
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \include{Chap1/Intro}
-%\include{chap2_m}
-%\include{chap3_m}	
-%\include{chap4_m}
-%\include{conclusion}
+\include{Chap2/Math}
 \backmatter
-\bibliographystyle{formatin/coppe-unsrt}
+\bibliographystyle{formating/coppe-unsrt}
 \bibliography{biblio}
-
-%\appendix
-
-%\include{apendicecbasic}
 
 \end{document}
