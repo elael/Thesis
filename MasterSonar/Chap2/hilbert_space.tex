@@ -3,11 +3,16 @@
 
 A Hilbert Space is a complete inner product space (\citet{HS-YN:11}). It is a
 complete metric space with respect to the metric induced by its inner product
-(which in turn can be thought indirectly by it's induced norm).
+(which in turn can be thought indirectly by it's induced norm). A nice picture
+is as a generalization of the Euclidean space. Which means intution works well,
+in contrast with the broader concept of Banach Spaces, a complete normed space,
+where the infinite dimensional case can be quite different from what one would
+expect\footnote{Banach Space are complete metric spaces where the metric does
+not come necesserally from a inner product. (See \citet{HS-HJNB:00})}.
 
 An inner product space (\citet{HS-HJNB:00}) is a (possibly infinite dimensinal)
-vector space $V$ over $\mathbb{C}$ (or $\mathbb{R}$ by restriction ), together with a map (called the
-\textbf{inner product}):
+vector space $V$ over $\mathbb{C}$ (or $\mathbb{R}$ by restriction ), together
+with a map (called the \textbf{inner product}):
 
 \[  \langle\cdot,\cdot\rangle: V \times V \to \mathbb{C} \]
 
@@ -22,3 +27,84 @@ Satisfing the following properties, for all $x,y,z \in V$ and all $\mu, \lambda
   \item  \( \langle x,x \rangle \geq 0 \) and \( \langle x,x \rangle = 0
   \Leftrightarrow x = 0 \) (positive definite)
 \end{enumerate}
+
+A classical example of a inner product is the euclidean dot product.
+
+Another important exemple is the inner product defined on the space C$[a,b]$ of
+complex (or real) valued continuous functions on the interval $[a,b]$, defined,
+for every $f$ and $g$ in C$[a,b]$ as:
+
+\begin{equation}\label{eq::func_inner}
+  \langle f,g\rangle = \int_a^b \overline{f(x)}g(x) \mathrm{d}x
+\end{equation}
+
+On any Hibert Space $H$ the norm induced by the inner product is:
+
+\begin{equation}
+  \| x \|_{_H} = \sqrt{ \langle x,x \rangle }
+\end{equation}
+
+where $x \in H$. And the subsequent metric is defined as:
+
+\begin{equation}\label{eq::norm_metric}
+  d_{_H}(x,y) = \| x - y \|_{_H}
+\end{equation}
+
+for any $x,y \in H$.
+
+A vector space endowed with a inner product is a \textit{inner product space}
+(aka. pre-Hilbert space). For it to be a Hibert Space it also has to be complete
+with respect to the above metric. Completeness means that any Cauchy sequence
+converges in this space (which provides a suitable framework to apply the tools
+of calculus). A Cauchy sequence is a sequence where every term becomes
+arbitrarily close to each other as the sequence progress (not only to term
+right next to it). It can be formalised as the sequence
+$x_1$,$x_2$,$x_3$,$\ldots$ on a metric space (with a metric $d( \cdot ,\cdot)$)
+where:
+
+
+\[ \forall \epsilon \in \mathbb{R}^+, ~\exists N \in \mathbb{Z}^+, ~\forall
+n,m>N \Longrightarrow ~d(x_n,x_m)<\epsilon
+\]
+
+On a pre-Hilbert space, the metric is given by equation \ref{eq::norm_metric}.
+If a metric space $M$ is complete, then every Cauchy sequence
+($x_1$,$x_2$,$x_3$,$\ldots$) converges in that space:
+
+\[ \exists x \in M, \forall \epsilon \in \mathbb{R}^+, ~\exists N \in \mathbb{Z}^+, ~\forall
+n>N \Longrightarrow ~d(x_n,x)<\epsilon
+\]
+So,
+\[ x = \lim_{n\to\infty} x_n \]
+
+A complete metric space can be obtained from a pre-Hilbert space, by completion,
+in the same way that $\mathbb{Q}$ is ``completed'' to make $\mathbb{R}$.
+Although completeness is a technicality, it is easy to find exemples of
+pre-Hibert spaces that lacks this property. The space of continuous functions
+C$[a,b]$ with the inner product defined on \ref{eq::func_inner} gives an exemple
+of pre-Hibert space that is not complete. For it to be a Hilbert space, the
+space have to be extend to include some discontinous functions, as in the larger
+set of Lebesgue mensurable\footnote{The Lebesgue mensurability of a, bounded
+with compact support, function is a highly technical exigence and the existence
+of a bounded non-Lebesgue mensurable set (which allow the construction of such a
+function) is dependent on the axiomatic choice of the underlying set theory - it
+can only be proven with the adition of the \textit{choice axiom} to the standard
+ZF (Zermelo-Fraenkel) set of axioms. } functions that are square integrable
+(with the Lebesgue integral).
+
+Some exemples of Hilbert space are:
+
+\begin{itemize}
+  \item Any finite dimentional vector space over the field $\mathbb{R}$ or
+  $\mathbb{C}$ with the standard dot product.
+  \item The space $\ell^2$ of square-summable sequences of complex numbers, i.e.
+  $(c_1,c_2,c_3,\ldots)$ with $c_i \in \mathbb{C}$ and $\sum_{i=1}^\infty |c_i|^2 <
+  \infty$, is a Hilbert space with the inner product defined as: Given two sequeces
+  $x=(x_1,x_2,x_3,\ldots)$ and $y=(y_1,y_2,y_3,\ldots)$, define $\langle x,y
+  \rangle = \sum_{i=1}^\infty x_i \bar{y_i}$.
+  \item Fourier series can be seen as the representation of a square-integrable
+  function on the interval $[0,1]$ (member of $L^2([0,1])$) on the orthogonal
+  basis $\{e^{2\pi i n \theta}\}_{n=1\ldots\infty}$ with the inner product given
+  by \ref{eq::func_inner}.
+\end{itemize}
+
