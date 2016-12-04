@@ -11,15 +11,40 @@ important to have a clear concept of sound.
 
 \subsection{Physics of Sound}
 
-The phenomenon that humans percieve as sound is a pressure wave that excess the
-mean pressure of the medium \cite{FEYNMAN}. It can me referred to as
+The phenomenon that humans percieve as sound is a pressure wave that amplitude
+excess the mean pressure of the medium \cite{FEYNMAN}. It can me referred to as
 \textit{compressional} or \textit{longitudinal} waves, contrasting with
 \textit{transversal waves}. The difference between these two kinds of waves
 relies on the direction of the movement of the particles, being parallel or
 perpendicular to the propagation of the wave, respectively\cite{BRUNEAU}.
 
+On the particular, but usefull, conditions of low energy
+phenomena\cite{Lefebvre} (with some other suitable requirements\footnote{A
+perfect simple fluid in an initial state of stationary homogeneous equilibrium})
+the pressure pertubation wave can be described as:
+ 
+\begin{equation}\label{eq:laplace}
+\nabla^2 p - \frac{1}{c^2_0}\frac{\partial^2}{\partial t^2} p = 0
+\end{equation}
+ 
+Where $p$ is the pressure deviation from the medium, $c_0$ is the local
+sound speed and $\nabla^2$ stands for the Laplace operator. This equation is
+only valid in free space (no source), but discrete variations of the medium are
+treated as boundary conditions.
 
+Besides pressure, sound has another important derived property: intensity. Much
+like the case of electromagnetic waves, sound intensity (or acoustic intensity)
+measures the mean value of the sound energy flux (i.e. energy rate
+per area):
 
+\begin{equation}\label{eq:intensity_mean}
+\vec{I} = \overline{p\vec{v}}
+\end{equation}
+
+Where $\vec{I}$ represents the acoustic intensity vector and $\vec{v}$ the
+acoustic velocity (i.e. the velocity of a particle in the medium).
+
+ (perpendicular to the direction of propagation)
 
 
 \subsection{Sonar Principle of Operation}
