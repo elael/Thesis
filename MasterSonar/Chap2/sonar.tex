@@ -21,16 +21,28 @@ perpendicular to the propagation of the wave, respectively\cite{BRUNEAU}.
 On the particular, but usefull, conditions of low energy
 phenomena\cite{Lefebvre} (with some other suitable requirements\footnote{A
 perfect simple fluid in an initial state of stationary homogeneous equilibrium})
-the pressure pertubation wave can be described as:
+the pressure pertubation wave can be described as the \textit{D'Alembert
+equation}:
  
-\begin{equation}\label{eq:laplace}
-\nabla^2 p - \frac{1}{c^2_0}\frac{\partial^2}{\partial t^2} p = 0
+\begin{equation}\label{eq:lambert}
+\nabla^2 \Phi - \frac{1}{c^2_0}\frac{\partial^2}{\partial t^2} \Phi = 0
 \end{equation}
+
+Where $\Phi$ is the velocity potencial, a scalar field that helps describing the
+sound propagation. Its relation to sound pressure is:
+
+\[ p =  -\rho \frac{\partial}{\partial t}\Phi \]
+
+Which can be directly described as:
+
+\begin{equation} \label{eq:wave}
+\nabla^2 p - \frac{1}{c^2_0}\frac{\partial^2}{\partial t^2} p = 0
+\end{equation} 
  
-Where $p$ is the pressure deviation from the medium, $c_0$ is the local
-sound speed and $\nabla^2$ stands for the Laplace operator. This equation is
+Where $p$ is the pressure deviation from the mediums, $\rho$ the density, $c_0$
+is the local sound speed and $\nabla^2$ stands for the Laplace operator. These equations are
 only valid in free space (no source), but discrete variations of the medium are
-treated as boundary conditions.
+treated as boundary conditions, giving origin to reflection and refraction.
 
 Besides pressure, sound has another important derived property: intensity. Much
 like the case of electromagnetic waves, sound intensity (or acoustic intensity)
@@ -41,11 +53,40 @@ per area):
 \vec{I} = \overline{p\vec{v}}
 \end{equation}
 
-Where $\vec{I}$ represents the acoustic intensity vector and $\vec{v}$ the
-acoustic velocity (i.e. the velocity of a particle in the medium).
+Where $\vec{I}$ represents the \textit{acoustic intensity} vector, $\vec{v}$ the
+\textit{acoustic velocity} (i.e. the velocity of a particle in the medium) and the
+overline the mean over some time period. The \textit{acoustic velocity} can also
+be derived from the velocity potencial $\Phi$ as:
 
- (perpendicular to the direction of propagation)
+\[ \vec{v} = \nabla \Phi\]
 
+When considering a wave far from its source, solutions to the equation
+\ref{eq:wave} give rise to a \textit{plane wave}( where the coherent wave front
+propagate in a plane). It makes clear the relationship between $\vec{v}$ and
+$p$:
+
+\[ \vec{v} = \frac{p}{\rho c_0} \vec{n_0} \]
+
+Where $\vec{n_0}$ is the unit normal vector to the wavefront. Pluging it back to
+equation \ref{eq:intensity_mean}:
+
+\begin{equation}\label{eq:intensity_pressure}
+\vec{I} = \tfrac{1}{\rho c_0} \overline{p^2} \vec{n_0}
+\end{equation}
+
+This equation shows the proportionality between the \textit{acoustic
+intensity} and the mean squared of the pressure. The inverse of the
+proportionality constant $\rho c_0$ is called the \textit{characteristic
+impendace} because it measures the degree of ``resistense to propagation'' of
+the medium.
+
+%By means of the same reasoning about the physical properties
+
+ %(perpendicular to the direction of propagation)
+
+Because the acoustic intensity (and related quantities) varies orders of
+magnitude while propagating, it is commom to quantify it on a logarithmic scale,
+specificaly \textit{decibels} (dB). 
 
 \subsection{Sonar Principle of Operation}
 
