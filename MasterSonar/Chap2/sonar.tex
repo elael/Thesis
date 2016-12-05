@@ -86,7 +86,16 @@ the medium.
 
 Because the acoustic intensity (and related quantities) varies orders of
 magnitude while propagating, it is commom to quantify it on a logarithmic scale,
-specificaly \textit{decibels} (dB). 
+specifically \textit{decibels} (dB)\cite{LURTON}:
+
+\begin{equation}\label{eq:dB}
+I_{dB} = 10~\log_{10}\left(\frac{I}{I_0}\right)
+\end{equation} 
+
+Here $I_{dB}$ is the intensity measured in \textit{decibels}, $I$ the intensity
+value and $I_0$ a reference intensity values, usually defined somewhere near the
+source. In the case of reflected/refracted wave, $I_0$ may also refere to
+the intensity of the incoming wave.
 
 \subsection{Sonar Principle of Operation}
 
