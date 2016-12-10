@@ -1,8 +1,8 @@
 \section{Sonar}
 
 Throughout this thesis only one type of sonar is considered, the mechanical
-imaging active sonar. Sonars have a comum underlying principle of operation, but
-vary greatly on aplication and hardware constituition.
+imaging active sonar\ref{ss:avaible_models}. Sonars have a comum underlying
+principle of operation, but vary greatly on aplication and hardware constituition.
 
 Sonars are, in some sense, the acoustic analog of a camera. They use sound,
 instead of light, to capture information about the environment. So, to better
@@ -95,12 +95,72 @@ I_{dB} = 10~\log_{10}\left(\frac{I}{I_0}\right)
 Here $I_{dB}$ is the intensity measured in \textit{decibels}, $I$ the intensity
 value and $I_0$ a reference intensity values, usually defined somewhere near the
 source. In the case of reflected/refracted wave, $I_0$ may also refere to
-the intensity of the incoming wave.
+the intensity of the incoming wave. A direct relation between the magnitude of
+intensity and pressure is found by applying equation \ref{eq:intensity_pressure}
+on equation\ref{eq:dB}:
+
+\begin{equation}\label{eq:dB}
+I_{dB} = 20~\log_{10}\left(\frac{p_{\text{rms}}}{p_0}\right)
+\end{equation}
+
+Where $p_{\text{rms}}$ is the \textit{rms} (Root mean squared) value of the
+wave's pressure ({\small $\sqrt{\text{\tiny \(\overline{p^2}\)}}$}) and $p_0$ is
+a pressure value of reference.
+
 
 \subsection{Sonar Principle of Operation}
 
-\cite{LURTON} % porra toda - principio de funcionamento
+The name Sonar (\textit{\underline{So}und \underline{N}avigation \underline{A}nd
+\underline{R}anging}) was originally conceived for the tecnique that uses
+acoustic waves on water for navigation, communication and detection, but
+nowadays it is also used for the equipament that generate/receive these
+sound waves.
+
+The history is considered to have started on the year of 1490 through the
+statemnt of Leonardo Da Vinci contained on the epigraph at the begining of this
+chapter\cite{fahy1998fundamentals}. But that was birth of \textit{passive
+sonar}'s technology, where the objetive is to listen (receive and process sound
+waves) the noise from ships, animals and other objects in an attempt detect and
+reconize its origin.
+
+The concept of an \textit{active sonar}, one that emits a sound wave and detects
+its return (as in figure \ref{fig:sonar_principle}), is much more recent. The
+loss of the \textit{HMS Titanic} to a collision with an iceberg during its first
+voyage on April 15 of 1912 \cite{histsonar} fostered the development of a sonar
+to detect objects kilometers away. Also, during World War I,
+Allied shipping losses to U-boat attacks further stimulated advances on tecniques for
+unconvering of submerged enemies.
+
+\begin{figure}
+	\centering
+	\input{Chap2/fig/sonar_principle.tex}
+	\caption{Depiction of the working principle of a \textit{active sonar}. The
+	red speaker-like represented object represents the transducer, responsible for
+	emiting and receiving the acoustic wave.}
+	\label{fig:sonar_principle}
+\end{figure}
+
+Active sonars are ranging sensor and the way they infer distance is by measuring
+the time between the emission and reception of a acoustic pulse (a time bounded
+sound wave) like on \ref{fig:sonar_principle}. To be able to know space from the
+delay, the mean sound velocity of the medium throughout the path traveled by the
+pulse has to be known\cite{LURTON}:
+
+\[ d = \frac{c_0 \Delta t}{2}  \]
+
+Where $d$ is the distance between the source and the target, $c_0$ the mean
+sound velocity, $\Delta t$ the delay between pulse emission and reception, and
+the denominator $2$ is there because the time is measuring a two way trip of
+the sound.
+
+(underwater sound transducer)
+
+% multipath
+% chirp e resolução
+% bearing
+
 
 \subsection{Available Models}
+\label{ss:avaible_models}
  
 \cite{sonars:16} % tipos de sonar
