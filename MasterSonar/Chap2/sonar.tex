@@ -1,7 +1,7 @@
 \section{Sonar}
 
 Throughout this thesis only one type of sonar is considered, the mechanical
-imaging active sonar\ref{ss:avaible_models}. Sonars have a comum underlying
+imaging active sonar\ref{ss:avaible_models}. Sonars have a common underlying
 principle of operation, but vary greatly on aplication and hardware constituition.
 
 Sonars are, in some sense, the acoustic analog of a camera. They use sound,
@@ -105,7 +105,8 @@ I_{dB} = 20~\log_{10}\left(\frac{p_{\text{rms}}}{p_0}\right)
 
 Where $p_{\text{rms}}$ is the \textit{rms} (Root mean squared) value of the
 wave's pressure ({\small $\sqrt{\text{\tiny \(\overline{p^2}\)}}$}) and $p_0$ is
-a pressure value of reference.
+a pressure value of reference, for underwater acoustics this value is the
+microPascal (\(p_0 = 1~\mu\text{Pa} \))\cite{LURTON}.
 
 
 \subsection{Sonar Principle of Operation}
@@ -122,6 +123,8 @@ chapter\cite{fahy1998fundamentals}. But that was birth of \textit{passive
 sonar}'s technology, where the objetive is to listen (receive and process sound
 waves) the noise from ships, animals and other objects in an attempt detect and
 reconize its origin.
+
+\subsubsection{Active Sonar}
 
 The concept of an \textit{active sonar}, one that emits a sound wave and detects
 its return (as in figure \ref{fig:sonar_principle}), is much more recent. The
@@ -143,21 +146,116 @@ unconvering of submerged enemies.
 Active sonars are ranging sensor and the way they infer distance is by measuring
 the time between the emission and reception of a acoustic pulse (a time bounded
 sound wave) like on \ref{fig:sonar_principle}. To be able to know space from the
-delay, the mean sound velocity of the medium throughout the path traveled by the
+delay, the mean sound speed of the medium throughout the path traveled by the
 pulse has to be known\cite{LURTON}:
 
-\[ d = \frac{c_0 \Delta t}{2}  \]
+\begin{equation}
+D = \frac{c_0 \Delta t}{2}
+\label{eq:delaytodistance}
+\end{equation}
 
-Where $d$ is the distance between the source and the target, $c_0$ the mean
-sound velocity, $\Delta t$ the delay between pulse emission and reception, and
+
+Where $D$ is the distance between the source and the target, $c_0$ the mean
+sound speed, $\Delta t$ the delay between pulse emission and reception, and
 the denominator $2$ is there because the time is measuring a two way trip of
-the sound.
+the sound. When the sound wave travel long distances in the ocean, the sound
+speed can vary greatly, so special care should be taken\cite{Etter2013} (like
+stratify the environment by same sound speed layers).
 
-(underwater sound transducer)
+\subsubsection{Multipath}
 
-% multipath
-% chirp e resolução
-% bearing
+Besides sound speed variation, another common issue is \textit{multipath}. The
+moment a sound wave encounters an interface (e.g. sea floor, water surface or an
+obstacle) it does not bounces back to the source, it also undergoes refraction
+and reflection in other directions. Thus an eco that traveled a longer path may
+also arrive, causing a naive application of equation \ref{eq:delaytodistance} to
+predict the presence of an object further way (figure \ref{fig:multipath}). For
+low-frequency sable signals, the contribution of all multipaths creates a
+interference pattern\cite{LURTON}, a fact that will not be explored. 
+
+\begin{figure}
+	\centering
+	\input{Chap2/fig/multipath.tex}
+	\caption{Visualization of a multipath for a high frequency short pulse (much
+	smaller then delay times). Black vectors show the path taken by the sound
+	wave. Red dashed vector show the calculated distance by equation
+	\ref{eq:delaytodistance}.}
+	\label{fig:multipath}
+\end{figure}
+
+\subsubsection{Sonar Resolution and Chirp Pulses}
+
+The minimum distance (or eco delay) that can be resolved by the sonar depends on
+the type of the pulse emitted (figure \ref{fig:chirpresolution}). There are two
+main types of pulse:
+\textit{single frequency} and \textit{chirp}\cite{chirp,gaussianchirp}. Some
+sonars use dual frequency to overcome the trade-off between reach and resolution, given that low-frequency have a longer
+range and high-frequency a better resolution.
+
+For single frequency sonar the limit resolution ($\delta D$) depends directly on
+the pulse length ($\Delta\text{L}$):
+
+\[ \delta D = \frac{c_0~\Delta\text{L}}{2} \] 
+
+However, that limitation can be overcome by the use of pulse compression (a
+cross-correlation filter like matched filters). In this case, a linear varying
+frequency signal (chirp), or similar multifrequency systems, have its resolution
+related to the bandwidth ($\Delta \text{BW}$):
+
+\[ \delta D = \frac{c_0}{2~\Delta \text{BW}} \]
+
+\begin{figure}
+	\centering
+	\input{Chap2/fig/chirpresolution.tex}
+	\caption{Resolution as the minimum discernible distance between ecos.}
+	\label{fig:chirpresolution}
+\end{figure}
+
+The seabed contains sedments that attenuate incident sound waves, so sonar use
+Gaussian pulse spectrum as a measure to mitigate the impacts on temporal
+resolution. Although energy is lost, the Gaussian shape is nearly preserved
+increasing sub-bottom penetration and avoiding band-width loss.
+
+\subsubsection{Bearing}
+
+The direction from where the eco is comming cannot be directly obtained using
+only one hydrophone (underwater sound transducer). There are two main elements
+to consider for bearing estimation: \textit{beamwidth} and \textit{hydrophone
+arrays}.
+
+Most simple sonars have only one hydrophone (that acts as source and receiver),
+they cannot distriguish the direction of the incoming wave. It is possible
+to use its \textit{beamwidth} to narrow down the region of the eco origin, but
+it makes necessary to rotate the transducer in order to capture other
+directions.
+
+The beam shape of a hydrophone is its directional gain, i.e. the ratio between
+the intensity of the emitted signal, in a given direction, and the maximum
+intensity. It also acts as proportional loss of intensity when measuring the
+received signal incoming from some direction, the concept of a 2-way beam
+shape follows directly as the net result of transmission and reception.
+Mathematically it results in squaring the beam shape. All these concepts are
+meaningfull only if suficiently far from the source, a region called
+farfield\cite{beamwidth}.
+
+The \textit{beamwidth}, in turn, is a simplifying concept. The conventional
+deifinition is the point where the intensity reaches $70\%$ of its peak value,
+or $-3\text{dB}$. The 2-way beam shape reduces the \textit{beamwidth} to about
+$72\%$ w.r.t. the 1-way beam beamwidth.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.6,trim={0.46 0.072 0.46
+	1.03},clip]{Chap2/fig/directivity.eps}
+	\caption{Farfield beam shape and its \textit{beamwidth} (in blue).}
+	\label{fig:beamwidth}
+\end{figure}
+
+On the other hand, there are hydrophone arrays that can infer the sound
+direction by relating the spacing between the transducers with the signal
+difference received by each of them \cite{bearing}.
+
+
 
 
 \subsection{Available Models}
