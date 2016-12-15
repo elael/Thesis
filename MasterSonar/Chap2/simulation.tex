@@ -3,12 +3,98 @@
 Works on \textit{computacional ocean
 acoustics}, the subfield of knowledge that explores the algorithms that model
 the ocean as an acoustic medium, are well documented by
-\citet{Etter2013}.
+\citet{Etter2013}. Most of these works focus on very long range simulations,
+with its most important features been the ocean floor and sub-bottom region.
+
+This work aim to reconstruct and simulate near-range partially closed
+environments, as those created by humans. The motivation for such a choice comes
+from hydroeletrict power plant water intake, it is a corridor-like environment
+with possible obstacles on the bottom. This kind of envirnoment is not well
+covered on the underwater acoustics literature, as such, some of the simulations
+techniques are borrowed from the closelly related are of \textit{room acoustics}.
 
 When constructing a simulation one has to consider the tradeoff between
-simplicity/perfomance/accuracy.
+simplicity/perfomance/accuracy. There are several possible techniques with
+different applications and assumptions, this chapter will cover the most
+relevant ones and further explore \textit{ray theory}, which has been used for
+the simulation presented here.
 
 \subsection{Techniques Overview}
+
+The idea behind sound simulation techniques is to solve the wave
+equation (eq. \ref{eq:wave}) considering all the physical interfaces as boundary
+conditions. The equation, however, cannot be analitically solved due to common
+present discontinuities caused by occlusions, specular highlights and other
+facts that result in large variations of the field over small regions of the
+domain of integration\cite{funkhouser2003survey}.
+
+The single most important reason that differentiate the several approches
+described here is the \textit{wave frequency}. For high-frequency (where sound
+speed do not very much in a wavelength scale) geometric methods (ray theory) are
+justifiable and preferable (in the computational sense) \cite{urick1979}. In the
+case of low/mid - frequency or in the presence of caustics\footnote{A region of
+high constructive interference that geometrically gives a point of infinity
+rays convegence.} other wave methods (e.g. finite elements, normal modes,
+parabolic approximation) should be applied.
+
+Instead of using the full wave equation, the methods work with a simplified
+time-independ version. It starts by assuming that the equation
+\ref{eq:wave}:
+
+\[ \nabla^2 p - \frac{1}{c^2_0}\frac{\partial^2}{\partial t^2} p = 0 \]
+
+Has a solution on the format:
+
+\[ p(x,t) = a(x)\vartheta(t) \]
+
+So that:
+\[ \frac{\partial}{\partial t}a = 0 \]
+\[ \nabla^2 \vartheta = 0 \]
+
+Substituting it back and rearanging terms, gives:
+
+\[ \frac{\nabla^2 a}{a} = \frac{1}{c_0^2\vartheta} \frac{\partial^2}{\partial
+t^2}\vartheta  \]
+
+As the expressions on both sides vary indepently, ie. l.h.s. varies with space
+$s$ and r.h.s. with time $t$, they must be constant. As a matter of ajusting the
+equation to fit its stantard parametrization, this constant is chosen to be
+$-k^2$, then:
+
+\[ \frac{\nabla^2 a}{a} = -k^2  \]
+\[ \frac{1}{c_0^2\vartheta} \frac{d^2}{dt^2}\vartheta = -k^2  \]
+
+Or
+
+\begin{equation}
+\label{eq:helmholtz}
+(\nabla^2 -k^2)a = 0 
+\end{equation}
+
+\[ (\frac{d^2}{dt^2} + (kc_0)^2)\vartheta = 0  \]
+
+With the apropriate definition of $\omega \equiv kc_0 $ the last equation,
+becomes:
+
+\begin{equation}
+(\frac{d^2}{dt^2} + \omega^2)\vartheta = 0
+\end{equation}
+
+Equation \ref{eq:helmholtz} is known as the (homogeneous) \textit{Helmholtz
+equation} and describe the time-independ part of the wave propagation. The
+values of $k$ and $\omega$ can be phisically interpreted as the spatial and
+tempral angular frequency of the wave. As the wave equation is a linear
+equation superposition applies, it is resoanble to take into consideration
+one wave frequency at a time and superpose all these harmonics by Fourier
+synthesis\cite{Lefebvre}.
+
+
+
+\subsubsection{FEM - Finite Element Method}\cite{funkhouser2003survey}
+\subsubsection{Ray theory} \cite{torres2007modeling} \cite{danesh2013real}
+\subsubsection{Normal modes} \cite{Etter2013}(?)
+\subsubsection{Parabolic approximation} \cite{LURTON}
+
 \subsection{Ray Theory}
 \subsection{3D Enviroment Specifics}
 \subsection{Results}

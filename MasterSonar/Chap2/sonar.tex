@@ -1,8 +1,8 @@
 \section{Sonar}
 
 Throughout this thesis only one type of sonar is considered, the mechanical
-imaging active sonar\ref{ss:avaible_models}. Sonars have a common underlying
-principle of operation, but vary greatly on aplication and hardware constituition.
+imaging active sonar (section \ref{ss:avaible_models}). Sonars have a common
+underlying principle of operation, but vary greatly on aplication and hardware constituition.
 
 Sonars are, in some sense, the acoustic analog of a camera. They use sound,
 instead of light, to capture information about the environment. So, to better
@@ -150,12 +150,12 @@ delay, the mean sound speed of the medium throughout the path traveled by the
 pulse has to be known\cite{LURTON}:
 
 \begin{equation}
-D = \frac{c_0 \Delta t}{2}
+R = \frac{c_0 \Delta t}{2}
 \label{eq:delaytodistance}
 \end{equation}
 
 
-Where $D$ is the distance between the source and the target, $c_0$ the mean
+Where $R$ is the distance between the source and the target, $c_0$ the mean
 sound speed, $\Delta t$ the delay between pulse emission and reception, and
 the denominator $2$ is there because the time is measuring a two way trip of
 the sound. When the sound wave travel long distances in the ocean, the sound
@@ -192,17 +192,17 @@ main types of pulse:
 sonars use dual frequency to overcome the trade-off between reach and resolution, given that low-frequency have a longer
 range and high-frequency a better resolution.
 
-For single frequency sonar the limit resolution ($\delta D$) depends directly on
+For single frequency sonar the limit resolution ($\delta R$) depends directly on
 the pulse length ($\Delta\text{L}$):
 
-\[ \delta D = \frac{c_0~\Delta\text{L}}{2} \] 
+\[ \delta R = \frac{c_0~\Delta\text{L}}{2} \] 
 
 However, that limitation can be overcome by the use of pulse compression (a
 cross-correlation filter like matched filters). In this case, a linear varying
 frequency signal (chirp), or similar multifrequency systems, have its resolution
 related to the bandwidth ($\Delta \text{BW}$):
 
-\[ \delta D = \frac{c_0}{2~\Delta \text{BW}} \]
+\[ \delta R = \frac{c_0}{2~\Delta \text{BW}} \]
 
 \begin{figure}
 	\centering
@@ -217,6 +217,7 @@ resolution. Although energy is lost, the Gaussian shape is nearly preserved
 increasing sub-bottom penetration and avoiding band-width loss.
 
 \subsubsection{Bearing}
+\label{sss:bearing}
 
 The direction from where the eco is comming cannot be directly obtained using
 only one hydrophone (underwater sound transducer). There are two main elements
@@ -241,7 +242,11 @@ farfield\cite{beamwidth}.
 The \textit{beamwidth}, in turn, is a simplifying concept. The conventional
 deifinition is the point where the intensity reaches $70\%$ of its peak value,
 or $-3\text{dB}$. The 2-way beam shape reduces the \textit{beamwidth} to about
-$72\%$ w.r.t. the 1-way beam beamwidth.
+$72\%$ w.r.t. the 1-way beam beamwidth. If the diameter ($D$) of the transducer
+is large compared to the acoustic wavelength ($\lambda$), the
+\textit{beamwidth}($\beta$) can be approximated as:
+
+\[ \beta \approx \sin^{-1}\left(\frac{\lambda}{D} \right) \]
 
 \begin{figure}[h]
 	\centering
@@ -253,12 +258,82 @@ $72\%$ w.r.t. the 1-way beam beamwidth.
 
 On the other hand, there are hydrophone arrays that can infer the sound
 direction by relating the spacing between the transducers with the signal
-difference received by each of them \cite{bearing}.
+difference received by each of them \cite{bearing,beamforming}. One technique is
+very similar to \textit{multilateration}, simply compute the distance measured
+by each transducer and use this information to compute the direction of the
+incoming sound wave.
 
+% figura bearing
 
+Another possibility is to apply signal processing by delaying the received
+signal from one hydrophone w.r.t. the other and adding them together. The
+constructive/destructive interferece affectively change the directivity of the
+array and, thus, can be used to find which direction gives the strongest eco.
+This is known as \textit{beamforming}.
 
+The sequence of transducers can be made into a two dimensional array
+(a.k.a. a grid), making it possible to detect a full 3D direction.
 
 \subsection{Available Models}
 \label{ss:avaible_models}
  
-\cite{sonars:16} % tipos de sonar
+Active Sonars, besides having a commom working principle, present themselfs in
+different models for different applications. \citet{sonars:16} summarized the
+most relevant ones.
+
+\subsubsection{Mechanically Scanning}
+
+As seen on subsection \ref{sss:bearing}, it is possible to use the beam shape as
+a way to reduce the number of possible incoming directions for an eco. This is
+the idea behind a mechanically scanning sonar. As a consequece, it has to rotate
+the hydrophone to cover a full, or partial, $360^o$ sector.
+
+The angular step between different hydrophone's positions is dependent on the
+desired resolution, smaller steps gives a better resolution, but takes longer.
+
+\begin{enumerate}
+  \item \textbf{Profiling} - possessing a narrow conical beam shape, they are the
+  acoustic analog of a laser scanner (although they still have a much larger
+  apperture than a laser). Only a single eco is recorder for each angular
+  position, either the strongest or the first to return. Typically applied for
+  pipeline surveillance, they can spot structural differences and objects on the
+  sea floor.
+  \item \textbf{Imaging} - its fan shaped narrow beam cover a wider area than
+  the profiling type, making it very usefull for naviagation and obstacle
+  avoidance on ROVs. As its beam is wide it usually hit the surface obliquely,
+  several ecos are returned per acoustic pulse. Each eco is displayed at a
+  distance determined by equation \ref{eq:delaytodistance} and with its strength
+  mapped to a color scale.
+  \item \textbf{Side Scan} (a.k.a. towfish) - Can be either mounted on each side
+  of a boat's hull or towed behind. With a beam shape similar to an imaging
+  sonar, it can provide a sophisticated image of the sea floor.
+  \item \textbf{Echo-sounder} - mounted below a boat, it has a narrow pulse
+  (like a profiling) with the single purpose of measuring the depth of water. It
+  is typically applied to help with naviation or constructing depths charts.
+\end{enumerate}
+
+% profiling / imaging sonar
+
+\subsubsection{Multibeam}
+
+Multibeam sonar are based on the technique of \textit{beamforming} (described
+on section \ref{sss:bearing}). It has several hydrophones, rendering it able to
+scan a underwater region with no moving parts.
+
+\begin{enumerate}
+  \item \textbf{Profiling} - similar in application to its mechanically scanning
+  counterpart, it has multiple narrow conical beam receivers that record the
+  signal. Instead of moving its transducer, it amplify and process (through
+  \textit{beamforming}) the received signal to identify the position of the
+  strongest returned eco, then creating a high-speed cross-sectional profile.
+  \item \textbf{Imaging} - besides being much quickier than a Mechanical Imaging
+  Sonar, it generates a crispier image of the underwater environment. It possess
+  a wide angle acoustic transmitter and multiple narrow beam receivers, applying
+  \textit{beamforming} to the received signal.
+\end{enumerate}
+
+The array size of hydrophones is critical for enhancing resolution, longer
+arrays have a better angular resolution. To overcome physical limitations a
+techinique known as \textit{SAS} (Syntetic Aperture Sonar) may be applied. The
+transmission of several acoustic pulses in a line is used to emulate the
+presence of a longer array, by means of signal processing on the reception.
