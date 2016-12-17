@@ -41,60 +41,351 @@ Instead of using the full wave equation, the methods work with a simplified
 time-independ version. It starts by assuming that the equation
 \ref{eq:wave}:
 
-\[ \nabla^2 p - \frac{1}{c^2_0}\frac{\partial^2}{\partial t^2} p = 0 \]
+\[ \nabla^2 p = \frac{1}{c^2_0}\frac{\partial^2}{\partial t^2} p \]
 
-Has a solution on the format:
+Has a solution where time dependence is a harmonic function:
 
-\[ p(x,t) = a(x)\vartheta(t) \]
+\[ p(\coord{x},t) = \Re(\psi(\coord{x})e^{-i\omega t}) \]
 
-So that:
-\[ \frac{\partial}{\partial t}a = 0 \]
-\[ \nabla^2 \vartheta = 0 \]
+Here $\coord{x}$ is the space coordinate while $t$ the time. The exponential function
+considered is the complex exponetial with $i$ been the imaginary unit. The
+real part $\Re(\parm)$ is taken as $p$ is real valued, but $\phi(\coord{x})$ is a
+complex valued function over space.
+%\[ \frac{\partial}{\partial t}\psi = 0 \]
+%\[ \nabla^2 \vartheta = 0 \]
 
-Substituting it back and rearanging terms, gives:
+Substituting it back into equation \ref{eq:wave}, gives
+(dropping explicit parameters again):
 
-\[ \frac{\nabla^2 a}{a} = \frac{1}{c_0^2\vartheta} \frac{\partial^2}{\partial
-t^2}\vartheta  \]
+\[ \Re(\nabla^2 \psi e^{-i\omega t}) =
+\Re(-(\tfrac{\omega}{c_0})^2 \psi e^{-i\omega t})\]
 
-As the expressions on both sides vary indepently, ie. l.h.s. varies with space
-$s$ and r.h.s. with time $t$, they must be constant. As a matter of ajusting the
-equation to fit its stantard parametrization, this constant is chosen to be
-$-k^2$, then:
+% \[ \frac{\nabla^2 \psi}{\psi} = \frac{1}{c_0^2\vartheta} \frac{\partial^2}{\partial
+% t^2}\vartheta  \]
 
-\[ \frac{\nabla^2 a}{a} = -k^2  \]
-\[ \frac{1}{c_0^2\vartheta} \frac{d^2}{dt^2}\vartheta = -k^2  \]
+Defining $k \equiv \tfrac{\omega}{c_0} $ (a.k.a. the wave number) and rearanging
+terms:
 
-Or
+\[ \Re((\nabla^2 \psi -k^2 \psi) e^{-i\omega t}) = 0\]
+
+As the harmonic $e^{-i\omega t}$ is equivalent to a rotation in the complex
+plane, the equation will be satisfied for all $t$ if:
 
 \begin{equation}
 \label{eq:helmholtz}
-(\nabla^2 -k^2)a = 0 
+(\nabla^2 -k^2)\psi = 0 
 \end{equation}
 
-\[ (\frac{d^2}{dt^2} + (kc_0)^2)\vartheta = 0  \]
-
-With the apropriate definition of $\omega \equiv kc_0 $ the last equation,
-becomes:
-
-\begin{equation}
-(\frac{d^2}{dt^2} + \omega^2)\vartheta = 0
-\end{equation}
+%  As the expressions on
+% both sides vary indepently, ie.
+% l.h.s.
+% varies with space $x$ and r.h.s. with time $t$, they must be constant. As a matter of ajusting the
+% equation to fit its stantard parametrization, this constant is chosen to be
+% $-k^2$, then:
+% 
+% \[ \frac{\nabla^2 \psi}{\psi} = -k^2  \]
+% \[ \frac{1}{c_0^2\vartheta} \frac{d^2}{dt^2}\vartheta = -k^2  \]
+% 
+% Or
+% 
+% \begin{equation}
+% \label{eq:helmholtz}
+% (\nabla^2 -k^2)\psi = 0 
+% \end{equation}
+% 
+% \[ (\frac{d^2}{dt^2} + (kc_0)^2)\vartheta = 0  \]
+% 
+% With the apropriate definition of $\omega \equiv kc_0 $ the last equation,
+% becomes:
+% 
+% \begin{equation}
+% (\frac{d^2}{dt^2} + \omega^2)\vartheta = 0
+% \end{equation}
 
 Equation \ref{eq:helmholtz} is known as the (homogeneous) \textit{Helmholtz
-equation} and describe the time-independ part of the wave propagation. The
+equation} and describe the time-independent part of the wave propagation. The
 values of $k$ and $\omega$ can be phisically interpreted as the spatial and
 tempral angular frequency of the wave. As the wave equation is a linear
 equation superposition applies, it is resoanble to take into consideration
 one wave frequency at a time and superpose all these harmonics by Fourier
 synthesis\cite{Lefebvre}.
 
+Fourier synthesis is the calculation by \textit{Helmholtz
+equation} of each independent frequency: 
+
+\[ \psi_\omega(\coord{x}) = \int_{-\infty}^\infty p(\coord{x},t)e^{i\omega t}\dif t \]
+
+And reconstruct the wave equation back by:
+
+\[ p(\coord{x},t) = \int_{-\infty}^\infty\psi_\omega(\coord{x})e^{-i\omega t}\dif\omega \]
+
+These equations are the inverse and forward Fourier transform, respetively.
+
+\subsubsection{FEM - Finite Element Method}
+
+Finite Element Methods try to numerically find a solution to the wave equation
+by discretizing the space, and something time. It considers the equation
+\ref{eq:wave} for inside the enviroment and the boundary conditions:
+
+\[  \frac{\partial}{\partial \mathbf{n}}p= -\rho_0 \frac{\partial^2
+x_n}{\partial t^2} \quad \text{on the source} \]
+
+\[  c_0 \frac{\partial}{\partial \mathbf{n}}p= - \frac{1-R_c}{1+R_c}
+\frac{\partial}{\partial t} p \quad \text{on other interfaces} \]
+
+Where $\mathbf{n}$ is the normal direction of the surface, $\rho_0$ is the
+medium density and $x_n$ is the displacement of the acoustic membrane. The
+reflection coefficient $R_c$ might depend on the interface, but as FEM are used
+for small frequency bands, it is a minor problem\cite{deines2006comparative}.
+
+To create a linear system, the pressure fuction is approximated by a
+superposition of functions, e.g. sum of piecewise quadratic functions \(
+p(\coord{x},t)= \sum_{i=0}^N p_i(t) \varphi_i(\coord{x}) \), applied to the wave and boundary
+equation and integrated w.r.t. $\varphi_i$. Giving a large set of ordinary
+differential equations:
+
+\begin{align*}
+M\ddot{p} + D\dot{p} + Kp &= Fu \\
+y &= Pp
+\end{align*}
+
+With \(M,D,K\) being \(N \times N \) matrices, $p$ being the vector with
+coeficients $p_i$, $Fu$ the input converted into a force and $P$ some selection
+matrix to ouput the pressure on the desired points. This model can be writen and
+solved as generalized state-space model:
+
+\begin{align*}
+E\dot{\hat{x}} &= A\hat{x} + Bu \\
+y &= C\hat{x}
+\end{align*}
+
+\[
+\hat{x} =
+  \begin{bmatrix}
+    p \\
+    \dot{p}
+  \end{bmatrix},~
+E =
+  \begin{bmatrix}
+    I & 0 \\
+    0 & M
+  \end{bmatrix},~
+A =
+  \begin{bmatrix}
+    0 & I \\
+    -K & -D
+  \end{bmatrix},~
+B =
+  \begin{bmatrix}
+    0 \\
+    F
+  \end{bmatrix}
+  ~
+  \text{and}
+  ~
+C =
+  \begin{bmatrix}
+    P & 0 
+  \end{bmatrix}
+\]
+ 
+ There can be made more simplification, but it is enough to highlight the
+ limitations of the method (For more details, refer to
+ \citet{deines2006comparative}). The dimension of the state is related to
+ the number of functions used to approximate $N$ (two times without any further
+ simplification) that depends on the frequency:
+ 
+ \[N = \left(\frac{nLf}{c_0}\right)^3 \]
+ 
+ Where $L$ is a typical dimension in the environment, $f = \frac{\omega}{2\pi}$
+ the frequency and $n$ the number of elements per wave, that should be 3 ou 4
+ for a good approximation\cite{deines2006comparative}.
+ 
+ Given that the size of the state increases as the cube of the frequency, the
+ technique can only be applied to low-frequency signals, which is not applicable
+ to high-frequency sonar as envisoned by this work. 
+
+There is also a boundary method that use surface integral form of the wave
+equation, but suffer from similar restrictions. \citet{funkhouser2003survey}
+gives a brief introduction of the subject.
+
+\subsubsection{Ray theory}
+
+Geometric approachs like ray theory dates back to Newton and the corpuscular
+theory of light. Later found to be better discribed as a wave, the geometric
+theory of light still a very important and usefull tool. The sound ray theory
+follow a similar path, they both apply to high frequency waves, but typical
+sound waves have low/mid-frequency while visible light have a much higher
+frequency.
+
+To describe the ray from the wave theory, it starts by solving the Helmholtz
+equation (eq \ref{eq:helmholtz}) with a generic complex function of space
+through a polar decomposition\cite{buckingham1992ocean,torres2007modeling}:
+
+\[ \psi(\coord{x}) = \mathcal{A}(\coord{x})e^{iw\tau(\coord{x})} \]
+
+Here $\tau(\coord{x})$ can be interpreted as the time it takes for sound to
+reach the location $\coord{x}$ and $\mathcal{A}(\coord{x})$ the amplitude of the
+signal at that point. Substituting it back to equation \ref{eq:helmholtz} and
+separing real and imaginary parts, two equations are obtained (droping
+arguments):
+
+\begin{subequations}
+\begin{equation}
+\label{eq:preeikonal}
+\frac{\nabla^2\mathcal{A}}{\mathcal{A}} - (w\nabla \tau)^2 + k^2 = 0
+\end{equation}
+
+\begin{equation}
+\label{eq:preeikonalamp}
+2(\nabla\mathcal{A} \cdot \nabla \tau) + \mathcal{A}\nabla^2 \tau = 0
+\end{equation}
+\end{subequations}
+
+The geometric approximation is the assumption that the amplitude do not change
+much on the wavelenth scale, mathematically expressed as:
+
+\begin{equation}
+\label{eq:highfrequency}
+\frac{\nabla^2\mathcal{A}}{\mathcal{A}} \ll k^2
+\end{equation}
+
+Applying the this approximation to equation \ref{eq:preeikonal} and using the
+fact that \(\omega = kc_0 \):
+
+\begin{equation}
+\label{eq:eikonal}
+\left| \nabla \tau \right| = \frac{1}{c_0}
+\end{equation}
+
+The equation \ref{eq:eikonal} is known as the \textit{Eikonal equation} and
+defines the sufaces of constant phase. Equation \ref{eq:preeikonalamp}, called
+the transport equation, can then br used to find the pressure amplitude of the
+wave, but when treating the instensity instead of pressure amplitude conservation of energy can be used, as
+will be seen later on subsection \ref{ss:raytheory}.
+
+The rays are, by definition, the perpendicular lines to the wavefronts defined
+by equation \ref{eq:eikonal}. Which, if a length parametrization, is:
+
+\begin{equation}
+\label{eq:ray}
+\frac{\dif r}{\dif s} = c_0 \nabla\tau
+\end{equation}
+
+Where $r(s)$ is the path follow by the ray, and $s$ the ray length. To verify
+that it is a length parametrization square equation \ref{eq:ray} and use
+equation \ref{eq:eikonal} to find:
+
+\[ \left| \frac{\dif r}{\dif s} \right| = 1 \]
+
+Showing that it is a unit norm tangent vetor. To find the ray path, first take
+the gradient of equation \ref{eq:eikonal} squared:
+
+\begin{subequations}
+\begin{equation*}
+\nabla(\left| \nabla \tau \right|^2) = \nabla\left(\frac{1}{c_0^2}\right)
+\end{equation*}
+\begin{equation*}
+2\coord{H}(\tau)\nabla\tau = 2\frac{1}{c_0}\nabla\left(\frac{1}{c_0}\right)
+\end{equation*}
+\begin{equation}
+\label{eq:t_hessiantau}
+c_0\coord{H}(\tau)\nabla\tau = \nabla\left(\frac{1}{c_0}\right)
+\end{equation}
+\end{subequations}
+
+The \(\coord{H}(\parm)\) is the Hessian. Also, the derivative of equation
+\ref{eq:ray} (divided by $c_0$) w.r.t.
+$s$ is:
 
 
-\subsubsection{FEM - Finite Element Method}\cite{funkhouser2003survey}
-\subsubsection{Ray theory} \cite{torres2007modeling} \cite{danesh2013real}
+\begin{subequations}
+\begin{equation*}
+\frac{\dif}{\dif s}\left(\frac{1}{c_0}\frac{\dif r}{\dif s}\right)
+=\frac{\dif}{\dif s}(\nabla\tau)
+\end{equation*}
+\begin{equation}
+\label{eq:t_dergrad}
+\frac{\dif}{\dif s}\left(\frac{1}{c_0}\frac{\dif r}{\dif s}\right)
+=\coord{H}(\tau)\frac{\dif r}{\dif s}
+\end{equation}
+\end{subequations}
+
+Using equation \ref{eq:ray} and \ref{eq:t_hessiantau} in the r.h.s. of equation
+\ref{eq:t_dergrad}:
+
+\begin{subequations}
+\begin{equation*}
+\frac{\dif}{\dif s}\left(\frac{1}{c_0}\frac{\dif r}{\dif s}\right)
+=\coord{H}(\tau)(c_0\nabla\tau)
+\end{equation*}
+\begin{equation}
+\label{eq:raydirection}
+\frac{\dif}{\dif s}\left(\frac{1}{c_0}\frac{\dif r}{\dif s}\right)
+=\nabla\left(\frac{1}{c_0}\right)
+\end{equation}
+\end{subequations}
+
+The equation \ref{eq:raydirection} can now be integrated to give the ray path.
+Considering the important case of constant sound velocity $c_0$ (as assumed
+elsewhere in this work):
+
+\[ \nabla\left(\frac{1}{c_0}\right) = 0 \]
+
+So, equation \ref{eq:raydirection} (with equation \ref{eq:ray}) can be easily
+solved to:
+
+\begin{equation}
+\label{eq:sray}
+r(s) = r_0 + (c_0\nabla\tau_0)s
+\end{equation}
+
+Where $r_0$ is the ray origin, $\tau_0$ is the gradient of $\tau$ anywhere
+along the ray, and the addition is taken with $\mathbb{R}^3$ as an affine space.
+This is the equation of a line, show that acoustic rays travel as a straight
+line on constant velocity mediums for a high-frequency approximation.
+
+Further considerations on reflection and refraction may rely on the
+\textit{Snell law} limilar to the electromagnetic case, because the eikonal
+equation is equivalent to the \textit{Fermat's principle of least time}. If
+the first variation of the time functional is zero:
+
+\begin{equation*}
+\delta T[C] = \delta \int \frac{1}{c_0(\coord{x})}
+\left|\coord{x}'\right| \dif s = 0
+\end{equation*}
+
+Here $\coord{x}(s)$ is a parametrization of the path $C$, $x'(s)$ the tangent
+vector at $s$ and the whole integral $T[\parm]$ is the time to follow the path
+$C$. The \textit{Euler-Lagrange equations} give:
+
+
+\begin{equation*}
+\nabla\left(\frac{1}{c_0}\left|\coord{x}'\right|\right) - \frac{\dif}{\dif s}
+\nabla'\left(\frac{1}{c_0} \left|\coord{x}'\right|\right) = 0
+\end{equation*}
+
+Where $\nabla'$ is the gradient taken on the tangent space contaning
+$\coord{x}'$. Which become:
+
+\begin{equation*}
+\left|\coord{x}'\right|\nabla\left(\frac{1}{c_0}\right) =
+\frac{\dif}{\dif s}\left( \frac{1}{c_0} \frac{\coord{x}'}{\left|\coord{x}'\right|}\right)
+\end{equation*}
+
+By considering a length parametrization $r$ such that $\left|r'\right|=1$, the
+result is the same as equation \ref{eq:raydirection}, so all the results follow.
+
+It is important to highlight that the single simplification from the wave
+equation was the high-frequency assumption \cite{national1969physics}, given at
+equation \ref{eq:highfrequency}. A more complete description of the mathematics
+envolving the physics behind ray theory can be found at \citet{Lefebvre}.
+
+
 \subsubsection{Normal modes} \cite{Etter2013}(?)
 \subsubsection{Parabolic approximation} \cite{LURTON}
 
 \subsection{Ray Theory}
+\label{ss:raytheory}
 \subsection{3D Enviroment Specifics}
 \subsection{Results}
