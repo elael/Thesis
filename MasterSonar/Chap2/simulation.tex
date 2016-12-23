@@ -16,10 +16,12 @@ techniques are borrowed from the closelly related are of \textit{room acoustics}
 When constructing a simulation one has to consider the tradeoff between
 simplicity/perfomance/accuracy. There are several possible techniques with
 different applications and assumptions, this chapter will cover the most
-relevant ones and further explore \textit{ray theory}, which has been used for
-the simulation presented here.
+classic ones and further explore \textit{ray theory}, which has been used for
+the simulation presented here. For a more comprehensive view on this and other
+techniques, see \citet{LURTON,jensen2011computational}.
 
 \subsection{Techniques Overview}
+\label{ss:simuloverview}
 
 The idea behind sound simulation techniques is to solve the wave
 equation (eq. \ref{eq:wave}) considering all the physical interfaces as boundary
@@ -366,7 +368,8 @@ $C$. The \textit{Euler-Lagrange equations} give:
 \end{equation*}
 
 Where $\nabla'$ is the gradient taken on the tangent space contaning
-$\coord{x}'$. Which become:
+$\coord{x}'$.
+Which become:
 
 \begin{equation*}
 \left|\coord{x}'\right|\nabla\left(\frac{1}{c_0}\right) =
@@ -382,10 +385,192 @@ equation \ref{eq:highfrequency}. A more complete description of the mathematics
 envolving the physics behind ray theory can be found at \citet{Lefebvre}.
 
 
-\subsubsection{Normal modes} \cite{Etter2013}(?)
-\subsubsection{Parabolic approximation} \cite{LURTON}
+\subsubsection{Normal modes}
+
+When there is a prefered direction, or a general axis symetric medium, like the
+ocean (which is generally treated as a horizontally stratified medium), a
+cylindrical parametrization define a usefull coordinate system. The principal
+axis, usually depth, contain the superposition of normal modes while the other
+dimensions carrie the traveling wave.
+
+There are slightly different mathematical approachs to Normal Modes Theory on
+the literature\cite{Etter2013,urick1979,buckingham1992ocean}. The following
+brief description relly on the techniques of \citet{Etter2013}. Writing the
+solution of equation \ref{eq:helmholtz} as a product of a ``depth'' (principal
+axis) function $N(z)$ and a horizontal range function $H(r)$:
+
+\[ \psi = N(z)H(r) \]
+
+ Leads to a separantion of variables on the ODE, with $k_0$ as separation
+ constant: %Yield to
+ 
+ \begin{subequations}
+ \begin{equation}
+ \label{eq:normalmode}
+ \fdif{z}N + (k^2 - k_0^2)N = 0
+ \end{equation}
+ \begin{equation}
+ \label{eq:normaltraveling}
+ \fdifn{r}{2}H + \inv{r}\fdif{r}H + k_0^2H = 0
+ \end{equation}
+ \end{subequations}
+ 
+ The equation \ref{eq:normalmode} describes the pressure field along the depth,
+ it is known as the normal mode equation. Equation \ref{eq:normaltraveling}, on
+ the other hand, solely describes the traveling portion of the wave, that
+ happens in the horizontal direction.
+ The full solution for $\psi$ is found by solving both equations. The equation
+ \ref{eq:normalmode} is a classic eigenvalue problem for the differential
+ operator, whose solutions, including bounderies conditions, are known as
+ Green's function $G$ \cite{desanto2012scalar}. The horizontal equation
+ \ref{eq:normaltraveling} is a zero-order Bessel equation, so it may have its
+ solution written in terms of the zero order Henkel function of the first kind
+ ($H_0^{(1)}$)\footnote{$H_0^{(1)}(x) = J_0(x)+iY(x)$, where $J_0$ and $Y_0$
+ are the zero-order Bessel functions of first and second order, respectively.
+ More details on these functions, see \citet{abramowitz1964handbook}}. Putting
+ these solutions together, for a monocromatic point source:
+ 
+ \begin{equation}
+ \label{eq:normalmono}
+ \psi(z,r) = \int_{-\infty}^{\infty} G(z,z_s;k_0)H_0^{(1)}(k_0r)k_0\dif k_0
+ \end{equation}
+ 
+Where $z_s$ is the source position on the principal axis. The evaluation of the
+integral as it appears is impractical, thus some simplifications are required.
+
+The Green's function $G$ can be expanded as a bilinear summation of ortonormal
+functions ($u_ n$), the \textit{normal modes}\cite{baker2003green}, weighted by
+using their respective eigenvalues ($k_n$), the natural frequencies. The real
+integral of equation \ref{eq:normalmono} can be evaluated throught \textit{contour
+integration} to exploit the residue of the poles present on the natural
+frequencies, but that comes with a price, it is necessary to chose a riemann
+sheet for the integral and evaluate the branch line integral
+separately\cite{jensen2011computational,worzel1948propagation}:
+
+\begin{equation}
+\psi = \oint \sum_n{\frac{u_n(z)\overline{u_n(z_s)}}{k^2 -
+k_n^2}H_0^{(1)}(k_0r)k_0\dif k_0} + I_{\text{branch-cut}}
+\end{equation}
+
+The branch line integral $I_{\text{branch-cut}}$ can be physically interpreted
+as the contrubuition of the constinuous mode spectrum (in contrast with the
+normal modes), representing modes that propagates through the ocean floor
+(being strongly attenuated) and near-field, that decays exponentially with
+distance. Assuming that the horizontal distance is several times the water
+depth, the branch line term is ignored in most theoretical developments.
+
+Therefore, by assuming a far-field approximation ($k_0r \ll 1$), besides
+disregard the branch line integral, it is possible to consider a asymptotic expantions for the
+Hankel fucntion and evaluate the contour integral, obtaining\cite{Etter2013}:
+
+\begin{equation}
+\label{eq:normalsolution}
+\psi =
+g(r)\sum_n{\frac{u_n(z)\overline{u_n(z_s)}}{\sqrt{k_n}}e^{i(k_nr-\tfrac{\pi}{4})-\delta_nr}}
+\end{equation}
+
+Here $g(r)$ is a general function of the range and $\delta_n$ the attenuation
+coefficient. In practice, the summation ranges over only a bounded number of
+modes, but this number increases with frequency, which leaves it as undesirable
+for high-frequency waves. 
+
+One of the advantages of normal modes over ray theory lies on the fact that, for
+each source/receiver position, the ray approach have to run a full simulation of
+the rays, while the normal modes have a closed form (like equation
+\ref{eq:normalsolution}) that easily adapts to new combinations of these
+parameters. In constrast, normal modes are constrained by the source frequency,
+in fact by the number of modes to be computed, and generally requires deeper
+knowledge of the environment. The the attenuation
+coefficient($\delta_n$) in the ocean, for exemple, depends on water absorption,
+ocean sediment layer absorptions, compressional and shear attenuation on the
+basement, measures of the modes interations with both sediment and
+basement(compressional and shear mechanisms) and statistics on the
+water-sediment boundary and sea surface as well.
+
+\subsubsection{Parabolic approximation}
+
+The parabolic approximation replaces the Helmholtz equation \ref{eq:helmholtz},
+which is a elliptic partial differential equation, by a simplified parabolic
+version. This approximation dates back to the middle of the $\mathrm{XXI}$
+century, in the context of tropospheric radio wave propagation.
+
+The normal mode solution do not handle well non-stratified medium, to overcome
+this limitation parabolic approximation is constructed to handle slow varying
+mediums. The variation is made explicit by $k = k_0n(r,z)$, where $n(r,z)$ is a
+sound refractive index\cite{LURTON}. The Helmholtz equation becomes:
+
+\begin{equation}
+\label{eq:varyhelmholtz}
+(\nabla^2 - k_0^2n^2(r,z))\psi = 0 
+\end{equation}
+
+The solutions are assumed to have a fast varying horizontal field
+$H_0^{(1)}(k_0r)$ and overall slow fluctuations $F(r,z)$:
+
+\begin{equation*}
+\psi(r,z) = F(r,z)H_0^{(1)}(k_0r)
+\end{equation*}
+
+Assuming asymptotic behavior to the Hankel function (similar to normal modes
+development) and applying it to equation \ref{eq:varyhelmholtz}:
+
+\begin{equation}
+\label{eq:preparabolic}
+\fdifn{r}{2}F + 2ik_0\fdif{r}F + \fdifn{z}{2}F + k_0^2(n^2-1)F = 0
+\end{equation}
+
+By the assumption that $F(r,z)$ is a slow varying field, the $\fdifn{r}{2}F$
+term is neglected and equation \ref{eq:preparabolic} gives rise to the parabolic
+equation. \citet{LURTON} proceeds further by discretizing the horizontal
+directions, without defining explicit dependence on the Hankel function, and
+using an approximation for the differentials on $z$ through pseudo-differential
+operator.
+
+The parabolic equation can then be solved numerically, but the grid size vary
+with frequency, becoming costly for high-frequency waves. For more
+details, see \citet{jensen2011computational}.
 
 \subsection{Ray Theory}
 \label{ss:raytheory}
-\subsection{3D Enviroment Specifics}
+
+The Ray Theory provides a good way to treat high-frequency sound propagation,
+far from caustics, that retain an intuitive meaning. Introduced in subsection
+\ref{ss:simuloverview}, it is very similar to its electromagnetic counterpart.
+
+In a homogeneous or stratified medium, the most important considerations come
+from the interation of the rays with the interfaces, namely: \textbf{reflected rays},
+\textbf{transmited rays} and \textbf{scattered rays}.
+
+Math issue computability (sugested yes) -
+\citet{reif1994computability,blakey2014ray}
+
+rough water surface scattering - \citet{jones2009modelling}
+
+Many materials follow Lambert's law closely in scat-
+tering light and it is also a good approximation for
+backscattering of sound by rough - \citet{blake1995remote}
+
+Deep BRDF compare with Lambert - \citet{miller2015real}
+
+Analytical BRDF - \citet{durany2015analytical}
+
+Image source, scattering ray theory - \citet{chandak2011fast} 
+
+Image source, Beam tracing - \citet{funkhouser2003survey}
+
+Split scattering/reflection measurement - \citet{vorlander2000definition}
+
+Local acoustic Energy Exchange (but no Lambert) - \citet{rober2007ray}
+
+The room acoustic rendering equation (most of all)- \citet{siltanen2007room}
+
+Backscattering single consideration - \citet{LURTON,Etter2013}
+
+ISO and AES scattering measuring - \citet{rindel2001scattering}
+
+Scattering coefficients (+ too deep) - \citet{cox2006tutorial}
+
+Workflow simulation - \citet{bell1997simulation}
+
+%\subsection{3D Enviroment Specifics}
 \subsection{Results}
