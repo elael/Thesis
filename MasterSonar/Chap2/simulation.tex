@@ -262,7 +262,7 @@ fact that \(\omega = kc_0 \):
 
 The equation \ref{eq:eikonal} is known as the \textit{Eikonal equation} and
 defines the sufaces of constant phase. Equation \ref{eq:preeikonalamp}, called
-the transport equation, can then br used to find the pressure amplitude of the
+the transport equation, can then be used to find the pressure amplitude of the
 wave, but when treating the instensity instead of pressure amplitude conservation of energy can be used, as
 will be seen later on subsection \ref{ss:raytheory}.
 
@@ -536,10 +536,52 @@ details, see \citet{jensen2011computational}.
 The Ray Theory provides a good way to treat high-frequency sound propagation,
 far from caustics, that retain an intuitive meaning. Introduced in subsection
 \ref{ss:simuloverview}, it is very similar to its electromagnetic counterpart.
+Each ray carries a energy density from the source that decays as it travels
+through the medium (Transmission loss), as given by the equation
+\ref{eq:preeikonalamp}, when it encounters an obstacle (eg. sea floor, sea
+surface, man made surfaces) it (back)scatter to the source. That is the
+classical (non-multipath) description
+\cite{LURTON,Etter2013,miller2015real,bell1997application}, summarized by a
+sonar equation as:
+
+\begin{equation}
+\label{eq:sonareq}
+\text{RL} = \text{SL} - \text{DI} - \text{TL} + \text{TS}
+\end{equation}
+
+Each of these acronyms corresponds to energy (intensity), or energy variation,
+written in decibels\ref{eq:dB}:
+\begin{enumerate}
+  \item RL is the Received Level - $10\log([\text{Received
+  intensity}]/[\text{reference intensity\footnotemark}])$
+  \item SL is the Source Level - $10\log([\text{Intensity at
+  1m\footnotemark}]/[\text{reference
+  intensity}])$
+  \item DI is the Direcvity Index - $10\log([\text{Directional
+  loss\footnotemark}])$
+  \item TL is the Transmission loss - Intensity loss through absorption and
+  spreading while propagating (in dB).
+  \item TS is the Target Strength - ratio bewteen the intensity of outgoing
+  and incoming rays (in dB).
+\end{enumerate}
+
+
+\footnotetext{Intensity of plane wave with pressure amplitude of 1 $\mu$Pa}
+\footnotetext{for an equivalent omnidirectional source}
+\footnotetext{with respect to an omnidirectional source}
+
+This equation (\ref{eq:sonareq}) does not fully describes how the simulation
+using ray theory should work, but gives a good insight on the elements that must
+be considered. SL can be infeered by the sonar power and eficienty, DI comes
+from the sonar beam pattern, TL is dependent on the medium, but is compensated
+by the sonar TVG\ref{sss:tvg} and TS is defined by a material dependent BRDF
+(Bidirectional Reflectance Distribution Function), described further ahead.
 
 In a homogeneous or stratified medium, the most important considerations come
 from the interation of the rays with the interfaces, namely: \textbf{reflected rays},
 \textbf{transmited rays} and \textbf{scattered rays}.
+
+
 
 Math issue computability (sugested yes) -
 \citet{reif1994computability,blakey2014ray}
