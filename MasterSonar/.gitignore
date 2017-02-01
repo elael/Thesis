@@ -31,3 +31,5 @@
 *.fls
 *.bcf
 *.pyg
+principal.pgf-plot.gnuplot
+principal.pgf-plot.table
