@@ -552,13 +552,16 @@ sonar equation as:
 Each of these acronyms corresponds to energy (intensity), or energy variation,
 written in decibels\ref{eq:dB}:
 \begin{enumerate}
-  \item RL is the Received Level - $10\log([\text{Received
+  \item RL is the Received Level - $10\log_{10}([\text{Received
   intensity}]/[\text{reference intensity\footnotemark}])$
-  \item SL is the Source Level - $10\log([\text{Intensity at
+  \footnotetext{Intensity of plane wave with pressure amplitude of 1 $\mu$Pa}
+  \item SL is the Source Level - $10\log_{10}([\text{Intensity at
   1m\footnotemark}]/[\text{reference
   intensity}])$
-  \item DI is the Direcvity Index - $10\log([\text{Directional
+  \footnotetext{for an equivalent omnidirectional source}
+  \item DI is the Direcvity Index - $10\log_{10}([\text{Directional
   loss\footnotemark}])$
+  \footnotetext{with respect to an omnidirectional source}
   \item TL is the Transmission loss - Intensity loss through absorption and
   spreading while propagating (in dB).
   \item TS is the Target Strength - ratio bewteen the intensity of outgoing
@@ -566,9 +569,6 @@ written in decibels\ref{eq:dB}:
 \end{enumerate}
 
 
-\footnotetext{Intensity of plane wave with pressure amplitude of 1 $\mu$Pa}
-\footnotetext{for an equivalent omnidirectional source}
-\footnotetext{with respect to an omnidirectional source}
 
 Equation (\ref{eq:sonareq}) does not fully describes how the simulation
 using ray theory should work, but gives a good insight on the elements that must
@@ -577,11 +577,15 @@ from the sonar beam pattern, TL is dependent on the medium, but is compensated
 by the sonar TVG\ref{sss:tvg} and TS is defined by a material dependent BRDF
 (Bidirectional Reflectance Distribution Function), described further ahead.
 
+\subsubsection{Ray Interaction}
+
 For a more faithfull sonar response, advanced simulation techniques based on ray
 theory can be applyed. And, thus, requires careful consideration on the most
 important interations of the rays with the interfaces, namely:
 \textbf{transmitted rays}, \textbf{reflected rays}  and \textbf{scattered rays},
 see figure \ref{fig:brdfbtdf}.
+
+\subsubsection{Transmitted Rays}
 When a radiant energy, in this setup represented by a ray, hits a point on a
 surface (or a general interface) part of the energy is absorbed, part is
 transmitted and, yet, another part bounces back Transmitted rays represent the
@@ -589,6 +593,17 @@ energy that goes through the interface, their intensity for each direction is
 mathematically defined by the BTDF (Transmitted Scatter Distribution
 Function)\cite{bartell1981theory} (see \citet{rober2007ray} for a acoustic
 approach).
+
+
+\begin{figure}[h]
+	\centering
+	\input{Chap2/fig/ray_reflect}
+	\caption{Incident and reflected rays with respective angles.}
+	\label{fig:ray_reflect}
+\end{figure}
+
+
+\subsubsection{Scattered and Reflected rays}
 The treatment for reflected and scattered rays starts together by means of the
 BRDF (Bidirectional Reflectance Distribution
 Function)\cite{blake1995remote,miller2015real,durany2015analytical}, which works
@@ -596,13 +611,13 @@ similar to BTDF. On perfect smooth surfaces, its BRDF exhibits a single
 direction, the specular reflection, where the ray intensity is non-zero at the
 same plane of incident ray and the same angle with the surface normal vector.
 This kind of reflection is responsible for mirror like effects, e.g. sound that hits
-the water surface from within\cite{LURTON,Etter2013}. The other extreme case is
-the perfect diffuse reflection (usually called scatter in acoustics), where a
-rough surface reflects same perceived energy (radiance) in all directions, thus
-following a cosine law (Lambert's Cossine Law) with respect to the incident and
-reflected(scattered) angles \cite{united1977geometrical,cox2004acoustic}:
+the still water surface from within\cite{LURTON,Etter2013}.
 
-
+The other extreme case is the perfect diffuse reflection (usually called scatter
+in acoustics), where a rough surface reflects same perceived energy (radiance)
+in all directions, thus following a cosine law (Lambert's Cosine Law) with
+respect to the incident and reflected(scattered) angles
+\cite{united1977geometrical,cox2004acoustic}:
 
 \begin{equation}
 \label{eq:lambert}
@@ -610,7 +625,88 @@ I_r \propto	 I_i \cos(\theta_i) \cos(\theta_r)
 \end{equation}
 
 Where $I_i$,  $I_r$ and $\theta_i$, $\theta_r$ are the intensity and angle with
-the surface normal for the incident and reflected rays, respetively.
+the surface normal for the incident and reflected rays,
+respetively (figure \ref{fig:ray_reflect}). The proportionality constant is
+material dependent and should not exceed $\nicefrac{1}{\pi}$, because that would violate
+energy conservation.
+
+If incoming and reflected rays have the same direction, the angle is the same
+and the situation is called a \textit{backscatter}:
+
+\begin{equation*}
+I_r \propto I_i \cos^2(\theta_i)
+\end{equation*}
+
+There is some confusion in the literature about the cosine being or not
+squared\cite{durany2015analytical,cox2006tutorial,cox2004acoustic,jones2009modelling,LURTON,Etter2013}.
+Possible explanations are mixing intensity information with pressure
+or related quantities, as intensity and radiance. This cosine law, for a single
+scatter, describes the Target Strength, in $\text{dB}$:
+
+\begin{equation*}
+\text{TS} = A + 20\log_{10}(\cos(\theta_i)) 
+\end{equation*}
+
+Here $A$ is the equivalent of the proportionality constant. Under the assumption
+of no energy loss through transmission or absorption,
+$A=-10\log_{10}(\pi)\text{dB} \approx -5\text{dB}$. More realistic values vary
+from $-17\text{dB}$ for basalt ridge cliffs to $-27\text{dB}$ for sediment
+pond\cite{dunn2015springer}.
+Transmission and reflection between mutiple sedment layers at the bottom of the
+ocean can be treated as a single entity, subbottom scattering, that introduces a
+delay and a displacement of the reflection\cite{Etter2013}, that case will not
+be covered by the simulation procedure proposed in this thesis. A remarkable
+property of the scattered rays is the incoherence which makes possible to add
+the energy (intensity) contributions for each ray directly, according to
+equation \ref{eq:sumenergy}.
+
+Rought ocean surface, in the presence of wind, also backscatters, but not as a
+perfect scatter. Its scattering properties have been modeled in a variety of
+ways\cite{jones2009modelling}, like Kirchhoff model\cite{dunn2015springer}:
+
+\begin{equation*}
+\text{TS} = 10~\Gamma^2\log_{10}(e) 
+\end{equation*}
+
+Where $\Gamma = 2kh\cos(\theta_i)$, $k$ is the acoustic wavenumber (equation
+\ref{eq:helmholtz}), $h$ is the rms height of the surface.
+
+A general surface does not follow neither a perfect cosine law nor is a perfect
+reflector, but is usefull to model as a compromise of
+both\cite{cox2006tutorial,vorlander2000definition}, even some standards for
+acoustic measurement (e.g. ISO) split between these two types of
+reflection\cite{rindel2001scattering}. A absorption/transmission factor $\alpha$
+defines the fraction of the energy that does not reflect back, and a scattering
+factor $\delta$ the fraction of the reflected energy that is scattering (figure
+\ref{fig:scatter}).
+
+\begin{figure}[h]
+	\centering
+	\input{Chap2/fig/scatter}
+	\caption{Scattering reflection weighted.}
+	\label{fig:scatter}
+\end{figure}
+
+This weighting concept is explored to create a full BRDF function as
+$\rho(\vec{i},\vec{r}) = (1-\alpha)(\delta \rho_\text{scat}(\vec{i},\vec{r}) +
+(1-\delta) \rho_\text{spec}(\vec{i},\vec{r}) )$. For a numerical treatment, one
+option is to discretize the solid angles as \citet{siltanen2007room} describes,
+another is to model as computer graphics, where, instead of a single direction
+for the specular reflection, the specular reflection is a smooth function of the
+reflected direction with a peak at the actual specular direction. This smooth
+fucntion creates a better transition from specular to scatter reflection. A
+standard model is Phong reflection\cite{phong1975illumination}:
+
+\begin{equation}
+\label{eq:phong}
+I_r \propto	 I_i \cos(\theta_s)^\nu
+\end{equation} 
+
+Here $\theta_s$ is the angle between the reflected direction being considered
+and the specular direction and $\nu$ a shininess constant describing how
+concetrated the specular reflection is. In the limit of $\nu \to \inf$ it
+becomes a perfect mirror.
+
 
 \begin{figure}
 	\centering
@@ -621,6 +717,11 @@ the surface normal for the incident and reflected rays, respetively.
 	\href{http://creativecommons.org/licenses/by-sa/3.0/}{CC-BY-SA-3.0})}
 	\label{fig:brdfbtdf}
 \end{figure}
+
+
+
+
+\subsubsection{Ray Tracing}
 
 Most of the methods applied to audio were developped for computer graphics
 rederization, but, considering sound waves with similar constrains to those
