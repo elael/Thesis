@@ -47,7 +47,10 @@ time-independ version. It starts by assuming that the equation
 
 Has a solution where time dependence is a harmonic function:
 
-\[ p(\coord{x},t) = \Re(\psi(\coord{x})e^{-i\omega t}) \]
+\begin{equation}
+\label{eq:pressurepsi}
+p(\coord{x},t) = \Re(\psi(\coord{x})e^{-i\omega t})
+\end{equation}
 
 Here $\coord{x}$ is the space coordinate while $t$ the time. The exponential function
 considered is the complex exponetial with $i$ been the imaginary unit. The
@@ -212,6 +215,7 @@ equation, but suffer from similar restrictions. \citet{funkhouser2003survey}
 gives a brief introduction of the subject.
 
 \subsubsection{Ray theory}
+\label{sss:raytheory}
 
 Geometric approachs like ray theory dates back to Newton and the corpuscular
 theory of light. Later found to be better discribed as a wave, the geometric
@@ -224,7 +228,11 @@ To describe the ray from the wave theory, it starts by solving the Helmholtz
 equation (eq \ref{eq:helmholtz}) with a generic complex function of space
 through a polar decomposition\cite{buckingham1992ocean,torres2007modeling}:
 
-\[ \psi(\coord{x}) = \mathcal{A}(\coord{x})e^{iw\tau(\coord{x})} \]
+\begin{equation}
+\label{eq:psi}
+\psi(\coord{x}) = \mathcal{A}(\coord{x})e^{iw\tau(\coord{x})}
+\end{equation}
+
 
 Here $\tau(\coord{x})$ can be interpreted as the time it takes for sound to
 reach the location $\coord{x}$ and $\mathcal{A}(\coord{x})$ the amplitude of the
@@ -383,6 +391,72 @@ It is important to highlight that the single simplification from the wave
 equation was the high-frequency assumption \cite{national1969physics}, given at
 equation \ref{eq:highfrequency}. A more complete description of the mathematics
 envolving the physics behind ray theory can be found at \citet{Lefebvre}.
+
+A important result, commonly applied on algorithms derived from ray theory, is
+the summation of energy/intensity of incoherent rays at a point. It starts by
+taking the norm of the intensity (equation \ref{eq:intensity_pressure}) and applying the
+pressure defition to it (equation \ref{eq:pressurepsi}) to get\footnote{Here
+$\mathbb{E}[\parm]$ means the expection for clarity.}:
+
+
+\begin{equation}\label{eq:intensity_psi}
+I = g_0~\mathbb{E}[\norm{\psi}^2]
+\end{equation}
+
+Where $g_0 = \tfrac{1}{\rho c_0}$ (the inverse of the characteristic impedance),
+$I$ the intensity and $\phi$ the wave.
+For a single ray (equation \ref{eq:psi}) it is:
+
+\begin{equation*}
+I = g_0~\mathbb{E}[\norm{\mathcal{A}}^2]
+\end{equation*}
+
+To consider the contribution of a set of incoherent rays $\psi_i$ (i.e.
+statistically incorrelated), the total $\psi$ becomes:
+
+\begin{equation}\label{eq:wavesum}
+\psi = \sum_i \psi_i 
+\end{equation}
+
+With the stablished fact that the expected value of a wave is zero (i.e. the
+mean pressure variation is zero), the incorrelation condition
+becomes\footnote{Here $\psi_i^*$ is the complex conjugate of $\psi_i$ for
+better reading.}:
+
+
+\begin{equation}
+\label{eq:wave_uncorr}
+\text{cov}(\psi_i,\psi_j) = \mathbb{E}[\psi_i^* \psi_j] = 0
+\end{equation}
+
+The resulting equation of the intensity (equation \ref{eq:intensity_psi}) for a
+full wave (equation \ref{eq:wavesum}) is:
+
+\begin{equation*}
+\begin{split}
+I &= g_0~\mathbb{E}\left[\lVert \sum_i \psi_i \rVert ^2\right] =
+g_0~\mathbb{E}\left[ (\sum_i \psi_i)^*(\sum_j \psi_j)\right] \\
+&= g_0~\mathbb{E}\left[\sum_i \norm{\psi_i}^2 + \sum_{i \neq j} \psi_i^*
+\psi_j\right] \\
+&= g_0~\mathbb{E}\left[\sum_i \norm{\psi_i}^2\right]  +
+g_0~\mathbb{E}\left[\sum_{i \neq j} \psi_i^* \psi_j\right] \\
+& = g0~\sum_i \mathbb{E}\left[\norm{\psi_i}^2\right]  + g_0~\sum_{i \neq j}
+\mathbb{E}[\psi_i^* \psi_j] \\
+& = \sum_i g_0\mathbb{E}\left[\norm{\psi_i}^2\right]
+\end{split}
+\end{equation*}
+
+Which implies:
+\begin{equation}
+\label{eq:intensity_sum}
+I = \sum_i I_i
+\end{equation}
+
+This assumption of incoherent rays will be a commum point among ray tracing
+algorithm, mainly because it implies the summation of ray intensities $I_i$ to a
+single intensity. It is a reasonable assumption on mildly complex environments
+with diffuse (scattering) surfaces, which is explained on Ray Theory subsection
+\ref{ss:raytheory}.
 
 
 \subsubsection{Normal modes}
@@ -658,14 +732,14 @@ delay and a displacement of the reflection\cite{Etter2013}, that case will not
 be covered by the simulation procedure proposed in this thesis. A remarkable
 property of the scattered rays is the incoherence which makes possible to add
 the energy (intensity) contributions for each ray directly, according to
-equation \ref{eq:sumenergy}.
+equation \ref{eq:intensity_sum}.
 
 Rought ocean surface, in the presence of wind, also backscatters, but not as a
 perfect scatter. Its scattering properties have been modeled in a variety of
 ways\cite{jones2009modelling}, like Kirchhoff model\cite{dunn2015springer}:
 
 \begin{equation*}
-\text{TS} = 10~\Gamma^2\log_{10}(e) 
+\text{TS} = -10~\Gamma^2\log_{10}(e) \approx -4.34~\Gamma^2
 \end{equation*}
 
 Where $\Gamma = 2kh\cos(\theta_i)$, $k$ is the acoustic wavenumber (equation
@@ -702,10 +776,9 @@ standard model is Phong reflection\cite{phong1975illumination}:
 I_r \propto	 I_i \cos(\theta_s)^\nu
 \end{equation} 
 
-Here $\theta_s$ is the angle between the reflected direction being considered
-and the specular direction and $\nu$ a shininess constant describing how
-concetrated the specular reflection is. In the limit of $\nu \to \inf$ it
-becomes a perfect mirror.
+Here $\theta_s$ is the angle between the reflected direction and the specular
+direction. And $\nu$ a shininess constant describing how concetrated the
+specular reflection is. In the limit of $\nu \to \infty$ it becomes a perfect mirror.
 
 
 \begin{figure}
@@ -723,24 +796,68 @@ becomes a perfect mirror.
 
 \subsubsection{Ray Tracing}
 
-Most of the methods applied to audio were developped for computer graphics
+Ray Tracing was originally an algorithm that used ray theory
+(described earlier in section \ref{sss:raytheory}) for computer graphics with a
+rationale very similiar to the sonar equation \ref{eq:sonareq}. It traced a ray to every point on the scene
+from the source and the receiver, then computed the intensity of each color,
+ignoring multiple reflections. 
+
+A variety of derivations from the original algorithm have being concieved. Most
+of the methods applied to audio were developped for computer graphics
 rederization, but, considering sound waves with similar constrains to those
 applyed to light (i.e. high frequency limit), it is resonable to apply them to
 aurelization (sound renderization) as well.
 
 
- Among the most commum techniques are \textbf{Image Source}, \textbf{Beam
+Among the most commum techniques are \textbf{Image Source}, \textbf{Beam
 Tracing}, \textbf{Metropolis Transport} and \textbf{Path Tracing}.
 
 \subsubsection{Image Source}
 
-This method focus on environments composed by segments on the 2D case or slices
-of planes on the 3D case. It works best on box like environments, for this
-creates a perfect tiling of space\cite{funkhouser2003survey}.
+This method focus on environments composed by segments on the 2D case or
+polygonal slices of planes on the 3D case. It works best on box like
+environments, for this creates a perfect tiling of
+space\cite{funkhouser2003survey} (see figure \ref{fig:tillingsource}).
 
-For each reflective surface, a virtual source is created on the 
+For each reflective surface, a virtual source is created on the reflected
+position of the source, these are the primary virtual sources. A virtual source
+will act just like a source, although its intensity is lessen by the absorption
+factor of the wall. When computing the sound at point, the
+contribution of each source (including virtual ones) are added together, the
+reflections are automatically taken into account by the virtual sources.
+
+\begin{figure}[h]
+	\centering
+	\input{Chap2/fig/imagesource}
+	\caption{The source E and the virtual sources E',E'$_1$,E'$_2$,E'$_3$. In this
+	case, E'$_3$ is not a visible virtual source.}
+	\label{fig:imagesource}
+\end{figure}
+
+
+The procedure of creating the virtual sources may be repeated many times for
+each new virtual sources, thus more reflection are effectivelly calculated. The
+visibility of a virtual source must be validated before adding its contribution.
+
+\begin{figure}
+	\centering
+	\input{Chap2/fig/planetilling_source}
+	\caption{Source on a perfect tilling. The simple pattern facilites
+	computation.}
+	\label{fig:tillingsource}
+\end{figure}
+
+The method does not direct implement the ideia of sound scattering, but there
+are some possible extensions\cite{chandak2011fast}. In practice, for more
+complex environments, only a few early reflection are generated. The number
+$O(n^r)$ of sources, where $n$ is the number of surface planes and $r$ the
+number of reflections, that must be created and validated grows exponentially
+fast.
 
 \subsubsection{Beam Tracing}
+
+Beam Trancing and 
+
 \subsubsection{Metropolis Transport}
 \subsubsection{Path Tracing}
 
