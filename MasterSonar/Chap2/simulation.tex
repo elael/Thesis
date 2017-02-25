@@ -426,7 +426,7 @@ better reading.}:
 
 \begin{equation}
 \label{eq:wave_uncorr}
-\text{cov}(\psi_i,\psi_j) = \mathbb{E}[\psi_i^* \psi_j] = 0
+\text{cov}(\psi_i,\psi_j) = \mathbb{E}[\psi_i \psi_j^*] = 0
 \end{equation}
 
 The resulting equation of the intensity (equation \ref{eq:intensity_psi}) for a
@@ -435,13 +435,13 @@ full wave (equation \ref{eq:wavesum}) is:
 \begin{equation*}
 \begin{split}
 I &= g_0~\mathbb{E}\left[\lVert \sum_i \psi_i \rVert ^2\right] =
-g_0~\mathbb{E}\left[ (\sum_i \psi_i)^*(\sum_j \psi_j)\right] \\
-&= g_0~\mathbb{E}\left[\sum_i \norm{\psi_i}^2 + \sum_{i \neq j} \psi_i^*
-\psi_j\right] \\
+g_0~\mathbb{E}\left[ (\sum_i \psi_i)(\sum_j \psi_j)^*\right] \\
+&= g_0~\mathbb{E}\left[\sum_i \norm{\psi_i}^2 + \sum_{i \neq j} \psi_i
+\psi_j^*\right] \\
 &= g_0~\mathbb{E}\left[\sum_i \norm{\psi_i}^2\right]  +
-g_0~\mathbb{E}\left[\sum_{i \neq j} \psi_i^* \psi_j\right] \\
+g_0~\mathbb{E}\left[\sum_{i \neq j} \psi_i \psi_j^*\right] \\
 & = g0~\sum_i \mathbb{E}\left[\norm{\psi_i}^2\right]  + g_0~\sum_{i \neq j}
-\mathbb{E}[\psi_i^* \psi_j] \\
+\mathbb{E}[\psi_i \psi_j^*] \\
 & = \sum_i g_0\mathbb{E}\left[\norm{\psi_i}^2\right]
 \end{split}
 \end{equation*}
@@ -839,7 +839,7 @@ The procedure of creating the virtual sources may be repeated many times for
 each new virtual sources, thus more reflection are effectivelly calculated. The
 visibility of a virtual source must be validated before adding its contribution.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\input{Chap2/fig/planetilling_source}
 	\caption{Source on a perfect tilling. The simple pattern facilites
@@ -856,7 +856,7 @@ fast.
 
 \subsubsection{Beam Tracing}
 
-Beam Trancing and 
+Beam Trancing uses pyramidals beams 
 
 \subsubsection{Metropolis Transport}
 \subsubsection{Path Tracing}
