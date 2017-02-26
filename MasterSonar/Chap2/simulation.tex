@@ -648,8 +648,8 @@ Equation (\ref{eq:sonareq}) does not fully describes how the simulation
 using ray theory should work, but gives a good insight on the elements that must
 be considered. SL can be infeered by the sonar power and eficienty, DI comes
 from the sonar beam pattern, TL is dependent on the medium, but is compensated
-by the sonar TVG\ref{sss:tvg} and TS is defined by a material dependent BRDF
-(Bidirectional Reflectance Distribution Function), described further ahead.
+by the sonar TVG (see subsection \ref{sss:tvg}) and TS is defined by a material
+dependent BRDF (Bidirectional Reflectance Distribution Function), described further ahead.
 
 \subsubsection{Ray Interaction}
 
@@ -718,7 +718,7 @@ or related quantities, as intensity and radiance. This cosine law, for a single
 scatter, describes the Target Strength, in $\text{dB}$:
 
 \begin{equation*}
-\text{TS} = A + 20\log_{10}(\cos(\theta_i)) 
+\text{TS} = A + 20\log_{10}(\cos(\theta_i))
 \end{equation*}
 
 Here $A$ is the equivalent of the proportionality constant. Under the assumption
@@ -856,14 +856,124 @@ fast.
 
 \subsubsection{Beam Tracing}
 
-Beam Trancing uses pyramidals beams 
+Beam Trancing uses pyramidals beams, a colection of rays, instead of single
+infinitesimal rays to calculate reflections \cite{funkhouser2003survey}. The
+solid angle on the source that decribes avaiable sound directions can be
+subdivided in pyramidal beams without overlap, avoiding sampling issues. These
+pyramidal beams exploit the spacial relation between neaby rays, being able to
+consider the propagation path witout skiping any ray.
 
-\subsubsection{Metropolis Transport}
+\begin{figure}[h]
+	\centering
+	AN IMAGE
+	\caption{A 2D view of a piramidal beam tracing.}
+	\label{fig:beamtrace}
+\end{figure}
+
+The algorithm starts by subdividing the sounce sound directions into pyramidal
+regions. For each pyramidal beam, intersections with enviroment walls are
+calculated from the first encounter to the last, cliping the beam so no
+shadowed regions are considered. The resulting polygons of each intersection act
+as a new virtual source, constructed by mirroring the source as in the Image
+Source method. Beam Tracing, then, progresses by repeating this procedure on
+each virtual source, until the desired precision (number of reflections) is
+archieved.
+
+It does no suffer from visibility computation issued as Image Source, but is
+less efficient for highly structured box-like environments. Despite working well
+on simple scenes (with or without occlusions), it still not handeling well
+curved surfaces.
+
+
 \subsubsection{Path Tracing}
 
+Path Tracing is a recursive solution to the wave equation simplification used in
+ray theory. That can be written, in terms of the radiance $\ell$ (the ray
+energy - acoustic energy per unit of surface area per unit of solid angle), as an
+integral equation, the \textit{room acoustics rendering
+equation}\cite{siltanen2007room}:
 
-Math issue computability (sugested yes) -
-\citet{reif1994computability,blakey2014ray}
+\begin{equation}
+\label{eq:roomacoustics}
+\ell (\coord{p},\Omega) = \ell_0(\coord{p},\Omega) + \int_\mathcal{G}
+R(\coord{x},\coord{p},\Omega) \ell
+(\coord{x},\overrightarrow{\coord{x}\coord{p}} ) \dif\mu(\coord{x})
+\end{equation}
+
+Where $\mathcal{G}$ is the two dimensional subset of $\mathbb{R}^3$ comprising
+all surfaces, $\coord{p}$ is a point over a surface, $\dif\mu(\coord{x})$ is the
+surface area differential at point $\coord{x}$, $\Omega$ is the outgoint
+energy direction, $\ell_0$ the intrinsic surface radiance (a source point), $\overrightarrow{\coord{x}\coord{p}}$ the unit vector in the direction to $\coord{p}$ from point $\coord{x}$. The function $R(\parm,\parm,\parm)$ is the
+\textit{reflection kernel}, an enhanced version of a BDRF. For a non-obstructed path between 
+$\coord{p}$ and $\coord{x}$:
+
+\begin{equation}
+\label{eq:reflectionkernel}
+R(\coord{x},\coord{p},\Omega) =
+\mathfrak{a}(\norm{\coord{p}-\coord{x}})\rho_\coord{p}(\overrightarrow{\coord{x}\coord{p}},\Omega)\cos(\theta_i)\cos(\theta_r)
+\end{equation}
+
+When there is no visibility from  $\coord{x}$ to $\coord{p}$,
+$R(\coord{p},\coord{x},\Omega) = 0$. Here
+$\rho_\coord{p}(\overrightarrow{\coord{x}\coord{p}},\Omega)$ is the BDRF at the
+point $\coord{p}$ with incoming direction $\overrightarrow{\coord{x}\coord{p}}$
+and outgoing direction $\Omega$, $\theta_i$ and $\theta_r$ are the incoming and
+reflected angles with surface's normal at point $\coord{p}$ for directions $\overrightarrow{\coord{x}\coord{p}}$
+and $\Omega$ respectively. Factor $\mathfrak{a}(\norm{\coord{p}-\coord{x}})$ is
+the decay dependent on the distance $\norm{\coord{p}-\coord{x}}$ caused
+by spreading and absoption, usually a inverse squared times a exponential factor (commented on subsection \ref{sss:tvg}).
+
+The solution to equation \ref{eq:roomacoustics} is a Neumann series:
+
+
+
+\begin{subequations}
+
+\begin{equation}
+\label{eq:neumannincrement}
+\ell_{n+1} (\coord{p},\Omega) = \int_\mathcal{G}
+R(\coord{x},\coord{p},\Omega) \ell_n
+(\coord{x},\overrightarrow{\coord{x}\coord{p}} ) \dif\mu(\coord{x})
+\end{equation}
+
+\begin{equation}
+\label{eq:neumannsummation}
+\ell (\coord{p},\Omega) = \sum_{n=0}^\infty \ell_n (\coord{p},\Omega) 
+\end{equation}
+\end{subequations}
+
+For the actual computation, the summation on equation \ref{eq:neumannsummation}
+is truncated at some reasonable value of $n$, which is the number of
+reflections being considered, and the integral on equation
+\ref{eq:neumannincrement} can be approximated using, for exemple, a Monte Carlo
+method applying importance sampling w.r.t. the function $R(\parm,\parm,\parm)$.
+When scattering is not strong enough, it is a commom practice to consider only
+specular directions. 
+
+Besides the success of computer graphics using the same technique, in the end of
+the last century there were still some concerns regarding the theorical
+validity, manly because it was shown to be
+uncomputable \cite{reif1994computability}. That is, it was impossible to say if
+a ray would ever reach a certain point. Later, this decade, it was shown by
+\citet{blakey2014ray} that, if one considers computational finite precision, it
+can be proven to be computable.
+
+In the case of sonar, the only important point to measure the sound intensity is
+on the sonar itself. A simplified approach for the integral on equation
+\ref{eq:neumannincrement} is to consider only the specular direction (where it
+is supposed to have greater radiance) and the scattered direction into the
+sonar, assuming the other scatterd direction will die out without much
+affecting the sonar response.
+
+
+\subsubsection{Metropolis Transport}
+
+Metropolis Transport is a incremental development over Path Tracing. It records
+the path taken by a ray  \ldots
+
+
+
+
 
 rough water surface scattering - \citet{jones2009modelling}
 
@@ -874,7 +984,6 @@ backscattering of sound by rough - \citet{blake1995remote}
 Ray Trace Lambert (cosseno duplo) - \citet{cox2004acoustic}
 
 Deep BRDF compare with Lambert - \citet{miller2015real}
-
 
 Analytical BRDF - \citet{durany2015analytical}
 
