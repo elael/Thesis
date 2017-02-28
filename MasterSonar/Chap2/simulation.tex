@@ -946,7 +946,8 @@ For the actual computation, the summation on equation \ref{eq:neumannsummation}
 is truncated at some reasonable value of $n$, which is the number of
 reflections being considered, and the integral on equation
 \ref{eq:neumannincrement} can be approximated using, for exemple, a Monte Carlo
-method applying importance sampling w.r.t. the function $R(\parm,\parm,\parm)$.
+method applying importance sampling w.r.t. the function $R(\parm,\parm,\parm)$
+(\citet{munjal2013formulas} describes briefly such an algorithm).
 When scattering is not strong enough, it is a commom practice to consider only
 specular directions. 
 
@@ -968,42 +969,55 @@ affecting the sonar response.
 
 \subsubsection{Metropolis Transport}
 
-Metropolis Transport is a incremental development over Path Tracing. It records
-the path taken by a ray  \ldots
+Metropolis Light Transport (MLT) is a incremental development over Path Tracing.
+It records the path taken by a ray as a tree where each reflection point is a node. By
+adding, removing or changing nodes, it is able to better explore the space
+without ruling out the work done to produce a path from source to detector.
+
+The name comes from the use of Metropolis sampling method to explore the space,
+which degenerate paths that are small variations of the original one. A change
+in the path may be accepted or regected (as in the original Metropolis method)
+and the decision strategy ensures a ergotic, unbiased and generaly applicable
+result.
+
+At the cost of added complexity, MLT gives better results specially around
+caustics and difficult to reach reagions (e.g. through a narrow apperture)
+without degrading performance. The orignal paper by \citet{veach1997metropolis}
+explains with great clarity the math behind as well as the results and
+interpretations.
 
 
 
 
-
-rough water surface scattering - \citet{jones2009modelling}
+rough water surface scattering - \citet{jones2009modelling}d
 
 Many materials follow Lambert's law closely in scat-
 tering light and it is also a good approximation for
-backscattering of sound by rough - \citet{blake1995remote}
+backscattering of sound by rough - \citet{blake1995remote}d
 
-Ray Trace Lambert (cosseno duplo) - \citet{cox2004acoustic}
+Ray Trace Lambert (cosseno duplo) - \citet{cox2004acoustic}d
 
-Deep BRDF compare with Lambert - \citet{miller2015real}
+Deep BRDF compare with Lambert - \citet{miller2015real}d
 
-Analytical BRDF - \citet{durany2015analytical}
+Analytical BRDF - \citet{durany2015analytical}d
 
-Monte Carlo - \citet{munjal2013formulas}
+Monte Carlo - \citet{munjal2013formulas}d
 
-Image source, scattering ray theory - \citet{chandak2011fast} 
+Image source, scattering ray theory - \citet{chandak2011fast} d
 
-Image source, Beam tracing - \citet{funkhouser2003survey}
+Image source, Beam tracing - \citet{funkhouser2003survey}d
 
-Split scattering/reflection measurement - \citet{vorlander2000definition}
+Split scattering/reflection measurement - \citet{vorlander2000definition}d
 
-Local acoustic Energy Exchange (but no Lambert) - \citet{rober2007ray}
+Local acoustic Energy Exchange (but no Lambert) - \citet{rober2007ray}d
 
-The room acoustic rendering equation (most of all)- \citet{siltanen2007room}
+The room acoustic rendering equation (most of all)- \citet{siltanen2007room}d
 
-Backscattering single consideration - \citet{LURTON,Etter2013}
+Backscattering single consideration - \citet{LURTON,Etter2013}d
 
-ISO and AES scattering measuring - \citet{rindel2001scattering}
+ISO and AES scattering measuring - \citet{rindel2001scattering}d
 
-Scattering coefficients (+ too deep) - \citet{cox2006tutorial}
+Scattering coefficients (+ too deep) - \citet{cox2006tutorial}d
 
 Workflow simulation - \citet{bell1997simulation}
 
