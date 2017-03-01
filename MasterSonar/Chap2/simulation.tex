@@ -678,6 +678,7 @@ approach).
 
 
 \subsubsection{Scattered and Reflected rays}
+\label{sss:rays}
 The treatment for reflected and scattered rays starts together by means of the
 BRDF (Bidirectional Reflectance Distribution
 Function)\cite{blake1995remote,miller2015real,durany2015analytical}, which works
@@ -810,7 +811,15 @@ aurelization (sound renderization) as well.
 
 
 Among the most commum techniques are \textbf{Image Source}, \textbf{Beam
-Tracing}, \textbf{Metropolis Transport} and \textbf{Path Tracing}.
+Tracing}, \textbf{Metropolis Transport} and \textbf{Path Tracing}. Their
+standard implementation assume homogeneos medium, effectively propagating rays
+as straight lines. An important altenative, which also overcome sharp shadows
+and caustics issues, is \textit{Gaussian Beam}, it evaluates the acoustic field
+at every point by adding contributions of each ray. The name comes from the fact
+that weight of a ray decays in the paraxial direction as a gaussian. It is
+typically more computationally more costly than other ray tracing, but have
+applications for inhomogeneos open environments as described by
+\citet{traceroutdoor}.
 
 \subsubsection{Image Source}
 
@@ -987,39 +996,36 @@ explains with great clarity the math behind as well as the results and
 interpretations.
 
 
-
-
-rough water surface scattering - \citet{jones2009modelling}d
-
-Many materials follow Lambert's law closely in scat-
-tering light and it is also a good approximation for
-backscattering of sound by rough - \citet{blake1995remote}d
-
-Ray Trace Lambert (cosseno duplo) - \citet{cox2004acoustic}d
-
-Deep BRDF compare with Lambert - \citet{miller2015real}d
-
-Analytical BRDF - \citet{durany2015analytical}d
-
-Monte Carlo - \citet{munjal2013formulas}d
-
-Image source, scattering ray theory - \citet{chandak2011fast} d
-
-Image source, Beam tracing - \citet{funkhouser2003survey}d
-
-Split scattering/reflection measurement - \citet{vorlander2000definition}d
-
-Local acoustic Energy Exchange (but no Lambert) - \citet{rober2007ray}d
-
-The room acoustic rendering equation (most of all)- \citet{siltanen2007room}d
-
-Backscattering single consideration - \citet{LURTON,Etter2013}d
-
-ISO and AES scattering measuring - \citet{rindel2001scattering}d
-
-Scattering coefficients (+ too deep) - \citet{cox2006tutorial}d
-
-Workflow simulation - \citet{bell1997simulation}
-
-%\subsection{3D Enviroment Specifics}
-\subsection{Results}
+% 
+% 
+% rough water surface scattering - \citet{jones2009modelling}d
+% 
+% Many materials follow Lambert's law closely in scat-
+% tering light and it is also a good approximation for
+% backscattering of sound by rough - \citet{blake1995remote}d
+% 
+% Ray Trace Lambert (cosseno duplo) - \citet{cox2004acoustic}d
+% 
+% Deep BRDF compare with Lambert - \citet{miller2015real}d
+% 
+% Analytical BRDF - \citet{durany2015analytical}d
+% 
+% Monte Carlo - \citet{munjal2013formulas}d
+% 
+% Image source, scattering ray theory - \citet{chandak2011fast} d
+% 
+% Image source, Beam tracing - \citet{funkhouser2003survey}d
+% 
+% Split scattering/reflection measurement - \citet{vorlander2000definition}d
+% 
+% Local acoustic Energy Exchange (but no Lambert) - \citet{rober2007ray}d
+% 
+% The room acoustic rendering equation (most of all)- \citet{siltanen2007room}d
+% 
+% Backscattering single consideration - \citet{LURTON,Etter2013}d
+% 
+% ISO and AES scattering measuring - \citet{rindel2001scattering}d
+% 
+% Scattering coefficients (+ too deep) - \citet{cox2006tutorial}d
+% 
+% Workflow simulation - \citet{bell1997simulation}

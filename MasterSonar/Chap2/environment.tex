@@ -1,8 +1,75 @@
 \section{Environment}
 
-Vastly literature have been written on ocean environment, from modeling its
+Extensive literature have been written on ocean environment, from modeling its
 behaviour to measuring its properties. Different simulation techniques have also
-been explored\cite{Etter2013}.
+been explored\cite{Etter2013}. The modeling presented here, althouth simple,
+completely suits the needs of a ray tracing technique, presented on section
+\ref{ss:raytheory}.
 
 \subsection{Modeling}
+
+Borrowed from computer graphics, the modeling properties of a scene objectes
+are the same for light and sound (given the high frequency limit for which ray
+theory is applicable). Two distinct factors are modeled, one is geometric,
+which defines the shape of the object, the other is acoustic, expressing how
+does it interact with sound.
+
+For the geometric part, two basic functions have to be provided: \textbf{intersection}
+and \textbf{normal}. \textbf{Intersection} takes a ray, defined by a origin point and a
+direction, and outputs the distance to the first intersection point with the
+object. If no intersection point is found, the distance is defined to be
+infinity. \textbf{Normal} receives a point on the surface of the object and
+return the normal vector at such a point.
+
+Any surface can be approximated by triagulation and have these functions more
+easily defined, but it is interesting to directly define for some geometric
+primitives. Plane, rectangle, sphere and cylinder were developed for this work.
+
+Two environments were constructed using these four geometric primitives. One
+box-like for the reconstruction part of this thesis, which is simple enough to
+study the properties of the mapping. Another, more complex and inspired on a
+water entrance of a hydroeletric powerplant, that exibits a richer sonar
+response with sound multipath and directional gain playing a more imporntant
+role.
+
+For the box-like structure, five planes were used thus determining a
+semi-infinite box with 8 meters width, 10 meters length and the bottom 3 meters
+from the origin. All planes are defined by a point and its normal vector.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lcc}
+Plane Number & Point & Normal Vector \\
+\hline
+0 & $( 0, 4, 0)$ & $( 0,-1, 0)$  \\
+1 & $( 0,-4, 0)$ & $( 0, 1, 0)$  \\
+2 & $( 5, 0, 0)$ & $(-1, 0, 0)$  \\
+3 & $(-5, 0, 0)$ & $( 1, 0, 0)$  \\
+4 & $( 0, 0,-3)$ & $( 0, 0, 1)$  \\
+\end{tabular}
+\caption{Five planes defining box-like environment walls.}
+\end{table}
+
+The more complex scene is composed of 5 rectangles, 2 planes and a sphere
+representing, respectively, 5 contrete walls, river floor and still surface
+water and a half-spherical montain of sediments. Rectangles are defined by a
+central point and two perpendicular vectors, the half sides, and spheres by a
+center and radius.
+
 \subsection{Characterization}
+
+Instead of defining a full BRDF (explained on section
+\ref{sss:rays}), three parameters are considered: \textbf{diffusion coefficient},
+\textbf{specular coefficient} and \textbf{shininess}. All three parameters may
+change at every point on the surface of an object, thus defining a texture, but
+for the sake of simplicity only constant values over the surface were
+considered.
+
+The \textbf{diffusion coefficient} and \textbf{specular coefficient} are,
+respectively, fractions of incident energy over a surface patch that reflects
+diffusely (as a lambertian reflector) and specularly. Reflections near
+specularity are weighed as Phong reflection for a less unrealiscaly abrupt
+change in reflection intensity. The \textbf{shininess} is the Phong parameter.
+These concepts are described in section \ref{sss:rays}.
+
+For the actual values used, a collection of 
