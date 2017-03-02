@@ -1,8 +1,9 @@
 \chapter{Introduction}
 Profiling sonars is the mimic laser scanner analog for underwater mapping,
-so most of the approaches on 3D underwater SLAM focus on applying laser scanner
-techniques to profiling sonars, e.g. point cloud reconstruction. On the other
-hand, imaging sonars are usually cheaper and gives more information per sound
+so most of the approaches on 3D underwater SLAM (\textbf{S}imultateous
+\textbf{L}ocalization \textbf{a}nd \textbf{M}apping) focus on applying laser
+scanner techniques to profiling sonars, e.g.
+point cloud reconstruction. On the other hand, imaging sonars are usually cheaper and gives more information per sound
 beam. So having the possibility of using imaging sonar and benefiting from its
 extra information is a win-win strategy.
 
@@ -11,13 +12,13 @@ of mapping, because, it can be interpreted in different ways, depending on the
 context.
 Taking what they all have in common, it is possible to generically define
 mapping as being the process of received environmental data to characterize
-the surroundings. In the understanding of characterization is where the
+the surroundings. The meaning characterization is where the
 difference lays, how the environs are going to be represented is dependent on
 the application.
 
 On a SLAM system there is no intrinsic need for a human readable map. In such a
 system, it may be more interesting to store the map information, the
-\"characterization\", only through its most representative features, if that is
+characterization, only through its most representative features, if that is
 what matters for the localization procedure.
 
 Still, if the map is to be seen by a human it should store more information

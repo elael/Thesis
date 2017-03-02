@@ -348,7 +348,7 @@ FUNCTION {format.full.names}
               if$
               t "others" =
                 { " et~al." * }
-                { " e " * t * }
+                { " and " * t * }
               if$
             }
           if$
@@ -683,7 +683,7 @@ FUNCTION {format.book.crossref}
       "In: "
     }
     { "v." volume tie.or.space.connect
-      " de " *
+      " of " *
     }
   if$
   editor empty$
@@ -1118,7 +1118,7 @@ FUNCTION {format.lab.names}
         'skip$
         { s #2 "{ff }{vv }{ll}{ jj}" format.name$ "others" =
             { " et~al." emphasize * }
-            { " e " * s #2 "{vv~}{ll}" format.name$ capify * }
+            { " and " * s #2 "{vv~}{ll}" format.name$ capify * }
           if$
         }
       if$

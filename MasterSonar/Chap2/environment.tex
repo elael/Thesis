@@ -72,4 +72,45 @@ specularity are weighed as Phong reflection for a less unrealiscaly abrupt
 change in reflection intensity. The \textbf{shininess} is the Phong parameter.
 These concepts are described in section \ref{sss:rays}.
 
-For the actual values used, a collection of 
+The actual values used came from a collection of sources in addition to
+experimentation and tacit knowledge (from previous sonar use), as these are
+difficult information to find in the literature.
+
+For concrete, \citet{chirp} studies the \textbf{reflection coefficient}, sum of
+\textbf{diffusion coefficient} and \textbf{specular coefficient}, to
+characterize the concrete's quality following earlier measurements of
+\citet{leslie1949ultrasonic}. The table provided on the article can be used in
+the other direction, to simulate such a concrete quality. The individual values of \textbf{diffusion coefficient} and \textbf{specular coefficient} still
+have to be determined and come from a educated guess based on considerations of
+smooth by \citet{Etter2013}, which claims that most of the energy goes as
+specular reflection for smooth surfaces. For
+simulation purposes it has been consided values between 80\% to 95\% of the reflected energy to be specular.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rc}
+Quality Of Concrete & Reflection Coefficient \\
+\hline
+Very good & $0.76$ or above  \\
+Good & $0.69$-$0.74$  \\
+Questionable & $0.62$-$0.69$  \\
+Poor & $0.48$-$0.62$  \\
+Very Poor & $0.48$ or less  \\
+\end{tabular}
+\caption{Quality of Concrete and Reflection Coefficient.
+(\citet{chirp,leslie1949ultrasonic})}
+\end{table}
+
+\citet{Etter2013}, also, provides equations relating wind speed with water
+surface reflection coeffiecient, which varies according to its roughness caused
+by the wind. For a still water there is amost no transmitted energy and all
+reflected energy is specular. For other materials, estimated values come from
+models as the one provided by \citet{miller2015real} on
+figure\ref{fig:materials}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{Chap2/fig/materials}
+	\caption{Materials reflective characteristics from \citet{miller2015real}.}
+	\label{fig:materials}
+\end{figure}
