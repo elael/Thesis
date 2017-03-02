@@ -19,7 +19,45 @@ and \textbf{normal}. \textbf{Intersection} takes a ray, defined by a origin poin
 direction, and outputs the distance to the first intersection point with the
 object. If no intersection point is found, the distance is defined to be
 infinity. \textbf{Normal} receives a point on the surface of the object and
-return the normal vector at such a point.
+return the normal vector at such a point. Algorithm \ref{alg:rectangle}
+exemplifies the \textbf{intersection} for a rectangle, the rays origin
+$\mathbf{O}$ and direction $\mathbf{D}$ are matrix with the concatenated
+information of all those whose intersection ought to be calculated.
+
+\begin{algorithm}
+\caption{Intersection for Rectangle}
+\label{alg:rectangle}
+\begin{algorithmic}
+\Function{Intersection}{$\mathbf{O},\mathbf{D}$}\Comment{$\mathbf{O}$
+is ray origin, $\mathbf{D}$ is direction} 
+
+\State $\Delta \gets center -
+\mathbf{O}$ \Comment{$center$ is the rectangle center}
+
+\State $n \gets \nicefrac{\vec{s_1} \times  \vec{s_1}}{\norm{\vec{s_1} \times  \vec{s_1}}}$
+\Comment{$\vec{s_1}$ and $\vec{s_1}$ are the rectangle's half-sides} 
+\State $T \gets \left[ \vec{s_0} ~ \vec{s_1} \right]^\dagger$
+\Comment{$^\dagger$ is pseudoinverse}
+\State $d \gets \nicefrac{\Delta \cdot n}{\mathbf{D} \cdot n}$
+\Comment{distance to intersection point}
+\State $P \gets \mathbf{D}d - \Delta$
+\Comment{$P$ are the intersection with the rectangle's plane}
+\State $R \gets T \cdot P$
+\Comment{$R$ are the intersection described on $\left[ \vec{s_0} ~ \vec{s_1}
+\right]$ basis}
+
+\ForAll{$i \in \left[0,\ldots,\text{size}(d)\right)$}
+\If {$d_i < 0$ or $|R_{i,0}|>1$ or $|R_{i,1}|>1$}
+\State $d_i \gets \infty$
+\Comment{Check ray direction and if hit within rectangle}
+\EndIf  
+\EndFor
+
+\Return $d$
+
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
 
 Any surface can be approximated by triagulation and have these functions more
 easily defined, but it is interesting to directly define for some geometric
