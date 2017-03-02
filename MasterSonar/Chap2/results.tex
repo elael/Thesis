@@ -1,3 +1,16 @@
 
 %\subsection{3D Enviroment Specifics}
 \section{Implementation and Results}
+
+The simulation follow the ray tracing technique outlined by
+\citet{bell1997simulation} for side scan sonar, but applies it to a forward
+looking sonar imaging sonar (section \ref{ss:avaible_models}). It also uses a
+noising adding step as suggested by \citet{coiras2009gpu} with statistics
+provided by \citet{maussang2007mean}.
+No movement induced distortion was considered, some approachs to add this
+feature is available on \citet{bell1999techniques,borawski2005sonar}.
+
+Sonar parameters follow a Tritech's Micron sonar\cite{micronsonar}
+information as output power, dynamic gain and sensibility were found on
+official Tritech's documentation\cite{micronsonar,micronmodem}. The directional
+gain was measured by the National Physical Laboratory, UK.
