@@ -7,7 +7,7 @@ completely suits the needs of a ray tracing technique, presented on section
 \ref{ss:raytheory}.
 
 \subsection{Modeling}
-
+\label{ss:modeling}
 Borrowed from computer graphics, the modeling properties of a scene objectes
 are the same for light and sound (given the high frequency limit for which ray
 theory is applicable). Two distinct factors are modeled, one is geometric,
@@ -53,7 +53,8 @@ is ray origin, $\mathbf{D}$ is direction}
 \EndIf  
 \EndFor
 
-\Return $d$
+
+\State \textbf{return} $d$
 
 \EndFunction
 \end{algorithmic}
@@ -70,7 +71,7 @@ water entrance of a hydroeletric powerplant, that exibits a richer sonar
 response with sound multipath and directional gain playing a more imporntant
 role.
 
-For the box-like structure, five planes were used thus determining a
+For the \textbf{box-like structure}, five planes were used thus determining a
 semi-infinite box with 8 meters width, 10 meters length and the bottom 3 meters
 from the origin. All planes are defined by a point and its normal vector.
 
@@ -88,13 +89,14 @@ Plane Number & Point & Normal Vector \\
 \caption{Five planes defining box-like environment walls.}
 \end{table}
 
-The more complex scene is composed of 5 rectangles, 2 planes and a sphere
+The more \textbf{complex scene} is composed of 5 rectangles, 2 planes and a sphere
 representing, respectively, 5 contrete walls, river floor and still surface
 water and a half-spherical montain of sediments. Rectangles are defined by a
 central point and two perpendicular vectors, the half sides, and spheres by a
 center and radius.
 
 \subsection{Characterization}
+\label{ss:characterization}
 
 Instead of defining a full BRDF (explained on section
 \ref{sss:rays}), three parameters are considered: \textbf{diffusion coefficient},
