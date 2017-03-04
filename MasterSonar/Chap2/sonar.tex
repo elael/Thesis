@@ -276,7 +276,28 @@ The sequence of transducers can be made into a two dimensional array
 
 \subsubsection{TVG - Time Varying Gain}\label{sss:tvg}
 
-%TODO - referencias na pasta TVG
+As sound waves propagates, they lose intensity through spreading and absorption.
+Spreading loss is usually considered to be and inverse quadratic
+law\cite{Etter2013}, as this is the general closed surface area progression for
+a time-like wavefront. But for cylindrical spreading it is a simple inverse law,
+and for perfect plane wave there is no loss.
+
+Absorption is conditional on the water characteristics and is modeled as an
+slow exponetial decay. Together with spreading, they are refeered as
+Transmission Loss ($\text{TL}$), in decibels (dB):
+
+\begin{equation*}
+\text{TL} = 20\log_{10}(r) + \alpha r
+\end{equation*}
+
+Where $r$ is the wave's total traveled distance and $\alpha$ a water dependent
+parameter (with order of magnitude of $\approx 10^{-2} \text{dB}/m$). Sonars use
+this equation, with a saturation around $40$dB, to compensate for the echo
+loss\cite{chu2006time}, and, as distance is inferred from time measurements,
+this compensative gain is named Time Varying Gain (TGV). \citet{chew2013object}
+estimated TGV gain for a Tritech's Micron and suggests that it agrees with the
+expected.
+
 
 \subsection{Available Models}
 \label{ss:avaible_models}

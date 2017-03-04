@@ -70,7 +70,7 @@ study the properties of the mapping. Another, more complex and inspired on a
 water entrance of a hydroeletric powerplant, that exibits a richer sonar
 response with sound multipath and directional gain playing a more imporntant
 role.
-
+\subsubsection{Box-like Environment}
 For the \textbf{box-like structure}, five planes were used thus determining a
 semi-infinite box with 8 meters width, 10 meters length and the bottom 3 meters
 from the origin. All planes are defined by a point and its normal vector.
@@ -78,7 +78,7 @@ from the origin. All planes are defined by a point and its normal vector.
 \begin{table}[ht]
 \centering
 \begin{tabular}{lcc}
-Plane Number & Point & Normal Vector \\
+Plane n$^o$ & Point & Normal Vector \\
 \hline
 0 & $( 0, 4, 0)$ & $( 0,-1, 0)$  \\
 1 & $( 0,-4, 0)$ & $( 0, 1, 0)$  \\
@@ -89,6 +89,7 @@ Plane Number & Point & Normal Vector \\
 \caption{Five planes defining box-like environment walls.}
 \end{table}
 
+\subsubsection{Complex Environment}
 The more \textbf{complex scene} is composed of 5 rectangles, 2 planes and a sphere
 representing, respectively, 5 contrete walls, river floor and still surface
 water and a half-spherical montain of sediments. Rectangles are defined by a
@@ -126,7 +127,7 @@ smooth by \citet{Etter2013}, which claims that most of the energy goes as
 specular reflection for smooth surfaces. For
 simulation purposes it has been consided values between 80\% to 95\% of the reflected energy to be specular.
 
-\begin{table}[ht]
+\begin{table}[hbt]
 \centering
 \begin{tabular}{rc}
 Quality Of Concrete & Reflection Coefficient \\
