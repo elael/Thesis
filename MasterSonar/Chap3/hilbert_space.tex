@@ -38,19 +38,19 @@ for every $f$ and $g$ in C$[a,b]$ as:
   \langle f,g\rangle = \int_a^b f(x)\overline{g(x)} \mathrm{d}x
 \end{equation}
 
-On any Hibert Space $H$ the norm induced by the inner product is:
+On any Hibert Space $\hs$ the norm induced by the inner product is:
 
 \begin{equation}
-  \| x \|_{_H} = \sqrt{ \langle x,x \rangle }
+  \| x \|_{_\hs} = \sqrt{ \langle x,x \rangle }
 \end{equation}
 
-where $x \in H$. And the subsequent metric is defined as:
+where $x \in \hs$. And the subsequent metric is defined as:
 
 \begin{equation}\label{eq::norm_metric}
-  d_{_H}(x,y) = \| x - y \|_{_H}
+  d_{_\hs}(x,y) = \| x - y \|_{_\hs}
 \end{equation}
 
-for any $x,y \in H$.
+for any $x,y \in \hs$.
 
 A vector space endowed with a inner product is a \textit{inner product space}
 (aka. pre-Hilbert space). For it to be a Hibert Space it also has to be complete
@@ -88,9 +88,9 @@ set of Lebesgue mensurable\footnote{The Lebesgue mensurability of a, bounded
 with compact support, function is a highly technical exigence and the existence
 of a bounded non-Lebesgue mensurable set (which allow the construction of such a
 function) is dependent on the axiomatic choice of the underlying set theory - it
-can only be proven with the adition of the \textit{choice axiom} to the standard
-ZF (Zermelo-Fraenkel) set of axioms. } functions that are square integrable
-(with the Lebesgue integral).
+can only be proven with the adition of the \textit{choice axiom} to the
+ZF (Zermelo-Fraenkel) set of axioms (ZFC). } functions that are square
+integrable (with the Lebesgue integral).
 
 Some exemples of Hilbert space are:
 
