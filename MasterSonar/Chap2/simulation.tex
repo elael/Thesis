@@ -265,7 +265,7 @@ fact that \(\omega = kc_0 \):
 
 \begin{equation}
 \label{eq:eikonal}
-\left| \nabla \tau \right| = \frac{1}{c_0}
+\norm{ \nabla \tau } = \frac{1}{c_0}
 \end{equation}
 
 The equation \ref{eq:eikonal} is known as the \textit{Eikonal equation} and
@@ -286,14 +286,16 @@ Where $r(s)$ is the path follow by the ray, and $s$ the ray length. To verify
 that it is a length parametrization square equation \ref{eq:ray} and use
 equation \ref{eq:eikonal} to find:
 
-\[ \left| \frac{\dif r}{\dif s} \right| = 1 \]
+\begin{equation*}
+\norm{\frac{\dif r}{\dif s}} = 1 
+\end{equation*}
 
 Showing that it is a unit norm tangent vetor. To find the ray path, first take
 the gradient of equation \ref{eq:eikonal} squared:
 
 \begin{subequations}
 \begin{equation}
-\nabla(\left| \nabla \tau \right|^2) = \nabla\left(\frac{1}{c_0^2}\right)
+\nabla(\norm{ \nabla \tau }^2) = \nabla\left(\frac{1}{c_0^2}\right)
 \end{equation}
 \begin{equation}
 2\coord{H}(\tau)\nabla\tau = 2\frac{1}{c_0}\nabla\left(\frac{1}{c_0}\right)
@@ -362,7 +364,7 @@ the first variation of the time functional is zero:
 
 \begin{equation*}
 \delta T[C] = \delta \int \frac{1}{c_0(\coord{x})}
-\left|\coord{x}'\right| \dif s = 0
+\norm{\coord{x}'} \dif s = 0
 \end{equation*}
 
 Here $\coord{x}(s)$ is a parametrization of the path $C$, $x'(s)$ the tangent
@@ -371,8 +373,8 @@ $C$. The \textit{Euler-Lagrange equations} give:
 
 
 \begin{equation*}
-\nabla\left(\frac{1}{c_0}\left|\coord{x}'\right|\right) - \frac{\dif}{\dif s}
-\nabla'\left(\frac{1}{c_0} \left|\coord{x}'\right|\right) = 0
+\nabla\left(\frac{1}{c_0}\norm{\coord{x}'}\right) - \frac{\dif}{\dif s}
+\nabla'\left(\frac{1}{c_0} \norm{\coord{x}'}\right) = 0
 \end{equation*}
 
 Where $\nabla'$ is the gradient taken on the tangent space contaning
@@ -380,11 +382,12 @@ $\coord{x}'$.
 Which become:
 
 \begin{equation*}
-\left|\coord{x}'\right|\nabla\left(\frac{1}{c_0}\right) =
-\frac{\dif}{\dif s}\left( \frac{1}{c_0} \frac{\coord{x}'}{\left|\coord{x}'\right|}\right)
+\norm{\coord{x}'}\nabla\left(\frac{1}{c_0}\right) =
+\frac{\dif}{\dif s}\left( \frac{1}{c_0}
+\frac{\coord{x}'}{\norm{\coord{x}'}}\right)
 \end{equation*}
 
-By considering a length parametrization $r$ such that $\left|r'\right|=1$, the
+By considering a length parametrization $r$ such that $\norm{r'}=1$, the
 result is the same as equation \ref{eq:raydirection}, so all the results follow.
 
 It is important to highlight that the single simplification from the wave
