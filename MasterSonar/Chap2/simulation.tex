@@ -1,19 +1,20 @@
 \section{Simulation}
 
-Works on \textit{computacional ocean
-acoustics}, the subfield of knowledge that explores the algorithms that model
-the ocean as an acoustic medium, are well documented by
+\textit{Computacional ocean
+acoustics} is the subfield of knowledge which explores algorithms that model
+the ocean as an acoustic medium. Works on this matter are well documented by
 \citet{Etter2013}. Most of these works focus on very long range simulations,
 with its most important features been the ocean floor and sub-bottom region.
 
-This work aim to reconstruct and simulate near-range partially closed
+This work aims to reconstruct and simulate near-range partially closed
 environments, as those created by humans. The motivation for such a choice comes
 from hydroeletrict power plant water intake, it is a corridor-like environment
 with possible obstacles on the bottom. This kind of envirnoment is not well
 covered on the underwater acoustics literature, as such, some of the simulations
-techniques are borrowed from the closelly related are of \textit{room acoustics}.
+techniques are borrowed from the closelly related area of \textit{room
+acoustics}.
 
-When constructing a simulation one has to consider the tradeoff between
+When constructing a simulation, one has to consider the trade-off between
 simplicity/perfomance/accuracy. There are several possible techniques with
 different applications and assumptions, this chapter will cover the most
 classic ones and further explore \textit{ray theory}, which has been used for
@@ -27,20 +28,20 @@ The idea behind sound simulation techniques is to solve the wave
 equation (eq. \ref{eq:wave}) considering all the physical interfaces as boundary
 conditions. The equation, however, cannot be analitically solved due to common
 present discontinuities caused by occlusions, specular highlights and other
-facts that result in large variations of the field over small regions of the
+facts that result in large variations of field over small regions of the
 domain of integration\cite{funkhouser2003survey}.
 
-The single most important reason that differentiate the several approches
+The single most important reason that differentiates the several approaches
 described here is the \textit{wave frequency}. For high-frequency (where sound
-speed do not very much in a wavelength scale) geometric methods (ray theory) are
+speed do not vary much in a wavelength scale) geometric methods (ray theory) are
 justifiable and preferable (in the computational sense) \cite{urick1979}. In the
 case of low/mid - frequency or in the presence of caustics\footnote{A region of
 high constructive interference that geometrically gives a point of infinity
-rays convegence.} other wave methods (e.g. finite elements, normal modes,
+rays convegence.}, other wave methods (e.g. finite elements, normal modes,
 parabolic approximation) should be applied.
 
 Instead of using the full wave equation, the methods work with a simplified
-time-independ version. It starts by assuming that the equation
+time-independent version. It can be assumed that the equation
 \ref{eq:wave}:
 
 \[ \nabla^2 p = \frac{1}{c^2_0}\frac{\partial^2}{\partial t^2} p \]
@@ -52,10 +53,10 @@ Has a solution where time dependence is a harmonic function:
 p(\coord{x},t) = \Re(\psi(\coord{x})e^{-i\omega t})
 \end{equation}
 
-Here $\coord{x}$ is the space coordinate while $t$ the time. The exponential function
-considered is the complex exponetial with $i$ been the imaginary unit. The
-real part $\Re(\parm)$ is taken as $p$ is real valued, but $\phi(\coord{x})$ is a
-complex valued function over space.
+Here $\coord{x}$ is the space coordinate while $t$ is the time. The exponential
+function considered is the complex exponetial with $i$ being the imaginary unit.
+The real part $\Re(\parm)$ is taken as $p$ is real-valued, but $\phi(\coord{x})$
+is a complex-valued function over space.
 %\[ \frac{\partial}{\partial t}\psi = 0 \]
 %\[ \nabla^2 \vartheta = 0 \]
 
@@ -110,10 +111,9 @@ plane, the equation will be satisfied for all $t$ if:
 Equation \ref{eq:helmholtz} is known as the (homogeneous) \textit{Helmholtz
 equation} and describe the time-independent part of the wave propagation. The
 values of $k$ and $\omega$ can be phisically interpreted as the spatial and
-tempral angular frequency of the wave. As the wave equation is a linear
-equation superposition applies, it is resoanble to take into consideration
-one wave frequency at a time and superpose all these harmonics by Fourier
-synthesis\cite{Lefebvre}.
+temporal angular frequency of the wave. As the wave equation is 
+linear, superposition applies, being resoanable to take into consideration one
+wave frequency at a time and superpose all these harmonics by Fourier synthesis\cite{Lefebvre}.
 
 Fourier synthesis is the calculation by \textit{Helmholtz
 equation} of each independent frequency: 
@@ -129,7 +129,7 @@ These equations are the inverse and forward Fourier transform, respetively.
 \subsubsection{FEM - Finite Element Method}
 
 Finite Element Methods try to numerically find a solution to the wave equation
-by discretizing the space, and something time. It considers the equation
+by discretizing space, and time in some cases. It considers the equation
 \ref{eq:wave} for inside the enviroment and the boundary conditions:
 
 \[  \frac{\partial}{\partial \mathbf{n}}p= -\rho_0 \frac{\partial^2
@@ -143,7 +143,7 @@ medium density and $x_n$ is the displacement of the acoustic membrane. The
 reflection coefficient $R_c$ might depend on the interface, but as FEM are used
 for small frequency bands, it is a minor problem\cite{deines2006comparative}.
 
-To create a linear system, the pressure fuction is approximated by a
+To create a linear system, the pressure function is approximated by a
 superposition of functions, e.g. sum of piecewise quadratic functions \(
 p(\coord{x},t)= \sum_{i=0}^N p_i(t) \varphi_i(\coord{x}) \), applied to the wave and boundary
 equation and integrated w.r.t. $\varphi_i$. Giving a large set of ordinary
@@ -194,7 +194,7 @@ C =
   \end{bmatrix}
 \]
  
- There can be made more simplification, but it is enough to highlight the
+ There can be made more simplifications, but it is enough to highlight the
  limitations of the method (For more details, refer to
  \citet{deines2006comparative}). The dimension of the state is related to
  the number of functions used to approximate $N$ (two times without any further
@@ -210,18 +210,18 @@ C =
  technique can only be applied to low-frequency signals, which is not applicable
  to high-frequency sonar as envisoned by this work. 
 
-There is also a boundary method that use surface integral form of the wave
-equation, but suffer from similar restrictions. \citet{funkhouser2003survey}
+There is also a boundary method that uses surface integral form of the wave
+equation, but suffers from similar restrictions. \citet{funkhouser2003survey}
 gives a brief introduction of the subject.
 
 \subsubsection{Ray theory}
 \label{sss:raytheory}
 
-Geometric approachs like ray theory dates back to Newton and the corpuscular
-theory of light. Later found to be better discribed as a wave, the geometric
-theory of light still a very important and usefull tool. The sound ray theory
-follow a similar path, they both apply to high frequency waves, but typical
-sound waves have low/mid-frequency while visible light have a much higher
+Geometric approaches like ray theory dates back to Newton and the corpuscular
+theory of light. Later found to be better described as a wave, the geometric
+theory of light is still a very important and usefull tool. The sound ray theory
+follows a similar path, they both apply to high frequency waves, but typical
+sound waves have low/mid-frequency while visible light has a much higher
 frequency.
 
 To describe the ray from the wave theory, it starts by solving the Helmholtz
@@ -234,10 +234,10 @@ through a polar decomposition\cite{buckingham1992ocean,torres2007modeling}:
 \end{equation}
 
 
-Here $\tau(\coord{x})$ can be interpreted as the time it takes for sound to
+Here $\tau(\coord{x})$ can be interpreted as the time it takes the sound to
 reach the location $\coord{x}$ and $\mathcal{A}(\coord{x})$ the amplitude of the
 signal at that point. Substituting it back to equation \ref{eq:helmholtz} and
-separing real and imaginary parts, two equations are obtained (droping
+separating real and imaginary parts, two equations can be obtained (droping
 arguments):
 
 \begin{subequations}
@@ -252,7 +252,7 @@ arguments):
 \end{equation}
 \end{subequations}
 
-The geometric approximation is the assumption that the amplitude do not change
+The geometric approximation is the assumption that the amplitude does not change
 much on the wavelenth scale, mathematically expressed as:
 
 \begin{equation}
@@ -260,7 +260,7 @@ much on the wavelenth scale, mathematically expressed as:
 \frac{\nabla^2\mathcal{A}}{\mathcal{A}} \ll k^2
 \end{equation}
 
-Applying the this approximation to equation \ref{eq:preeikonal} and using the
+Applying this approximation to equation \ref{eq:preeikonal} and using the
 fact that \(\omega = kc_0 \):
 
 \begin{equation}
@@ -269,13 +269,13 @@ fact that \(\omega = kc_0 \):
 \end{equation}
 
 The equation \ref{eq:eikonal} is known as the \textit{Eikonal equation} and
-defines the sufaces of constant phase. Equation \ref{eq:preeikonalamp}, called
+defines the surfaces of constant phase. Equation \ref{eq:preeikonalamp}, called
 the transport equation, can then be used to find the pressure amplitude of the
-wave, but when treating the instensity instead of pressure amplitude conservation of energy can be used, as
+wave. However,  when treating instensity conservation of energy can be used as
 will be seen later on subsection \ref{ss:raytheory}.
 
 The rays are, by definition, the perpendicular lines to the wavefronts defined
-by equation \ref{eq:eikonal}. Which, if a length parametrization, is:
+by equation \ref{eq:eikonal}. Which, with length parametrization, is:
 
 \begin{equation}
 \label{eq:ray}
