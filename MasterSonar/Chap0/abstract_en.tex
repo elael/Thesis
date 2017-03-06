@@ -1,51 +1,49 @@
-This proposal refers to a system for 3D underwater mapping. It consists of a
-hardware plus a software that is the main objective of the research. The
-chosen hardware will constrain the software options and decisions on the
-underling algorithm.
-
-A mapping system usually comes together with a localization algorithm in what is
-called a SLAM (\textit{Simultaneous Localization and Mapping}). SLAM is an
-active topic of research and has remarkable solutions using laser scanners,
-%http://www.frc.ri.cmu.edu/~jizhang03/Publications/RSS_2014.pdf
-%http://www.frc.ri.cmu.edu/~jizhang03/Publications/IROS_2014.pdf
+This dissertation on 3D underwater simulation and mapping consists of two pieces
+of software that is the main objective of the research, one for simulation and
+another for mapping. A mapping system usually comes together with a localization
+algorithm in what is called a SLAM (\textit{Simultaneous Localization and
+Mapping}). SLAM is an active topic of research and has remarkable solutions
+using laser scanners,
+% http://www.frc.ri.cmu.edu/~jizhang03/Publications/RSS_2014.pdf
+% http://www.frc.ri.cmu.edu/~jizhang03/Publications/IROS_2014.pdf
 but most of the underwater SLAM is focused on 2D maps treating the environment
-as a floor plant or as 2.5D maps of the seafloor.
+as a floor plant or as 2.5D maps on the seafloor.
 
-The reason for the problematic of underwater mapping, and thus SLAM, in contrast
-with laser based systems used outside water is mainly its sensor. While lasers
-are precise low-noise sensors, sonars, which are the standard sensor for
-underwater SLAM, are the opposite.
+The reason for the problematic of underwater mapping, and thus SLAM, takes part
+in its sensor, i.e. sonars. Contrasting to laser-based systems used outside
+water which are precise low-noise sensors.
 
-Sonars measures the sound on the water, its main parts are the hydrophones. They
-can emit and receive sound waves just like microphones and headphones do in the
-air. They can be specialized to listen the environment and interpret its sounds,
-usually by their spectrum, which is the case for passive sonars. Or they can
-emit a beam of sound and wait for the reception of the echo.
+The standard sensor, sonar, is composed of hydrophones which allows them to
+measure sound in water. Therefore, enabling them to emit and receive sound
+waves, resembling microphones and speakers. They are divided in passive sonars
+and active sonars. Passive sonars can be applied to listen its surroundings,
+interpreting the sounds by their spectrum.
 
- When talking about active sonars, the ones that measures sound echo emitted
-by itself, there are two important classes based on its beam directional gain:
-Profiling and Imaging.
+Meanwhile, active sonars emit a beam of sound in order to perceive  and measure
+the environment by the echo created. Active sonars are classified in two
+important categories, profiling and imaging, based on its beam directional gain.
 
-Profiling have a narrow pencil shaped beam, with an aperture of about $1.7$
-degrees, i.e. the half power point. It is meant to have a similar response of
-what is expected from a laser scanner, but working with sound waves. At the end
-of the day, they does not correlate much because they differ greatly on noise,
-response time and spatial resolution.
+Profilings have a narrow pencil shaped beam  with an aperture of about $1.7$
+degrees, i.e. the half power point. It is meant to have a similar response of a
+laser scanner, despite working with sound waves. At last, they do not correlate
+much, since they differ greatly on noise, response time and
+spatial resolution.
 
-Imaging sonars will be the focus of this work, they make use of a much wider
-than Profiling sonar fan shaped beam. It use to have around $3$ degrees angle of
-aperture in the vertical direction, but keeping same angular resolution on the
+Imaging sonars will be the focus of this work, they  employ a much wider beam
+than profiling sonar. It is used to having around $3$ degrees angle of aperture
+in the vertical direction, although keeping its same angular resolution on the
 horizontal plane.
-It does not have to precisely aim to provide a localized information about the
-target, but rather a more general information, being able to infer some information
-about the presence of objects below or above its horizontal plane. From this
-point of view, each beam gives a concentrated information about the region it
-ensonifies, so fusing the information of multiple beams from different
-directions and angles is expected to give a better outline of the environment
-than just using isolated sonar responses.
+It does not have provide precise localization of the target, but a rather more
+general information. Therefore, being able to infer the presence of objects
+below or above its horizontal plane.
+From this point of view, each beam gives broad  information about the region it
+ensonifies. Thus, fusing multiple beams from different directions and angles,
+containing overlaping areas,  is expected to provide a better outline of the
+environment than just using isolated sonar responses.
 
-Besides classification based on beam shape, there are others as multi- or single
-beam. Firing multiple beams at once gives a faster rate, as one does not need to
-wait for the response to arrive before redirecting the beam to the next angular
-position. But the least expensive still single beam and is the one that is going
-to be considered.
+Another classification, besides the one mentioned above, is the multi- or single
+beam. Firing multiple beams at once gives a faster rate, not requiring waiting
+for a response before redirecting the beam to its next angular position. When
+working with multibeam sonar, its downside remains its market value. Contrasting
+to the cheaper option, the single beam sonar, which will be further studied in
+this thesis.
