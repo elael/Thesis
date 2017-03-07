@@ -14,16 +14,55 @@ linear operators on Hibert Spaces. The evaluation functional \(\delta_x: \hs \to
 a\delta_x(f)+b\delta_x(g)\). When the evaluation functional is continuous on
 $\hs$, $\hs$ is said to be a RKHS.
 
+Although $L^2([a,b])$ is no a RKHS (it is not even a proper space of functions,
+but instead a space of classes of equivalences of functions), its bandlimited
+($L^2 \cap L^1$) version $\hs_{L^2} = {f\in L}$
+
 Riesz representation theorem is an extension, for Hibert Spaces, of the
 classical isomorphism between a finite vector space $\mathcal{V}$ and its dual
 $\mathcal{V}^*$, the space of linear functions on $\mathcal{V}$. It states that
-for every element $\phi \in \hs^*$, where $\hs^*$ is the space
+for every element $\varphi \in \hs^*$, where $\hs^*$ is the space
 \textit{continuous} linear functionals from $\hs$ into $\mathbb{R}$ (dual
-space), there exist a unique $y_\phi \in \hs$, defined by:
+space), there exist a unique $f_\varphi \in \hs$, defined by:
+\begin{equation*}
+\varphi(g)= \hip{g}{f_\varphi}\qquad \forall g \in \hs
+\end{equation*}
+
+As consequece, the evaluation functional \(\delta_x\) has a representation on
+\(\hs\) as \(k_x\), the reproducing property:
+\begin{equation*}
+f(x) = \delta_x(f) = \hip{f}{k_x}\qquad \forall g \in \hs
+\end{equation*}
+
+The important ideia of pointwise convergence can be recovered:
+
+\begin{subequations}
+\begin{align}
+\norm{f(x)-g(x)} &= \norm{\delta_x(f-g)}\\
+			  &= \norm{\hip{f-g}{k_x}}\\
+			  &\leq \hnorm{f-g}\hnorm{k_x}\label{eq:cs_ineq}
+\end{align}
+\end{subequations}
+
+Where Cauchy-Schwarz inequality was used on line \ref{eq:cs_ineq} and
+\(\hnorm{k_x}\) acts as a scaling factor the closiness at each specific $x$.
+
+The evaluation functional represented in $\hs$ as $k_x$ can be seen as a
+function itself. As such, its evaluation at every point $y$ of $\mathcal{X}$
+point contruct a two-variable function, the kernel:
+
 \begin{equation}
-\phi(x)= \hip{x}{y_\phi}
+k_x(y) = K(x,y) = \hip{k_x}{k_y}
 \end{equation}
 
- As consequece
+The kernel function \(K:\mathcal{X}\times\mathcal{X}\to\mathbb{R}\) is
+symmetric (because this is the real case) and positive definite, as direct consequence of
+inner product definition. The converse, however, is a result of the
+Moore-Aronszajn theorem which says that for every symmetric positive definite
+function $K(\parm,\parm)$ (kernel) on \(\mathcal{X}\times\mathcal{X}\) there is a unique
+Hilbert space of functions on \(\mathcal{X}\) for which $K$ is a reproducing
+kernel.
+
+ 
 
 \citet{berlinet2011reproducing} -  Quase tudo sobre RKHS
