@@ -50,7 +50,7 @@ Has a solution where time dependence is a harmonic function:
 
 \begin{equation}
 \label{eq:pressurepsi}
-p(\coord{x},t) = \Re(\psi(\coord{x})e^{-i\omega t})
+p(\coord{x},t) = \Re(\psi(\coord{x})\mathrm{e}^{-i\omega t})
 \end{equation}
 
 Here $\coord{x}$ is the space coordinate while $t$ is the time. The exponential
@@ -63,8 +63,8 @@ is a complex-valued function over space.
 Substituting it back into equation \ref{eq:wave}, gives
 (dropping explicit parameters again):
 
-\[ \Re(\nabla^2 \psi e^{-i\omega t}) =
-\Re(-(\tfrac{\omega}{c_0})^2 \psi e^{-i\omega t})\]
+\[ \Re(\nabla^2 \psi \mathrm{e}^{-i\omega t}) =
+\Re(-(\tfrac{\omega}{c_0})^2 \psi \mathrm{e}^{-i\omega t})\]
 
 % \[ \frac{\nabla^2 \psi}{\psi} = \frac{1}{c_0^2\vartheta} \frac{\partial^2}{\partial
 % t^2}\vartheta  \]
@@ -72,9 +72,9 @@ Substituting it back into equation \ref{eq:wave}, gives
 Defining $k \equiv \tfrac{\omega}{c_0} $ (a.k.a. the wave number) and rearanging
 terms:
 
-\[ \Re((\nabla^2 \psi -k^2 \psi) e^{-i\omega t}) = 0\]
+\[ \Re((\nabla^2 \psi -k^2 \psi) \mathrm{e}^{-i\omega t}) = 0\]
 
-As the harmonic $e^{-i\omega t}$ is equivalent to a rotation in the complex
+As the harmonic $\mathrm{e}^{-i\omega t}$ is equivalent to a rotation in the complex
 plane, the equation will be satisfied for all $t$ if:
 
 \begin{equation}
@@ -118,11 +118,11 @@ wave frequency at a time and superpose all these harmonics by Fourier synthesis\
 Fourier synthesis is the calculation by \textit{Helmholtz
 equation} of each independent frequency: 
 
-\[ \psi_\omega(\coord{x}) = \int_{-\infty}^\infty p(\coord{x},t)e^{i\omega t}\dif t \]
+\[ \psi_\omega(\coord{x}) = \int_{-\infty}^\infty p(\coord{x},t)\mathrm{e}^{i\omega t}\dif t \]
 
 And reconstruct the wave equation back by:
 
-\[ p(\coord{x},t) = \int_{-\infty}^\infty\psi_\omega(\coord{x})e^{-i\omega t}\dif\omega \]
+\[ p(\coord{x},t) = \int_{-\infty}^\infty\psi_\omega(\coord{x})\mathrm{e}^{-i\omega t}\dif\omega \]
 
 These equations are the inverse and forward Fourier transform, respetively.
 
@@ -230,7 +230,7 @@ through a polar decomposition\cite{buckingham1992ocean,torres2007modeling}:
 
 \begin{equation}
 \label{eq:psi}
-\psi(\coord{x}) = \mathcal{A}(\coord{x})e^{iw\tau(\coord{x})}
+\psi(\coord{x}) = \mathcal{A}(\coord{x})\mathrm{e}^{iw\tau(\coord{x})}
 \end{equation}
 
 
@@ -403,7 +403,7 @@ $\mathbb{E}[\parm]$ means the expection for clarity.}:
 
 
 \begin{equation}\label{eq:intensity_psi}
-I = g_0~\mathbb{E}[\norm{\psi}^2]
+I = g_0~\mathbb{E}[\abs{\psi}^2]
 \end{equation}
 
 Where $g_0 = \tfrac{1}{\rho c_0}$ (the inverse of the characteristic impedance),
@@ -411,7 +411,7 @@ $I$ the intensity and $\phi$ the wave.
 For a single ray (equation \ref{eq:psi}) it is:
 
 \begin{equation*}
-I = g_0~\mathbb{E}[\norm{\mathcal{A}}^2]
+I = g_0~\mathbb{E}[\abs{\mathcal{A}}^2]
 \end{equation*}
 
 To consider the contribution of a set of incoherent rays $\psi_i$ (i.e.
@@ -437,15 +437,15 @@ full wave (equation \ref{eq:wavesum}) is:
 
 \begin{equation*}
 \begin{split}
-I &= g_0~\mathbb{E}\left[\lVert \sum_i \psi_i \rVert ^2\right] =
+I &= g_0~\mathbb{E}\left[\abs{ \sum_i \psi_i } ^2\right] =
 g_0~\mathbb{E}\left[ (\sum_i \psi_i)(\sum_j \psi_j)^*\right] \\
-&= g_0~\mathbb{E}\left[\sum_i \norm{\psi_i}^2 + \sum_{i \neq j} \psi_i
+&= g_0~\mathbb{E}\left[\sum_i \abs{\psi_i}^2 + \sum_{i \neq j} \psi_i
 \psi_j^*\right] \\
-&= g_0~\mathbb{E}\left[\sum_i \norm{\psi_i}^2\right]  +
+&= g_0~\mathbb{E}\left[\sum_i \abs{\psi_i}^2\right]  +
 g_0~\mathbb{E}\left[\sum_{i \neq j} \psi_i \psi_j^*\right] \\
-& = g0~\sum_i \mathbb{E}\left[\norm{\psi_i}^2\right]  + g_0~\sum_{i \neq j}
+& = g0~\sum_i \mathbb{E}\left[\abs{\psi_i}^2\right]  + g_0~\sum_{i \neq j}
 \mathbb{E}[\psi_i \psi_j^*] \\
-& = \sum_i g_0\mathbb{E}\left[\norm{\psi_i}^2\right]
+& = \sum_i g_0\mathbb{E}\left[\abs{\psi_i}^2\right]
 \end{split}
 \end{equation*}
 
@@ -543,7 +543,7 @@ Hankel fucntion and evaluate the contour integral, obtaining\cite{Etter2013}:
 \begin{equation}
 \label{eq:normalsolution}
 \psi =
-g(r)\sum_n{\frac{u_n(z)\overline{u_n(z_s)}}{\sqrt{k_n}}e^{i(k_nr-\tfrac{\pi}{4})-\delta_nr}}
+g(r)\sum_n{\frac{u_n(z)\overline{u_n(z_s)}}{\sqrt{k_n}}\mathrm{e}^{i(k_nr-\tfrac{\pi}{4})-\delta_nr}}
 \end{equation}
 
 Here $g(r)$ is a general function of the range and $\delta_n$ the attenuation
@@ -698,7 +698,7 @@ respect to the incident and reflected(scattered) angles
 \cite{united1977geometrical,cox2004acoustic}:
 
 \begin{equation}
-\label{eq:lambert}
+\label{eq:lambertian}
 I_r \propto	 I_i \cos(\theta_i) \cos(\theta_r)
 \end{equation}
 

@@ -1,6 +1,6 @@
 
 \section{Hilbert Space}
-
+\label{s:hilbert}
 A Hilbert Space is a complete inner product space \cite{HS-YN:11}. It is a
 complete metric space with respect to the metric induced by its inner product
 (which in turn can be thought indirectly by it's induced norm). A nice picture
@@ -14,17 +14,18 @@ An inner product space\cite{HS-HJNB:00} is a (possibly infinite dimensinal)
 vector space $V$ over $\mathbb{C}$ (or $\mathbb{R}$ by restriction ), together
 with a map (called the \textbf{inner product}):
 
-\[  \langle\cdot,\cdot\rangle: V \times V \to \mathbb{C} \]
+\[  \langle\cdot,\cdot\rangle_{\scriptscriptstyle V}: V \times V \to \mathbb{C}
+\]
 
 Satisfing the following properties, for all $x,y,z \in V$ and all $\mu, \lambda
 \in \mathbb{C}$:
 
 \begin{enumerate}[I]
-  \item \(  \langle x,\lambda y + \mu z  \rangle = \lambda\langle	 x,y\rangle +
-  \mu \langle x,z \rangle \) (linear in the second argument)
-  \item \( \langle x,y \rangle = \overline{\langle y,x \rangle } \) (Hermitian
-  symmetric)
-  \item  \( \langle x,x \rangle \geq 0 \) and \( \langle x,x \rangle = 0
+  \item \(  \langle x,\lambda y + \mu z  \rangle_{\scriptscriptstyle V} = \lambda\langle	
+  x,y\rangle_ {\scriptscriptstyle V} + \mu \langle x,z \rangle_{\scriptscriptstyle V} \) (linear in the second argument)
+  \item \( \langle x,y \rangle_{\scriptscriptstyle V} = \overline{\langle y,x \rangle_{\scriptscriptstyle V} } \)
+  (Hermitian symmetric)
+  \item  \( \langle x,x \rangle_{\scriptscriptstyle V} \geq 0 \) and \( \langle x,x \rangle_{\scriptscriptstyle V} = 0
   \Leftrightarrow x = 0 \) (positive definite)
 \end{enumerate}
 
@@ -35,19 +36,20 @@ complex (or real) valued continuous functions on the interval $[a,b]$, defined,
 for every $f$ and $g$ in C$[a,b]$ as:
 
 \begin{equation}\label{eq::func_inner}
-  \langle f,g\rangle = \int_a^b f(x)\overline{g(x)} \mathrm{d}x
+  \langle f,g\rangle_{\scriptscriptstyle \text{C}[a,b]} = \int_a^b
+  f(x)\overline{g(x)} \mathrm{d}x
 \end{equation}
 
 On any Hibert Space $\hs$ the norm induced by the inner product is:
 
 \begin{equation}
-  \| x \|_{_\hs} = \sqrt{ \langle x,x \rangle }
+  \hnorm{x} = \sqrt{ \hip{x}{x} }
 \end{equation}
 
 where $x \in \hs$. And the subsequent metric is defined as:
 
 \begin{equation}\label{eq::norm_metric}
-  d_{_\hs}(x,y) = \| x - y \|_{_\hs}
+  d_{_\hs}(x,y) = \hnorm{ x - y }
 \end{equation}
 
 for any $x,y \in \hs$.
@@ -101,10 +103,10 @@ Some exemples of Hilbert space are:
   $(c_1,c_2,c_3,\ldots)$ with $c_i \in \mathbb{C}$ and $\sum_{i=1}^\infty |c_i|^2 <
   \infty$, is a Hilbert space with the inner product defined as: Given two sequeces
   $x=(x_1,x_2,x_3,\ldots)$ and $y=(y_1,y_2,y_3,\ldots)$, define $\langle x,y
-  \rangle = \sum_{i=1}^\infty x_i \bar{y_i}$.
+  \rangle_{\scriptscriptstyle \ell^2} = \sum_{i=1}^\infty x_i \bar{y_i}$.
   \item Fourier series can be seen as the representation of a square-integrable
-  function on the interval $[0,1]$ (member of $L^2([0,1])$) on the orthogonal
-  basis $\{e^{2\pi i n \theta} : n \in \mathbb{Z}\}$ with the
+  function on the interval $[0,1]$ (member of $L^2[0,1]$) on the orthogonal
+  basis $\{\mathrm{e}^{2\pi i n \theta} : n \in \mathbb{Z}\}$ with the
   inner product given by \ref{eq::func_inner}.
 \end{itemize}
 

@@ -1,11 +1,13 @@
 \section{RKHS - Reproducing Kernel Hilbert Space}
 
+\subsection{The Evaluation Functional}
+\label{ss:eval_func}
 A \textit{Reproducing Kernel Hilbert Space}, RKHS for short, is a special kind
 of Hibert Space of functions. In a RKHS, closeness in the sense of the metric is
 actual pontwise proximity. That is to say, if two real-valued functions $f$ and
 $g$ of a (non-empty) set $\mathcal{X}$ belong to a RKHS $\hs$ ($f,g \in \hs
 \subset \mathbb{R}^\mathcal{X}$), then whenever $\hnorm{f-g}$ is small so is
-$\norm{f(x)-g(x)}$ for all $x \in \mathcal{X}$\cite{berlinet2011reproducing}.
+$\abs{f(x)-g(x)}$ for all $x \in \mathcal{X}$\cite{berlinet2011reproducing}.
 
 A more formal and useful characterization of a RKHS is consequece of studying
 linear operators on Hibert Spaces. The evaluation functional \(\delta_x: \hs \to
@@ -14,18 +16,58 @@ linear operators on Hibert Spaces. The evaluation functional \(\delta_x: \hs \to
 a\delta_x(f)+b\delta_x(g)\). When the evaluation functional is continuous on
 $\hs$, $\hs$ is said to be a RKHS.
 
-Although $L^2([a,b])$ is no a RKHS (it is not even a proper space of functions,
+Although $L^2[a,b]$ is not a RKHS (it is not even a proper space of functions,
 but instead a space of classes of equivalences of functions), its bandlimited
-($L^2 \cap L^1$) version $\hs_{L^2} = {f\in L}$
+($L^2 \cap L^1$) version $PW_\pi := \left\{f\in L^2(\mathbb{R}) |~
+\text{supp}~\mathcal{F}(f) \subseteq [-\pi,\pi]\right\}$, for example, has a
+continuous evaluation functional. Here $\mathcal{F}:L^2(\mathbb{R})\to
+L^2[-\pi,\pi]$ is the fourier transform\cite{trefethen1996finite}:
+
+\begin{subequations}
+\begin{equation}
+\mathcal{F}(f) = \frac{1}{\sqrt{2\pi}}\int f(t)\mathrm{e}^{-i\omega t}\dif t
+\qquad f \in L^2(\mathbb{R})
+\end{equation}
+\begin{equation}
+\label{eq:inv_fourier}
+\mathcal{F}^{-1}(\hat f) = \frac{1}{\sqrt{2\pi}}\int_{-\pi}^\pi
+\hat f(\omega)\mathrm{e}^{i\omega t}\dif \omega \qquad \hat f \in L^2[-\pi,\pi]
+\end{equation}
+\end{subequations}
+
+The proof of continuity for the evaluation functional on $PW_\pi$ relies on the
+inverse Fourier transform \ref{eq:inv_fourier}, Cauchy-Schwarz's and Parseval's
+theorems, used on equations \ref{eq:cont_four}, \ref{eq:cont_cs} and
+\ref{eq:cont_par} respectively.
+For $f,g \in PW_\pi$ it goes as follows:
+
+\begin{subequations}
+\begin{align}
+\abs{\delta_x f-\delta_x g} &= \abs{f(x)-g(x)}\\
+			  &=\abs{ \mathcal{F}^{-1}(\mathcal{F}(f-g)) }\\
+			  &=\abs{ \ip{\mathcal{F}(f-g)}{\frac{\mathrm{e}^{-i\omega
+			  t}}{\sqrt{2\pi}}}_{\scriptscriptstyle L^2[-\pi,\pi]} } \label{eq:cont_four}
+			  \\
+			  &\leq
+			  \norm{f-g}_{\scriptscriptstyle
+			  L^2[-\pi,\pi]}\norm{\frac{\mathrm{e}^{-i\omega x}}{\sqrt{2\pi}}}_{\scriptscriptstyle L^2[-\pi,\pi]} \label{eq:cont_cs} \\
+			  &= \norm{f-g}_{\scriptscriptstyle L^2(\mathbb{R})} \label{eq:cont_par}
+\end{align}
+\end{subequations}
+
+Other examples of RKHSs will be further explore as its relation to kernels are
+developped.
+
+\subsection{Reproducing Kernels}
 
 Riesz representation theorem is an extension, for Hibert Spaces, of the
 classical isomorphism between a finite vector space $\mathcal{V}$ and its dual
 $\mathcal{V}^*$, the space of linear functions on $\mathcal{V}$. It states that
-for every element $\varphi \in \hs^*$, where $\hs^*$ is the space
+for every element $\phi \in \hs^*$, where $\hs^*$ is the space
 \textit{continuous} linear functionals from $\hs$ into $\mathbb{R}$ (dual
-space), there exist a unique $f_\varphi \in \hs$, defined by:
+space), there exist a unique $f_\phi \in \hs$, defined by:
 \begin{equation*}
-\varphi(g)= \hip{g}{f_\varphi}\qquad \forall g \in \hs
+\phi(g)= \hip{g}{f_\phi}\qquad \forall g \in \hs
 \end{equation*}
 
 As consequece, the evaluation functional \(\delta_x\) has a representation on
@@ -38,13 +80,13 @@ The important ideia of pointwise convergence can be recovered:
 
 \begin{subequations}
 \begin{align}
-\norm{f(x)-g(x)} &= \norm{\delta_x(f-g)}\\
-			  &= \norm{\hip{f-g}{k_x}}\\
-			  &\leq \hnorm{f-g}\hnorm{k_x}\label{eq:cs_ineq}
+\abs{f(x)-g(x)} &= \abs{\delta_x(f-g)}\\
+			  &= \abs{\hip{f-g}{k_x}}\\
+			  &\leq \hnorm{f-g}\hnorm{k_x}\label{eq:pw_cs_ineq}
 \end{align}
 \end{subequations}
 
-Where Cauchy-Schwarz inequality was used on line \ref{eq:cs_ineq} and
+Where Cauchy-Schwarz inequality was used on line \ref{eq:pw_cs_ineq} and
 \(\hnorm{k_x}\) acts as a scaling factor the closiness at each specific $x$.
 
 The evaluation functional represented in $\hs$ as $k_x$ can be seen as a
@@ -56,13 +98,81 @@ k_x(y) = K(x,y) = \hip{k_x}{k_y}
 \end{equation}
 
 The kernel function \(K:\mathcal{X}\times\mathcal{X}\to\mathbb{R}\) is
-symmetric (because this is the real case) and positive definite, as direct consequence of
+symmetric (because this is the real case) and positive definite as direct consequence of
 inner product definition. The converse, however, is a result of the
 Moore-Aronszajn theorem which says that for every symmetric positive definite
 function $K(\parm,\parm)$ (kernel) on \(\mathcal{X}\times\mathcal{X}\) there is a unique
-Hilbert space of functions on \(\mathcal{X}\) for which $K$ is a reproducing
-kernel.
+Hilbert space $\hs$ of functions (RKHS) on \(\mathcal{X}\) for which $K$ is a
+reproducing kernel. The reproducing property of the kernel is:
 
- 
+\begin{equation}
+f(x) = \hip{K(x,\parm)}{f} \qquad f \in \hs
+\end{equation}
 
-\citet{berlinet2011reproducing} -  Quase tudo sobre RKHS
+Examples of common used kernels:
+\begin{itemize}
+  \item Gaussian Kernel/Radial Basis Fucntion Kernel (RBF)
+  \begin{equation*}
+  K(x,y) = \e^{-\gamma\norm{x-y}^2} \qquad \gamma \in \mathbb{R}^+
+  \end{equation*}
+  \item Laplacian Kernel
+  \begin{equation*}
+  K(x,y) = \e^{-\lambda\norm{x-y}} \qquad \lambda \in \mathbb{R}^+
+  \end{equation*}
+  \item $PW_\pi$ Kernel (the bandlimited $L^2(\mathbb{R})$ space, see
+  \ref{ss:eval_func})
+  \begin{equation*}
+  K(x,y) = \frac{\sin \pi(x-y)}{\pi(x-y)}
+  \end{equation*}
+  \item Linear Kernel
+  \begin{equation*}
+  K(x,y) = \ip{x}{y}
+  \end{equation*}
+  \item Polynomial Kernel
+  \begin{equation*}
+  K(x,y) = (\gamma\ip{x}{y}+1)^n \qquad \gamma \in \mathbb{R}, n \in
+  \mathbb{N}^+
+  \end{equation*}
+\end{itemize}
+
+Its possible to operate with kernels and generete new valid kernels. If
+$K_1,K_2$ are kernels for $\hs_1$ and $\hs_2$, respectively, then for any
+$\alpha,\beta \in \mathbb{R}_{\scriptstyle\geq0}$ it is possible to construct $K
+= \alpha K_1 + \beta K_2$ as a kernel for the RKHS $\hs = \alpha\hs_1 +
+\beta\hs_2 = \{ \alpha f_1 + \beta f_2 | f_1 \in \hs_1, f_2 \in
+\hs_2\}$. Kernel products are valid even for functions acting on different sets,
+that is, $K_1:\mathcal{X}\times\mathcal{X}\to\mathbb{R}$ and
+$K_1:\mathcal{Y}\times\mathcal{Y}\to\mathbb{R}$ define
+$K:(\mathcal{X}\times\mathcal{Y})\times(\mathcal{X}\times\mathcal{Y})\to\mathbb{R}$
+as $K((x,y),(x',y'))=K_1(x,x')K_2(y,y')$ with the RKHS $\hs \cong \hs_1 \otimes
+\hs_2$, having $\mathcal{X}=\mathcal{Y}$ as a special case.
+
+\subsection{Feature Maps}
+
+A feature map is a map $\varphi$ from a set $\mathcal{X}\neq\emptyset$ to a
+Hilbert space $\hs$, the feature space. Any feature map can define a RKHS
+through the kernel:
+\begin{equation*}
+K(x,y)=\hip{\varphi(x)}{\varphi(y)} \qquad x,y \in \mathcal{X}
+\end{equation*}
+For example, if $\mathcal{X}$ is already a Hilbert space by itself, then feature
+map $\varphi(x)=x$ reconstruct the Linear Kernel. Also, a sequence of functions
+$f_i \in \mathbb{R}^\mathcal{X}, \forall i \in \mathbb{N}$ that $\{f_i(x)\}
+\in \ell^2, \forall x \in \mathcal{X}$ are themselves a feature map
+$\varphi(x)=\{f_i(x)\}$ with kernel:
+\begin{equation*}
+K(x,y) = \sum_{i=1}^\infty f_i(x) f_i(y)
+\end{equation*}
+
+The converse, however, is not unique. Given a kernel there are multiple feature
+maps that can generate it. A simple example is $K(x,y)=2xy$ with
+$\mathcal{X}=\mathbb{R}$, this kernel can also be generated by:
+\begin{equation*}
+K(x,y) = \begin{bmatrix}x \\ x\end{bmatrix}\cdot\begin{bmatrix}y \\
+y\end{bmatrix}
+\end{equation*}
+
+In the first case $\varphi_1(x)=x {\scriptstyle\sqrt{2}} \in \mathbb{R}$, while
+in the second $\varphi_2(x)=\bigl[\begin{smallmatrix}x \\
+x\end{smallmatrix}\bigr] \in \mathbb{R}^2$. Standard ways of finding and
+approximating feature maps will be discussed in the next sections.
