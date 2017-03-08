@@ -61,12 +61,13 @@ is ray origin, $\mathbf{D}$ is direction}
 \end{algorithm}
 
 Any surface can be approximated by triagulation and have these functions more
+%% SJ: why is that ? What's the gain as opposed to the loss of genericity ?
 easily defined, but it is interesting to directly define for some geometric
 primitives. Plane, rectangle, sphere and cylinder were developed for this work.
 
 Two environments were constructed using these four geometric primitives. One
 box-like for the reconstruction part of this thesis, which is simple enough to
-study the properties of the mapping. Another, more complex and inspired on a
+study the properties of the mapping. Another, more complex and inspired by a
 water entrance of a hydroeletric powerplant, that exibits a richer sonar
 response with sound multipath and directional gain playing a more imporntant
 role.
@@ -122,8 +123,8 @@ For concrete, \citet{chirp} studies the \textbf{reflection coefficient}, sum of
 characterize the concrete's quality following earlier measurements of
 \citet{leslie1949ultrasonic}. The table provided on the article can be used in
 the other direction, to simulate such a concrete quality. The individual values of \textbf{diffusion coefficient} and \textbf{specular coefficient} still
-have to be determined and come from a educated guess based on considerations of
-smooth by \citet{Etter2013}, which claims that most of the energy goes as
+have to be determined and come from a educated guess based on considerations on
+smoothness by \citet{Etter2013}, which claims that most of the energy goes as
 specular reflection for smooth surfaces. For
 simulation purposes it has been consided values between 80\% to 95\% of the reflected energy to be specular.
 
@@ -144,7 +145,7 @@ Very Poor & $0.48$ or less  \\
 
 \citet{Etter2013}, also, provides equations relating wind speed with water
 surface reflection coeffiecient, which varies according to its roughness caused
-by the wind. For a still water there is amost no transmitted energy and all
+by the wind. For calm waters, there is almost no transmitted energy and all
 reflected energy is specular. For other materials, estimated values come from
 models as the one provided by \citet{miller2015real} on
 figure\ref{fig:materials}.

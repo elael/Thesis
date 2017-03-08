@@ -1,30 +1,35 @@
 \section{Purpose and Significance}
 %\section{Motivation}
 
+%% SJ: OK, drop the whole "SLAM" thing. Really, just mention it briefly in the
+%% SJ: beginning of the introduction and STOP
+%%
+%% SJ: you're not doing SLAM, and mapping is important. Period.
+
 The mapping of underwater environments is not just a part of a SLAM system. It
 might have importance on its own, it can be used for humans to visualize things
 that could not be seeing otherwise. 
 
 In the ROSA (\textit{Robô para Operações de Stoplogs Alagados}) project,
-developed by LEAD/COPPETEC to ESBR, one of the goals is to make a reconstruction
+developed by LEAD/COPPETEC for ESBR, one of the goals is to make a reconstruction
 of the hydroelectric power plant turbine entrance to spot any underwater debris
 that could block the lowering of stoplogs, used to block the water flow, and
-then cause delays and setbacks. When it happens for a stoplock to stuck the need
-for a diver also incur in further human risk, so even then it is important to
-know the surroundings.
+then cause delays or even accidents.
 
-On a developing perspective, besides the importance for the ROSA project, it has
+%% SJ: AFAIK, you won't run your algorithm on any ESBR data .... I wouldn't
+%% SJ: mention it here
+Interestingly, the stoplog setup has
 characteristics that makes it appropriate for mapping. It has a lifting beam for
 inserting the stoplogs into the water that can act as stable fixation point for
-any sonar structure. So reducing the impact of poor a localization system on the
-mapping. It also has a known and not-so-complex ground truth environment
-(besides possible debris). Thus data collected there is suitable for testing the mapping
+any sonar structure, providing a good mean of localization.
+Thus data collected there is suitable for testing the mapping
 algorithm in a real world environment, as opposed to lab testing.
 Although the noise environment might impair greatly the mapping, and subsequent
 visual reconstruction.
 
-
+%% SJ: this is really ... out of context
 It is also a integral part ROV's, where it gives feedback to the operator for
 him to know where it is or/and what he is doing, especially because cameras do
+%% SJ: I don't get that last sentence.
 not have a very useful range. And glaringly its automated counterpart (AUV's) as
 a requisite for SLAM.

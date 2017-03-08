@@ -1,21 +1,21 @@
 \section{Simulation}
 
-\textit{Computacional ocean
-acoustics} is the subfield of knowledge which explores algorithms that model
+\textit{Computational ocean
+acoustics} explores algorithms that model
 the ocean as an acoustic medium. Works on this matter are well documented by
 \citet{Etter2013}. Most of these works focus on very long range simulations,
 with its most important features been the ocean floor and sub-bottom region.
 
 This work aims to reconstruct and simulate near-range partially closed
 environments, as those created by humans. The motivation for such a choice comes
-from hydroeletrict power plant water intake, it is a corridor-like environment
-with possible obstacles on the bottom. This kind of envirnoment is not well
+from the application on hydroeletric power plant water intakes, which is a corridor-like environment
+with possible obstacles on the bottom. This kind of environment is not well
 covered on the underwater acoustics literature, as such, some of the simulations
 techniques are borrowed from the closelly related area of \textit{room
 acoustics}.
 
 When constructing a simulation, one has to consider the trade-off between
-simplicity/perfomance/accuracy. There are several possible techniques with
+simplicity, perfomance and accuracy. There are several possible techniques with
 different applications and assumptions, this chapter will cover the most
 classic ones and further explore \textit{ray theory}, which has been used for
 the simulation presented here. For a more comprehensive view on this and other
@@ -26,7 +26,7 @@ techniques, see \citet{LURTON,jensen2011computational}.
 
 The idea behind sound simulation techniques is to solve the wave
 equation (eq. \ref{eq:wave}) considering all the physical interfaces as boundary
-conditions. The equation, however, cannot be analitically solved due to common
+conditions. The equation, however, cannot be analytically solved due to common
 present discontinuities caused by occlusions, specular highlights and other
 facts that result in large variations of field over small regions of the
 domain of integration\cite{funkhouser2003survey}.
@@ -40,6 +40,10 @@ high constructive interference that geometrically gives a point of infinity
 rays convegence.}, other wave methods (e.g. finite elements, normal modes,
 parabolic approximation) should be applied.
 
+%% SJ: aren't you mjissing a subsubsection here ?
+
+%% SJ: "assumed" ? Isn't that an analytic solution in case of a sine wave
+%% SJ: (fourier transform and all that)
 Instead of using the full wave equation, the methods work with a simplified
 time-independent version. It can be assumed that the equation
 \ref{eq:wave}:
@@ -69,7 +73,7 @@ Substituting it back into equation \ref{eq:wave}, gives
 % \[ \frac{\nabla^2 \psi}{\psi} = \frac{1}{c_0^2\vartheta} \frac{\partial^2}{\partial
 % t^2}\vartheta  \]
 
-Defining $k \equiv \tfrac{\omega}{c_0} $ (a.k.a. the wave number) and rearanging
+Defining $k \equiv \tfrac{\omega}{c_0} $ (a.k.a. the wave number) and rearranging
 terms:
 
 \[ \Re((\nabla^2 \psi -k^2 \psi) e^{-i\omega t}) = 0\]
@@ -219,12 +223,14 @@ gives a brief introduction of the subject.
 
 Geometric approaches like ray theory dates back to Newton and the corpuscular
 theory of light. Later found to be better described as a wave, the geometric
-theory of light is still a very important and usefull tool. The sound ray theory
+theory of light is still a very important and useful tool. The sound ray theory
+%% SJ: frequency is irrelevant to using geometry, wavelength is. The frequencies
+%% SJ: are different, but because of the speeds the wavelengths are not so much
 follows a similar path, they both apply to high frequency waves, but typical
 sound waves have low/mid-frequency while visible light has a much higher
 frequency.
 
-To describe the ray from the wave theory, it starts by solving the Helmholtz
+To describe the ray from the wave theory, one starts by solving the Helmholtz
 equation (eq \ref{eq:helmholtz}) with a generic complex function of space
 through a polar decomposition\cite{buckingham1992ocean,torres2007modeling}:
 
@@ -237,7 +243,7 @@ through a polar decomposition\cite{buckingham1992ocean,torres2007modeling}:
 Here $\tau(\coord{x})$ can be interpreted as the time it takes the sound to
 reach the location $\coord{x}$ and $\mathcal{A}(\coord{x})$ the amplitude of the
 signal at that point. Substituting it back to equation \ref{eq:helmholtz} and
-separating real and imaginary parts, two equations can be obtained (droping
+separating real and imaginary parts, two equations can be obtained (omitting
 arguments):
 
 \begin{subequations}
@@ -271,7 +277,7 @@ fact that \(\omega = kc_0 \):
 The equation \ref{eq:eikonal} is known as the \textit{Eikonal equation} and
 defines the surfaces of constant phase. Equation \ref{eq:preeikonalamp}, called
 the transport equation, can then be used to find the pressure amplitude of the
-wave. However,  when treating instensity conservation of energy can be used as
+wave. However,  when considering intensity, conservation of energy can be used as
 will be seen later on subsection \ref{ss:raytheory}.
 
 The rays are, by definition, the perpendicular lines to the wavefronts defined
@@ -290,7 +296,7 @@ equation \ref{eq:eikonal} to find:
 \norm{\frac{\dif r}{\dif s}} = 1 
 \end{equation*}
 
-Showing that it is a unit norm tangent vetor. To find the ray path, first take
+Showing that it is a unit norm tangent vector. To find the ray path, first take
 the gradient of equation \ref{eq:eikonal} squared:
 
 \begin{subequations}
@@ -353,6 +359,10 @@ r(s) = r_0 + (c_0\nabla\tau_0)s
 \end{equation}
 
 Where $r_0$ is the ray origin, $\tau_0$ is the gradient of $\tau$ anywhere
+%% SJ: "an affine space" OK, either you go all the way or you don't. You can't
+%% SJ: drop something like this at this point, it's ridiculous
+%% SJ: (my advice is "don't", this is engineering, not math, R^3 is an affine
+%% SJ: space)
 along the ray, and the addition is taken with $\mathbb{R}^3$ as an affine space.
 This is the equation of a line, show that acoustic rays travel as a straight
 line on constant velocity mediums for a high-frequency approximation.
@@ -390,16 +400,16 @@ Which become:
 By considering a length parametrization $r$ such that $\norm{r'}=1$, the
 result is the same as equation \ref{eq:raydirection}, so all the results follow.
 
-It is important to highlight that the single simplification from the wave
-equation was the high-frequency assumption \cite{national1969physics}, given at
+It is important to highlight that this simplification relies only on
+the high-frequency assumption \cite{national1969physics}, given at
 equation \ref{eq:highfrequency}. A more complete description of the mathematics
 envolving the physics behind ray theory can be found at \citet{Lefebvre}.
 
 A important result, commonly applied on algorithms derived from ray theory, is
 the summation of energy/intensity of incoherent rays at a point. It starts by
 taking the norm of the intensity (equation \ref{eq:intensity_pressure}) and applying the
-pressure defition to it (equation \ref{eq:pressurepsi}) to get\footnote{Here
-$\mathbb{E}[\parm]$ means the expection for clarity.}:
+pressure definition to it (equation \ref{eq:pressurepsi}) to get\footnote{Here
+$\mathbb{E}[\parm]$ means the expectation for clarity.}:
 
 
 \begin{equation}\label{eq:intensity_psi}
@@ -415,14 +425,16 @@ I = g_0~\mathbb{E}[\norm{\mathcal{A}}^2]
 \end{equation*}
 
 To consider the contribution of a set of incoherent rays $\psi_i$ (i.e.
-statistically incorrelated), the total $\psi$ becomes:
+%% SJ: I'm not sure about the "statistically" here ... I believe "uncorrelated"
+%% SJ: would be enough given the definition of "uncorrelated waves" in physics
+uncorrelated), the total $\psi$ becomes:
 
 \begin{equation}\label{eq:wavesum}
 \psi = \sum_i \psi_i 
 \end{equation}
 
-With the stablished fact that the expected value of a wave is zero (i.e. the
-mean pressure variation is zero), the incorrelation condition
+With the established fact that the expected value of a wave is zero (i.e. the
+mean pressure variation is zero), the condition
 becomes\footnote{Here $\psi_i^*$ is the complex conjugate of $\psi_i$ for
 better reading.}:
 
@@ -455,7 +467,7 @@ Which implies:
 I = \sum_i I_i
 \end{equation}
 
-This assumption of incoherent rays will be a commum point among ray tracing
+This assumption of incoherent rays will be a common point among ray tracing
 algorithm, mainly because it implies the summation of ray intensities $I_i$ to a
 single intensity. It is a reasonable assumption on mildly complex environments
 with diffuse (scattering) surfaces, which is explained on Ray Theory subsection
@@ -464,21 +476,21 @@ with diffuse (scattering) surfaces, which is explained on Ray Theory subsection
 
 \subsubsection{Normal modes}
 
-When there is a prefered direction, or a general axis symetric medium, like the
+When there is a preferred direction, or a general axis symmetric medium, like the
 ocean (which is generally treated as a horizontally stratified medium), a
-cylindrical parametrization define a usefull coordinate system. The principal
-axis, usually depth, contain the superposition of normal modes while the other
-dimensions carrie the traveling wave.
+cylindrical parametrization becomes a useful coordinate system. The principal
+axis, in our case depth, contain the superposition of normal modes while the other
+dimensions carry the traveling wave.
 
-There are slightly different mathematical approachs to Normal Modes Theory on
+There are slightly different mathematical approaches to Normal Modes Theory in
 the literature\cite{Etter2013,urick1979,buckingham1992ocean}. The following
-brief description relly on the techniques of \citet{Etter2013}. Writing the
+brief description rely on the techniques of \citet{Etter2013}. Writing the
 solution of equation \ref{eq:helmholtz} as a product of a ``depth'' (principal
 axis) function $N(z)$ and a horizontal range function $H(r)$:
 
 \[ \psi = N(z)H(r) \]
 
- Leads to a separantion of variables on the ODE, with $k_0$ as separation
+ Leads to a separation of variables on the ODE, with $k_0$ as separation
  constant: %Yield to
  
  \begin{subequations}
@@ -492,20 +504,20 @@ axis) function $N(z)$ and a horizontal range function $H(r)$:
  \end{equation}
  \end{subequations}
  
- The equation \ref{eq:normalmode} describes the pressure field along the depth,
- it is known as the normal mode equation. Equation \ref{eq:normaltraveling}, on
- the other hand, solely describes the traveling portion of the wave, that
- happens in the horizontal direction.
+ The normal mode equation \ref{eq:normalmode} describes the pressure field along
+ the depth. Equation \ref{eq:normaltraveling}, on
+ the other hand, describes the traveling portion of the wave, that
+ happens in the horizontal plane.
  The full solution for $\psi$ is found by solving both equations. The equation
  \ref{eq:normalmode} is a classic eigenvalue problem for the differential
- operator, whose solutions, including bounderies conditions, are known as
+ operator, whose solutions, including boundary conditions, are known as
  Green's function $G$ \cite{desanto2012scalar}. The horizontal equation
  \ref{eq:normaltraveling} is a zero-order Bessel equation, so it may have its
  solution written in terms of the zero order Henkel function of the first kind
  ($H_0^{(1)}$)\footnote{$H_0^{(1)}(x) = J_0(x)+iY(x)$, where $J_0$ and $Y_0$
  are the zero-order Bessel functions of first and second order, respectively.
  More details on these functions, see \citet{abramowitz1964handbook}}. Putting
- these solutions together, for a monocromatic point source:
+ these solutions together, for a monochromatic point source:
  
  \begin{equation}
  \label{eq:normalmono}
@@ -515,12 +527,12 @@ axis) function $N(z)$ and a horizontal range function $H(r)$:
 Where $z_s$ is the source position on the principal axis. The evaluation of the
 integral as it appears is impractical, thus some simplifications are required.
 
-The Green's function $G$ can be expanded as a bilinear summation of ortonormal
+The Green's function $G$ can be expanded as a bilinear summation of orthonormal
 functions ($u_ n$), the \textit{normal modes}\cite{baker2003green}, weighted by
 using their respective eigenvalues ($k_n$), the natural frequencies. The real
-integral of equation \ref{eq:normalmono} can be evaluated throught \textit{contour
+integral of equation \ref{eq:normalmono} can be evaluated through \textit{contour
 integration} to exploit the residue of the poles present on the natural
-frequencies, but that comes with a price, it is necessary to chose a riemann
+frequencies. But this requires to choose a Riemann
 sheet for the integral and evaluate the branch line integral
 separately\cite{jensen2011computational,worzel1948propagation}:
 
@@ -530,14 +542,15 @@ k_n^2}H_0^{(1)}(k_0r)k_0\dif k_0} + I_{\text{branch-cut}}
 \end{equation}
 
 The branch line integral $I_{\text{branch-cut}}$ can be physically interpreted
-as the contrubuition of the constinuous mode spectrum (in contrast with the
+%% SJ: "continuous mode spectrum" ?
+as the contribution of the continuous mode spectrum (in contrast with the
 normal modes), representing modes that propagates through the ocean floor
 (being strongly attenuated) and near-field, that decays exponentially with
 distance. Assuming that the horizontal distance is several times the water
 depth, the branch line term is ignored in most theoretical developments.
 
 Therefore, by assuming a far-field approximation ($k_0r \ll 1$), besides
-disregard the branch line integral, it is possible to consider a asymptotic expantions for the
+disregard the branch line integral, it is possible to consider an asymptotic expansion for the
 Hankel fucntion and evaluate the contour integral, obtaining\cite{Etter2013}:
 
 \begin{equation}
@@ -555,9 +568,9 @@ One of the advantages of normal modes over ray theory lies on the fact that, for
 each source/receiver position, the ray approach have to run a full simulation of
 the rays, while the normal modes have a closed form (like equation
 \ref{eq:normalsolution}) that easily adapts to new combinations of these
-parameters. In constrast, normal modes are constrained by the source frequency,
+parameters. In contrast, normal modes are constrained by the source frequency,
 in fact by the number of modes to be computed, and generally requires deeper
-knowledge of the environment. The the attenuation
+knowledge of the environment. The attenuation
 coefficient($\delta_n$) in the ocean, for exemple, depends on water absorption,
 ocean sediment layer absorptions, compressional and shear attenuation on the
 basement, measures of the modes interations with both sediment and
@@ -568,10 +581,11 @@ water-sediment boundary and sea surface as well.
 
 The parabolic approximation replaces the Helmholtz equation \ref{eq:helmholtz},
 which is a elliptic partial differential equation, by a simplified parabolic
+%% SJ: give me your time travelling machine ...
 version. This approximation dates back to the middle of the $\mathrm{XXI}$
 century, in the context of tropospheric radio wave propagation.
 
-The normal mode solution do not handle well non-stratified medium, to overcome
+The normal mode solution do not handle well non-stratified mediums. To overcome
 this limitation parabolic approximation is constructed to handle slow varying
 mediums. The variation is made explicit by $k = k_0n(r,z)$, where $n(r,z)$ is a
 sound refractive index\cite{LURTON}. The Helmholtz equation becomes:
@@ -614,9 +628,9 @@ Ray Theory provides a good way to treat high-frequency sound propagation,
 far from caustics, that retain an intuitive meaning. Introduced in subsection
 \ref{ss:simuloverview}, it is very similar to its electromagnetic counterpart.
 Each ray carries a energy density from the source that decays as it travels
-through the medium (Transmission loss), as given by the equation
-\ref{eq:preeikonalamp}, when it encounters an obstacle (eg. sea floor, sea
-surface, man made surfaces) it (back)scatter to the source. That is the
+through the medium (Transmission loss). When it encounters an obstacle (e.g. sea floor, sea
+surface, man made surfaces), it (back)scatter to the source
+(equation~\ref{eq:preeikonalamp)}. That is the
 classical (non-multipath) description
 \cite{LURTON,Etter2013,miller2015real,bell1997application}, summarized by a
 sonar equation as:
@@ -636,12 +650,13 @@ written in decibels\ref{eq:dB}:
   1m\footnotemark}]/[\text{reference
   intensity}])$
   \footnotetext{for an equivalent omnidirectional source}
-  \item DI is the Direcvity Index - $10\log_{10}([\text{Directional
+  \item DI is the Directivity Index - $10\log_{10}([\text{Directional
   loss\footnotemark}])$
   \footnotetext{with respect to an omnidirectional source}
   \item TL is the Transmission loss - Intensity loss through absorption and
   spreading while propagating (in dB).
-  \item TS is the Target Strength - ratio bewteen the intensity of outgoing
+  %% SJ: I don't get the difference between TS and RL
+  \item TS is the Target Strength - ratio between the intensity of outgoing
   and incoming rays (in dB).
 \end{enumerate}
 
@@ -649,16 +664,16 @@ written in decibels\ref{eq:dB}:
 
 Equation (\ref{eq:sonareq}) does not fully describes how the simulation
 using ray theory should work, but gives a good insight on the elements that must
-be considered. SL can be infeered by the sonar power and eficienty, DI comes
+be considered. SL can be inferred by the sonar power and efficiency, DI comes
 from the sonar beam pattern, TL is dependent on the medium, but is compensated
 by the sonar TVG (see subsection \ref{sss:tvg}) and TS is defined by a material
 dependent BRDF (Bidirectional Reflectance Distribution Function), described further ahead.
 
 \subsubsection{Ray Interaction}
 
-For a more faithfull sonar response, advanced simulation techniques based on ray
-theory can be applyed. And, thus, requires careful consideration on the most
-important interations of the rays with the interfaces, namely:
+For a more faithful sonar response, advanced simulation techniques based on ray
+theory can be applied. And, thus, requires careful consideration on the most
+important interactions of the rays with the interfaces, namely:
 \textbf{transmitted rays}, \textbf{reflected rays}  and \textbf{scattered rays},
 see figure \ref{fig:brdfbtdf}.
 
@@ -667,6 +682,7 @@ When a radiant energy, in this setup represented by a ray, hits a point on a
 surface (or a general interface) part of the energy is absorbed, part is
 transmitted and, yet, another part bounces back Transmitted rays represent the
 energy that goes through the interface, their intensity for each direction is
+%% BDTF -> "Transmitted Scatter" ?
 mathematically defined by the BTDF (Transmitted Scatter Distribution
 Function)\cite{bartell1981theory} (see \citet{rober2007ray} for a acoustic
 approach).
@@ -738,7 +754,7 @@ property of the scattered rays is the incoherence which makes possible to add
 the energy (intensity) contributions for each ray directly, according to
 equation \ref{eq:intensity_sum}.
 
-Rought ocean surface, in the presence of wind, also backscatters, but not as a
+Rough ocean surface, in the presence of wind, also backscatters, but not as a
 perfect scatter. Its scattering properties have been modeled in a variety of
 ways\cite{jones2009modelling}, like Kirchhoff model\cite{dunn2015springer}:
 
@@ -750,7 +766,7 @@ Where $\Gamma = 2kh\cos(\theta_i)$, $k$ is the acoustic wavenumber (equation
 \ref{eq:helmholtz}), $h$ is the rms height of the surface.
 
 A general surface does not follow neither a perfect cosine law nor is a perfect
-reflector, but is usefull to model as a compromise of
+reflector, but is useful to model as a compromise of
 both\cite{cox2006tutorial,vorlander2000definition}, even some standards for
 acoustic measurement (e.g. ISO) split between these two types of
 reflection\cite{rindel2001scattering}. A absorption/transmission factor $\alpha$
@@ -808,8 +824,9 @@ ignoring multiple reflections.
 
 A variety of derivations from the original algorithm have being concieved. Most
 of the methods applied to audio were developped for computer graphics
+%% SJ: "rederization" ? Is that "rendering" ?
 rederization, but, considering sound waves with similar constrains to those
-applyed to light (i.e. high frequency limit), it is resonable to apply them to
+applyed to light (i.e. high frequency limit), it is reasonable to apply them to
 aurelization (sound renderization) as well.
 
 
@@ -833,7 +850,7 @@ space\cite{funkhouser2003survey} (see figure \ref{fig:tillingsource}).
 
 For each reflective surface, a virtual source is created on the reflected
 position of the source, these are the primary virtual sources. A virtual source
-will act just like a source, although its intensity is lessen by the absorption
+will act just like a source, although its intensity is lessened by the absorption
 factor of the wall. When computing the sound at point, the
 contribution of each source (including virtual ones) are added together, the
 reflections are automatically taken into account by the virtual sources.
@@ -915,6 +932,8 @@ R(\coord{x},\coord{p},\Omega) \ell
 Where $\mathcal{G}$ is the two dimensional subset of $\mathbb{R}^3$ comprising
 all surfaces, $\coord{p}$ is a point over a surface, $\dif\mu(\coord{x})$ is the
 surface area differential at point $\coord{x}$, $\Omega$ is the outgoint
+%% SJ: I don't understand the "source point" comment ... It's surface radiance
+%% SJ: ... so I would write e.g. "in case the surface is an emitter", no?
 energy direction, $\ell_0$ the intrinsic surface radiance (a source point), $\overrightarrow{\coord{x}\coord{p}}$ the unit vector in the direction to $\coord{p}$ from point $\coord{x}$. The function $R(\parm,\parm,\parm)$ is the
 \textit{reflection kernel}, an enhanced version of a BDRF. For a non-obstructed path between 
 $\coord{p}$ and $\coord{x}$:
@@ -929,6 +948,7 @@ When there is no visibility from  $\coord{x}$ to $\coord{p}$,
 $R(\coord{p},\coord{x},\Omega) = 0$. Here
 $\rho_\coord{p}(\overrightarrow{\coord{x}\coord{p}},\Omega)$ is the BDRF at the
 point $\coord{p}$ with incoming direction $\overrightarrow{\coord{x}\coord{p}}$
+%% SJ: omega is not a direction, but the incoming energy, or ?
 and outgoing direction $\Omega$, $\theta_i$ and $\theta_r$ are the incoming and
 reflected angles with surface's normal at point $\coord{p}$ for directions $\overrightarrow{\coord{x}\coord{p}}$
 and $\Omega$ respectively. Factor $\mathfrak{a}(\norm{\coord{p}-\coord{x}})$ is
