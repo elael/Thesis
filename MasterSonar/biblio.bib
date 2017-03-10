@@ -102,6 +102,52 @@
   publisher={IET}
 }
 
+@phdthesis{Schwendner2013,
+author = {Schwendner, Jakob},
+mendeley-groups = {Mapping,Sonar (12)},
+pages = {180},
+school = {University of Bremen},
+title = {{Embodied Localisation and Mapping}},
+year = {2013}
+}
+
+@article{Pagac1998,
+abstract = {In this work, we examine the problem of constructing and maintaining a map of an autonomous vehicle's environment for the purpose of$\backslash$nnavigation, using evidential reasoning. The inherent uncertainty in the origin of measurements of sensors demands a$\backslash$nprobabilistic approach to processing, or fusing, the new sensory information to build an accurate map. In this paper,$\backslash$nthe map is based on a two-dimensional (2-D) occupancy grid. The sensor readings are 'fused' into the map using the$\backslash$nDempster-Shafer inference rule. This evidential approach with its multivalued hypotheses allows quantitative analysis$\backslash$nof the quality of the data. The map building system is experimentally evaluated using sonar data from real$\backslash$nenvironments. },
+author = {Pagac, Daniel and Nebot, Eduardo M and Durrant-Whyte, Hugh},
+journal = {IEEE Transactions on Robotics and Automation},
+number = {4},
+pages = {623--629},
+title = {{An Evidential Approach to Map-Bulding for Autonomous Vehicles}},
+volume = {14, No 4},
+year = {1998}
+}
+
+@article{Coiras2009,
+author = {Coiras, E and Groen, J},
+isbn = {9783902613486},
+journal = {Advances in sonar technology. IN-TECH},
+number = {February},
+pages = {1--15},
+title = {{Simulation and 3d reconstruction of sidelooking sonar images}},
+year = {2009}
+}
+
+
+@article{Coiras2007,
+abstract = {In this paper, a new method for the estimation of seabed elevation maps from side-scan sonar images is presented. The side-scan image formation process is represented by a Lambertian diffuse model, which is then inverted by a multiresolution optimization procedure inspired by expectation-maximization to account for the characteristics of the imaged seafloor region. On convergence of the model, approximations for seabed reflectivity, side-scan beam pattern, and seabed altitude are obtained. The performance of the system is evaluated against a real structure of known dimensions. Reconstruction results for images acquired by different sonar sensors are presented. Applications to augmented reality for the simulation of targets in sonar imagery are also discussed.},
+author = {Coiras, Enrique and Petillot, Yvan and Lane, David M},
+issn = {1057-7149},
+journal = {IEEE transactions on image processing : a publication of the IEEE Signal Processing Society},
+keywords = {Acoustics,Algorithms,Artificial Intelligence,Image Enhancement,Image Enhancement: methods,Image Interpretation, Computer-Assisted,Image Interpretation, Computer-Assisted: methods,Imaging, Three-Dimensional,Imaging, Three-Dimensional: methods,Information Storage and Retrieval,Information Storage and Retrieval: methods,Sensitivity and Specificity},
+month = {feb},
+number = {2},
+pages = {382--90},
+pmid = {17269632},
+title = {{Multiresolution 3-D reconstruction from side-scan sonar images.}},
+volume = {16},
+year = {2007}
+}
+
 @book{thrunprob,
   title={Probabilistic Robotics},
   author={Thrun, S. and Burgard, W. and Fox, D.},
@@ -395,11 +441,62 @@
   publisher={Springer Science \& Business Media}
 }
 
+@inproceedings{jaakkola1999probabilistic,
+  title={Probabilistic kernel regression models.},
+  author={Jaakkola, Tommi S and Haussler, David},
+  booktitle={AISTATS},
+  year={1999}
+}
+
+@book{friedman2001elements,
+  title={The elements of statistical learning},
+  author={Friedman, Jerome and Hastie, Trevor and Tibshirani, Robert},
+  volume={1},
+  year={2001},
+  publisher={Springer series in statistics Springer, Berlin}
+}
+
+@article{preda2007regression,
+  title={Regression models for functional data by reproducing kernel Hilbert spaces methods},
+  author={Preda, Cristian},
+  journal={Journal of Statistical Planning and Inference},
+  volume={137},
+  number={3},
+  pages={829--840},
+  year={2007},
+  publisher={Elsevier}
+}
+
 @book{trefethen1996finite,
   title={Finite difference and spectral methods for ordinary and partial differential equations},
   author={Trefethen, Lloyd Nicholas},
   year={1996},
   publisher={Cornell University-Department of Computer Science and Center for Applied Mathematics}
+}
+
+@incollection{bottou2012stochastic,
+  title={Stochastic gradient descent tricks},
+  author={Bottou, L{\'e}on},
+  booktitle={Neural networks: Tricks of the trade},
+  pages={421--436},
+  year={2012},
+  publisher={Springer}
+}
+
+@inproceedings{tsuruoka2009stochastic,
+  title={Stochastic gradient descent training for l1-regularized log-linear models with cumulative penalty},
+  author={Tsuruoka, Yoshimasa and Tsujii, Jun'ichi and Ananiadou, Sophia},
+  booktitle={Proceedings of the Joint Conference of the 47th Annual Meeting of the ACL and the 4th International Joint Conference on Natural Language Processing of the AFNLP: Volume 1-Volume 1},
+  pages={477--485},
+  year={2009},
+  organization={Association for Computational Linguistics}
+}
+
+@inproceedings{gan20093d,
+  title={3d path planning for a rotary wing uav using a gaussian process occupancy map},
+  author={Gan, Seng Keat and Yang, Kwangjin and Sukkarieh, Salah},
+  booktitle={Australasian Conference on Robotics and Automation (ACRA)},
+  year={2009}
 }
 
 @phdthesis{torres2007modeling,
@@ -408,6 +505,42 @@
   year={2007},
   school={Monterey California. Naval Postgraduate School}
 }
+
+@article{ramos2016hilbert,
+  title={Hilbert maps: scalable continuous occupancy mapping with stochastic gradient descent},
+  author={Ramos, Fabio and Ott, Lionel},
+  journal={The International Journal of Robotics Research},
+  volume={35},
+  number={14},
+  pages={1717--1730},
+  year={2016},
+  publisher={SAGE Publications Sage UK: London, England}
+}
+
+@article{Ribas2006,
+abstract = {In this paper we describe a system for underwater navigation with AUVs in partially structured environments, such as dams, ports or marine platforms. An imaging sonar is used to obtain information about the location of planar structures present in such environments. This information is incorporated into a feature-based SLAM algorithm in a two step process: (I) the full 360deg sonar scan is undistorted (to compensate for vehicle motion), thresholded and segmented to determine which measurements correspond to planar environment features and which should be ignored; and (2) SLAM proceeds once the data association is obtained: both the vehicle motion and the measurements whose correct association has been previously determined are incorporated in the SLAM algorithm. This two step delayed SLAM process allows to robustly determine the feature and vehicle locations in the presence of large amounts of spurious or unrelated measurements that might correspond to boats, rocks, etc. Preliminary experiments show the viability of the proposed approach},
+author = {Ribas, David and Ridao, Pere and Neira, Jos{\'{e}} and Tard{\'{o}}s, Juan D.},
+doi = {10.1109/IROS.2006.282532},
+isbn = {142440259X},
+journal = {IEEE International Conference on Intelligent Robots and Systems},
+pages = {5040--5045},
+title = {{SLAM using an imaging sonar for partially structured underwater environments}},
+year = {2006}
+}
+
+
+@article{Moravec1985,
+abstract = {We describe the use of multiple wide-angle sonar range measurements to map the surroundings of an autonomous mobile robot. A sonar range reading provides information concerning empty and occupied volumes in a cone (subtending 30 degrees in our case) in front of the sensor. The reading is modelled as probability profiles projected onto a rasterized map, where somewhere occupied and everywhere empty areas are represented. Range measurements from multiple points of view (taken from multiple sensors on the robot, and from the same sensors after robot moves) are systematically integrated in the map. Overlapping empty volumes re-inforce each other, and serve to condense the range of occupied volumes. The map definition improves as more readings are added. The final map shows regions probably occupied, probably unoccupied, and unknown areas. The method deals effectively with clutter, and can be used for motion planning and for extended landmark recognition. This system has been tested on the Neptune mobile robot at CMU.},
+author = {Moravec, H. and Elfes, A.},
+doi = {10.1109/ROBOT.1985.1087316},
+journal = {Proceedings. 1985 IEEE International Conference on Robotics and Automation},
+keywords = {Autonomous Vehicles,Folder - Sidescan Processing,Folder - occupancy-grid,Mobile robot,Moravec1985,dirty,grid,history,mapping,mobile robotics,navigation,occupancy grid,sonar,ultrasonic ranger,ultrasonic sensing},
+mendeley-tags = {Autonomous Vehicles,Folder - Sidescan Processing,Folder - occupancy-grid,Mobile robot,Moravec1985,dirty,grid,history,mapping,mobile robotics,navigation,occupancy grid,sonar,ultrasonic ranger,ultrasonic sensing},
+title = {{High resolution maps from wide angle sonar}},
+url = {http://ieeexplore.ieee.org/xpls/abs{\_}all.jsp?arnumber=1087316},
+year = {1985}
+}
+
 
 @inproceedings{chew2013object,
   title={Object detection with sector scanning sonar},

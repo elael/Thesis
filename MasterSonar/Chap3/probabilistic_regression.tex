@@ -1,3 +1,84 @@
 
 \section{Probabilistic Regression}
 
+Probabilistic regression is similar to classification, both infer properties of
+a sample based on previous information. However, instead of giving a definite
+answer for which class an element belongs, probabilistic regression gives the
+probability for such a classification~\cite{jaakkola1999probabilistic}. More
+formally, a tranning set is a sequence of $n$ pairs
+$\{(x_i,y_i)|~i=1,\ldots,n\}$, where $x_i$ and $y_i$ are samples drawn from
+random variables $X$ and $Y$, respectively, with joint probability distribution
+$\Pr(X,Y)$~\cite{friedman2001elements}. From this tranning set, a conditioning
+probability $\Pr(Y|X=x)$ has to be estimated.
+
+The special case where $Y$ is a Bernoulli random variable, i.e. a binary
+variable, is called binary regression. It is the single most importante
+regression for mapping, as such, no other kind is explored in this thesis. 
+
+\subsection{Binary Logistic Regression} 
+
+A binary regression the dependent variable $Y\in\{-1,1\}$
+(or some set of equal cardinality like $\{0,1\}$) has two
+possible estimations that are related by $\Pr(Y=1|X=x)+\Pr(Y=-1|X=x)=1$. As
+such, the conditional probability can be denoted
+\begin{equation*}
+p(x) = \Pr(Y=1|X=x) 
+\end{equation*}
+
+The probability for $Y=-1$ can be recovered from $P(Y=-1|X=x)=1-p(x)$. The
+linear logistic model $p(x;\coord{w})$ for $x\in\mathbb{R}^d$, with
+$\coord{w}\in\mathbb{R}^d$ as explict parameter:
+
+\begin{equation}
+p(x;\coord{w}) = \frac{1}{1+\exp(-\coord{w}\cdot x)}
+\end{equation}
+
+The rationale behind the model is that the function
+$\text{expit}(\alpha)=(1+\exp(-\alpha))^{-1}$ is a bijection
+$\mathbb{R}\to(0,1)$~\cite{friedman2001elements}. Ensuring that the model is a
+probabilistic distribution.
+
+The classical regression theory requires a loss function $\mathscr{C}$ and
+minimizes an empirical risk over some space of functions
+$R[f]=\mathbb{E}(\mathscr{C}(X,Y,f(X)))$~\cite{jaakkola1999probabilistic}. The
+estimation of $f$ from samples uses a regularized version:
+\begin{equation}
+R_{\text{reg}}[f] =
+\frac{1}{n}\sum_{i=1}^n\mathscr{C}(x_i,y_i,f(x_i))+\lambda\mathcal{S}[f]
+\end{equation}
+
+Where $\lambda>0$ and $\mathcal{S}[\parm]$ stabilization (regularization) term,
+as the minimization problem is typicaly
+ill-posed~\cite{jaakkola1999probabilistic}. The loss fuction $\mathscr{C}$ is
+problem dependent and for binary regression a typical negative log likehood
+(NLL) is used
+\begin{equation}
+\mathscr{C}(x,y,p(x)) = - \log \Pr(Y=y|X=x) = 
+\begin{cases} 
+      - \log p(x) & y=1 \\
+      - \log (1-p(x)) & y=-1
+   \end{cases}
+\end{equation}
+
+For a linear logistic model, the regularized negative log likehood empirical
+risk simplifies to a $d$ dimensional minimization:
+\begin{equation}
+\label{eq:classicnll}
+\text{NLL}_{\text{reg}}(\coord{w}) =  \sum_{i=1}^n \log(1+\exp(-y_i
+\coord{w}\cdot x_i)) +\lambda\mathcal{S}(\coord{w})
+\end{equation}
+
+Althogh it is an applicable setting for simple situations, it is not expected to
+perform well for classification/regression of point on a 3D environment as
+$x\in\mathbb{R}^3$ and $\coord{w}\in\mathbb{R}^3$. A 3 real parameter
+$\coord{w}$ is not enough to capture all the complexities of the environment. To
+keep its linear simplicity, the alternative is to increase dimensionality using
+Hilbert Spaces.
+
+\subsection{Regression on Hilbert Spaces}
+
+Samples 
+
+
+\citet{preda2007regression} - Regression on RKHS
+\citet{jaakkola1999probabilistic} - brief Bayesian Logit
