@@ -152,10 +152,11 @@ as $K((x,y),(x',y'))=K_1(x,x')K_2(y,y')$ with the RKHS $\hs \cong \hs_1 \otimes
 A feature map is a map $\varphi$ from a set $\mathcal{X}\neq\emptyset$ to a
 Hilbert space $\hs$, the feature space. Any feature map can define a RKHS
 through the kernel:
-\begin{equation*}
+\begin{equation}
+\label{eq:feature_kernel}
 K(x,y)=\hip{\varphi(x)}{\varphi(y)} \qquad x,y \in \mathcal{X}
-\end{equation*}
-For example, if $\mathcal{X}$ is already a Hilbert space by itself, then feature
+\end{equation}
+For example, if $\mathcal{X}$ is already a RKHS by itself, then feature
 map $\varphi(x)=x$ reconstruct the Linear Kernel. Also, a sequence of functions
 $f_i \in \mathbb{R}^\mathcal{X}, \forall i \in \mathbb{N}$ that $\{f_i(x)\}
 \in \ell^2, \forall x \in \mathcal{X}$ are themselves a feature map

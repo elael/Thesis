@@ -30,6 +30,7 @@ linear logistic model $p(x;\coord{w})$ for $x\in\mathbb{R}^d$, with
 $\coord{w}\in\mathbb{R}^d$ as explict parameter:
 
 \begin{equation}
+\label{eq:std_linear_logistic}
 p(x;\coord{w}) = \frac{1}{1+\exp(-\coord{w}\cdot x)}
 \end{equation}
 
@@ -49,9 +50,10 @@ R_{\text{reg}}[f] =
 
 Where $\lambda>0$ and $\mathcal{S}[\parm]$ stabilization (regularization) term,
 as the minimization problem is typicaly
-ill-posed~\cite{jaakkola1999probabilistic}. The loss fuction $\mathscr{C}$ is
-problem dependent and for binary regression a typical negative log likehood
-(NLL) is used
+ill-posed~\cite{jaakkola1999probabilistic}. On normed spaces usually
+$\mathcal{S}[f]=g(\norm{f})$, where $g(\parm)$ is a monotonically increasing
+function.
+The loss fuction $\mathscr{C}$ is problem dependent and for binary regression a typical negative log likehood (NLL) is used
 \begin{equation}
 \mathscr{C}(x,y,p(x)) = - \log \Pr(Y=y|X=x) = 
 \begin{cases} 
@@ -68,6 +70,17 @@ risk simplifies to a $d$ dimensional minimization:
 \coord{w}\cdot x_i)) +\lambda\mathcal{S}(\coord{w})
 \end{equation}
 
+
+Reasonable choices for $\mathcal{S}(\parm)$
+are the $\ell_1$ norm (LASSO)
+$\mathcal{S}(\coord{w})=\norm{\coord{w}}_1$
+or elastic net, a combination of $\ell_1$ (LASSO) and
+squared $\ell_2$ norms (ridge),
+$\mathcal{S}(\coord{w})=\alpha_1\norm{\coord{w}}_1
++\alpha_2\norm{\coord{w}}_2^2$, where
+$\alpha_1+\alpha_2=1$, $\alpha_1,\alpha_2\in[0,1]$~\cite{hastie2015statistical}.
+
+
 Althogh it is an applicable setting for simple situations, it is not expected to
 perform well for classification/regression of point on a 3D environment as
 $x\in\mathbb{R}^3$ and $\coord{w}\in\mathbb{R}^3$. A 3 real parameter
@@ -77,8 +90,32 @@ Hilbert Spaces.
 
 \subsection{Regression on Hilbert Spaces}
 
-Samples 
+Samples defined on a low dimensional space $\mathcal{X}$, e.g. $\mathbb{R}^3$,
+can be raised to a high (possible infinite) dimensional space using a feature
+map $\varphi:\mathcal{X}\to\hs$, where $\hs$ is hilbert space. This allow
+linear models to express more generic functions $f(x) =
+\hip{\coord{w}}{\varphi(x)}$ with $\coord{w}\in\hs$, such a space of functions
+$f(x)$ is the actual RKHS with kernel define as in equation
+\ref{eq:feature_kernel}.
 
+The linear logistic model from equation \ref{eq:std_linear_logistic} lifted to
+the Hilbert Space $\hs$ becomes
+\begin{equation}
+p(x;\coord{w}) = \frac{1}{1+\exp(-\hip{\coord{w}}{\varphi(x)})}
+\end{equation}
 
-\citet{preda2007regression} - Regression on RKHS
-\citet{jaakkola1999probabilistic} - brief Bayesian Logit
+Thus equation \ref{eq:classicnll} for log likehood empirical risk becomes:
+\begin{equation}
+\text{NLL}_{\text{reg}}(\coord{w}) =  \sum_{i=1}^n \log(1+\exp(-y_i
+\hip{\coord{w}}{\varphi(x_i)})) +\lambda\mathcal{S}(\coord{w})
+\end{equation}
+
+In practice, one choose a kernel $K(x,y)$ with desired properties and
+find finite dimensional approximate features $\hat\varphi(x)$, such that
+$K(x,y)=\hip{\varphi(x)}{\varphi(y)}\approx\hat\varphi(x)\cdot\hat\varphi(y)$.
+Non kernel specific methods for finding approximate features include sampling
+the Fourier transform of shift invariant kernels~\cite{rahimi2007random}, i.e.
+$K(x,y)=k(x-y)=k(\delta)$, and Nystr\"om method that projects the Gram matrix
+$G_{ij}=K(x_i,x_j)$ of the sample points $\{x_i\}$ into some subset of these
+points and use this projection to approximate the feature
+maps~\cite{williams2000using}.
