@@ -38,23 +38,23 @@ of each direction on $N$ elements. Reasoning that each cube still full
 or empty, the set of possible maps on a $N_1\times N_2\times
 N_3$ grid $\mathbf{D}$ is
 $\bar{\mathcal{M}}_d=\{\coord{m}~|~\coord{m}:\mathbf{D}\to\{0,1\}\}$. The
-cardinality of $|\bar{\mathcal{M}}_d|=2^{N_1\times N_2\times
+cardinality of $|\bar{\mathcal{M}}_d|=2^{N_1\cdot N_2\cdot
 N_3}$ is too big to store the probability of every element. 
 
 The simplifying assumption for 3D grid is the conditional
 independece of grid
 elements $\coord{m}(d_i)$ and $\coord{m}(d_j)$ for $d_i\neq d_j \in \mathbf{D}$
-on the sensors measurements $\mathbf{z}$.
+on the sensors measurements $\mathbf{z}_n$.
 Therefore, the probability of a map become the product of the marginals:
 \begin{equation*}
-\Pr(\coord{m}=m_i~|~\mathbf{z})=\prod_{d\in\mathbf{D}}\Pr(\coord{m}(d)=m_i(d)~|~\mathbf{z})
+\Pr(\coord{m}=m_i~|~\mathbf{z}_n)=\prod_{d\in\mathbf{D}}\Pr(\coord{m}(d)=m_i(d)~|~\mathbf{z}_n)
 \end{equation*}
 
-Writing marginals as $p(d) = \Pr(\coord{m}(d)=1~|~\mathbf{z})$ keeps same
-information because $\Pr(\coord{m}(d)=m_i(d)~|~\mathbf{z})$ equals $p(d)$ if
-$m_i(d)=1$ and $1-p(d)$ otherwise. The advantage is that it makes clearer that
+Writing marginals as $p_n(d) = \Pr(\coord{m}(d)=1~|~\mathbf{z}_n)$ keeps same
+information because $\Pr(\coord{m}(d)=m_i(d)~|~\mathbf{z}_n)$ equals $p_n(d)$ if
+$m_i(d)=1$ and $1-p_n(d)$ otherwise. The advantage is that it makes clearer that
 they can be stored and updated independently, and also that the number of stored
-elements is $|\mathbf{D}|=N_1\times N_2\times N_3$\footnote{e.g. if
+elements is $|\mathbf{D}|=N_1\cdot N_2\cdot N_3$\footnote{e.g. if
 $N_1=N_2=N_3=200$ for a 5cm resolution on cube with 10m edge,
 $|\mathbf{D}|=8,000,000$ already.}.
 That might still be a lot, but with clever memory implementations like
@@ -62,28 +62,73 @@ Octomaps~\cite{hornung2013octomap}, it can be manageable.
 
 Marginal probability computation on each cube is a direct application of Bayes
 rule\footnote{$\Pr(A~|~B)=\frac{\Pr(B~|~A)\Pr(A)}{\Pr(B)}$} (a Bayes filter)
-with a \textit{logit} function for better faster computaion~\cite{thrunprob}:
+with a log-odds representation for better faster
+computaion, known as occupancy in this context~\cite{thrunprob}:
 
 \begin{equation}
 l_n(d) = l_{n-1}(d)+ \text{\textbf{inverse\_sensor}}(d,z_n) - l_0(d)
 \end{equation}
 
-Here $l_n(d)$ is the \textit{logit} transformation of $p_n(d)$ the nth estimate
-for $p(d)$, after all previous $n$ sensor measuremnts $\mathbf{z}_n$, including
-the last one $z_n$.
+Here $l_n(d)$ is the log-odds representation of $p_n(d)$, the nth estimate after
+all previous $n$ sensor measuremnts $\mathbf{z}_n$, including the last one
+$z_n$.
 
 \begin{equation*}
 l_n(d) = \log\frac{p_n(d)}{1-p_n(d)} 
 \end{equation*}
-\citet{Pagac1998} - Evidencial Theory
 
+The \textit{prior} of the occupancy is $l_0(d)$, log-odds of the \textit{prior}
+probability $p_0(d)$. Defining
+$\text{\textbf{inverse\_sensor}}(d,z_n)=\Pr(\coord{m}(d)=1~|~z_n)$, it is the
+probability of fullness for a grid element $d$ given \textbf{only} the last
+measuremnt $z_n$, it can be interpreted as inference from the sensor response,
+justifing the name.
+
+Another, not so well explored, approach for calculating the marginal probability
+for grid elements comes from Evidential Theory. Evidential Theory, a.k.a.
+Dempster–Shafer theory (DST), is a mathematical theory of evidence, assigning
+``probabilities'' (belief mass) to all non-empty elements of the power set of
+events. On the binary $\{0,1\}$ case, the three non-empty subsets are
+${0}$,${1}$,${0,1}$ standing for evidence of emptyness, fullness or both, which
+``probabilities'' add to one.
+Consequently yielding to two maps, one for fullness other for emptyness. In DTS
+the actual probability (in the classical sense) appears as lower and upper
+bounds (Plausability and Belief), allowing ignorance to be modeled adequately.
+The 2D case was explored by \citet{Pagac1998}, their article also further
+describles DTS.
+
+Grid based algorithms on 3D environments suffer from their high number of grid
+elements, the next model try to avoid this problem.
 
 \subsubsection{Elevation Maps}
-\citet{Coiras2007} - 2.5D with properties
+
+In an attempt to keep the grid to a reasonable size, elevation maps, or 2.5D
+maps, keep the discretization only on the 2 horizontal dimensions. The third
+dimension is represented as a height value assigned to each 2D discretization.
+
+Some work on seabed reconstruction using sonars has been done by
+\citet{Coiras2007,Coiras2009}. They attempt to map by reconstructing a
+2.5D surface through optimization on the height value of each grid element. That
+leads to information gain on local surface's reflectivity, an indication of its
+composition. However, the expectation-maximization method does not leave a
+direct probabilistic interpretation for the values.
+
+Although elevation maps reduce memory requirements by not discretizing on
+the vertical axis, its elevation value is unique for each grid element. As such,
+it is not able to represent objects above the floor level,e.g. ceil, trees,
+caves, etc. That is adressed in the next option.
 
 \subsubsection{Multi Layer Surface - MLS}
 
-\citet{Schwendner2013} - Discrete Map formulations
+As a compromise between the last two solution, grid and elevation maps, Multi
+Layer Surface (MLS) was developped. It originates as elevation maps, but instead
+of having only one height per grid element, it splits into many layers of
+varying height.
+
+
+
+
+ \citet{Schwendner2013} - Discrete Map formulations
 
 
 \subsection{Map of Features}
