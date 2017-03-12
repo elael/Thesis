@@ -1,0 +1,95 @@
+\section{Map Representation}
+
+Classically maps are binary functions over the space. The
+binary choices of function's range stand for fullness or emptyness of a point.
+Mapping is to construct a probability distribution over the set of all maps~\cite{thrunprob},
+i.e.
+$\mathcal{M}_d=\{\coord{m}~|~\coord{m}:\mathbb{R}^d\to\{0,1\}\}$. The
+cardinality of such a set
+$|\mathcal{M}_d|=\beth_2$ is too big\footnote{$\beth_2=\mathbf{2}^\mathfrak{c}$
+the cardinality the power set of the continuum, where $\mathfrak{c}$ is the
+cardinality of the continuum } to be tractable even considering computational discretization (finite precision).
+
+Three approaches to this problem are presented here. One option is to discretize
+the space even further than the computational limit. Another is to renounce
+the idea of binary maps and consider maps to be a collection of predefined
+objects. And lastly, keep the concept of binary maps, yet to consider some
+restriction on the space of functions from which the map $\coord{m}$ is drawn.
+
+Despite their differences, all approaches describe marginal probabilities
+instead of the probability for an actual map $\coord{m}$. For binary maps,
+that means $\Pr(\coord{m}(x_i)=1)$ and not $\Pr(\coord{m}=m_i)$ and, when
+considering maps as collection of objects, it is
+$\Pr(\mathfrak{s}(\mathbf{l}_n)=\mathfrak{s}_i)$, where $\mathfrak{s}(\parm)$ is
+the defining properties of a object $\mathbf{l}_n$, for example point and angle
+in the case of a line.
+
+\subsection{Discrete Map}
+
+Discrete maps are also denominated \textit{grid maps} because when discretizing
+each axis of a $\mathbb{R}^d$ space the result is necessarily a grid. Originally
+developed for 2D maps~\cite{thrunprob}, their where later extended to 3D maps
+in different ways.
+
+\subsubsection{3D grids}
+
+The first obvious extension was a 3D grid of cubes by discretizing a range
+of each direction on $N$ elements. Reasoning that each cube still full
+or empty, the set of possible maps on a $N_1\times N_2\times
+N_3$ grid $\mathbf{D}$ is
+$\bar{\mathcal{M}}_d=\{\coord{m}~|~\coord{m}:\mathbf{D}\to\{0,1\}\}$. The
+cardinality of $|\bar{\mathcal{M}}_d|=2^{N_1\times N_2\times
+N_3}$ is too big to store the probability of every element. 
+
+The simplifying assumption for 3D grid is the conditional
+independece of grid
+elements $\coord{m}(d_i)$ and $\coord{m}(d_j)$ for $d_i\neq d_j \in \mathbf{D}$
+on the sensors measurements $\mathbf{z}$.
+Therefore, the probability of a map become the product of the marginals:
+\begin{equation*}
+\Pr(\coord{m}=m_i~|~\mathbf{z})=\prod_{d\in\mathbf{D}}\Pr(\coord{m}(d)=m_i(d)~|~\mathbf{z})
+\end{equation*}
+
+Writing marginals as $p(d) = \Pr(\coord{m}(d)=1~|~\mathbf{z})$ keeps same
+information because $\Pr(\coord{m}(d)=m_i(d)~|~\mathbf{z})$ equals $p(d)$ if
+$m_i(d)=1$ and $1-p(d)$ otherwise. The advantage is that it makes clearer that
+they can be stored and updated independently, and also that the number of stored
+elements is $|\mathbf{D}|=N_1\times N_2\times N_3$\footnote{e.g. if
+$N_1=N_2=N_3=200$ for a 5cm resolution on cube with 10m edge,
+$|\mathbf{D}|=8,000,000$ already.}.
+That might still be a lot, but with clever memory implementations like
+Octomaps~\cite{hornung2013octomap}, it can be manageable.
+
+Marginal probability computation on each cube is a direct application of Bayes
+rule\footnote{$\Pr(A~|~B)=\frac{\Pr(B~|~A)\Pr(A)}{\Pr(B)}$} (a Bayes filter)
+with a \textit{logit} function for better faster computaion~\cite{thrunprob}:
+
+\begin{equation}
+l_n(d) = l_{n-1}(d)+ \text{\textbf{inverse\_sensor}}(d,z_n) - l_0(d)
+\end{equation}
+
+Here $l_n(d)$ is the \textit{logit} transformation of $p_n(d)$ the nth estimate
+for $p(d)$, after all previous $n$ sensor measuremnts $\mathbf{z}_n$, including
+the last one $z_n$.
+
+\begin{equation*}
+l_n(d) = \log\frac{p_n(d)}{1-p_n(d)} 
+\end{equation*}
+\citet{Pagac1998} - Evidencial Theory
+
+
+\subsubsection{Elevation Maps}
+\citet{Coiras2007} - 2.5D with properties
+
+\subsubsection{Multi Layer Surface - MLS}
+
+\citet{Schwendner2013} - Discrete Map formulations
+
+
+\subsection{Map of Features}
+\citet{Ribas2006} - line extraction
+
+
+\subsection{Continuous Map}
+\citet{gan20093d} - Gaussian Process
+\citet{ramos2016hilbert} - Hilbert Maps
