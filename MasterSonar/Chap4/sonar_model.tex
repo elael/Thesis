@@ -1,3 +1,18 @@
 \section{Inverse Sonar Model}
-\citet{Moravec1985} - continuous inverse model (first hit)
-\citet{thrunprob} - discrete model/Learn model
+
+Methods that do not use Expectation-Maximization (EM), as some of those
+described in sections \ref{sss:3dgrid}, usually require some form of inversion
+of the sensor model. This is a way to characterize the environemnt from a sensor
+response.
+
+In the context of grid maps, it appear as a conditional probability on the
+measurement, i.e.
+$\text{\textbf{inverse\_sensor}}(d,z_n)=\Pr(\coord{m}(d)=1~|~z_n)$ in equation
+\ref{eq:gridoccupancy}. For sonars, it is generally considered as a constant
+value for grid elements inside an occupied bin (vide figure \ref{fig:bins}) and
+another for those outside\cite{thrunprob}. \citet{thrunprob} also creates an
+inverse model by training a machine learning algorithm with generated responses.
+
+The difference between an occupied bin and an empty one can be a simplistic
+threshold~\cite{ribas2010underwater,Moravec1985,thrunprob} or some more complex
+procedure. For Hilbert Maps, after defining the empty and full bins, 

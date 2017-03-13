@@ -16,7 +16,7 @@ variable, is called binary regression. It is the single most importante
 regression for mapping, as such, no other kind is explored in this thesis. 
 
 \subsection{Binary Logistic Regression} 
-
+\label{ss:blr}
 A binary regression the dependent variable $Y\in\{-1,1\}$
 (or some set of equal cardinality like $\{0,1\}$) has two
 possible estimations that are related by $\Pr(Y=1|X=x)+\Pr(Y=-1|X=x)=1$. As
@@ -89,7 +89,7 @@ keep its linear simplicity, the alternative is to increase dimensionality using
 Hilbert Spaces.
 
 \subsection{Regression on Hilbert Spaces}
-
+\label{ss:reg_hs}
 Samples defined on a low dimensional space $\mathcal{X}$, e.g. $\mathbb{R}^3$,
 can be raised to a high (possible infinite) dimensional space using a feature
 map $\varphi:\mathcal{X}\to\hs$, where $\hs$ is hilbert space. This allow
@@ -101,11 +101,13 @@ $f(x)$ is the actual RKHS with kernel define as in equation
 The linear logistic model from equation \ref{eq:std_linear_logistic} lifted to
 the Hilbert Space $\hs$ becomes
 \begin{equation}
+\label{eq:hslogistic}
 p(x;\coord{w}) = \frac{1}{1+\exp(-\hip{\coord{w}}{\varphi(x)})}
 \end{equation}
 
 Thus equation \ref{eq:classicnll} for log likehood empirical risk becomes:
 \begin{equation}
+\label{eq:hsnll}
 \text{NLL}_{\text{reg}}(\coord{w}) =  \sum_{i=1}^n \log(1+\exp(-y_i
 \hip{\coord{w}}{\varphi(x_i)})) +\lambda\mathcal{S}(\coord{w})
 \end{equation}
@@ -116,6 +118,6 @@ $K(x,y)=\hip{\varphi(x)}{\varphi(y)}\approx\hat\varphi(x)\cdot\hat\varphi(y)$.
 Non kernel specific methods for finding approximate features include sampling
 the Fourier transform of shift invariant kernels~\cite{rahimi2007random}, i.e.
 $K(x,y)=k(x-y)=k(\delta)$, and Nystr\"om method that projects the Gram matrix
-$G_{ij}=K(x_i,x_j)$ of the sample points $\{x_i\}$ into some subset of these
-points and use this projection to approximate the feature
+$\mathbf{G}_{ij}=K(x_i,x_j)$ of the sample points $\{x_i\}$ into some subset of
+these points and use this projection to approximate the feature
 maps~\cite{williams2000using}.

@@ -112,9 +112,10 @@ f(x) = \hip{K(x,\parm)}{f} \qquad f \in \hs
 Examples of common used kernels:
 \begin{itemize}
   \item Gaussian Kernel/Radial Basis Fucntion Kernel (RBF)
-  \begin{equation*}
+  \begin{equation}
+  \label{eq:rbf}
   K(x,y) = \e^{-\gamma\norm{x-y}^2} \qquad \gamma \in \mathbb{R}^+
-  \end{equation*}
+  \end{equation}
   \item Laplacian Kernel
   \begin{equation*}
   K(x,y) = \e^{-\lambda\norm{x-y}} \qquad \lambda \in \mathbb{R}^+

@@ -1,5 +1,5 @@
 \section{Map Representation}
-
+\label{s:map_rep}
 Classically maps are binary functions over the space. The
 binary choices of function's range stand for fullness or emptyness of a point.
 Mapping is to construct a probability distribution over the set of all maps~\cite{thrunprob},
@@ -32,7 +32,7 @@ developed for 2D maps~\cite{thrunprob}, their where later extended to 3D maps
 in different ways.
 
 \subsubsection{3D grids}
-
+\label{sss:3dgrid}
 The first obvious extension was a 3D grid of cubes by discretizing a range
 of each direction on $N$ elements. Reasoning that each cube still full
 or empty, the set of possible maps on a $N_1\times N_2\times
@@ -66,6 +66,7 @@ with a log-odds representation for better faster
 computaion, known as occupancy in this context~\cite{thrunprob}:
 
 \begin{equation}
+\label{eq:gridoccupancy}
 l_n(d) = l_{n-1}(d)+ \text{\textbf{inverse\_sensor}}(d,z_n) - l_0(d)
 \end{equation}
 
@@ -83,6 +84,13 @@ $\text{\textbf{inverse\_sensor}}(d,z_n)=\Pr(\coord{m}(d)=1~|~z_n)$, it is the
 probability of fullness for a grid element $d$ given \textbf{only} the last
 measuremnt $z_n$, it can be interpreted as inference from the sensor response,
 justifing the name.
+
+\citet{thrunprob} suggests to abandon independecy between grid elements. To
+archive that, he employes a forward sensor model, instead of a
+$\text{\textbf{inverse\_sensor}}$, and uses optimization algorithm Expectation
+Maximization (EM) on the marginal to find a best fit. It is successful on
+solving ``conflicts'' between sonar responses when, because of a wide beamwidth,
+the same region appears to be full and empty depending on viewpoint.
 
 Another, not so well explored, approach for calculating the marginal probability
 for grid elements comes from Evidential Theory. Evidential Theory, a.k.a.
@@ -123,18 +131,136 @@ caves, etc. That is adressed in the next option.
 As a compromise between the last two solution, grid and elevation maps, Multi
 Layer Surface (MLS) was developped. It originates as elevation maps, but instead
 of having only one height per grid element, it splits into many layers of
-varying height.
+varying height, called \textit{surface patches}.
 
-
-
-
- \citet{Schwendner2013} - Discrete Map formulations
-
+When MLS was first proposed by \citet{triebel2006multi}, each surface patch of
+each grid element stored statistics as mean height and standard deviation. It
+was soon realised that a flat horizontal plane for a grid and a preferential
+vertical direction could be an issue for well describing statistical knowledge
+of the environment. Some extensions have already been suggested to address this
+matter, e.g. works of \citet{rivadeneyra2011probabilistic} and
+\citet{Schwendner2013}.
 
 \subsection{Map of Features}
-\citet{Ribas2006} - line extraction
+
+A map can, in certain situations, be approximated by a collection of geometric
+objects, viz. line segments, cicles, etc. This is specially true for structured
+environments~\cite{Ribas2006} where walls and flat surfaces are easily found.
+
+The 2D simplification, only considering the horizontal plan, was explored for
+underwater SLAM with Imagins Sonars by \citet{ribas2010underwater}. They used
+lines to represent a environment, with endpoints only for display purpose. Line
+extraction relied on polar the parametric space of lines (angle and distance to
+the origin) as on Hough Voting and extensions.
+
+Besides only applied to 2D, a particular downside of the approach is its little
+generality. Generic, unstructured or complex environments are unhandleable.
 
 
 \subsection{Continuous Map}
-\citet{gan20093d} - Gaussian Process
-\citet{ramos2016hilbert} - Hilbert Maps
+
+There is no need for discretization on space if some restrictions are applied to
+the space of function of maps. Formally that means
+$\tilde{\mathcal{M}}_d\subseteq\mathcal{V}\cap\mathcal{M}_d$, where $\mathcal{V}$
+is some restricted space of fuctions, e.g. continuous compact supported, and
+$\mathcal{M}_d$ as defined on section \ref{s:map_rep}. In practice the
+restriction is not directly applied to the space of functions, instead it is
+enforced on the probability distribution, such that functions outside
+$\tilde{\mathcal{M}}_d$ have zero probability.
+
+A marginal probability for continuous map evaluates at every point in
+$\mathbb{R}^d$, not in some discretized space as for 3D grids presented in
+section \ref{sss:3dgrid}. The marginals shall then be written as
+$p(x)=\Pr(\coord{m}(x)=1)$ for $x\in\mathbb{R}^d$.
+
+\subsubsection{Gaussian
+Process Occupancy Maps - GPOM}
+
+Possibly the first succesfull attemp to have a continous map was Gaussian
+Process Occupancy Maps (GPOM) by \citet{o2012gaussian}, as noted by the author
+there were previous attemps, but they lacked computability or did not truly
+represented occupancy. GPOM's method apply learning techniques, Gaussian
+Process, to estimate the best marginal form a family of function
+$p(x)=\Phi(\parm)$, $\Phi$ is the cumulative unit Gaussian. Details of the
+learning process are numerous and complex, for the interested reader it is
+suggested to check the original paper. GPOM was already applyed to 3D
+environments for path planning of a 6DOF Rotary Unmanned Aerial Vehicle (RUAV)
+using laser sensors~\cite{gan20093d}. 
+\footnote{$\Phi(x)=\frac{1}{\sqrt{2\pi}}\displaystyle\int_{-\infty}^x \e^{-\nicefrac{t^2}{2}}dt$}
+
+Following ideas from GPOM, Hilbert Maps were proposed as less computationally
+expensive alternative for continuous maps. It is also able to naturally account
+for spatial correlations and handle noise, but while GPOM scales cubically with
+data size, Hibert Maps can be updated in linear time. Hibert Maps is yet much
+simpler to implement and it was the chosen altertive for sonar reconstruction on
+this work. It suits well the task as most of imaging sonar drawbacks as a sensor
+are its noise and wide beamwidth.
+
+\subsubsection{Hibert Maps}
+
+Hibert Maps is a recent development by \citet{ramos2016hilbert}, from 2016. It
+was applied to the 2D case, on a laser sensor setting. This thesis apply the
+method to 3D environment with sonar, imaging sonar especially. Most of the
+mathematical machinery necessary was described in chapter \ref{c:math}, however
+some details still to be presented.
+
+Marginal probabilities are assumed to be linear logistic as in equation
+\ref{eq:hslogistic}:
+\begin{equation*}
+p(x;\coord{w}) = \frac{1}{1+\exp(-\hip{\coord{w}}{\varphi(x)})}
+\end{equation*}
+
+Where $\coord{w}, \varphi(x)\in\hs$, $\hs$ a Hilbert space that generates a RKHS
+with kernel $K(x,y)=\hip{\varphi(x)}{\varphi(y)}$. As long range correlations
+are not expected, a suitable kernel choice is the RBF defined on
+equation \ref{eq:rbf}:
+\begin{equation*}
+K(x,y) = \e^{-\gamma\norm{x-y}^2} \qquad \gamma \in \mathbb{R}^+
+\end{equation*}
+
+The features $\varphi(x)$ are approximated as Nystr\"om features, other
+methods did not showed results as good~\cite{ramos2016hilbert}, approximations
+were discussed in section \ref{ss:reg_hs}. Nystr\"om features are sample
+dependent, given set of $n$ ``inducing" points $\nu_i\in\mathbb{R}^d, \quad
+i=1\ldots n$ chosen (possibly random) on the region being mapped, it is
+calculated as:
+\begin{equation}
+\label{eq:nystrom}
+\hat\varphi(x) = \mathbf{\Lambda}^{-\nicefrac{1}{2}}\mathbf{Q}^T\hat K(x)
+\end{equation}
+ 
+ Where $\mathbf{G}=\mathbf{Q}\mathbf{\Lambda}\mathbf{Q}^T$ is the
+ spectral decomposition of the Gram matrix of the ``inducing" points,
+ $\mathbf{G}_{ij}=K(\nu_i,\nu_j)$, and ${\displaystyle\hat K}_i(x) = K(x,\nu_i)$
+ is a column vector. After this finite approximations,
+ $\coord{w}\in\mathbb{R}^n$ and equation \ref{eq:hslogistic} becomes:
+\begin{equation}
+\label{eq:hsmarg}
+p(x;\coord{w}) = \frac{1}{1+\exp(-\coord{w}\cdot \hat\varphi(x))}
+\end{equation}
+ 
+ And the negative log likehood - NLL - regression, from equation \ref{eq:hsnll}
+ becomes:
+\begin{equation}
+\label{eq:finitenll}
+\text{NLL}_{\text{reg}}(\coord{w}) =  \sum_{i=1}^n \log(1+\exp(-y_i~
+\coord{w}\cdot\hat\varphi(x_i))) +\lambda\mathcal{S}(\coord{w})
+\end{equation}
+ 
+ Where $(y_i,x_i)$ are the sample points and $\mathcal{S}(\parm)$ an
+ elastic-net regulariser, described on the context of logistic regression of section \ref{ss:blr}:
+  
+\begin{equation}
+\label{eq:elasticnet}
+\mathcal{S}(\coord{w})=\alpha_1\norm{\coord{w}}_1 + \alpha_2\norm{\coord{w}}_2^2
+\end{equation}
+
+With $\alpha_1+\alpha_2=1$, $\alpha_1,\alpha_2\in[0,1]$.
+
+Minimization of $\text{NLL}_{\text{reg}}(\coord{w})$ gives a representation of
+the map as a $n$ parameter vector $\coord{w}$. It can then be evaluated at any
+point with equation \ref{eq:hsmarg}. The minimization step is solved iteratively
+as a learning processed, discussed further ahead, which is naturally an online
+process.
+ 
+ 
