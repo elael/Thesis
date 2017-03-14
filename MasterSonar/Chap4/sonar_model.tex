@@ -1,5 +1,5 @@
 \section{Inverse Sonar Model}
-
+\label{s:ism}
 Methods that do not use Expectation-Maximization (EM), as some of those
 described in sections \ref{sss:3dgrid}, usually require some form of inversion
 of the sensor model. This is a way to characterize the environemnt from a sensor
@@ -15,7 +15,11 @@ inverse model by training a machine learning algorithm with generated responses.
 
 The difference between an occupied bin and an empty one can be a simplistic
 bin-value threshold~\cite{ribas2010underwater,Moravec1985,thrunprob} or some
-more complex procedure, e.g. histograms. For Hilbert Maps, only procedures for
+more complex procedure, e.g. histograms. 
+
+\subsection{Sonar on Feature Maps}
+\label{ss:isfm}
+For Hilbert Maps, only procedures for
 laser are already discribed, thus here a strategy is proposed for sonar
 responses. After defining the empty and full bins, there are three main
 differences between sonars and lasers: Sonars bins are volumetric; Lasers have a

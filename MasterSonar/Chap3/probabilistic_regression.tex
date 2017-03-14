@@ -99,13 +99,16 @@ $f(x)$ is the actual RKHS with kernel define as in equation
 \ref{eq:feature_kernel}.
 
 The linear logistic model from equation \ref{eq:std_linear_logistic} lifted to
-the Hilbert Space $\hs$ becomes
+the Hilbert Space $\hs$ is
 \begin{equation}
 \label{eq:hslogistic}
 p(x;\coord{w}) = \frac{1}{1+\exp(-\hip{\coord{w}}{\varphi(x)})}
 \end{equation}
 
-Thus equation \ref{eq:classicnll} for log likehood empirical risk becomes:
+Thus equation \ref{eq:classicnll} for log likehood empirical risk
+becomes\footnote{With appropriate ajustment of $\lambda$'s value,i.e.
+$\lambda=n\lambda_0$, the usual average $\nicefrac{1}{n}$ for the summation can
+be dropped, as it keeps the same minimizer value of $\coord{w}$.}
 \begin{equation}
 \label{eq:hsnll}
 \text{NLL}_{\text{reg}}(\coord{w}) =  \sum_{i=1}^n \log(1+\exp(-y_i
