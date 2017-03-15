@@ -21,7 +21,7 @@ The phenomenon that humans percieve as sound is a pressure wave which
 amplitude excesses the medium's mean pressure \cite{FEYNMAN}. It can be
 referred to as \textit{compressional} or \textit{longitudinal} waves, contrasting with
 \textit{transversal waves}. The difference between these two kinds of waves
-%% SJ: "particles" ?
+%% SrJ?: "particles" ?
 relies on the direction of the movement of the particles, being parallel or
 perpendicular to the propagation of the wave, respectively\cite{BRUNEAU}.
 
@@ -124,15 +124,21 @@ acoustic waves on water for navigation, communication and detection, but
 nowadays it is also used for the equipment that generate/receive these
 sound waves.
 
-%% SJ: cute, but doubtful ...
+%% SrJ?: cute, but doubtful ...
 The history of sonar has began on the year of 1490 through
 the statemnt of Leonardo Da Vinci aformentioned on the epigraph 
 of this chapter\cite{fahy1998fundamentals}. That was the birth of
 \textit{passive sonar}'s technology, where the objective is to listen (receive
 and process sound waves) the noise from ships, animals and other objects in an attempt detect and
-recognize its origin.
+recognize its origin. 
 
-%% SJ: no transition. Mention both in the subsection introduction and then go on
+However, as it is not expected that all surfaces emit noise, this passive type
+of sonar is not suitable for mapping.
+For that purpose, another type of sonar that could probe the surrounds had to be
+devised, those would be called \textit{active sonars}.
+
+%% SrJ: no transition. Mention both in the subsection introduction and then go
+% on
 
 \subsubsection{Active Sonar}
 
@@ -170,19 +176,24 @@ the denominator $2$ is a consequence of time measuring the two way
 trip of the pulse. When the medium cannot be considered homogeneous, as in long distance travels in
 the ocean, additional effects must be taken into account~\cite{Etter2013}.
 
+Active sonars outputs is influencied by various factors, some considered to be
+more relevent will be futher explored in this section: multipaths, spatial
+resolution, bearing indistinguishability and propagation loss compensation
+(TVG).
+
 % When the sound wave travels long distances in the ocean,
 % sound speed may vary greatly, so, special care should be
 % taken\cite{Etter2013}.stratify the environment by same sound speed layers
 
-%% SJ: no transition ....
+%% SrJ: no transition ....
 
 \subsubsection{Multipath}
 
-%% SJ: while theoretically water surface or obstacles do have some refraction
-%% Sj: involved, nobody would ever say that at the frequencies sonar work on
+%% SeJ: while theoretically water surface or obstacles do have some refraction
+%% Sej: involved, nobody would ever say that at the frequencies sonar work on
 %%
-%% SJ: the main source of refraction are the interfaces between water speed
-%% SJ: zones
+%% SeJ: the main source of refraction are the interfaces between water speed
+%% SeJ: zones
 
 Besides sound speed variation, another common issue is \textit{multipath}. The
 moment a sound wave encounters an interface (e.g. an obstacle like the sea floor
@@ -231,11 +242,11 @@ related to the bandwidth ($\Delta \text{BW}$):
 	\label{fig:chirpresolution}
 \end{figure}
 
-%% SJ: .... is that really needed ? It's feeling out of place
-The seabed contains sediments that attenuate and retard incident sound waves, so
-sonars use Gaussian pulse spectrum as a measure to mitigate the impacts on temporal
-resolution. Although energy is lost, the Gaussian shape is nearly preserved
-increasing sub-bottom penetration and avoiding band-width loss.
+% % SrJ: .... is that really needed ? It's feeling out of place
+% Another advantage of CHIRP pulse is it resilience. The seabed contains sediments
+% that attenuate and retard incident sound waves and, although
+% energy is lost, the pulse compression increase
+% sub-bottom penetration and avoiding band-width loss.
 
 \subsubsection{Bearing}
 \label{sss:bearing}
@@ -352,8 +363,9 @@ by doing so.
   acoustic pulse. Each echo is displayed at a distance determined by equation
   \ref{eq:delaytodistance} and with its strength mapped to a color scale.
   \item \textbf{Side Scan} (a.k.a. towfish) - Can be either mounted on each side
-      %% SJ: not sure about the beam shape, for the sidescan is usually more of
-      %% SJ: profiler
+      %% SrJ?: not sure about the beam shape, for the sidescan is usually more
+      % of
+      %% SrJ: profiler
   of a boat's hull or towed behind. With a beam shape similar to an imaging
   sonar, it can provide a sophisticated image of the sea floor.
   \item \textbf{Echo-sounder} - mounted below a boat, it has a narrow pulse
@@ -369,11 +381,12 @@ Multibeam sonar are based on the technique of \textit{beamforming} (described
 on section \ref{sss:bearing}). It has several hydrophones, rendering it able to
 scan an underwater region with no moving parts.
 
-%% SJ: actually, in the multibeam world, the only difference between profiling
-%% SJ: imaging is the beam height. The data is presented in exactly the same way
+%% SrJ: actually, in the multibeam world, the only difference between profiling
+%% SrJ: imaging is the beam height. The data is presented in exactly the same
+% way
 %%
-%% SJ: the thing is, profilers are more sensitive to errors in the measurement
-%% SJ: and processing, so are harder to make
+%% SrJ: the thing is, profilers are more sensitive to errors in the measurement
+%% SrJ: and processing, so are harder to make
 
 \begin{enumerate}
   \item \textbf{Profiling} - similar in application to its mechanically scanning
@@ -381,11 +394,11 @@ scan an underwater region with no moving parts.
   signal. Instead of moving its transducer, it amplifies and processes (through
   \textit{beamforming}) the received signal to identify the position of the
   strongest returned echo, then creating a high-speed cross-sectional profile.
-  \item \textbf{Imaging} - besides being much quickier than a Mechanical Imaging
-  %% SJ: "crispier image" is more an effect of generation than technique
-  Sonar, it generates a crispier image of the underwater environment. It
-  possesses a wide angle acoustic transmitter and multiple narrow beam
-  receivers, applying \textit{beamforming} to the received signal.
+  \item \textbf{Imaging} - it is much quickier than a Mechanical Imaging
+  %% SrJ: "crispier image" is more an effect of generation than technique
+  Sonar, being very similar to a Multibeam Profiling their difference lies on
+  beam width.   It possesses a wide angle acoustic transmitter and multiple
+  narrow beam receivers, applying \textit{beamforming} to the received signal.
 \end{enumerate}
 
 The array size of hydrophones is critical for enhancing resolution, longer

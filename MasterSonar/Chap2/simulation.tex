@@ -40,13 +40,13 @@ high constructive interference that geometrically gives a point of infinity
 rays convegence.}, other wave methods (e.g. finite elements, normal modes,
 parabolic approximation) should be applied.
 
-%% SJ: aren't you mjissing a subsubsection here ?
+%% SrJ: aren't you mjissing a subsubsection here ?
 
-%% SJ: "assumed" ? Isn't that an analytic solution in case of a sine wave
-%% SJ: (fourier transform and all that)
+%% SrJ: "assumed" ? Isn't that an analytic solution in case of a sine wave
+%% SrJ: (fourier transform and all that)
 Instead of using the full wave equation, the methods work with a simplified
-time-independent version. It can be assumed that the equation
-\ref{eq:wave}:
+time-independent version. As it is a linear equation, it can be assumed that the
+equation \ref{eq:wave}:
 
 \[ \nabla^2 p = \frac{1}{c^2_0}\frac{\partial^2}{\partial t^2} p \]
 
@@ -224,11 +224,12 @@ gives a brief introduction of the subject.
 Geometric approaches like ray theory dates back to Newton and the corpuscular
 theory of light. Later found to be better described as a wave, the geometric
 theory of light is still a very important and useful tool. The sound ray theory
-%% SJ: frequency is irrelevant to using geometry, wavelength is. The frequencies
-%% SJ: are different, but because of the speeds the wavelengths are not so much
-follows a similar path, they both apply to high frequency waves, but typical
-sound waves have low/mid-frequency while visible light has a much higher
-frequency.
+%% SrJ: frequency is irrelevant to using geometry, wavelength is. The
+% frequencies
+%% SrJ: are different, but because of the speeds the wavelengths are not so much
+follows a similar path, they both apply to short-wavelength waves, but typical
+sound waves have mid-wavelength ($10-10^{-3}$m) while visible light has a
+much shortter wavelength ($\approx10^{-6}$m).
 
 To describe the ray from the wave theory, one starts by solving the Helmholtz
 equation (eq \ref{eq:helmholtz}) with a generic complex function of space
@@ -359,11 +360,12 @@ r(s) = r_0 + (c_0\nabla\tau_0)s
 \end{equation}
 
 Where $r_0$ is the ray origin, $\tau_0$ is the gradient of $\tau$ anywhere
-%% SJ: "an affine space" OK, either you go all the way or you don't. You can't
-%% SJ: drop something like this at this point, it's ridiculous
-%% SJ: (my advice is "don't", this is engineering, not math, R^3 is an affine
-%% SJ: space)
-along the ray, and the addition is taken with $\mathbb{R}^3$ as an affine space.
+%% SrJ?: "an affine space" OK, either you go all the way or you don't. You can't
+%% SrJ: drop something like this at this point, it's ridiculous
+%% SrJ: (my advice is "don't", this is engineering, not math, R^3 is an affine
+%% SrJ: space)
+%% , and the addition is taken with $\mathbb{R}^3$ as an affine space
+along the ray.
 This is the equation of a line, show that acoustic rays travel as a straight
 line on constant velocity mediums for a high-frequency approximation.
 
@@ -425,8 +427,9 @@ I = g_0~\mathbb{E}[\abs{\mathcal{A}}^2]
 \end{equation*}
 
 To consider the contribution of a set of incoherent rays $\psi_i$ (i.e.
-%% SJ: I'm not sure about the "statistically" here ... I believe "uncorrelated"
-%% SJ: would be enough given the definition of "uncorrelated waves" in physics
+%% SrJ?: I'm not sure about the "statistically" here ... I believe
+% "uncorrelated"
+%% SrJ: would be enough given the definition of "uncorrelated waves" in physics
 uncorrelated), the total $\psi$ becomes:
 
 \begin{equation}\label{eq:wavesum}
@@ -542,8 +545,8 @@ k_n^2}H_0^{(1)}(k_0r)k_0\dif k_0} + I_{\text{branch-cut}}
 \end{equation}
 
 The branch line integral $I_{\text{branch-cut}}$ can be physically interpreted
-%% SJ: "continuous mode spectrum" ?
-as the contribution of the continuous mode spectrum (in contrast with the
+%% SrJ: "continuous mode spectrum" ?
+as the contribution of all other modes spectrum (those that are not
 normal modes), representing modes that propagates through the ocean floor
 (being strongly attenuated) and near-field, that decays exponentially with
 distance. Assuming that the horizontal distance is several times the water
@@ -581,7 +584,7 @@ water-sediment boundary and sea surface as well.
 
 The parabolic approximation replaces the Helmholtz equation \ref{eq:helmholtz},
 which is a elliptic partial differential equation, by a simplified parabolic
-%% SJ: give me your time travelling machine ...
+%% SrJ?: give me your time travelling machine ...
 version. This approximation dates back to the middle of the $\mathrm{XXI}$
 century, in the context of tropospheric radio wave propagation.
 
@@ -655,9 +658,9 @@ written in decibels\ref{eq:dB}:
   \footnotetext{with respect to an omnidirectional source}
   \item TL is the Transmission loss - Intensity loss through absorption and
   spreading while propagating (in dB).
-  %% SJ: I don't get the difference between TS and RL
+  %% SrJ: I don't get the difference between TS and RL
   \item TS is the Target Strength - ratio between the intensity of outgoing
-  and incoming rays (in dB).
+  and incoming rays on a target hit (in dB).
 \end{enumerate}
 
 
@@ -824,8 +827,8 @@ ignoring multiple reflections.
 
 A variety of derivations from the original algorithm have being concieved. Most
 of the methods applied to audio were developped for computer graphics
-%% SJ: "rederization" ? Is that "rendering" ?
-rederization, but, considering sound waves with similar constrains to those
+%% SrJ: "rederization" ? Is that "rendering" ?
+rendering, but, considering sound waves with similar constrains to those
 applyed to light (i.e. high frequency limit), it is reasonable to apply them to
 aurelization (sound renderization) as well.
 
@@ -932,9 +935,9 @@ R(\coord{x},\coord{p},\Omega) \ell
 Where $\mathcal{G}$ is the two dimensional subset of $\mathbb{R}^3$ comprising
 all surfaces, $\coord{p}$ is a point over a surface, $\dif\mu(\coord{x})$ is the
 surface area differential at point $\coord{x}$, $\Omega$ is the outgoint
-%% SJ: I don't understand the "source point" comment ... It's surface radiance
-%% SJ: ... so I would write e.g. "in case the surface is an emitter", no?
-energy direction, $\ell_0$ the intrinsic surface radiance (a source point), $\overrightarrow{\coord{x}\coord{p}}$ the unit vector in the direction to $\coord{p}$ from point $\coord{x}$. The function $R(\parm,\parm,\parm)$ is the
+%% SrJ: I don't understand the "source point" comment ... It's surface radiance
+%% SrJ: ... so I would write e.g. "in case the surface is an emitter", no?
+energy direction, $\ell_0$ the intrinsic surface radiance (in case the surface is an emitter), $\overrightarrow{\coord{x}\coord{p}}$ the unit vector in the direction to $\coord{p}$ from point $\coord{x}$. The function $R(\parm,\parm,\parm)$ is the
 \textit{reflection kernel}, an enhanced version of a BDRF. For a non-obstructed path between 
 $\coord{p}$ and $\coord{x}$:
 
@@ -948,7 +951,7 @@ When there is no visibility from  $\coord{x}$ to $\coord{p}$,
 $R(\coord{p},\coord{x},\Omega) = 0$. Here
 $\rho_\coord{p}(\overrightarrow{\coord{x}\coord{p}},\Omega)$ is the BDRF at the
 point $\coord{p}$ with incoming direction $\overrightarrow{\coord{x}\coord{p}}$
-%% SJ: omega is not a direction, but the incoming energy, or ?
+%% SrJ?: omega is not a direction, but the incoming energy, or ?
 and outgoing direction $\Omega$, $\theta_i$ and $\theta_r$ are the incoming and
 reflected angles with surface's normal at point $\coord{p}$ for directions $\overrightarrow{\coord{x}\coord{p}}$
 and $\Omega$ respectively. Factor $\mathfrak{a}(\norm{\coord{p}-\coord{x}})$ is

@@ -2,25 +2,42 @@
 
 \section{Objectives}
 
-%% SJ: try to be more bullet-pointy
-%% SJ: you already made your point about "that can be done in many ways" focus
-%% SJ: on what this thesis does.
+%% SrJ: try to be more bullet-pointy
+%% SrJ: you already made your point about "that can be done in many ways" focus
+%% SrJ: on what this thesis does.
 
-The general objective is to map an underwater environment.
-But that can be done in many ways, for this thesis the main goal is to implement
-optimization of the visible surface based on the expected response of a
-sonar beam in a given direction and fuse multiple views using binary bayesian
-filters. 
+The by-product of this work is a simulator and a mapping system. The simulator
+will be able to receive a general environment and calculate the expected
+response of a high-frequency imaging sonar, which technical details are based on
+Tritech's Micron sonar. Its output shall exhibit commom sonar features as
+multipath effects, noise and beamwidth uncertainty. The response will be
+presented as polar plot similar to those used by real sonars.
 
-The output of the whole process will be a 3D human-redable map of the scanned
-environemnt. The optimization step might, also, supply information about the
-surface material, specifically its reflectance. A technique based on previously
-articles.
+The mapping system will receive sonar measuremnts, typically the simulator's
+output, and generate a Hibert map representation of the continous occupancy map.
+The map has to match to the simulator groundtruth avoiding inconsistencies
+caused by the sonar's wide beam. The Hilbert map representation is, technically,
+just a vector, thus it will be displayed as its occupancy map, evaluated at 2D
+plane cuts from the actual 3D environment.
 
- Fuse all the data on a octree structure using a robotic framework,
-named ROCK, and implement a visualization for the reconstruct underwater map.
-The data source shall be a imaging sonar mounted on a pan-tilt unit, so to
-provide the sonar extra degrees of freedom.
+
+
+
+% The general objective is to map an underwater environment.
+% But that can be done in many ways, for this thesis the main goal is to implement
+% optimization of the visible surface based on the expected response of a
+% sonar beam in a given direction and fuse multiple views using binary bayesian
+% filters. 
+% 
+% The output of the whole process will be a 3D human-redable map of the scanned
+% environemnt. The optimization step might, also, supply information about the
+% surface material, specifically its reflectance. A technique based on previously
+% articles.
+% 
+%  Fuse all the data on a octree structure using a robotic framework,
+% named ROCK, and implement a visualization for the reconstruct underwater map.
+% The data source shall be a imaging sonar mounted on a pan-tilt unit, so to
+% provide the sonar extra degrees of freedom.
 
 %  But to get there it is important to describe some facts first.
 %  

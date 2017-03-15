@@ -1,19 +1,22 @@
 \section{Map Representation}
 \label{s:map_rep}
-Classically maps are binary functions over the space. The
-binary choices of function's range stand for fullness or emptyness of a point.
-Mapping is to construct a probability distribution over the set of all maps~\cite{thrunprob},
-i.e.
+Classically maps are binary functions over the space. The binary choices of
+function's range stand for fullness or emptyness of a point.
+Mapping is to construct a probability distribution over the set of all
+maps~\cite{thrunprob}, i.e.
 $\mathcal{M}_d=\{\coord{m}~|~\coord{m}:\mathbb{R}^d\to\{0,1\}\}$. The
-cardinality of such a set
-$|\mathcal{M}_d|=\beth_2$ is too big\footnote{$\beth_2=\mathbf{2}^\mathfrak{c}$
-the cardinality the power set of the continuum, where $\mathfrak{c}$ is the
-cardinality of the continuum } to be tractable even considering computational discretization (finite precision).
+cardinality of such a set $|\mathcal{M}_d|$ is too big\footnote{Side note: the
+actual mathematical cardinality is $\beth_2=\mathbf{2}^\mathfrak{c}$ the
+cardinality the power set of the continuum, where $\mathfrak{c}$ is the
+cardinality of the continuum } to be tractable by exaustion even considering
+computational discretization (finite precision),i.e. by individually
+assigning probabilities to each map.
 
-Three approaches to this problem are presented here. One option is to discretize
-the space even further than the computational limit. Another is to renounce
-the idea of binary maps and consider maps to be a collection of predefined
-objects. And lastly, keep the concept of binary maps, yet to consider some
+Three approaches to this problem are presented here. One option is to consider
+conditional independece of spatial points and discretize the space even further,
+until it becomes tractable.
+Another is to renounce the idea of binary maps and consider maps to be a collection of predefined
+objects. And lastly, keep the concept of binary maps, but to consider some
 restriction on the space of functions from which the map $\coord{m}$ is drawn.
 
 Despite their differences, all approaches describe marginal probabilities
