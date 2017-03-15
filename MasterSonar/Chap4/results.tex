@@ -62,3 +62,92 @@ different meaning:
 
 
 \subsection{Results}
+
+Although the algorithm generates a 3D representation of an environment, results
+displayed here are plane cuts of this reconstruction only for better
+appreciation. The environment considered here is the 4x5 semi-inifinity box of
+section \ref{eq:boxlikenv}. There were used $3000$ inducing points (dimension of
+the feature map approximation - section \ref{sss:hilbertcontinousmap}) and $21$
+measuremnts from $7$ different positions in $3$ ortogonal orientations each
+from the sonar simulation. Different fractions of the number of beams were
+explored on figures \ref{fig:ten_map}, \ref{fig:thir_map} and
+\ref{fig:full_map}. Colors represent the value of the occupancy
+$p(x;\coord{w})$.
+
+\begin{figure}[ht]
+    \centering
+    \subfloat[Plane
+    $x=-1$]{{\includegraphics[width=75mm,trim={0 14mm 0
+    10mm},clip]{Chap4/fig/ten_x_-1}}}%
+    \hfill \subfloat[Plane
+    $z=-2$]{{\includegraphics[width=75mm,trim={0 14mm 0
+    10mm},clip]{Chap4/fig/ten_z_-2}}}%
+    \\%
+    \subfloat[Plane
+    $x=0$]{{\includegraphics[width=75mm,trim={0 14mm 0
+    10mm},clip]{Chap4/fig/ten_x_0}}}%
+    \hfill \subfloat[Plane
+    $z=-1$]{{\includegraphics[width=75mm,trim={0 14mm 0
+    10mm},clip]{Chap4/fig/ten_z_-1}}}%
+    \\%
+    \subfloat[Plane
+    $x=1$]{{\includegraphics[width=75mm,trim={0 14mm 0
+    10mm},clip]{Chap4/fig/ten_x_1}}}%
+    \hfill \subfloat[Plane
+    $z=0$]{{\includegraphics[width=75mm,trim={0 14mm 0
+    10mm},clip]{Chap4/fig/ten_z_0}}}%
+    \caption{Mapping with $10\%$ of avaluable beams.}%
+    \label{fig:ten_map}%
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \subfloat[Plane
+    $x=-1$]{{\includegraphics[width=75mm,trim={0 14mm 0
+    10mm},clip]{Chap4/fig/thir_x_-1}}}%
+    \hfill \subfloat[Plane
+    $z=-2$]{{\includegraphics[width=75mm,trim={0 14mm 0
+    10mm},clip]{Chap4/fig/thir_z_-2}}}%
+    \\%
+    \subfloat[Plane
+    $x=0$]{{\includegraphics[width=75mm,trim={0 14mm 0
+    10mm},clip]{Chap4/fig/thir_x_0}}}%
+    \hfill \subfloat[Plane
+    $z=-1$]{{\includegraphics[width=75mm,trim={0 14mm 0
+    10mm},clip]{Chap4/fig/thir_z_-1}}}%
+    \\%
+    \subfloat[Plane
+    $x=1$]{{\includegraphics[width=75mm,trim={0 14mm 0
+    10mm},clip]{Chap4/fig/thir_x_1}}}%
+    \hfill \subfloat[Plane
+    $z=0$]{{\includegraphics[width=75mm,trim={0 14mm 0
+    10mm},clip]{Chap4/fig/ten_z_0}}}%
+    \caption{Mapping with $30\%$ of avaluable beams.}%
+    \label{fig:thir_map}%
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \subfloat[Plane
+    $x=-1$]{{\includegraphics[width=75mm,trim={0 14mm 0
+    10mm},clip]{Chap4/fig/full_x_-1}}}%
+    \hfill \subfloat[Plane
+    $z=-2$]{{\includegraphics[width=75mm,trim={0 14mm 0
+    10mm},clip]{Chap4/fig/full_z_-2}}}%
+    \\%
+    \subfloat[Plane
+    $x=0$]{{\includegraphics[width=75mm,trim={0 14mm 0
+    10mm},clip]{Chap4/fig/full_x_0}}}%
+    \hfill \subfloat[Plane
+    $z=-1$]{{\includegraphics[width=75mm,trim={0 14mm 0
+    10mm},clip]{Chap4/fig/full_z_-1}}}%
+    \\%
+    \subfloat[Plane
+    $x=1$]{{\includegraphics[width=75mm,trim={0 14mm 0
+    10mm},clip]{Chap4/fig/full_x_1}}}%
+    \hfill \subfloat[Plane
+    $z=0$]{{\includegraphics[width=75mm,trim={0 14mm 0
+    10mm},clip]{Chap4/fig/full_z_0}}}%
+    \caption{Mapping with $100\%$ of avaluable beams.}%
+    \label{fig:full_map}%
+\end{figure}
