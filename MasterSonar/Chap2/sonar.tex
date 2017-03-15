@@ -6,12 +6,13 @@
 
 Throughout this thesis one specific type of sonar will be considered, the
 mechanical imaging active sonar (section \ref{ss:avaible_models}). Sonars have a common
-underlying principle of operation, but vary greatly on aplication and hardware constituition.
+underlying principle of operation, but vary greatly on aplication and hardware
+constitution.
 
 
 Sonars are, in some sense, the acoustic analog of a camera. They use sound,
 instead of light, to capture information about the environment. Hence, to better
-undersand \textit{how} they operate and \textit{what} they are used for, it is
+understand \textit{how} they operate and \textit{what} they are used for, it is
 important to have a clear concept of sound.
 
 \subsection{Physics of Sound}
@@ -20,10 +21,11 @@ The phenomenon that humans percieve as sound is a pressure wave which
 amplitude excesses the medium's mean pressure \cite{FEYNMAN}. It can be
 referred to as \textit{compressional} or \textit{longitudinal} waves, contrasting with
 \textit{transversal waves}. The difference between these two kinds of waves
+%% SJ: "particles" ?
 relies on the direction of the movement of the particles, being parallel or
 perpendicular to the propagation of the wave, respectively\cite{BRUNEAU}.
 
-On the particular, but usefull, conditions of low energy
+On the particular, but common, condition of low energy
 phenomena\cite{Lefebvre} (with some other suitable requirements\footnote{A
 perfect simple fluid in an initial state of stationary homogeneous equilibrium})
 the pressure pertubation wave can be described as the \textit{D'Alembert
@@ -72,7 +74,7 @@ $p$:
 
 \[ \vec{v} = \frac{p}{\rho c_0} \vec{n_0} \]
 
-Where $\vec{n_0}$ is the unit normal vector to the wavefront. Pluging it back to
+Where $\vec{n_0}$ is the unit normal vector to the wavefront. Plugging it back to
 equation \ref{eq:intensity_mean}:
 
 \begin{equation}\label{eq:intensity_pressure}
@@ -80,9 +82,9 @@ equation \ref{eq:intensity_mean}:
 \end{equation}
 
 This equation shows the proportionality between the \textit{acoustic
-intensity} and the mean squared of the pressure. The inverse of the
+intensity} and the mean of the square of the pressure. The inverse of the
 proportionality constant $\rho c_0$ is called the \textit{characteristic
-impendace} because it measures the degree of ``resistence to propagation'' of
+impedance} because it measures the degree of ``resistence to propagation'' of
 the medium.
 
 %By means of the same reasoning about the physical properties
@@ -117,17 +119,20 @@ microPascal (\(p_0 = 1~\mu\text{Pa} \))\cite{LURTON}.
 \subsection{Sonar Principle of Operation}
 
 The name Sonar (\textit{\underline{So}und \underline{N}avigation \underline{A}nd
-\underline{R}anging}) was originally conceived for the tecnique that uses
+\underline{R}anging}) was originally conceived for any technique that uses
 acoustic waves on water for navigation, communication and detection, but
 nowadays it is also used for the equipment that generate/receive these
 sound waves.
 
+%% SJ: cute, but doubtful ...
 The history of sonar has began on the year of 1490 through
 the statemnt of Leonardo Da Vinci aformentioned on the epigraph 
 of this chapter\cite{fahy1998fundamentals}. That was the birth of
 \textit{passive sonar}'s technology, where the objective is to listen (receive
 and process sound waves) the noise from ships, animals and other objects in an attempt detect and
 recognize its origin.
+
+%% SJ: no transition. Mention both in the subsection introduction and then go on
 
 \subsubsection{Active Sonar}
 
@@ -150,9 +155,8 @@ unconvering of submerged enemies.
 
 Active sonars are ranging sensor and the way they infer distance is by measuring
 the time between the emission and reception of an acoustic pulse (a time bounded
-sound wave) like on \ref{fig:sonar_principle}. The mean sound speed of the
-medium throughout the path traveled by the pulse has to be known,
-in order to reckon space from delay\cite{LURTON}:
+sound wave) like on \ref{fig:sonar_principle}. Given the mean sound speed of the
+medium throughout the path traveled by the pulse, one can infer range\cite{LURTON}:
 
 \begin{equation}
 R = \frac{c_0 \Delta t}{2}
@@ -163,21 +167,27 @@ R = \frac{c_0 \Delta t}{2}
 Where $R$ is the distance between the source and the target, $c_0$ is the mean
 sound speed, $\Delta t$ is the delay between pulse emission and reception, and
 the denominator $2$ is a consequence of time measuring the two way
-trip of the pulse. When sound speed varies greatly, as in long distance travels in
-the ocean, special care should be taken\cite{Etter2013}, e.g. stratification of
-the environment by same sound speed layers.
+trip of the pulse. When the medium cannot be considered homogeneous, as in long distance travels in
+the ocean, additional effects must be taken into account~\cite{Etter2013}.
 
 % When the sound wave travels long distances in the ocean,
 % sound speed may vary greatly, so, special care should be
 % taken\cite{Etter2013}.stratify the environment by same sound speed layers
 
+%% SJ: no transition ....
 
 \subsubsection{Multipath}
 
+%% SJ: while theoretically water surface or obstacles do have some refraction
+%% Sj: involved, nobody would ever say that at the frequencies sonar work on
+%%
+%% SJ: the main source of refraction are the interfaces between water speed
+%% SJ: zones
+
 Besides sound speed variation, another common issue is \textit{multipath}. The
-moment a sound wave encounters an interface (e.g. sea floor, water surface or an
-obstacle) it does not bounces back to the source, it also undergoes refraction
-and reflection in other directions. Thus, an echo that has traveled a longer
+moment a sound wave encounters an interface (e.g. an obstacle like the sea floor
+or the water surface), it does not fully bounce back to the source, it also undergoes
+reflection in other directions. Thus, an echo that has traveled a longer
 path may also arrive, causing a naive application of equation \ref{eq:delaytodistance} to
 predict the presence of an object further away (figure \ref{fig:multipath}). For
 low-frequency stable signals, the contribution of all multipaths creates an
@@ -193,7 +203,7 @@ interference pattern\cite{LURTON}, a fact that will not be further explored.
 	\label{fig:multipath}
 \end{figure}
 
-\subsubsection{Sonar Resolution and Chirp Pulses}
+\subsubsection{Sonar Resolution and CHIRP Pulses}
 
 The minimum distance (or echo delay) that can be resolved by the sonar, depends
 on the type of pulse emitted (figure \ref{fig:chirpresolution}). There are two
@@ -217,10 +227,11 @@ related to the bandwidth ($\Delta \text{BW}$):
 \begin{figure}
 	\centering
 	\input{Chap2/fig/chirpresolution.tex}
-	\caption{Resolution as the minimum discernible distance between ecos.}
+	\caption{Resolution as the minimum discernible distance between echos.}
 	\label{fig:chirpresolution}
 \end{figure}
 
+%% SJ: .... is that really needed ? It's feeling out of place
 The seabed contains sediments that attenuate and retard incident sound waves, so
 sonars use Gaussian pulse spectrum as a measure to mitigate the impacts on temporal
 resolution. Although energy is lost, the Gaussian shape is nearly preserved
@@ -277,7 +288,7 @@ incoming sound wave.
 
 Another possibility is to apply signal processing by delaying the received
 signal from one hydrophone w.r.t. the other and adding them together. The
-constructive/destructive interference affectively changes the directivity of the
+constructive/destructive interference effectively changes the directivity of the
 array and, thus, can be used to find which direction gives the strongest echo.
 This is known as \textit{beamforming}.
 
@@ -320,8 +331,8 @@ most relevant ones.
 
 As seen on subsection \ref{sss:bearing}, it is possible to use the beam shape as
 a way to reduce the number of possible incoming directions for an echo. This is
-the idea behind a mechanically scanning sonar. As a consequence, the sonar has
-to rotate the hydrophone to cover a full, or partial, $360^o$ sector.
+the idea behind a mechanically scanning sonar, where the transducer is
+mechanically rotated to cover all or part of the $360^o$.
 
 The angular step between different hydrophone's positions is dependent on the
 desired resolution, smaller steps gives a better resolution, but takes longer
@@ -335,12 +346,14 @@ by doing so.
   pipeline surveillance, they can spot structural differences and objects on
   sea floor.
   \item \textbf{Imaging} - its fan shaped narrow beam covers a wider area than
-  the profiling type, making it very usefull for navigation and obstacle
+  the profiling type, making it very useful for navigation and obstacle
   avoidance on ROVs\footnote{Remotely Operated underwater Vehicle}. As its beam
   is wide, it usually hits the surface obliquely, receiving several echos per
   acoustic pulse. Each echo is displayed at a distance determined by equation
   \ref{eq:delaytodistance} and with its strength mapped to a color scale.
   \item \textbf{Side Scan} (a.k.a. towfish) - Can be either mounted on each side
+      %% SJ: not sure about the beam shape, for the sidescan is usually more of
+      %% SJ: profiler
   of a boat's hull or towed behind. With a beam shape similar to an imaging
   sonar, it can provide a sophisticated image of the sea floor.
   \item \textbf{Echo-sounder} - mounted below a boat, it has a narrow pulse
@@ -356,6 +369,12 @@ Multibeam sonar are based on the technique of \textit{beamforming} (described
 on section \ref{sss:bearing}). It has several hydrophones, rendering it able to
 scan an underwater region with no moving parts.
 
+%% SJ: actually, in the multibeam world, the only difference between profiling
+%% SJ: imaging is the beam height. The data is presented in exactly the same way
+%%
+%% SJ: the thing is, profilers are more sensitive to errors in the measurement
+%% SJ: and processing, so are harder to make
+
 \begin{enumerate}
   \item \textbf{Profiling} - similar in application to its mechanically scanning
   counterpart, it has multiple narrow conical beam receivers that record the
@@ -363,6 +382,7 @@ scan an underwater region with no moving parts.
   \textit{beamforming}) the received signal to identify the position of the
   strongest returned echo, then creating a high-speed cross-sectional profile.
   \item \textbf{Imaging} - besides being much quickier than a Mechanical Imaging
+  %% SJ: "crispier image" is more an effect of generation than technique
   Sonar, it generates a crispier image of the underwater environment. It
   possesses a wide angle acoustic transmitter and multiple narrow beam
   receivers, applying \textit{beamforming} to the received signal.
@@ -370,6 +390,6 @@ scan an underwater region with no moving parts.
 
 The array size of hydrophones is critical for enhancing resolution, longer
 arrays have a better angular resolution. To overcome physical limitations a
-techinique known as \textit{SAS} (Syntetic Aperture Sonar) may be applied. The
+technique known as \textit{SAS} (Syntetic Aperture Sonar) may be applied. The
 transmission of several acoustic pulses in a line is used to emulate the
 presence of a longer array, by means of signal processing on the reception.

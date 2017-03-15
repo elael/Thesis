@@ -19,17 +19,17 @@
 % technique based on previously articles.
 
 
-The work is divided into tree main branches. Each having a theoretical research
-followed by implementation.
+This work is divided into three parts.
 
-The sonar model definition starts with a compilation on the description of sonar
-variaties, sound waves physical properties on the water, reflection, sonar
+The sonar model definition starts with a compilation on the description of sonar,
+physical properties of sound waves in water, reflection, sonar
 directional gain and sources of noise. Then tests are realised on known
 environments so to fit and validate the proposed model. The test results are
-finally used create the full sonar model, including metric conventions by the
+finally used to create the full sonar model, including metric conventions by the
+%% SJ: "sonar protocol" ?
 sonar protocol.
 
-The second branch deal with the map filling over a discretized space, basically
+The second branch deal with the map filling over a discretized space, based on
 a Binary Bayesian Filter implementation. That is the standard state of the art
 tecnology for mapping \cite{thrunprob}.
 
@@ -53,7 +53,7 @@ It uses the sonar response as expectation and, instead of having a fixed
 relation between the measured environment and the sonar response, aim to better
 infer the underlying geometry of the surrounds and also retrieve some
 information about the material's reflectivity properties.
-This optimization algorithm will then be integrated to the Bayesian Filter. The
+This optimization algorithm will then be integrated into the Bayesian Filter. The
 same data processed by the combination ``Filter + Sonar Model'' shall now be
 processed by ``Filter + Optimization''.
  
