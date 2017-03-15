@@ -1,12 +1,23 @@
 \chapter{Introduction}
-Profiling sonars is the mimic laser scanner analog for underwater mapping,
+
+%% SJ: add explanations about profiling vs. imaging: size of beam and
+%% SJ: implications (ambiguities)
+
+Profiling sonars is the laser scanner analog for underwater mapping,
 so most of the approaches on 3D underwater SLAM (\textbf{S}imultateous
 \textbf{L}ocalization \textbf{a}nd \textbf{M}apping) focus on applying laser
 scanner techniques to profiling sonars, e.g.
+%% SJ: they don't really "give more information". They cover more space per
+%% SJ: beam, but the information is more ambiguous
 point cloud reconstruction. On the other hand, imaging sonars are usually cheaper and gives more information per sound
 beam. So having the possibility of using imaging sonar and benefiting from its
+%% SJ: "a win-win strategy" means that there are two parties ... I only see one
 extra information is a win-win strategy.
 
+%% SJ: apart from poor wording, the following is off the point. What you really
+%% SJ: want to stress is that there are various map representations. There are
+%% SJ: SLAMs on dense 3D maps / 2.5D ! Not every SLAM is feature-based, and a
+%% SJ: lot of feature-based SLAMs can generate dense maps as a byproduct
 Besides the definition of the sonar, one should carefully look into the meaning
 of mapping, because, it can be interpreted in different ways, depending on the
 context.
