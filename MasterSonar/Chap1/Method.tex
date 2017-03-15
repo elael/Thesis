@@ -19,15 +19,22 @@
 % technique based on previously articles.
 
 
-This work is divided into three parts.
+This work is divided into two parts.
 
-The sonar model definition starts with a compilation on the description of sonar,
-physical properties of sound waves in water, reflection, sonar
-directional gain and sources of noise. Then tests are realised on known
-environments so to fit and validate the proposed model. The test results are
-finally used to create the full sonar model, including metric conventions by the
-%% SJ: "sonar protocol" ?
-sonar protocol.
+The sonar model definition starts with a compilation on the description of
+sonar, physical properties of sound waves in water, reflection, sonar
+directional gain and sources of noise. Those are used to select a simulation
+technique and model two different environment, a simple and a complex
+structure. The simulation results for both environmnets are then analysed for
+typical sonar features.
+
+The second part is related to mapping. There is introductory chapter to the
+mathematical concepts used, followed by another with discussions on the
+difficulties of 3D reconstution and its methods. The latter includes description
+most commom and standard state of the art techniques, with comments on some
+alternative works, and a deeper details of Hilbert maps. Hilbert maps
+implementation and results, for one of the simulated envirnoments, are displayed
+at the end of the chapter.
 
 The second branch deal with the map filling over a discretized space, based on
 a Binary Bayesian Filter implementation. That is the standard state of the art
@@ -40,26 +47,26 @@ tecnology for mapping \cite{thrunprob}.
 % will make use of the Octotree data structure, through the Octomap library, to
 % store the map.
 
-The integration of the sonar model with the Bayesian Filter give the means to
-process sonar data. So data acquired on the LNDC/UFRJ tank (Laboratório de
-Ensaios Não Destrutivos, Corrosão e Soldagem - which loosely translated means
-Non-Destructive Testing, Corrosion and Welding Laboratory) and on the Jirau
-Power Plant, by means of the ROSA/COPPETEC project, will be processed and
-compared to the tank and power plant entry layout, respectively.
- 
-In a more complex endeavor, which is the third branch, a theoretical derivation
-for the optimization of 2D surfaces embed on 3D environments will take place.
-It uses the sonar response as expectation and, instead of having a fixed
-relation between the measured environment and the sonar response, aim to better
-infer the underlying geometry of the surrounds and also retrieve some
-information about the material's reflectivity properties.
-This optimization algorithm will then be integrated into the Bayesian Filter. The
-same data processed by the combination ``Filter + Sonar Model'' shall now be
-processed by ``Filter + Optimization''.
- 
-Based on the literature, even with not much similar works, the reconstruction
-with \textit{a priori} sonar model will probably experience problems when
-reconstructing corners, shallow angle surfaces, very complex (intense multipath)
-or on highly noise environments. For the optimization, it shall encounter
-similar issues, but a less accentuated shallow angle quality degradation and an
-overall less blurry reconstruction.
+% The integration of the sonar model with the Bayesian Filter give the means to
+% process sonar data. So data acquired on the LNDC/UFRJ tank (Laboratório de
+% Ensaios Não Destrutivos, Corrosão e Soldagem - which loosely translated means
+% Non-Destructive Testing, Corrosion and Welding Laboratory) and on the Jirau
+% Power Plant, by means of the ROSA/COPPETEC project, will be processed and
+% compared to the tank and power plant entry layout, respectively.
+%  
+% In a more complex endeavor, which is the third branch, a theoretical derivation
+% for the optimization of 2D surfaces embed on 3D environments will take place.
+% It uses the sonar response as expectation and, instead of having a fixed
+% relation between the measured environment and the sonar response, aim to better
+% infer the underlying geometry of the surrounds and also retrieve some
+% information about the material's reflectivity properties.
+% This optimization algorithm will then be integrated into the Bayesian Filter. The
+% same data processed by the combination ``Filter + Sonar Model'' shall now be
+% processed by ``Filter + Optimization''.
+%  
+% Based on the literature, even with not much similar works, the reconstruction
+% with \textit{a priori} sonar model will probably experience problems when
+% reconstructing corners, shallow angle surfaces, very complex (intense multipath)
+% or on highly noise environments. For the optimization, it shall encounter
+% similar issues, but a less accentuated shallow angle quality degradation and an
+% overall less blurry reconstruction.
