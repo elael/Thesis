@@ -188,8 +188,7 @@ $p(x)=\Phi(\parm)$, $\Phi$ is the cumulative unit Gaussian. Details of the
 learning process are numerous and complex, for the interested reader it is
 suggested to check the original paper. GPOM was already applyed to 3D
 environments for path planning of a 6DOF Rotary Unmanned Aerial Vehicle (RUAV)
-using laser sensors~\cite{gan20093d}. 
-\footnote{$\Phi(x)=\frac{1}{\sqrt{2\pi}}\displaystyle\int_{-\infty}^x \e^{-\nicefrac{t^2}{2}}dt$}
+using laser sensors~\cite{gan20093d}.\footnote{$\Phi(x)=\frac{1}{\sqrt{2\pi}}\displaystyle\int_{-\infty}^x \e^{-\nicefrac{t^2}{2}}dt$}
 
 Following ideas from GPOM, Hilbert Maps were proposed as less computationally
 expensive alternative for continuous maps. It is also able to naturally account
@@ -199,9 +198,9 @@ simpler to implement and it was the chosen altertive for sonar reconstruction on
 this work. It suits well the task as most of imaging sonar drawbacks as a sensor
 are its noise and wide beamwidth.
 
-\subsubsection{Hibert Maps}
+\subsubsection{Hilbert Maps}
 \label{sss:hilbertcontinousmap}
-Hibert Maps is a recent development by \citet{ramos2016hilbert}, from 2016. It
+Hilbert Maps is a recent development by \citet{ramos2016hilbert}, from 2016. It
 was applied to the 2D case, on a laser sensor setting. This thesis apply the
 method to 3D environment with sonar, imaging sonar especially. Most of the
 mathematical machinery necessary was described in chapter \ref{c:math}, however
