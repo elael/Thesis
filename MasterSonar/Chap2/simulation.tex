@@ -8,14 +8,14 @@ with its most important features been the ocean floor and sub-bottom region.
 
 This work aims to reconstruct and simulate near-range partially closed
 environments, as those created by humans. The motivation for such a choice comes
-from the application on hydroeletric power plant water intakes, which is a corridor-like environment
-with possible obstacles on the bottom. This kind of environment is not well
-covered on the underwater acoustics literature, as such, some of the simulations
-techniques are borrowed from the closelly related area of \textit{room
+from the application on hydroelectric power plant water intakes, which is a
+corridor-like environment with possible obstacles on the bottom. This kind of environment is not well
+covered on the underwater acoustics literature, as such, some simulations
+techniques are borrowed from the closely related area of \textit{room
 acoustics}.
 
 When constructing a simulation, one has to consider the trade-off between
-simplicity, perfomance and accuracy. There are several possible techniques with
+simplicity, performance and accuracy. There are several possible techniques with
 different applications and assumptions, this chapter will cover the most
 classic ones and further explore \textit{ray theory}, which has been used for
 the simulation presented here. For a more comprehensive view on this and other
@@ -37,7 +37,7 @@ speed do not vary much in a wavelength scale) geometric methods (ray theory) are
 justifiable and preferable (in the computational sense) \cite{urick1979}. In the
 case of low/mid - frequency or in the presence of caustics\footnote{A region of
 high constructive interference that geometrically gives a point of infinity
-rays convegence.}, other wave methods (e.g. finite elements, normal modes,
+rays convergence.}, other wave methods (e.g. finite elements, normal modes,
 parabolic approximation) should be applied.
 
 %% SrJ: aren't you mjissing a subsubsection here ?
@@ -58,7 +58,7 @@ p(\coord{x},t) = \Re(\psi(\coord{x})\mathrm{e}^{-i\omega t})
 \end{equation}
 
 Here $\coord{x}$ is the space coordinate while $t$ is the time. The exponential
-function considered is the complex exponetial with $i$ being the imaginary unit.
+function considered is the complex exponential with $i$ being the imaginary unit.
 The real part $\Re(\parm)$ is taken as $p$ is real-valued, but $\psi(\coord{x})$
 is a complex-valued function over space.
 %\[ \frac{\partial}{\partial t}\psi = 0 \]
@@ -114,9 +114,9 @@ plane, the equation will be satisfied for all $t$ if:
 
 Equation \ref{eq:helmholtz} is known as the (homogeneous) \textit{Helmholtz
 equation} and describe the time-independent part of the wave propagation. The
-values of $k$ and $\omega$ can be phisically interpreted as the spatial and
+values of $k$ and $\omega$ can be physically interpreted as the spatial and
 temporal angular frequency of the wave. As the wave equation is 
-linear, superposition applies, being resoanable to take into consideration one
+linear, superposition applies, being reasonable to take into consideration one
 wave frequency at a time and superpose all these harmonics by Fourier synthesis\cite{Lefebvre}.
 
 Fourier synthesis is the calculation by \textit{Helmholtz
@@ -128,13 +128,13 @@ And reconstruct the wave equation back by:
 
 \[ p(\coord{x},t) = \int_{-\infty}^\infty\psi_\omega(\coord{x})\mathrm{e}^{-i\omega t}\dif\omega \]
 
-These equations are the inverse and forward Fourier transform, respetively.
+These equations are the inverse and forward Fourier transform, respectively.
 
 \subsubsection{FEM - Finite Element Method}
 
 Finite Element Methods try to numerically find a solution to the wave equation
 by discretizing space, and time in some cases. It considers the equation
-\ref{eq:wave} for inside the enviroment and the boundary conditions:
+\ref{eq:wave} for inside the environment and the boundary conditions:
 
 \[  \frac{\partial}{\partial \mathbf{n}}p= -\rho_0 \frac{\partial^2
 x_n}{\partial t^2} \quad \text{on the source} \]
@@ -159,9 +159,9 @@ y &= Pp
 \end{align*}
 
 With \(M,D,K\) being \(N \times N \) matrices, $p$ being the vector with
-coeficients $p_i$, $Fu$ the input converted into a force and $P$ some selection
-matrix to ouput the pressure on the desired points. This model can be writen and
-solved as generalized state-space model:
+coefficients $p_i$, $Fu$ the input converted into a force and $P$ some selection
+matrix to output the pressure on the desired points. This model can be written
+and solved as generalized state-space model:
 
 \begin{align*}
 E\dot{\hat{x}} &= A\hat{x} + Bu \\
@@ -212,7 +212,7 @@ C =
  
  Given that the size of the state increases as the cube of the frequency, the
  technique can only be applied to low-frequency signals, which is not applicable
- to high-frequency sonar as envisoned by this work. 
+ to high-frequency sonar as envisioned by this work. 
 
 There is also a boundary method that uses surface integral form of the wave
 equation, but suffers from similar restrictions. \citet{funkhouser2003survey}
@@ -229,7 +229,7 @@ theory of light is still a very important and useful tool. The sound ray theory
 %% SrJ: are different, but because of the speeds the wavelengths are not so much
 follows a similar path, they both apply to short-wavelength waves, but typical
 sound waves have mid-wavelength ($10-10^{-3}$m) while visible light has a
-much shortter wavelength ($\approx10^{-6}$m).
+much shorter wavelength ($\approx10^{-6}$m).
 
 To describe the ray from the wave theory, one starts by solving the Helmholtz
 equation (eq \ref{eq:helmholtz}) with a generic complex function of space
@@ -260,7 +260,7 @@ arguments):
 \end{subequations}
 
 The geometric approximation is the assumption that the amplitude does not change
-much on the wavelenth scale, mathematically expressed as:
+much on the wavelength scale, mathematically expressed as:
 
 \begin{equation}
 \label{eq:highfrequency}
@@ -370,7 +370,7 @@ This is the equation of a line, show that acoustic rays travel as a straight
 line on constant velocity mediums for a high-frequency approximation.
 
 Further considerations on reflection and refraction may rely on the
-\textit{Snell law} limilar to the electromagnetic case, because the eikonal
+\textit{Snell law} similar to the electromagnetic case, because the eikonal
 equation is equivalent to the \textit{Fermat's principle of least time}. If
 the first variation of the time functional is zero:
 
@@ -389,7 +389,7 @@ $C$. The \textit{Euler-Lagrange equations} give:
 \nabla'\left(\frac{1}{c_0} \norm{\coord{x}'}\right) = 0
 \end{equation*}
 
-Where $\nabla'$ is the gradient taken on the tangent space contaning
+Where $\nabla'$ is the gradient taken on the tangent space containing
 $\coord{x}'$.
 Which become:
 
@@ -402,10 +402,10 @@ Which become:
 By considering a length parametrization $r$ such that $\norm{r'}=1$, the
 result is the same as equation \ref{eq:raydirection}, so all the results follow.
 
-It is important to highlight that this simplification relies only on
-the high-frequency assumption \cite{national1969physics}, given at
-equation \ref{eq:highfrequency}. A more complete description of the mathematics
-envolving the physics behind ray theory can be found at \citet{Lefebvre}.
+It is important to highlight that this simplification relies only on the
+high-frequency assumption \cite{national1969physics}, given at equation
+\ref{eq:highfrequency}. A more complete mathematical description of the physics
+behind ray theory can be found at \citet{Lefebvre}.
 
 A important result, commonly applied on algorithms derived from ray theory, is
 the summation of energy/intensity of incoherent rays at a point. It starts by
@@ -535,7 +535,7 @@ functions ($u_ n$), the \textit{normal modes}\cite{baker2003green}, weighted by
 using their respective eigenvalues ($k_n$), the natural frequencies. The real
 integral of equation \ref{eq:normalmono} can be evaluated through \textit{contour
 integration} to exploit the residue of the poles present on the natural
-frequencies. But this requires to choose a Riemann
+frequencies. But this requires choosing a Riemann
 sheet for the integral and evaluate the branch line integral
 separately\cite{jensen2011computational,worzel1948propagation}:
 
@@ -554,7 +554,7 @@ depth, the branch line term is ignored in most theoretical developments.
 
 Therefore, by assuming a far-field approximation ($k_0r \ll 1$), besides
 disregard the branch line integral, it is possible to consider an asymptotic expansion for the
-Hankel fucntion and evaluate the contour integral, obtaining\cite{Etter2013}:
+Hankel function and evaluate the contour integral, obtaining\cite{Etter2013}:
 
 \begin{equation}
 \label{eq:normalsolution}
@@ -574,9 +574,9 @@ the rays, while the normal modes have a closed form (like equation
 parameters. In contrast, normal modes are constrained by the source frequency,
 in fact by the number of modes to be computed, and generally requires deeper
 knowledge of the environment. The attenuation
-coefficient($\delta_n$) in the ocean, for exemple, depends on water absorption,
+coefficient($\delta_n$) in the ocean, for example, depends on water absorption,
 ocean sediment layer absorptions, compressional and shear attenuation on the
-basement, measures of the modes interations with both sediment and
+basement, measures of the modes interactions with both sediment and
 basement(compressional and shear mechanisms) and statistics on the
 water-sediment boundary and sea surface as well.
 
@@ -630,10 +630,10 @@ details, see \citet{jensen2011computational}.
 Ray Theory provides a good way to treat high-frequency sound propagation,
 far from caustics, that retain an intuitive meaning. Introduced in subsection
 \ref{ss:simuloverview}, it is very similar to its electromagnetic counterpart.
-Each ray carries a energy density from the source that decays as it travels
+Each ray carries an energy density from the source that decays as it travels
 through the medium (Transmission loss). When it encounters an obstacle (e.g. sea floor, sea
 surface, man made surfaces), it (back)scatter to the source
-(equation~\ref{eq:preeikonalamp)}. That is the
+(equation~\ref{eq:preeikonalamp}). That is the
 classical (non-multipath) description
 \cite{LURTON,Etter2013,miller2015real,bell1997application}, summarized by a
 sonar equation as:
@@ -687,7 +687,7 @@ transmitted and, yet, another part bounces back Transmitted rays represent the
 energy that goes through the interface, their intensity for each direction is
 %% BDTF -> "Transmitted Scatter" ?
 mathematically defined by the BTDF (Transmitted Scatter Distribution
-Function)\cite{bartell1981theory} (see \citet{rober2007ray} for a acoustic
+Function)\cite{bartell1981theory} (see \citet{rober2007ray} for an acoustic
 approach).
 
 
@@ -723,7 +723,7 @@ I_r \propto	 I_i \cos(\theta_i) \cos(\theta_r)
 
 Where $I_i$,  $I_r$ and $\theta_i$, $\theta_r$ are the intensity and angle with
 the surface normal for the incident and reflected rays,
-respetively (figure \ref{fig:ray_reflect}). The proportionality constant is
+respectively (figure \ref{fig:ray_reflect}). The proportionality constant is
 material dependent and should not exceed $\nicefrac{1}{\pi}$, because that would violate
 energy conservation.
 
@@ -749,8 +749,8 @@ of no energy loss through transmission or absorption,
 $A=-10\log_{10}(\pi)\text{dB} \approx -5\text{dB}$. More realistic values vary
 from $-17\text{dB}$ for basalt ridge cliffs to $-27\text{dB}$ for sediment
 pond\cite{dunn2015springer}.
-Transmission and reflection between mutiple sedment layers at the bottom of the
-ocean can be treated as a single entity, subbottom scattering, that introduces a
+Transmission and reflection between multiple sediment layers at the bottom of
+the ocean can be treated as a single entity, subbottom scattering, that introduces a
 delay and a displacement of the reflection\cite{Etter2013}, that case will not
 be covered by the simulation procedure proposed in this thesis. A remarkable
 property of the scattered rays is the incoherence which makes possible to add
@@ -791,7 +791,7 @@ option is to discretize the solid angles as \citet{siltanen2007room} describes,
 another is to model as computer graphics, where, instead of a single direction
 for the specular reflection, the specular reflection is a smooth function of the
 reflected direction with a peak at the actual specular direction. This smooth
-fucntion creates a better transition from specular to scatter reflection. A
+function creates a better transition from specular to scatter reflection. A
 standard model is Phong reflection\cite{phong1975illumination}:
 
 \begin{equation}
@@ -821,27 +821,27 @@ specular reflection is. In the limit of $\nu \to \infty$ it becomes a perfect mi
 
 Ray Tracing was originally an algorithm that used ray theory
 (described earlier in section \ref{sss:raytheory}) for computer graphics with a
-rationale very similiar to the sonar equation \ref{eq:sonareq}. It traced a ray to every point on the scene
+rationale very similar to the sonar equation \ref{eq:sonareq}. It traced a ray to every point on the scene
 from the source and the receiver, then computed the intensity of each color,
 ignoring multiple reflections. 
 
 A variety of derivations from the original algorithm have being concieved. Most
-of the methods applied to audio were developped for computer graphics
+of the methods applied to audio were developed for computer graphics
 %% SrJ: "rederization" ? Is that "rendering" ?
 rendering, but, considering sound waves with similar constrains to those
-applyed to light (i.e. high frequency limit), it is reasonable to apply them to
+applied to light (i.e. high frequency limit), it is reasonable to apply them to
 aurelization (sound renderization) as well.
 
 
-Among the most commum techniques are \textbf{Image Source}, \textbf{Beam
+Among the most common techniques are \textbf{Image Source}, \textbf{Beam
 Tracing}, \textbf{Metropolis Transport} and \textbf{Path Tracing}. Their
-standard implementation assume homogeneos medium, effectively propagating rays
-as straight lines. An important altenative, which also overcome sharp shadows
+standard implementation assume homogeneous medium, effectively propagating rays
+as straight lines. An important alternative, which also overcome sharp shadows
 and caustics issues, is \textit{Gaussian Beam}, it evaluates the acoustic field
 at every point by adding contributions of each ray. The name comes from the fact
 that weight of a ray decays in the paraxial direction as a gaussian. It is
 typically more computationally more costly than other ray tracing, but have
-applications for inhomogeneos open environments as described by
+applications for inhomogeneous open environments as described by
 \citet{traceroutdoor}.
 
 \subsubsection{Image Source}
@@ -868,13 +868,13 @@ reflections are automatically taken into account by the virtual sources.
 
 
 The procedure of creating the virtual sources may be repeated many times for
-each new virtual sources, thus more reflection are effectivelly calculated. The
+each new virtual sources, thus more reflection are effectively calculated. The
 visibility of a virtual source must be validated before adding its contribution.
 
 \begin{figure}[h]
 	\centering
 	\input{Chap2/fig/planetilling_source}
-	\caption{Source on a perfect tilling. The simple pattern facilites
+	\caption{Source on a perfect tilling. The simple pattern facilitates
 	computation.}
 	\label{fig:tillingsource}
 \end{figure}
@@ -888,32 +888,32 @@ fast.
 
 \subsubsection{Beam Tracing}
 
-Beam Trancing uses pyramidals beams, a colection of rays, instead of single
+Beam Trancing uses pyramidals beams, a collection of rays, instead of single
 infinitesimal rays to calculate reflections \cite{funkhouser2003survey}. The
-solid angle on the source that decribes avaiable sound directions can be
+solid angle on the source that describes available sound directions can be
 subdivided in pyramidal beams without overlap, avoiding sampling issues. These
-pyramidal beams exploit the spacial relation between neaby rays, being able to
-consider the propagation path witout skiping any ray.
+pyramidal beams exploit the spacial relation between nearby rays, being able to
+consider the propagation path without skipping any ray.
 
 \begin{figure}[h]
 	\centering
 	\input{Chap2/fig/beamtracing}
-	\caption{A 2D view of a piramidal beam tracing.}
+	\caption{A 2D view of a pyramidal beam tracing.}
 	\label{fig:beamtrace}
 \end{figure}
 
 The algorithm starts by subdividing the sounce sound directions into pyramidal
-regions. For each pyramidal beam, intersections with enviroment walls are
-calculated from the first encounter to the last, cliping the beam so no
+regions. For each pyramidal beam, intersections with environment walls are
+calculated from the first encounter to the last, clipping the beam so no
 shadowed regions are considered. The resulting polygons of each intersection act
 as a new virtual source, constructed by mirroring the source as in the Image
 Source method. Beam Tracing, then, progresses by repeating this procedure on
 each virtual source, until the desired precision (number of reflections) is
-archieved.
+achieved.
 
 It does no suffer from visibility computation issued as Image Source, but is
 less efficient for highly structured box-like environments. Despite working well
-on simple scenes (with or without occlusions), it still not handeling well
+on simple scenes (with or without occlusions), it still not handling well
 curved surfaces.
 
 
@@ -934,7 +934,7 @@ R(\coord{x},\coord{p},\Omega) \ell
 
 Where $\mathcal{G}$ is the two dimensional subset of $\mathbb{R}^3$ comprising
 all surfaces, $\coord{p}$ is a point over a surface, $\dif\mu(\coord{x})$ is the
-surface area differential at point $\coord{x}$, $\Omega$ is the outgoint
+surface area differential at point $\coord{x}$, $\Omega$ is the outgoing
 %% SrJ: I don't understand the "source point" comment ... It's surface radiance
 %% SrJ: ... so I would write e.g. "in case the surface is an emitter", no?
 energy direction, $\ell_0$ the intrinsic surface radiance (in case the surface is an emitter), $\overrightarrow{\coord{x}\coord{p}}$ the unit vector in the direction to $\coord{p}$ from point $\coord{x}$. The function $R(\parm,\parm,\parm)$ is the
@@ -956,7 +956,8 @@ and outgoing energy direction $\Omega$, $\theta_i$ and $\theta_r$ are the
 incoming and reflected angles with surface's normal at point $\coord{p}$ for directions $\overrightarrow{\coord{x}\coord{p}}$
 and $\Omega$ respectively. Factor $\mathfrak{a}(\norm{\coord{p}-\coord{x}})$ is
 the decay dependent on the distance $\norm{\coord{p}-\coord{x}}$ caused
-by spreading and absoption, usually a inverse squared times a exponential factor (commented on subsection \ref{sss:tvg}).
+by spreading and absoption, usually an inverse squared times an exponential
+factor (commented on subsection \ref{sss:tvg}).
 
 The solution to equation \ref{eq:roomacoustics} is a Neumann series:
 
@@ -980,14 +981,14 @@ R(\coord{x},\coord{p},\Omega) \ell_n
 For the actual computation, the summation on equation \ref{eq:neumannsummation}
 is truncated at some reasonable value of $n$, which is the number of
 reflections being considered, and the integral on equation
-\ref{eq:neumannincrement} can be approximated using, for exemple, a Monte Carlo
+\ref{eq:neumannincrement} can be approximated using, for example, a Monte Carlo
 method applying importance sampling w.r.t. the function $R(\parm,\parm,\parm)$
 (\citet{munjal2013formulas} describes briefly such an algorithm).
-When scattering is not strong enough, it is a commom practice to consider only
+When scattering is not strong enough, it is a common practice to consider only
 specular directions. 
 
 Besides the success of computer graphics using the same technique, in the end of
-the last century there were still some concerns regarding the theorical
+the last century there were still some concerns regarding the theoretical
 validity, manly because it was shown to be
 uncomputable \cite{reif1994computability}. That is, it was impossible to say if
 a ray would ever reach a certain point. Later, this decade, it was shown by
@@ -998,26 +999,27 @@ In the case of sonar, the only important point to measure the sound intensity is
 on the sonar itself. A simplified approach for the integral on equation
 \ref{eq:neumannincrement} is to consider only the specular direction (where it
 is supposed to have greater radiance) and the scattered direction into the
-sonar, assuming the other scatterd directions will die out without much
+sonar, assuming the other scattered directions will die out without much
 affecting the sonar response.
 
 
 \subsubsection{Metropolis Transport}
 
-Metropolis Light Transport (MLT) is a incremental development over Path Tracing.
+Metropolis Light Transport (MLT) is an incremental development over Path
+Tracing.
 It records the path taken by a ray as a tree where each reflection point is a node. By
 adding, removing or changing nodes, it is able to better explore the space
 without ruling out the work done to produce a path from source to detector.
 
 The name comes from the use of Metropolis sampling method to explore the space,
 which degenerate paths that are small variations of the original one. A change
-in the path may be accepted or regected (as in the original Metropolis method)
-and the decision strategy ensures a ergotic, unbiased and generaly applicable
+in the path may be accepted or rejected (as in the original Metropolis method)
+and the decision strategy ensures an ergotic, unbiased and generally applicable
 result.
 
 At the cost of added complexity, MLT gives better results specially around
-caustics and difficult to reach reagions (e.g. through a narrow apperture)
-without degrading performance. The orignal paper by \citet{veach1997metropolis}
+caustics and difficult to reach regions (e.g. through a narrow aperture)
+without degrading performance. The original paper by \citet{veach1997metropolis}
 explains with great clarity the math behind as well as the results and
 interpretations.
 

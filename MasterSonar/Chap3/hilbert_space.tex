@@ -3,14 +3,14 @@
 \label{s:hilbert}
 A Hilbert Space is a complete inner product space \cite{HS-YN:11}. It is a
 complete metric space with respect to the metric induced by its inner product
-(which in turn can be thought indirectly by it's induced norm). A nice picture
-is as a generalization of the Euclidean space. Which means intution works well,
+(which in turn can be thought indirectly by its induced norm). A nice picture
+is as a generalization of the Euclidean space. Which means intuition works well,
 in contrast with the broader concept of Banach Spaces, a complete normed space,
 where the infinite dimensional case can be quite different from what one would
 expect\footnote{Banach Space are complete metric spaces where the metric does
 not come necesserally from a inner product. (See \citet{HS-HJNB:00})}.
 
-An inner product space\cite{HS-HJNB:00} is a (possibly infinite dimensinal)
+An inner product space\cite{HS-HJNB:00} is a (possibly infinite dimensional)
 vector space $V$ over $\mathbb{C}$ (or $\mathbb{R}$ by restriction ), together
 with a map (called the \textbf{inner product}):
 
@@ -31,7 +31,7 @@ Satisfing the following properties, for all $x,y,z \in V$ and all $\mu, \lambda
 
 A classical example of a inner product is the euclidean dot product.
 
-Another important exemple is the inner product defined on the space C$[a,b]$ of
+Another important example is the inner product defined on the space C$[a,b]$ of
 complex (or real) valued continuous functions on the interval $[a,b]$, defined,
 for every $f$ and $g$ in C$[a,b]$ as:
 
@@ -60,7 +60,7 @@ with respect to the above metric. Completeness means that any Cauchy sequence
 converges in this space (which provides a suitable framework to apply the tools
 of calculus). A Cauchy sequence is a sequence where every term becomes
 arbitrarily close to each other as the sequence progress (not only to term
-right next to it). It can be formalised as the sequence
+right next to it). It can be formalized as the sequence
 $x_1$,$x_2$,$x_3$,$\ldots$ on a metric space (with a metric $d( \cdot ,\cdot)$)
 where:
 
@@ -81,11 +81,11 @@ So,
 
 A complete metric space can be obtained from a pre-Hilbert space, by completion,
 in the same way that $\mathbb{Q}$ is ``completed'' to make $\mathbb{R}$.
-Although completeness is a technicality, it is easy to find exemples of
+Although completeness is a technicality, it is easy to find examples of
 pre-Hibert spaces that lacks this property. The space of continuous functions
-C$[a,b]$ with the inner product defined on \ref{eq::func_inner} gives an exemple
+C$[a,b]$ with the inner product defined on \ref{eq::func_inner} gives an example
 of pre-Hibert space that is not complete. For it to be a Hilbert space, the
-space have to be extend to include some discontinous functions, as in the larger
+space have to be extend to include some discontinuous functions, as in the larger
 set of Lebesgue mensurable\footnote{The Lebesgue mensurability of a, bounded
 with compact support, function is a highly technical exigence and the existence
 of a bounded non-Lebesgue mensurable set (which allow the construction of such a
@@ -94,15 +94,15 @@ can only be proven with the adition of the \textit{choice axiom} to the
 ZF (Zermelo-Fraenkel) set of axioms (ZFC). } functions that are square
 integrable (with the Lebesgue integral).
 
-Some exemples of Hilbert space are:
+Some examples of Hilbert space are:
 
 \begin{itemize}
-  \item Any finite dimentional vector space over the field $\mathbb{R}$ or
+  \item Any finite dimensional vector space over the field $\mathbb{R}$ or
   $\mathbb{C}$ with the standard dot product.
   \item The space $\ell^2$ of square-summable sequences of complex numbers, i.e.
   $(c_1,c_2,c_3,\ldots)$ with $c_i \in \mathbb{C}$ and $\sum_{i=1}^\infty |c_i|^2 <
-  \infty$, is a Hilbert space with the inner product defined as: Given two sequeces
-  $x=(x_1,x_2,x_3,\ldots)$ and $y=(y_1,y_2,y_3,\ldots)$, define $\langle x,y
+  \infty$, is a Hilbert space with the inner product defined as: Given two
+  sequences $x=(x_1,x_2,x_3,\ldots)$ and $y=(y_1,y_2,y_3,\ldots)$, define $\langle x,y
   \rangle_{\scriptscriptstyle \ell^2} = \sum_{i=1}^\infty x_i \bar{y_i}$.
   \item Fourier series can be seen as the representation of a square-integrable
   function on the interval $[0,1]$ (member of $L^2[0,1]$) on the orthogonal

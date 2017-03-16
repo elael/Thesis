@@ -5,7 +5,7 @@ described in sections \ref{sss:3dgrid}, usually require some form of inversion
 of the sensor model. This is a way to characterize the environemnt from a sensor
 response.
 
-In the context of grid maps, it appear as a conditional probability on the
+In the context of grid maps, it appears as a conditional probability on the
 measurement, i.e.
 $\text{\textbf{inverse\_sensor}}(d,z_n)=\Pr(\coord{m}(d)=1~|~z_n)$ in equation
 \ref{eq:gridoccupancy}. For sonars, it is generally considered as a constant
@@ -20,11 +20,11 @@ more complex procedure, e.g. histograms.
 \subsection{Sonar on Feature Maps}
 \label{ss:isfm}
 For Hilbert Maps, only procedures for
-laser are already discribed, thus here a strategy is proposed for sonar
+laser are already described, thus here a strategy is proposed for sonar
 responses. After defining the empty and full bins, there are three main
 differences between sonars and lasers: Sonars bins are volumetric; Lasers have a
 definite hit point, a full bin only means that there is something somewhere
-inside the bin; Sonars may have mutiple full bins, on a beam, while lasers have
+inside the bin; Sonars may have multiple full bins, on a beam, while lasers have
 only on hit.
 
 Given the sonar/laser differences, it is suggested:
@@ -33,8 +33,8 @@ Given the sonar/laser differences, it is suggested:
   \item Sample all full bin volumes, with a possible different sample density. 
 \end{enumerate}
 
-A beam volume is a frustrum of a sphere, a region between the simple concept of
-apperture angles (see section \ref{sss:bearing}) and within a range of distances
+A beam volume is a frustum of a sphere, a region between the simple concept of
+aperture angles (see section \ref{sss:bearing}) and within a range of distances
 given by the bin. The sample density used was uniform on the volume, because
 it is a guide for the expected echo point within the bin and there is no obvious
 privileged point.
@@ -42,10 +42,10 @@ privileged point.
 The rationale behind ignoring all empty bins after the first full bin is to
 avoid considering shadow zones as empty regions, i.e. acoustic shadows of the
 first echo. As empty regions means no echo anywhere inside the bin, they are
-actually the most important information provived by the sonar. Each sample from
+actually the most important information provided by the sonar. Each sample from
 the empty beam volume is evaluated to the feature map and passed to the learning
-algorithm. However, full bins indicate a echo somewhere within the bin. Thus
-a whole colection of samples from a full bin are embedded to the Hilbert Space
+algorithm. However, full bins indicate an echo somewhere within the bin. Thus
+a whole collection of samples from a full bin are embedded to the Hilbert Space
 as a distribution~\cite{song2013kernel,ramos2016hilbert}:
 
 \begin{equation}
@@ -54,6 +54,6 @@ as a distribution~\cite{song2013kernel,ramos2016hilbert}:
 \end{equation}
 
 Where $\mathbb{P}$ is the original distribution from where $n$ samples $x_i$ are
-drawn. In the learning setting, this $\hat{\varphi}(\mathbb{P})$ can be
+drawn. In the machine learning setting, this $\hat{\varphi}(\mathbb{P})$ can be
 considered more than once, if the certainty is higher, as it will be commented
 in the next section.

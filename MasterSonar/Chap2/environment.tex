@@ -1,14 +1,14 @@
 \section{Environment}
 
 Extensive literature have been written on ocean environment, from modeling its
-behaviour to measuring its properties. Different simulation techniques have also
-been explored\cite{Etter2013}. The modeling presented here, althouth simple,
+behavior to measuring its properties. Different simulation techniques have also
+been explored\cite{Etter2013}. The modeling presented here, although simple,
 completely suits the needs of a ray tracing technique, presented on section
 \ref{ss:raytheory}.
 
 \subsection{Modeling}
 \label{ss:modeling}
-Borrowed from computer graphics, the modeling properties of a scene objectes
+Borrowed from computer graphics, the modeling properties of a scene objects
 are the same for light and sound (given the high frequency limit for which ray
 theory is applicable). Two distinct factors are modeled, one is geometric,
 which defines the shape of the object, the other is acoustic, expressing how
@@ -20,7 +20,7 @@ direction, and outputs the distance to the first intersection point with the
 object. If no intersection point is found, the distance is defined to be
 infinity. \textbf{Normal} receives a point on the surface of the object and
 return the normal vector at such a point. Algorithm \ref{alg:rectangle}
-exemplifies the \textbf{intersection} for a rectangle, the rays origin
+exemplifies the \textbf{intersection} for a rectangle, the ray's origin
 $\mathbf{O}$ and direction $\mathbf{D}$ are matrix with the concatenated
 information of all those whose intersection ought to be calculated.
 
@@ -61,15 +61,15 @@ is ray origin, $\mathbf{D}$ is direction}
 \end{algorithm}
 
 % % SrJ: why is that ? What's the gain as opposed to the loss of genericity ?
-Any surface can be approximated by triagulation and have these functions
+Any surface can be approximated by triangulation and have these functions
 standardized, but it is easy to directly define for some geometric primitives. Plane,
 rectangle, sphere and cylinder were developed for this work.
 
 Two environments were constructed using these four geometric primitives. One
 box-like for the reconstruction part of this thesis, which is simple enough to
 study the properties of the mapping. Another, more complex and inspired by a
-water entrance of a hydroeletric powerplant, that exibits a richer sonar
-response with sound multipath and directional gain playing a more imporntant
+water entrance of a hydroelectric power plant, that exhibits a richer sonar
+response with sound multipath and directional gain playing a more important
 role.
 \subsubsection{Box-like Environment}
 \label{eq:boxlikenv}
@@ -93,8 +93,8 @@ Plane n$^o$ & Point & Normal Vector \\
 
 \subsubsection{Complex Environment}
 The more \textbf{complex scene} is composed of 5 rectangles, 2 planes and a sphere
-representing, respectively, 5 contrete walls, river floor and still surface
-water and a half-spherical montain of sediments. Rectangles are defined by a
+representing, respectively, 5 concrete walls, river floor and still surface
+water and a half-spherical mountain of sediments. Rectangles are defined by a
 central point and two perpendicular vectors, the half sides, and spheres by a
 center and radius.
 
@@ -124,10 +124,11 @@ For concrete, \citet{chirp} studies the \textbf{reflection coefficient}, sum of
 characterize the concrete's quality following earlier measurements of
 \citet{leslie1949ultrasonic}. The table provided on the article can be used in
 the other direction, to simulate such a concrete quality. The individual values of \textbf{diffusion coefficient} and \textbf{specular coefficient} still
-have to be determined and come from a educated guess based on considerations on
+have to be determined and come from an educated guess based on considerations on
 smoothness by \citet{Etter2013}, which claims that most of the energy goes as
 specular reflection for smooth surfaces. For
-simulation purposes it has been consided values between 80\% to 95\% of the reflected energy to be specular.
+simulation purposes it has been assumed values between 80\% to 95\% of the
+reflected energy to be specular.
 
 \begin{table}[hbt]
 \centering
@@ -145,7 +146,7 @@ Very Poor & $0.48$ or less  \\
 \end{table}
 
 \citet{Etter2013}, also, provides equations relating wind speed with water
-surface reflection coeffiecient, which varies according to its roughness caused
+surface reflection coefficient, which varies according to its roughness caused
 by the wind. For calm waters, there is almost no transmitted energy and all
 reflected energy is specular. For other materials, estimated values come from
 models as the one provided by \citet{miller2015real} on

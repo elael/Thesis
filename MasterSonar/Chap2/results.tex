@@ -5,12 +5,12 @@
 \subsection{Algorithm}
 \label{ss:algorithm}
 
-The simulation follow the ray tracing technique outlined by
+The simulation follows the ray tracing technique outlined by
 \citet{bell1997simulation} for side scan sonar, but applies it to a forward
 looking sonar imaging sonar (section \ref{ss:avaible_models}). It also uses a
 noising adding step as suggested by \citet{coiras2009gpu} with statistics
 provided by \citet{maussang2007mean}.
-No movement induced distortion was considered, some approachs to add this
+No movement induced distortion was considered, some approaches to add this
 feature is available on \citet{bell1999techniques,borawski2005sonar}. Also,
 spreading and absorption losses are ignored, assuming they are compensated by
 TVG (see section \ref{sss:tvg}).
@@ -28,7 +28,7 @@ intensity received at some range of distances (calculated from echo delay).
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=1.,clip]{Chap2/fig/sonarresponse.eps}
-	\caption{Exemple of an array for a bearing direction. Actual arrays are
+	\caption{Example of an array for a bearing direction. Actual arrays are
 	longer, depending on resolution.}
 	\label{fig:bins}
 \end{figure}
@@ -50,7 +50,7 @@ Flowchart of figure \ref{fig:algorithm} describes the simulator logic. It starts
 by computing ray directions spread over a sphere centered at the sonar with
 uniform density, otherwise it would bias the ray trace. Not all directions are
 actually computed because some directions have very low gain, so rays in these directions
-have amost no energy, they can be discarted. To compute such a uniformly
+have almost no energy, they can be discarded. To compute such a uniformly
 distributed directions apply transformation described by algorithm
 \ref{alg:urays} for $[-\alpha,\alpha]$ and $[-\beta,\beta]$ the vertical and
 horizontal angular span, respectively, and $N$ the desired number of rays.
@@ -90,8 +90,8 @@ The sonar bearing pace is adjutable and, following Tritech's Micron
 configuration, it was set to $1.8^o$, thus, doing a complete scan on $200$ steps. For each step, ray
 directions are changed (by a rotation) to match new bearing. Received gain is
 calculated w.r.t. the front direction (bearing), as the bearing changes the gain
-is automatically updated. Rays always carry 2 informations: its actual
-intensity (disregaring distance traveled decay) and its total traveled length.
+is automatically updated. Rays always carry 2 information: its actual
+intensity (disregarding distance traveled decay) and its total traveled length.
 
 A new bearing position invoke ray tracer algorithm. It begins by calling
 the \textbf{intersection} function (described at section \ref{ss:modeling}) for
@@ -99,13 +99,13 @@ each object in the scene, passing all rays as argument. Then it loops again on e
 object, but now only focus on the rays that have the object as first hit, and
 compute the backscattering to the sonar. Backscattering strength calculation use
 Lambert and Phong scatterings as described on section \ref{sss:rays} and material
-parameters listed on section \ref{ss:characterization}. This strength is add to
-a bin (see figure \ref{fig:bins}) whose position is calculated as half the full
-distance travelled by the ray (including previous reflections) plus a small
+parameters listed on section \ref{ss:characterization}. This strength is addad
+to a bin (see figure \ref{fig:bins}) whose position is calculated as half the full
+distance traveled by the ray (including previous reflections) plus a small
 gaussian noise. It proceeds to calculate reflection if the number of computed
-reflection for the ray does not exceed a maximum value (set to 5). Reflection
+reflection for the ray does not exceed a maximum value (set to 5). Reflections
 are simple linear transformations that depends on the surface's normal, obtained
-via \textbf{normal} function (section \ref{ss:modeling}). The algorithm,then,
+via \textbf{normal} function (section \ref{ss:modeling}). The algorithm, then,
 calls itself for the reflected rays, recursively.
 
 \begin{figure}
@@ -122,7 +122,7 @@ additional Weibull's distributed noise is applied \cite{maussang2007mean}.
 \subsection{Results}
 \label{ss:results}
 
-For both environments discribed on section \ref{ss:modeling}, several sonar
+For both environments described on section \ref{ss:modeling}, several sonar
 positions were simulated. The absolute position and orientation were chosen, but
 the bearing w.r.t. the environment was a random value.
 
@@ -179,7 +179,7 @@ orientation, making the hemisphere at the bottom more noticeable.
 Both environemnts reveal interesting features of a sonar scan, but they tend to
 be more pronounced on the complex environmnt. Figures
 \ref{fig:complex_inner_low}, \ref{fig:complex_out_mid} and
-\ref{fig:box_perp_offcenter} present clear sinals of multipath. Another
+\ref{fig:box_perp_offcenter} present clear signal of multipath. Another
 interesting feature is the halo on the background of figures
 \ref{fig:complex_inner_mid} and \ref{fig:complex_inner_low} caused by a
 trade-off between the sonar directional gain and the low backscattering at

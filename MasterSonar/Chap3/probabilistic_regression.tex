@@ -5,14 +5,14 @@ Probabilistic regression is similar to classification, both infer properties of
 a sample based on previous information. However, instead of giving a definite
 answer for which class an element belongs, probabilistic regression gives the
 probability for such a classification~\cite{jaakkola1999probabilistic}. More
-formally, a tranning set is a sequence of $n$ pairs
+formally, a training set is a sequence of $n$ pairs
 $\{(x_i,y_i)|~i=1,\ldots,n\}$, where $x_i$ and $y_i$ are samples drawn from
 random variables $X$ and $Y$, respectively, with joint probability distribution
-$\Pr(X,Y)$~\cite{friedman2001elements}. From this tranning set, a conditioning
+$\Pr(X,Y)$~\cite{friedman2001elements}. From this training set, a conditioning
 probability $\Pr(Y|X=x)$ has to be estimated.
 
 The special case where $Y$ is a Bernoulli random variable, i.e. a binary
-variable, is called binary regression. It is the single most importante
+variable, is called binary regression. It is the single most important
 regression for mapping, as such, no other kind is explored in this thesis. 
 
 \subsection{Binary Logistic Regression} 
@@ -27,7 +27,7 @@ p(x) = \Pr(Y=1|X=x)
 
 The probability for $Y=-1$ can be recovered from $P(Y=-1|X=x)=1-p(x)$. The
 linear logistic model $p(x;\coord{w})$ for $x\in\mathbb{R}^d$, with
-$\coord{w}\in\mathbb{R}^d$ as explict parameter:
+$\coord{w}\in\mathbb{R}^d$ as explicit parameter:
 
 \begin{equation}
 \label{eq:std_linear_logistic}
@@ -49,11 +49,12 @@ R_{\text{reg}}[f] =
 \end{equation}
 
 Where $\lambda>0$ and $\mathcal{S}[\parm]$ stabilization (regularization) term,
-as the minimization problem is typicaly
+as the minimization problem is typically
 ill-posed~\cite{jaakkola1999probabilistic}. On normed spaces usually
 $\mathcal{S}[f]=g(\norm{f})$, where $g(\parm)$ is a monotonically increasing
 function.
-The loss fuction $\mathscr{C}$ is problem dependent and for binary regression a typical negative log likehood (NLL) is used
+The loss function $\mathscr{C}$ is problem dependent and for binary regression a
+typical negative log likehood (NLL) is used
 \begin{equation}
 \mathscr{C}(x,y,p(x)) = - \log \Pr(Y=y|X=x) = 
 \begin{cases} 
@@ -81,8 +82,8 @@ $\mathcal{S}(\coord{w})=\alpha_1\norm{\coord{w}}_1
 $\alpha_1+\alpha_2=1$, $\alpha_1,\alpha_2\in[0,1]$~\cite{hastie2015statistical}.
 
 
-Althogh it is an applicable setting for simple situations, it is not expected to
-perform well for classification/regression of point on a 3D environment as
+Although it is an applicable setting for simple situations, it is not expected
+to perform well for classification/regression of point on a 3D environment as
 $x\in\mathbb{R}^3$ and $\coord{w}\in\mathbb{R}^3$. A 3 real parameter
 $\coord{w}$ is not enough to capture all the complexities of the environment. To
 keep its linear simplicity, the alternative is to increase dimensionality using
@@ -105,8 +106,8 @@ the Hilbert Space $\hs$ is
 p(x;\coord{w}) = \frac{1}{1+\exp(-\hip{\coord{w}}{\varphi(x)})}
 \end{equation}
 
-Thus equation \ref{eq:classicnll} for log likehood empirical risk
-becomes\footnote{With appropriate ajustment of $\lambda$'s value,i.e.
+Thus, equation \ref{eq:classicnll} for log likehood empirical risk
+becomes\footnote{With appropriate adjustment of $\lambda$'s value,i.e.
 $\lambda=n\lambda_0$, the usual average $\nicefrac{1}{n}$ for the summation can
 be dropped, as it keeps the same minimizer value of $\coord{w}$.}
 \begin{equation}

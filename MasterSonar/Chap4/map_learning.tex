@@ -14,12 +14,12 @@ minimum. The gradient of the objective function is:
 \end{equation}
 
 The gradient $\nabla\mathcal{S}(\coord{w})$ is calculated using
-sub-differentials, as the $\ell_1$ part of a elastic-net
+sub-differentials, as the $\ell_1$ part of an elastic-net
 $\mathcal{S}(\coord{w})$, equation \ref{eq:elasticnet}, is non-differentiable at
 $\coord{w}=\mathbf{0}$.
 
 The gradient descent method generates a sequence of approximated values for
-$\coord{w}$ by descenting on the gradient direction:
+$\coord{w}$ by descending on the gradient direction:
 
 \begin{equation}
 \label{eq:gd}
@@ -37,7 +37,7 @@ at every step of $\coord{w}_t$.
 
 To overcame the sampling size issue of gradient descent, stochastic gradient
 descent proposes the use of a single, or small batch, of samples at
-a time. One first shuffle the tranning samples~\cite{bottou2012stochastic} then
+a time. One first shuffle the training samples~\cite{bottou2012stochastic} then
 directly update $\coord{w}_t$ as:
 
 \begin{subequations}
@@ -68,7 +68,7 @@ then the update equation becomes:
 \end{equation}
 \end{subequations}
 
-The algorithm is garanteed to converge (under mild
+The algorithm is guaranteed to converge (under mild
 conditions~\citet{bottou2012stochastic}), given that $\sum_t \eta_t^2<\infty$
 and $\sum_t \eta_t = \infty$. A classic choice for $\eta_t$ is
 
@@ -77,7 +77,7 @@ and $\sum_t \eta_t = \infty$. A classic choice for $\eta_t$ is
 \eta_t = \frac{\eta_0}{1+\nicefrac{t}{n}}
 \end{equation}
 
-Where $\eta_0$ is a initial step determined from a small sample
+Where $\eta_0$ is an initial step determined from a small sample
 and $n$ is the number of samples. Variations of this form also are
 commum, \citet{ramos2016hilbert} provides another choice:
 
@@ -88,8 +88,8 @@ commum, \citet{ramos2016hilbert} provides another choice:
 Where $\lambda$ is the regulator gain, equation \ref{eq:minibatch}, $\alpha_2$
 is the $\ell_2$ elastic-net gain, equation \ref{eq:elasticnet}, and $t_0$ is
 chosen form a small sample test. However, \citet{tsuruoka2009stochastic} adopts
-a exponetial decay for $\eta_t$, which is not complient with theoretical
-requiremnts, and they had a better result then using equation
+an exponential decay for $\eta_t$, which is not compliant with theoretical
+requirements, and they had a better result than using equation
 \ref{eq:classicstep}. The reason provided was that a harmonic progression
 decays too fast at the beginning and too slowly at the end. As a trade-off, this
 work employs a theoretically valid step that do not suffer
@@ -101,8 +101,8 @@ from the aforementioned limitations:
 k_1\e^{-\nicefrac{t}{n}}\right)
 \end{equation}
 
-Where $\eta_0$, similarly to the classical case, is a initial step. The
-ratinale is to acomodate a slower decay at the beginning,
-dictated by the exponetial component, and faster at the end without losing the
+Where $\eta_0$, similarly to the classical case, is an initial step. The
+rationale is to accommodate a slower decay at the beginning,
+dictated by the exponential component, and faster at the end without losing the
 divergence, as $\sum_x x\log x$ still divergent. Faster decaying end rates can
 always be found, if needed.

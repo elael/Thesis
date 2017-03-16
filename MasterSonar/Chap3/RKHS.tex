@@ -9,7 +9,7 @@ $g$ of a (non-empty) set $\mathcal{X}$ belong to a RKHS $\hs$ ($f,g \in \hs
 \subset \mathbb{R}^\mathcal{X}$), then whenever $\hnorm{f-g}$ is small so is
 $\abs{f(x)-g(x)}$ for all $x \in \mathcal{X}$\cite{berlinet2011reproducing}.
 
-A more formal and useful characterization of a RKHS is consequece of studying
+A more formal and useful characterization of a RKHS is consequence of studying
 linear operators on Hibert Spaces. The evaluation functional \(\delta_x: \hs \to
 \mathbb{R}\), \(\delta_x: f \to f(x)\) is easily seen as such: given \(f,g \in
 \hs\) and \(a,b \in \mathbb{R}\), \(\delta_x(af+ag)= (af+ag)(x) = af(x)+ag(x) =
@@ -56,7 +56,7 @@ For $f,g \in PW_\pi$ it goes as follows:
 \end{subequations}
 
 Other examples of RKHSs will be further explore as its relation to kernels are
-developped.
+developed.
 
 \subsection{Reproducing Kernels}
 
@@ -70,13 +70,13 @@ space), there exist a unique $f_\phi \in \hs$, defined by:
 \phi(g)= \hip{g}{f_\phi}\qquad \forall g \in \hs
 \end{equation*}
 
-As consequece, the evaluation functional \(\delta_x\) has a representation on
+As consequence, the evaluation functional \(\delta_x\) has a representation on
 \(\hs\) as \(k_x\), the reproducing property:
 \begin{equation*}
 f(x) = \delta_x(f) = \hip{f}{k_x}\qquad \forall g \in \hs
 \end{equation*}
 
-The important ideia of pointwise convergence can be recovered:
+The important idea of pointwise convergence can be recovered:
 
 \begin{subequations}
 \begin{align}
@@ -87,7 +87,7 @@ The important ideia of pointwise convergence can be recovered:
 \end{subequations}
 
 Where Cauchy-Schwarz inequality was used on line \ref{eq:pw_cs_ineq} and
-\(\hnorm{k_x}\) acts as a scaling factor the closiness at each specific $x$.
+\(\hnorm{k_x}\) acts as a scaling factor the closeness at each specific $x$.
 
 The evaluation functional represented in $\hs$ as $k_x$ can be seen as a
 function itself. As such, its evaluation at every point $y$ of $\mathcal{X}$
@@ -136,7 +136,7 @@ Examples of common used kernels:
   \end{equation*}
 \end{itemize}
 
-Its possible to operate with kernels and generete new valid kernels. If
+Its possible to operate with kernels and generate new valid kernels. If
 $K_1,K_2$ are kernels for $\hs_1$ and $\hs_2$, respectively, then for any
 $\alpha,\beta \in \mathbb{R}_{\scriptstyle\geq0}$ it is possible to construct $K
 = \alpha K_1 + \beta K_2$ as a kernel for the RKHS $\hs = \alpha\hs_1 +

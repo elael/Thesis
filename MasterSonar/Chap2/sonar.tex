@@ -6,7 +6,7 @@
 
 Throughout this thesis one specific type of sonar will be considered, the
 mechanical imaging active sonar (section \ref{ss:avaible_models}). Sonars have a common
-underlying principle of operation, but vary greatly on aplication and hardware
+underlying principle of operation, but vary greatly on application and hardware
 constitution.
 
 
@@ -17,7 +17,7 @@ important to have a clear concept of sound.
 
 \subsection{Physics of Sound}
 
-The phenomenon that humans percieve as sound is a pressure wave which
+The phenomenon that humans perceive as sound is a pressure wave which
 amplitude excesses the medium's mean pressure \cite{FEYNMAN}. It can be
 referred to as \textit{compressional} or \textit{longitudinal} waves, contrasting with
 \textit{transversal waves}. The difference between these two kinds of waves
@@ -28,14 +28,14 @@ perpendicular to the propagation of the wave, respectively\cite{BRUNEAU}.
 On the particular, but common, condition of low energy
 phenomena\cite{Lefebvre} (with some other suitable requirements\footnote{A
 perfect simple fluid in an initial state of stationary homogeneous equilibrium})
-the pressure pertubation wave can be described as the \textit{D'Alembert
+the pressure perturbation wave can be described as the \textit{D'Alembert
 equation}:
  
 \begin{equation}\label{eq:lambert}
 \nabla^2 \Phi - \frac{1}{c^2_0}\frac{\partial^2}{\partial t^2} \Phi = 0
 \end{equation}
 
-Where $\Phi$ is the velocity potencial, a scalar field that helps describing the
+Where $\Phi$ is the velocity potential, a scalar field that helps describing the
 sound propagation. Its relation to sound pressure is:
 
 \[ p =  -\rho \frac{\partial}{\partial t}\Phi \]
@@ -63,7 +63,7 @@ per area):
 Where $\vec{I}$ represents the \textit{acoustic intensity} vector, $\vec{v}$ the
 \textit{acoustic velocity} (i.e. the velocity of a particle in the medium) and
 overline the mean over some time period. The \textit{acoustic
-velocity} can also be derived from the velocity potencial $\Phi$ as:
+velocity} can also be derived from the velocity potential $\Phi$ as:
 
 \[ \vec{v} = \nabla \Phi\]
 
@@ -84,7 +84,7 @@ equation \ref{eq:intensity_mean}:
 This equation shows the proportionality between the \textit{acoustic
 intensity} and the mean of the square of the pressure. The inverse of the
 proportionality constant $\rho c_0$ is called the \textit{characteristic
-impedance} because it measures the degree of ``resistence to propagation'' of
+impedance} because it measures the degree of ``resistance to propagation'' of
 the medium.
 
 %By means of the same reasoning about the physical properties
@@ -92,7 +92,7 @@ the medium.
  %(perpendicular to the direction of propagation)
 
 Because the acoustic intensity (and related quantities) varies in orders of
-magnitude while propagating, it is commom to quantify it on a logarithmic scale,
+magnitude while propagating, it is common to quantify it on a logarithmic scale,
 specifically \textit{decibels} (dB)\cite{LURTON}:
 
 \begin{equation}\label{eq:dB}
@@ -101,7 +101,7 @@ I_{dB} = 10~\log_{10}\left(\frac{I}{I_0}\right)
 
 Here $I_{dB}$ is the intensity measured in \textit{decibels}, $I$ is the
 intensity value and $I_0$ a reference intensity values, usually defined somewhere near the
-source. In the case of reflected/refracted wave, $I_0$ may also refere to
+source. In the case of reflected/refracted wave, $I_0$ may also refers to
 the intensity of the incoming wave. A direct relation between the magnitude of
 intensity and pressure is found by applying equation \ref{eq:intensity_pressure}
 on equation\ref{eq:dB}:
@@ -113,7 +113,7 @@ I_{dB} = 20~\log_{10}\left(\frac{p_{\text{rms}}}{p_0}\right)
 Where $p_{\text{rms}}$ is the \textit{rms} (Root mean squared) value of the
 wave's pressure ({\small $\sqrt{\text{\tiny \(\overline{p^2}\)}}$}) and $p_0$ is
 a pressure value of reference, for underwater acoustics this value is the
-microPascal (\(p_0 = 1~\mu\text{Pa} \))\cite{LURTON}.
+micro Pascal (\(p_0 = 1~\mu\text{Pa} \))\cite{LURTON}.
 
 
 \subsection{Sonar Principle of Operation}
@@ -126,7 +126,7 @@ sound waves.
 
 %% SrJ?: cute, but doubtful ...
 The history of sonar is considered as having began on the year of 1490 through
-the statemnt of Leonardo Da Vinci aformentioned on the epigraph 
+the statement of Leonardo Da Vinci aforementioned on the epigraph 
 of this chapter\cite{fahy1998fundamentals}. That was the birth of
 \textit{passive sonar}'s technology, where the objective is to listen (receive
 and process sound waves) the noise from ships, animals and other objects in an attempt detect and
@@ -147,8 +147,8 @@ its return (as in figure \ref{fig:sonar_principle}), is much recent. The
 loss of the \textit{HMS Titanic} due to a collision with an iceberg during its
 first voyage on April 15 of 1912 \cite{histsonar} fostered the development of a sonar
 to detect objects kilometers away. Also, during World War I,
-Allied shipping losses to U-boat attacks further stimulated advances on tecniques for
-unconvering of submerged enemies.
+Allied shipping losses to U-boat attacks further stimulated advances on
+techniques for uncovering of submerged enemies.
 
 \begin{figure}
 	\centering
@@ -176,8 +176,8 @@ the denominator $2$ is a consequence of time measuring the two way
 trip of the pulse. When the medium cannot be considered homogeneous, as in long distance travels in
 the ocean, additional effects must be taken into account~\cite{Etter2013}.
 
-Active sonars outputs is influencied by various factors, some considered to be
-more relevent will be futher explored in this section: multipaths, spatial
+Active sonars outputs is influenced by various factors, some considered to be
+more relevant will be further explored in this section: multipaths, spatial
 resolution, bearing indistinguishability and propagation loss compensation
 (TVG).
 
@@ -228,7 +228,7 @@ on the pulse length ($\Delta\text{L}$):
 
 \[ \delta R = \frac{c_0~\Delta\text{L}}{2} \] 
 
-However, that limitation can be overcomed by the use of pulse compression (a
+However, that limitation can be overcome by the use of pulse compression (a
 cross-correlation filter like matched filters). In this case, a linear varying
 frequency signal (chirp), or similar multifrequency systems, has its resolution
 related to the bandwidth ($\Delta \text{BW}$):
@@ -268,8 +268,8 @@ intensity. It also acts as proportional loss of intensity when measuring the
 received signal incoming from some direction. The concept of a 2-way beam
 shape follows directly as the net result of transmission and reception.
 Mathematically, it results in squaring the beam shape. All these concepts are
-meaningfull only if suficiently far from the source, a region called
-farfield\cite{beamwidth}.
+meaningful only if sufficiently far from the source, a region called
+far field\cite{beamwidth}.
 
 The \textit{beamwidth}, in turn, is a simplifying concept. The conventional
 definition is the point where intensity reaches $70\%$ of its peak value,
@@ -284,7 +284,7 @@ is large compared to the acoustic wavelength ($\lambda$), the
 	\centering
 	\includegraphics[scale=0.6,trim={0.46 0.072 0.46
 	1.03},clip]{Chap2/fig/directivity.eps}
-	\caption{Farfield beam shape and its \textit{beamwidth} (in blue).}
+	\caption{Far field beam shape and its \textit{beamwidth} (in blue).}
 	\label{fig:beamwidth}
 \end{figure}
 
@@ -314,7 +314,7 @@ law\cite{Etter2013}, as this is the closed surface area progression for
 a time-like wavefront. But for cylindrical spreading it is a simple inverse law,
 and for perfect plane wave there is no loss.
 
-Absorption is conditional on the water characteristics and is modeled as an
+Absorption is conditional on the water characteristics and is modeled as a
 slow exponential decay. Together with spreading, they are referred as
 Transmission Loss ($\text{TL}$), in decibels (dB):
 
@@ -334,7 +334,7 @@ the expected.
 \subsection{Available Models}
 \label{ss:avaible_models}
  
-Active Sonars, besides having a commom working principle, present themselves in
+Active Sonars, besides having a common working principle, present themselves in
 different models for different applications. \citet{sonars:16} summarized the
 most relevant ones.
 
@@ -352,8 +352,8 @@ by doing so.
 \begin{enumerate}
   \item \textbf{Profiling} - possessing a narrow conical beam shape, they are the
   acoustic analog of a laser scanner (although they still have a much larger
-  apperture than a laser). Only a single echo is recorded for each angular
-  position, either the strongest or the first to return. Typically applied for
+  aperture than a laser). Only a single echo is recorded for each angular
+  position, either the strongest or the first to return. Typically, applied for
   pipeline surveillance, they can spot structural differences and objects on
   sea floor.
   \item \textbf{Imaging} - its fan shaped narrow beam covers a wider area than
@@ -394,15 +394,15 @@ scan an underwater region with no moving parts.
   signal. Instead of moving its transducer, it amplifies and processes (through
   \textit{beamforming}) the received signal to identify the position of the
   strongest returned echo, then creating a high-speed cross-sectional profile.
-  \item \textbf{Imaging} - it is much quickier than a Mechanical Imaging
+  \item \textbf{Imaging} - it is much quicker than a Mechanical Imaging
   %% SrJ: "crispier image" is more an effect of generation than technique
   Sonar, being very similar to a Multibeam Profiling their difference lies on
-  beam width.   It possesses a wide angle acoustic transmitter and multiple
+  beamwidth.   It possesses a wide angle acoustic transmitter and multiple
   narrow beam receivers, applying \textit{beamforming} to the received signal.
 \end{enumerate}
 
 The array size of hydrophones is critical for enhancing resolution, longer
 arrays have a better angular resolution. To overcome physical limitations a
-technique known as \textit{SAS} (Syntetic Aperture Sonar) may be applied. The
+technique known as \textit{SAS} (Synthetic Aperture Sonar) may be applied. The
 transmission of several acoustic pulses in a line is used to emulate the
 presence of a longer array, by means of signal processing on the reception.

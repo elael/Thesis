@@ -9,13 +9,13 @@
 The by-product of this work is a simulator and a mapping system. The simulator
 will be able to receive a general environment and calculate the expected
 response of a high-frequency imaging sonar, which technical details are based on
-Tritech's Micron sonar. Its output shall exhibit commom sonar features as
+Tritech's Micron sonar. Its output shall exhibit common sonar features as
 multipath effects, noise and beamwidth uncertainty. The response will be
 presented as polar plot similar to those used by real sonars.
 
 The mapping system will receive sonar measuremnts, typically the simulator's
-output, and generate a Hibert map representation of the continous occupancy map.
-The map has to match to the simulator groundtruth avoiding inconsistencies
+output, and generate a Hibert map representation of the continuous occupancy map.
+The map has to match to the simulator ground truth avoiding inconsistencies
 caused by the sonar's wide beam. The Hilbert map representation is, technically,
 just a vector, thus it will be displayed as its occupancy map, evaluated at 2D
 plane cuts from the actual 3D environment.
@@ -65,11 +65,11 @@ plane cuts from the actual 3D environment.
 % Still, if the map is to be seen by a human it should store more information
 % about the environment, so that it can be displayed as a usual map, 3D or 2D
 % depending on the case. This representation also guides how the data could be
-% stored, e.g. if it wants to show a surface, it can be stored as a elevation map,
+% stored, e.g. if it wants to show a surface, it can be stored as an elevation map,
 % or if one wants to see a 3D object it can be stored as a point cloud.
 % 
 % Using de aforementioned ideas, the main goal of the thesis reported here is to
-% implement state of the art techniques for mapping, using binary bayesian
+% implement state-of-the-art techniques for mapping, using binary bayesian
 % filters. Fuse all the data on a octree structure using a robotic framework,
 % named ROCK, and implement a visualization for the reconstruct underwater map.
 % The data source shall be a imaging sonar mounted on a pan-tilt unit, so to
