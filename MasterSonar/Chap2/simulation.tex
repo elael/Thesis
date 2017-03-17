@@ -64,7 +64,7 @@ is a complex-valued function over space.
 %\[ \frac{\partial}{\partial t}\psi = 0 \]
 %\[ \nabla^2 \vartheta = 0 \]
 
-Substituting it back into equation \ref{eq:wave}, gives
+Substituting it back into \ref{eq:wave}, gives
 (dropping explicit parameters again):
 
 \[ \Re(\nabla^2 \psi \mathrm{e}^{-i\omega t}) =
@@ -228,11 +228,11 @@ theory of light is still a very important and useful tool. The sound ray theory
 % frequencies
 %% SrJ: are different, but because of the speeds the wavelengths are not so much
 follows a similar path, they both apply to short-wavelength waves, but typical
-sound waves have mid-wavelength ($10-10^{-3}$m) while visible light has a
+sound waves have mid-wavelength ($10$--$10^{-3}$m) while visible light has a
 much shorter wavelength ($\approx10^{-6}$m).
 
 To describe the ray from the wave theory, one starts by solving the Helmholtz
-equation (eq \ref{eq:helmholtz}) with a generic complex function of space
+equation \ref{eq:helmholtz} with a generic complex function of space
 through a polar decomposition\cite{buckingham1992ocean,torres2007modeling}:
 
 \begin{equation}
@@ -243,7 +243,7 @@ through a polar decomposition\cite{buckingham1992ocean,torres2007modeling}:
 
 Here $\tau(\coord{x})$ can be interpreted as the time it takes the sound to
 reach the location $\coord{x}$ and $\mathcal{A}(\coord{x})$ the amplitude of the
-signal at that point. Substituting it back to equation \ref{eq:helmholtz} and
+signal at that point. Substituting it back to \ref{eq:helmholtz} and
 separating real and imaginary parts, two equations can be obtained (omitting
 arguments):
 
@@ -267,7 +267,7 @@ much on the wavelength scale, mathematically expressed as:
 \frac{\nabla^2\mathcal{A}}{\mathcal{A}} \ll k^2
 \end{equation}
 
-Applying this approximation to equation \ref{eq:preeikonal} and using the
+Applying this approximation to \ref{eq:preeikonal} and using the
 fact that \(\omega = kc_0 \):
 
 \begin{equation}
@@ -290,15 +290,14 @@ by equation \ref{eq:eikonal}. Which, with length parametrization, is:
 \end{equation}
 
 Where $r(s)$ is the path follow by the ray, and $s$ the ray length. To verify
-that it is a length parametrization square equation \ref{eq:ray} and use
-equation \ref{eq:eikonal} to find:
+that it is a length parametrization, square \ref{eq:ray} and use \ref{eq:eikonal} to find:
 
 \begin{equation*}
 \norm{\frac{\dif r}{\dif s}} = 1 
 \end{equation*}
 
 Showing that it is a unit norm tangent vector. To find the ray path, first take
-the gradient of equation \ref{eq:eikonal} squared:
+the gradient of \ref{eq:eikonal} squared:
 
 \begin{subequations}
 \begin{equation}
@@ -313,7 +312,7 @@ c_0\coord{H}(\tau)\nabla\tau = \nabla\left(\frac{1}{c_0}\right)
 \end{equation}
 \end{subequations}
 
-The \(\coord{H}(\parm)\) is the Hessian. Also, the derivative of equation
+The \(\coord{H}(\parm)\) is the Hessian. Also, the derivative of
 \ref{eq:ray} (divided by $c_0$) w.r.t.
 $s$ is:
 
@@ -330,7 +329,7 @@ $s$ is:
 \end{equation}
 \end{subequations}
 
-Using equation \ref{eq:ray} and \ref{eq:t_hessiantau} in the r.h.s. of equation
+Using \ref{eq:ray} and \ref{eq:t_hessiantau} in the r.h.s. of
 \ref{eq:t_dergrad}:
 
 \begin{subequations}
@@ -351,7 +350,7 @@ elsewhere in this work):
 
 \[ \nabla\left(\frac{1}{c_0}\right) = 0 \]
 
-So, equation \ref{eq:raydirection} (with equation \ref{eq:ray}) can be easily
+So, \ref{eq:raydirection} (with \ref{eq:ray}) can be easily
 solved to:
 
 \begin{equation}
@@ -381,7 +380,7 @@ the first variation of the time functional is zero:
 
 Here $\coord{x}(s)$ is a parametrization of the path $C$, $x'(s)$ the tangent
 vector at $s$ and the whole integral $T[\parm]$ is the time to follow the path
-$C$. The \textit{Euler-Lagrange equations} give:
+$C$. The \textit{Euler-Lagrange equations} give
 
 
 \begin{equation*}
@@ -389,9 +388,8 @@ $C$. The \textit{Euler-Lagrange equations} give:
 \nabla'\left(\frac{1}{c_0} \norm{\coord{x}'}\right) = 0
 \end{equation*}
 
-Where $\nabla'$ is the gradient taken on the tangent space containing
-$\coord{x}'$.
-Which become:
+where $\nabla'$ is the gradient taken on the tangent space containing
+$\coord{x}'$, which becomes:
 
 \begin{equation*}
 \norm{\coord{x}'}\nabla\left(\frac{1}{c_0}\right) =
@@ -400,7 +398,7 @@ Which become:
 \end{equation*}
 
 By considering a length parametrization $r$ such that $\norm{r'}=1$, the
-result is the same as equation \ref{eq:raydirection}, so all the results follow.
+result is the same as \ref{eq:raydirection}, so all the results follow.
 
 It is important to highlight that this simplification relies only on the
 high-frequency assumption \cite{national1969physics}, given at equation
@@ -409,18 +407,18 @@ behind ray theory can be found at \citet{Lefebvre}.
 
 A important result, commonly applied on algorithms derived from ray theory, is
 the summation of energy/intensity of incoherent rays at a point. It starts by
-taking the norm of the intensity (equation \ref{eq:intensity_pressure}) and applying the
-pressure definition to it (equation \ref{eq:pressurepsi}) to get\footnote{Here
-$\mathbb{E}[\parm]$ means the expectation for clarity.}:
+taking the norm of the intensity (\ref{eq:intensity_pressure}) and applying the
+pressure definition to it (\ref{eq:pressurepsi}) to get\footnote{Here
+$\mathbb{E}[\parm]$ means the expectation for clarity.}
 
 
 \begin{equation}\label{eq:intensity_psi}
 I = g_0~\mathbb{E}[\abs{\psi}^2]
 \end{equation}
 
-Where $g_0 = \tfrac{1}{\rho c_0}$ (the inverse of the characteristic impedance),
+where $g_0 = \tfrac{1}{\rho c_0}$ (the inverse of the characteristic impedance),
 $I$ the intensity and $\phi$ the wave.
-For a single ray (equation \ref{eq:psi}) it is:
+For a single ray, (\ref{eq:psi}) it is:
 
 \begin{equation*}
 I = g_0~\mathbb{E}[\abs{\mathcal{A}}^2]
@@ -447,8 +445,8 @@ better reading.}:
 \text{cov}(\psi_i,\psi_j) = \mathbb{E}[\psi_i \psi_j^*] = 0
 \end{equation}
 
-The resulting equation of the intensity (equation \ref{eq:intensity_psi}) for a
-full wave (equation \ref{eq:wavesum}) is:
+The resulting equation of the intensity (\ref{eq:intensity_psi}) for a
+full wave (\ref{eq:wavesum}) is:
 
 \begin{equation*}
 \begin{split}
@@ -488,7 +486,7 @@ dimensions carry the traveling wave.
 There are slightly different mathematical approaches to Normal Modes Theory in
 the literature\cite{Etter2013,urick1979,buckingham1992ocean}. The following
 brief description rely on the techniques of \citet{Etter2013}. Writing the
-solution of equation \ref{eq:helmholtz} as a product of a ``depth'' (principal
+solution of \ref{eq:helmholtz} as a product of a ``depth'' (principal
 axis) function $N(z)$ and a horizontal range function $H(r)$:
 
 \[ \psi = N(z)H(r) \]
@@ -533,7 +531,7 @@ integral as it appears is impractical, thus some simplifications are required.
 The Green's function $G$ can be expanded as a bilinear summation of orthonormal
 functions ($u_ n$), the \textit{normal modes}\cite{baker2003green}, weighted by
 using their respective eigenvalues ($k_n$), the natural frequencies. The real
-integral of equation \ref{eq:normalmono} can be evaluated through \textit{contour
+integral of \ref{eq:normalmono} can be evaluated through \textit{contour
 integration} to exploit the residue of the poles present on the natural
 frequencies. But this requires choosing a Riemann
 sheet for the integral and evaluate the branch line integral
@@ -569,8 +567,7 @@ for high-frequency waves.
 
 One of the advantages of normal modes over ray theory lies on the fact that, for
 each source/receiver position, the ray approach have to run a full simulation of
-the rays, while the normal modes have a closed form (like equation
-\ref{eq:normalsolution}) that easily adapts to new combinations of these
+the rays, while the normal modes have a closed form (like \ref{eq:normalsolution}) that easily adapts to new combinations of these
 parameters. In contrast, normal modes are constrained by the source frequency,
 in fact by the number of modes to be computed, and generally requires deeper
 knowledge of the environment. The attenuation
@@ -606,7 +603,7 @@ $H_0^{(1)}(k_0r)$ and overall slow fluctuations $F(r,z)$:
 \end{equation*}
 
 Assuming asymptotic behavior to the Hankel function (similar to normal modes
-development) and applying it to equation \ref{eq:varyhelmholtz}:
+development) and applying it to \ref{eq:varyhelmholtz}:
 
 \begin{equation}
 \label{eq:preparabolic}
@@ -614,7 +611,7 @@ development) and applying it to equation \ref{eq:varyhelmholtz}:
 \end{equation}
 
 By the assumption that $F(r,z)$ is a slow varying field, the $\fdifn{r}{2}F$
-term is neglected and equation \ref{eq:preparabolic} gives rise to the parabolic
+term is neglected and \ref{eq:preparabolic} gives rise to the parabolic
 equation. \citet{LURTON} proceeds further by discretizing the horizontal
 directions, without defining explicit dependence on the Hankel function, and
 using an approximation for the differentials on $z$ through pseudo-differential
@@ -644,7 +641,7 @@ sonar equation as:
 \end{equation}
 
 Each of these acronyms corresponds to energy (intensity), or energy variation,
-written in decibels\ref{eq:dB}:
+written in decibels \ref{eq:dB}:
 \begin{enumerate}
   \item RL is the Received Level - $10\log_{10}([\text{Received
   intensity}]/[\text{reference intensity\footnotemark}])$
