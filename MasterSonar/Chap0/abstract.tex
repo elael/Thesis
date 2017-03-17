@@ -1,48 +1,35 @@
-Esta dissertação sobre simulação submarina 3D e mapeamento consiste em duas
-partes uma para simulação e outra para mapeamento. Um sistema de mapeamento
-geralmente vem junto com um algoritmo de localização no que é chamado de SLAM
-(\textit{Simultaneous Localization and Mapping}). O SLAM é um tema de
-investigação ativo e tem soluções notáveis utilizando scanners a laser, mas a
-maior parte do SLAM submarino está focada em mapas 2D que tratam o ambiente como
-corte bidimensional ou em mapas de elevação do fundo do mar.
+% Motiva\c{c}\~ao
+O mapeamento, \`as vezes como parte de um sistema SLAM, \'e um tema de pesquisa
+ativo e tem solu\c{c}\~oes not\'aveis usando scanners a laser, mas a maioria
+do mapeamento subaqu\'atico \'e focada em mapas 2D, que tratam o ambiente como
+uma planta, ou mapas 2.5D do fundo do mar .
 
-A razão para a problemática do mapeamento subaquático, e portanto do SLAM, está
-no seu sensor, isto é, sonares. Pois estes não tem a mesma qualidade de resposta
-que laser que são sensores precisos de baixo ruído.
+% Declara\c{c}\~ao do problema
+A raz\~ao para a dificuldade do mapeamento subaqu\'atico origina-se no seu
+sensor, i.e. sonares. Ele contrasta com lasers, usados fora d'\'agua, que
+s\~ao sensores precisos de baixo ru\'ido. Al\'em do seu ru\'ido, os
+\textit{imaging sonars} t\^em um feixe sonoro muito amplo e, com isso, efetuam
+uma medi\c{c}\~ao volum\'etrica.
 
-O sensor padrão, sonar, é composto de hidrofones que lhes permite interagir com
-o som na água. Portanto, são capazes de emitir e receber som ondas,
-semelhante a microfones e alto-falantes. Eles são divididos em sonares passivos e sonares
-ativos. Sonares passivos podem ser aplicados para ouvir seus arredores
-e interpretar os ruídos pelo seu espectro.
+% Abordagem
+Esta disserta\c{c}\~ao desenvolve um simulador para \textit{single-beam imaging
+sonars} de alta freqü\^encia e \'e capaz de replicar os efeitos t\'ipicos de
+\textit{multipath}, ganho direcional e ru\'ido de fundo em ambientes
+arbitr\'arios.
+O simulador implementa um m\'etodo baseado na teoria geom\'etrica de raios,
+cujos detalhes de como esse \'e consequ\^encia direta da acustica
+subaqu\'atica, sob suposi\c{c}\~ao de curto comprimento de onda, também são
+expostos no texto.
 
-Enquanto isso, os sonares ativos emitem um feixe de som para perceber e medir o
-ambiente pelo eco criado. Os sonares ativos são classificados em duas categorias
-importantes, \textit{profilings} e \textit{imagings}, com base no ganho
-direcional do seu feixe.
+A sa\'ida do simulador \'e passada para um algoritmo de recontrução de mapas
+cont\'inuos baseado em \textit{Hilbert Maps}. \textit{Hilbert Maps} surgem como
+uma técnica de aprendizado de máquina sobre espa\c{c}os de Hilbert, usando
+\textit{feature maps}, aplicadas ao contexto de mapeamento. No entanto, a
+incorpora\c{c}\~ao de uma resposta sonar em um tal mapa \'e uma
+contribui\c{c}\~ao desse trabalho.
 
-Os \emph{profilings} têm um feixe em forma de cone com uma abertura de cerca de
-$ 1.7 $ graus, esse é o ponto de meia potência. São considerados como tendo uma
-resposta semelhante a de um laser, apesar de trabalhar com ondas sonoras.
-Entretanto, eles não correlacionam muito, uma vez que diferem no nível de ruído,
-tempo de resposta e resolução espacial.
-
-Os sonares de \textit{imagings} serão o foco deste trabalho, eles empregam um
-feixe muito mais largo que os \emph{profilings}. Eles possuem cerca de $ 3 $
-graus de abertura vertical, embora mantendo a mesma abertura na plano
-horizontal.
-Ele não tem localização precisa do alvo, mas um pouco mais informação geral.
-Portanto, é capaz de inferir a presença de objetos abaixo ou acima do seu
-plano horizontal.
-Desse ponto de vista, cada feixe fornece informação sobre uma ampla area
-ensonificada.
-Assim, com fusão de múltiplos feixes de diferentes direções e ângulos, áreas de
-sobreposição destes deverão fornecer um melhor esboço do ambiente do que
-apenas usando respostas de sonar isoladas.
-
-Outra classificação, além da mencionada acima, é a \textit{multi}- ou
-\textit{single beam}. Por lançar vários feixes de uma vez, estes tem uma taxa de
-resposta mais rápida e não precisa direcionar seu hydrofone antes de medir sua
-próxima posição angular. Quando Trabalhando com sonar \textit{multibeam}, sua
-desvantagem continua sendo seu valor de mercado. Contrastando com a opção mais
-barata, os sonar \textit{single beam}, que será estudado nesta dissertação.
+% Resultados Conclus\~ao
+Uma compara\c{c}\~ao qualitativa entre a ambiente de referência passado ao
+simulador e o mapa reconstru\'ido revela \textit{Hilbert maps} como uma t\'ecnica
+promissora para mapeamento atráves de sensores ruidosos e, tamb\'em, aponta para
+algumas caracter\'isticas do ambiente dif\'iceis de distinguir.

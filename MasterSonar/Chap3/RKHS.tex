@@ -3,14 +3,14 @@
 \subsection{The Evaluation Functional}
 \label{ss:eval_func}
 A \textit{Reproducing Kernel Hilbert Space}, RKHS for short, is a special kind
-of Hibert Space of functions. In a RKHS, closeness in the sense of the metric is
+of Hilbert Space of functions. In a RKHS, closeness in the sense of the metric is
 actual pontwise proximity. That is to say, if two real-valued functions $f$ and
 $g$ of a (non-empty) set $\mathcal{X}$ belong to a RKHS $\hs$ ($f,g \in \hs
 \subset \mathbb{R}^\mathcal{X}$), then whenever $\hnorm{f-g}$ is small so is
 $\abs{f(x)-g(x)}$ for all $x \in \mathcal{X}$\cite{berlinet2011reproducing}.
 
 A more formal and useful characterization of a RKHS is consequence of studying
-linear operators on Hibert Spaces. The evaluation functional \(\delta_x: \hs \to
+linear operators on Hilbert Spaces. The evaluation functional \(\delta_x: \hs \to
 \mathbb{R}\), \(\delta_x: f \to f(x)\) is easily seen as such: given \(f,g \in
 \hs\) and \(a,b \in \mathbb{R}\), \(\delta_x(af+ag)= (af+ag)(x) = af(x)+ag(x) =
 a\delta_x(f)+b\delta_x(g)\). When the evaluation functional is continuous on
@@ -60,7 +60,7 @@ developed.
 
 \subsection{Reproducing Kernels}
 
-Riesz representation theorem is an extension, for Hibert Spaces, of the
+Riesz representation theorem is an extension, for Hilbert Spaces, of the
 classical isomorphism between a finite vector space $\mathcal{V}$ and its dual
 $\mathcal{V}^*$, the space of linear functions on $\mathcal{V}$. It states that
 for every element $\phi \in \hs^*$, where $\hs^*$ is the space

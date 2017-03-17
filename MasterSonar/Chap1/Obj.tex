@@ -6,15 +6,17 @@
 %% SrJ: you already made your point about "that can be done in many ways" focus
 %% SrJ: on what this thesis does.
 
+% %, which technical details are based on Tritech's Micron sonar
+
 The by-product of this work is a simulator and a mapping system. The simulator
 will be able to receive a general environment and calculate the expected
-response of a high-frequency imaging sonar, which technical details are based on
-Tritech's Micron sonar. Its output shall exhibit common sonar features as
-multipath effects, noise and beamwidth uncertainty. The response will be
-presented as polar plot similar to those used by real sonars.
+response of a high-frequency imaging sonar. Its output shall exhibit common
+sonar features as multipath effects, noise and beamwidth uncertainty. The
+response will be presented as polar plot similar to those used by real sonars.
 
 The mapping system will receive sonar measuremnts, typically the simulator's
-output, and generate a Hibert map representation of the continuous occupancy map.
+output, and generate a Hilbert map representation of the continuous occupancy
+map.
 The map has to match to the simulator ground truth avoiding inconsistencies
 caused by the sonar's wide beam. The Hilbert map representation is, technically,
 just a vector, thus it will be displayed as its occupancy map, evaluated at 2D

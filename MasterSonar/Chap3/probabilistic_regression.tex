@@ -17,7 +17,7 @@ regression for mapping, as such, no other kind is explored in this thesis.
 
 \subsection{Binary Logistic Regression} 
 \label{ss:blr}
-A binary regression the dependent variable $Y\in\{-1,1\}$
+A binary regression dependent variable $Y\in\{-1,1\}$
 (or some set of equal cardinality like $\{0,1\}$) has two
 possible estimations that are related by $\Pr(Y=1|X=x)+\Pr(Y=-1|X=x)=1$. As
 such, the conditional probability can be denoted
@@ -35,7 +35,7 @@ p(x;\coord{w}) = \frac{1}{1+\exp(-\coord{w}\cdot x)}
 \end{equation}
 
 The rationale behind the model is that the function
-$\text{expit}(\alpha)=(1+\exp(-\alpha))^{-1}$ is a bijection
+$1+\exp(-\alpha))^{-1}$ is a bijection
 $\mathbb{R}\to(0,1)$~\cite{friedman2001elements}. Ensuring that the model is a
 probabilistic distribution.
 

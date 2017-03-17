@@ -286,7 +286,8 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
       \end{tabularx}}\par
       \nohyphens{\local@doctype\ ({\MakeLowercase\@degreename}) --
       UFRJ/COPPE/Programa de \local@deptname, \number\year.}\par
-      \bibname: p. \pageref{bib:begin} -- \pageref{bib:end}.\par
+      Bibliogafia: p. \pageref{bib:begin} -- \pageref{bib:end}.\par
+      %era \bibname aqui em cima
       \count1=0
       \count2=1
       \nohyphens{\@whilenum \count1<\value{keywords} \do {%
