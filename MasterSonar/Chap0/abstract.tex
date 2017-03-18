@@ -6,30 +6,30 @@ uma planta, ou mapas 2.5D do fundo do mar .
 
 % Declara\c{c}\~ao do problema
 A raz\~ao para a dificuldade do mapeamento subaqu\'atico origina-se no seu
-sensor, i.e. sonares. Ele contrasta com lasers, usados fora d'\'agua, que
-s\~ao sensores precisos de baixo ru\'ido. Al\'em do seu ru\'ido, os
+sensor, i.e. sonares. Ele contrasta com lasers (LIDARs), os sonares s\~ao
+sensores imprecisos e com alto n\'ivel de ru\'ido. Al\'em do seu ru\'ido, os
 \textit{imaging sonars} t\^em um feixe sonoro muito amplo e, com isso, efetuam
 uma medi\c{c}\~ao volum\'etrica.
 
 % Abordagem
-Esta disserta\c{c}\~ao desenvolve um simulador para \textit{single-beam imaging
-sonars} de alta freqü\^encia e \'e capaz de replicar os efeitos t\'ipicos de
+Na primeira parte dessa disserta\c{c}\~ao se desenvolve um simulador para
+\textit{single-beam imaging sonars} de alta freqü\^encia capaz de replicar os efeitos t\'ipicos de
 \textit{multipath}, ganho direcional e ru\'ido de fundo em ambientes
 arbitr\'arios.
 O simulador implementa um m\'etodo baseado na teoria geom\'etrica de raios,
-cujos detalhes de como esse \'e consequ\^encia direta da acustica
-subaqu\'atica, sob suposi\c{c}\~ao de curto comprimento de onda, também são
-expostos no texto.
+e os detalhes de como esse m\'etodo \'e consequ\^encia direta da acustica
+subaqu\'atica também são expostos no texto.
 
-A sa\'ida do simulador \'e passada para um algoritmo de recontrução de mapas
-cont\'inuos baseado em \textit{Hilbert Maps}. \textit{Hilbert Maps} surgem como
-uma técnica de aprendizado de máquina sobre espa\c{c}os de Hilbert, usando
-\textit{feature maps}, aplicadas ao contexto de mapeamento. No entanto, a
-incorpora\c{c}\~ao de uma resposta sonar em um tal mapa \'e uma
-contribui\c{c}\~ao desse trabalho.
+Na segunda parte dessa disserta\c{c}\~ao, o simulador \'e incorporado em um
+algoritmo de reconstrução de mapas cont\'inuos baseado em \textit{Hilbert Maps}.
+\textit{Hilbert Maps} surgem como uma técnica de aprendizado de máquina sobre
+espa\c{c}os de Hilbert, usando \textit{feature maps}, aplicadas ao contexto de
+mapeamento. A incorpora\c{c}\~ao de uma resposta de sonar em um tal
+mapa \'e uma contribui\c{c}\~ao desse trabalho.
 
 % Resultados Conclus\~ao
-Uma compara\c{c}\~ao qualitativa entre a ambiente de referência passado ao
-simulador e o mapa reconstru\'ido revela \textit{Hilbert maps} como uma t\'ecnica
-promissora para mapeamento atráves de sensores ruidosos e, tamb\'em, aponta para
-algumas caracter\'isticas do ambiente dif\'iceis de distinguir.
+Uma compara\c{c}\~ao qualitativa entre o ambiente de referência fornecido ao
+simulador e o mapa reconstru\'ido pela técnica proposta, revela \textit{Hilbert
+maps} como uma t\'ecnica promissora para mapeamento atráves de sensores ruidosos e, tamb\'em, aponta para
+algumas caracter\'isticas do ambiente dif\'iceis de se distinguir, e.g. cantos
+e regiões não suaves.

@@ -5,8 +5,8 @@
 
 Underwater mapping and simulation are dual processes, while the latter produce
 sonar responses for a given environment, the former use these responses to infer
-the surroundings. As such simulation is a flexible way of generating data with a
-known ground truth to test a mapping algorithm. However, to archive a correct
+the surroundings. As such, simulation is a flexible way of generating data with
+a known ground truth to test a mapping algorithm. However, to achieve a correct
 underwater simulation algorithm, simplifying assumptions on sound physics
 and environmental characteristics are necessary, as well as a definition of the
 sonar type being modeled.
@@ -23,8 +23,8 @@ to profiling sonars, e.g. point cloud reconstruction.
  On the other hand, imaging sonars are usually
 cheaper and have a wider sound beam, covering more space at the expense of
 having a more ambiguous response. Thus, the choice of using imaging
-sonars for mapping comes with the challenge of overcoming its measurement's
-uncertainty.
+sonars for mapping comes with the challenge of overcoming their measurement
+uncertainties.
 %and benefiting from its extra information is a win-win strategy, the .
 % % SrJ: "a win-win strategy" means that there are two parties ... I only see
 % one
@@ -40,7 +40,7 @@ uncertainty.
 Besides stipulating a sonar type, the meaning of mapping ought to be narrowed
 down. It is possible to generically define mapping as the process of gathering
 multiple sensor data to characterize the surroundings. However, how this
-characterization might be represented is dependent on the application.
+characterization might be represented depends on the application.
 
 A SLAM (\textbf{S}imultaneous \textbf{L}ocalization \textbf{a}nd
 \textbf{M}apping) system has no intrinsic need for a human readable map.
@@ -59,7 +59,7 @@ stored as an elevation map, or if one wants to see a 3D object it can be stored
 as a point cloud, a 3D grid, a continuous map, etc.
 
 \input{Chap1/Motiv}
-\input{Chap1/RevBib}
+%\input{Chap1/RevBib}
 \input{Chap1/Obj}
 \input{Chap1/Method}
 \input{Chap1/WorkStruc}

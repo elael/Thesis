@@ -6,27 +6,29 @@ plant, or on 2.5D maps of the seafloor.
 
 % Problem statement
 The reason for the problematic of underwater mapping originates in its sensor,
-i.e. sonars. It contrasts to lasers, used outside water, which are precise
-low-noise sensors. Besides its noise, imaging sonars have a wide sound beam
-effectuating a volumetric measurement.
+i.e. sonars. It contrasts to lasers (LIDARs), sonars are
+unprecise high-noise sensors. Besides its noise, imaging sonars have a wide
+sound beam effectuating a volumetric measurement.
 
 %Approach
-This dissertation develops a underwater simulator for high-frequency single-beam
-imaging sonars which is capable of replicating multipath, directional
+The first part of this dissertation develops a underwater simulator for
+high-frequency single-beam imaging sonars capable of replicating multipath, directional
 gain and typical noise effects on arbitrary environments. The simulation relies
 on a ray theory based method and explanations of how this theory follows from
 first principles under short-wavelegnth assumption are provided.
 
-The simulator output is feed to a continous map algorithm based on Hilbert Maps.
+In the second part of this dissertation, the simulator is combined to a
+continous map algorithm based on Hilbert Maps.
 Hilbert maps arise as a machine learning technique over Hilbert spaces, using
-features maps, applied to the mapping context. However the embedding of a sonar response in
+features maps, applied to the mapping context. The embedding of a sonar response in
 such a map is a contribution.
 
 %Results
 %Conclusion
 A qualitative comparison between the simulator ground truth and the reconstucted
 map reveal Hilbert maps as a promising technique to noisy sensor mapping and,
-also, indicates some hard to distinguish characteristics of the surroundings.
+also, indicates some hard to distinguish characteristics of the surroundings,
+e.g. corners and non smooth features.
 
 % 
 % 

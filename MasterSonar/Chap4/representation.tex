@@ -2,8 +2,8 @@
 \label{s:map_rep}
 Classically maps are binary functions over the space. The binary choices of
 function's range stand for fullness or emptiness of a point.
-Mapping is to construct a probability distribution over the set of all
-maps~\cite{thrunprob}, i.e.
+Mapping (occupancy maps) is to construct a probability distribution over the set
+of all maps~\cite{thrunprob}, i.e.
 $\mathcal{M}_d=\{\coord{m}~|~\coord{m}:\mathbb{R}^d\to\{0,1\}\}$. The
 cardinality of such a set $|\mathcal{M}_d|$ is too big\footnote{Side note: the
 actual mathematical cardinality is $\beth_2=\mathbf{2}^\mathfrak{c}$ the
@@ -145,7 +145,7 @@ matter, e.g. works of \citet{rivadeneyra2011probabilistic} and
 \citet{Schwendner2013}.
 
 \subsection{Map of Features}
-
+\label{ss:mapsoffeatures}
 A map can, in certain situations, be approximated by a collection of geometric
 objects, viz. line segments, circles, etc. This is specially true for structured
 environments~\cite{Ribas2006} where walls and flat surfaces are easily found.
@@ -179,25 +179,25 @@ $p(x)=\Pr(\coord{m}(x)=1)$ for $x\in\mathbb{R}^d$.
 \subsubsection{Gaussian
 Process Occupancy Maps - GPOM}
 
-Possibly the first succesful attempt to have a continuous map was Gaussian
+Possibly the first succesful attempt to have a continuous map was the Gaussian
 Process Occupancy Maps (GPOM) by \citet{o2012gaussian}, as noted by the author
 there were previous attemps, but they lacked computability or did not truly
 represent occupancy. GPOM's method apply learning techniques, Gaussian
-Process, to estimate the best marginal form a family of function
-$p(x)=\Phi(\parm)$, $\Phi$ is the cumulative unit Gaussian. Details of the
+Process, to estimate the best marginal for a family of functions
+$p(x)=\Phi(\parm)$, where $\Phi$ is the cumulative unit Gaussian. Details of the
 learning process are numerous and complex, for the interested reader it is
 suggested to check the original paper. GPOM was already applied to 3D
 environments for path planning of a 6DOF Rotary Unmanned Aerial Vehicle (RUAV)
 using laser
 sensors\footnote{$\Phi(x)=\frac{1}{\sqrt{2\pi}}\displaystyle\int_{-\infty}^x \e^{-\nicefrac{t^2}{2}}dt$}~\cite{gan20093d}.
 
-Following ideas from GPOM, Hilbert Maps were proposed as less computationally
+Following ideas from GPOM, Hilbert Maps were proposed as a less computationally
 expensive alternative for continuous maps. It is also able to naturally account
 for spatial correlations and handle noise, but while GPOM scales cubically with
 data size, Hilbert Maps can be updated in linear time. Hilbert Maps is yet much
 simpler to implement and it was the chosen alternative for sonar reconstruction
-on this work. It suits well the task as most of imaging sonar drawbacks are its
-noise and wide beamwidth.
+on this work. It suits well the task, as most of imaging sonar's drawbacks are
+its noise and wide beamwidth.
 
 \subsubsection{Hilbert Maps}
 \label{sss:hilbertcontinuousmap}
@@ -222,7 +222,7 @@ K(x,y) = \e^{-\gamma\norm{x-y}^2} \qquad \gamma \in \mathbb{R}^+
 \end{equation*}
 
 The features $\varphi(x)$ are approximated as Nystr\"om features, other
-methods did not show results as good~\cite{ramos2016hilbert}, approximations
+methods did not show results as good~\cite{ramos2016hilbert}. Approximations
 were discussed in section \ref{ss:reg_hs}. Nystr\"om features are sample
 dependent, given set of $n$ ``inducing" points $\nu_i\in\mathbb{R}^d, \quad
 i=1\ldots n$ chosen (possibly random) on the region being mapped, it is
