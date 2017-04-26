@@ -16,7 +16,7 @@
 \RequirePackage{graphicx}
 \RequirePackage{setspace}
 \RequirePackage{tabularx}
-\RequirePackage{formating/eqparbox}
+\RequirePackage{eqparbox}
 \RequirePackage{ltxcmds}
 \RequirePackage[a4paper,bindingoffset=0.0cm,vcentering=true,%
 top=2.5cm,bottom=2.5cm,left=3.0cm,right=3.0cm]{geometry}
@@ -64,6 +64,9 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
      \global\def\foreign@deptname{Electrical Engineering}}{}    }
 \renewcommand\title[1]{%
   \global\def\local@title{#1}%
+}
+\newcommand\abstitle[1]{%
+  \global\def\abs@title{#1}%
 }
 \newcommand\foreigntitle[1]{%
   \global\def\foreign@title{#1}%
@@ -137,7 +140,7 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
   \setlength\parskip{1mm}
 
 
-  \makebox[20mm][c]{\hspace{4.8cm}\includegraphics{formating/coppe-logo}}
+  \makebox[20mm][c]{\hspace{4.8cm}\includegraphics{coppe-logo}}
 
 
   \end{flushleft}
@@ -286,7 +289,8 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
       \end{tabularx}}\par
       \nohyphens{\local@doctype\ ({\MakeLowercase\@degreename}) --
       UFRJ/COPPE/Programa de \local@deptname, \number\year.}\par
-      Bibliogafia: p. \pageref{bib:begin} -- \pageref{bib:end}.\par
+      Refer\^encias Bibliogr\'aficas: p. \pageref{bib:begin} --
+      \pageref{bib:end}.\par
       %era \bibname aqui em cima
       \count1=0
       \count2=1
@@ -318,7 +322,7 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
   \abstract@toptext\par
   \vspace*{8.6mm}
   \begin{center}
-    \sloppy\nohyphens{\MakeUppercase\local@title}\par
+    \sloppy\nohyphens{\MakeUppercase\abs@title}\par
     \vspace*{13.2mm}
     \@authname\ \@authsurn \par
     \vspace*{7mm}
@@ -393,6 +397,8 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
   \global\let\@date\@empty
   \global\let\foreign@title\@empty
   \global\let\foreign@title\relax
+  \global\let\abs@title\@empty
+  \global\let\abs@title\relax
   \global\let\local@title\@empty
   \global\let\local@title\relax
   \global\let\author\relax
@@ -566,7 +572,7 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
   \let\item\@idxitem}
   {\if@restonecol\onecolumn\else\clearpage\fi}
 \newcommand\glossaryname{Glossary}
-\newcommand\listabbreviationname{Lista de Abreviaturas}
+\newcommand\listabbreviationname{List of Acronyms}
 \newcommand\listsymbolname{Lista de S{\' i}mbolos}
 \newcommand\local@advisorstring{Orientador}
 \newcommand\foreign@advisorstring{Advisor}

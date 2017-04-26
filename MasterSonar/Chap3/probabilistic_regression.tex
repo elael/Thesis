@@ -26,8 +26,8 @@ p(x) = \Pr(Y=1|X=x)
 \end{equation*}
 
 The probability for $Y=-1$ can be recovered from $P(Y=-1|X=x)=1-p(x)$. The
-linear logistic model $p(x;\coord{w})$ for $x\in\mathbb{R}^d$, with
-$\coord{w}\in\mathbb{R}^d$ as explicit parameter:
+linear logistic model~\cite{ramos2016hilbert} $p(x;\coord{w})$ for
+$x\in\mathbb{R}^d$, with $\coord{w}\in\mathbb{R}^d$ as explicit parameter:
 
 \begin{equation}
 \label{eq:std_linear_logistic}
@@ -35,27 +35,31 @@ p(x;\coord{w}) = \frac{1}{1+\exp(-\coord{w}\cdot x)}
 \end{equation}
 
 The rationale behind the model is that the function
-$1+\exp(-\alpha))^{-1}$ is a bijection
+$(1+\exp(-\alpha))^{-1}$ is a bijection
 $\mathbb{R}\to(0,1)$~\cite{friedman2001elements}. Ensuring that the model is a
 probabilistic distribution.
 
 The classical regression theory requires a loss function $\mathscr{C}$ and
 minimizes an empirical risk over some space of functions
-$R[f]=\mathbb{E}(\mathscr{C}(X,Y,f(X)))$~\cite{jaakkola1999probabilistic}. The
-estimation of $f$ from samples uses a regularized version:
+$R[f]=\mathbb{E}(\mathscr{C}(X,Y,f(X)))$~\cite{jaakkola1999probabilistic},
+where $\mathbb{E}(\parm)$ is the expected value.
+The estimation of $f$ from samples $(x_i,y_i)$ uses a regularized version:
 \begin{equation}
+\label{eq:regularized_estimator}
 R_{\text{reg}}[f] =
-\frac{1}{n}\sum_{i=1}^n\mathscr{C}(x_i,y_i,f(x_i))+\lambda\mathcal{S}[f]
+\frac{1}{n}\sum_{i=1}^n\mathscr{C}(x_i,y_i,f(x_i))+\lambda\mathcal{S}[f]\,,
 \end{equation}
-
-Where $\lambda>0$ and $\mathcal{S}[\parm]$ stabilization (regularization) term,
+%
+where $\lambda>0$ and $\mathcal{S}[\parm]$ stabilization (regularization) term,
 as the minimization problem is typically
 ill-posed~\cite{jaakkola1999probabilistic}. On normed spaces usually
 $\mathcal{S}[f]=g(\norm{f})$, where $g(\parm)$ is a monotonically increasing
-function.
+function. With proper adjustment of $\lambda$, the $\nicefrac{1}{n}$ factor
+might be ignored without changing the minimizing function.
 The loss function $\mathscr{C}$ is problem dependent and for binary regression a
-typical negative log likehood (NLL) is used
+typical negative log likehood (NLL\abbrev{NLL}{Negative Log Likehood}) is used
 \begin{equation}
+\label{eq:general_nll}
 \mathscr{C}(x,y,p(x)) = - \log \Pr(Y=y|X=x) = 
 \begin{cases} 
       - \log p(x) & y=1 \\
@@ -63,12 +67,15 @@ typical negative log likehood (NLL) is used
    \end{cases}
 \end{equation}
 
-For a linear logistic model, the regularized negative log likehood empirical
-risk simplifies to a $d$ dimensional minimization:
+For a linear logistic model, one uses (\ref{eq:std_linear_logistic}) on
+(\ref{eq:general_nll}) and substitutes back into
+(\ref{eq:regularized_estimator}).
+Thus the regularized negative log likehood empirical risk simplifies to a $d$
+dimensional minimization:
 \begin{equation}
 \label{eq:classicnll}
 \text{NLL}_{\text{reg}}(\coord{w}) =  \sum_{i=1}^n \log(1+\exp(-y_i
-\coord{w}\cdot x_i)) +\lambda\mathcal{S}(\coord{w})
+\coord{w}\cdot x_i)) +\lambda\mathcal{S}(\coord{w})\,.
 \end{equation}
 
 
@@ -84,10 +91,11 @@ $\alpha_1+\alpha_2=1$, $\alpha_1,\alpha_2\in[0,1]$~\cite{hastie2015statistical}.
 
 Although it is an applicable setting for simple situations, it is not expected
 to perform well for classification/regression of point on a 3D environment as
-$x\in\mathbb{R}^3$ and $\coord{w}\in\mathbb{R}^3$. A 3 real parameter
-$\coord{w}$ is not enough to capture all the complexities of the environment. To
-keep its linear simplicity, the alternative is to increase dimensionality using
-Hilbert Spaces.
+$x\in\mathbb{R}^3$ and $\coord{w}\in\mathbb{R}^3$. The three real parameters,
+encoded by $\coord{w}$, is not enough to capture all the complexities of the
+environment. To keep the simplicity provided by the linear model and still be
+suitable for a three dimensional map, an alternative is to increase
+dimensionality using Hilbert Spaces.
 
 \subsection{Regression on Hilbert Spaces}
 \label{ss:reg_hs}
@@ -97,16 +105,16 @@ map $\varphi:\mathcal{X}\to\hs$, where $\hs$ is hilbert space. This allow
 linear models to express more generic functions $f(x) =
 \hip{\coord{w}}{\varphi(x)}$ with $\coord{w}\in\hs$, such a space of functions
 $f(x)$ is the actual RKHS with kernel define as in equation
-\ref{eq:feature_kernel}.
+(\ref{eq:feature_kernel}).
 
-The linear logistic model from equation \ref{eq:std_linear_logistic} lifted to
+The linear logistic model from equation (\ref{eq:std_linear_logistic}) lifted to
 the Hilbert Space $\hs$ is
 \begin{equation}
 \label{eq:hslogistic}
 p(x;\coord{w}) = \frac{1}{1+\exp(-\hip{\coord{w}}{\varphi(x)})}
 \end{equation}
 
-Thus, equation \ref{eq:classicnll} for log likehood empirical risk
+Thus, equation (\ref{eq:classicnll}) for log likehood empirical risk
 becomes\footnote{With appropriate adjustment of $\lambda$'s value,i.e.
 $\lambda=n\lambda_0$, the usual average $\nicefrac{1}{n}$ for the summation can
 be dropped, as it keeps the same minimizer value of $\coord{w}$.}
@@ -116,7 +124,7 @@ be dropped, as it keeps the same minimizer value of $\coord{w}$.}
 \hip{\coord{w}}{\varphi(x_i)})) +\lambda\mathcal{S}(\coord{w})
 \end{equation}
 
-In practice, one choose a kernel $K(x,y)$ with desired properties and
+In practice, one chooses a kernel $K(x,y)$ with desired properties and
 find finite dimensional approximate features $\hat\varphi(x)$, such that
 $K(x,y)=\hip{\varphi(x)}{\varphi(y)}\approx\hat\varphi(x)\cdot\hat\varphi(y)$.
 Non kernel specific methods for finding approximate features include sampling

@@ -1,10 +1,10 @@
-\documentclass[msc,numbers]{formating/coppe}
+\documentclass[msc,numbers]{coppe}
 \usepackage{amsmath,amssymb}    % simbolos macos providos pela AMS
-\usepackage{eufrak}
+%\usepackage{eufrak}
 \usepackage{mathrsfs}
 \usepackage{xfrac}
 
-\usepackage[linktocpage=true]{hyperref}
+%\usepackage[linktocpage=true]{hyperref}
 \usepackage{float}
 \usepackage{subfig}
 
@@ -69,7 +69,8 @@
 \newcommand{\abs}[1]{\left|#1\right|}
 
 %%%
-%\usepackage[hypertex]{hyperref} %Make sure it comes last of your loaded packages
+\usepackage[linktocpage=true]{hyperref} %hypertex - Make sure it comes last of your
+% loaded packages
 \hypersetup{
   verbose,
   plainpages=false,
@@ -98,17 +99,19 @@
   \renewcommand{\theequation}{\Alph{chapter}{\arabic{equation}}}
 }
 
-\makelosymbols
+%\makelosymbols
 \makeloabbreviations
-\makeindex
+%\makeindex
 
 \begin{document}
 \selectlanguage{english}
 
 \title{Underwater Simulation and Mapping using Imaging Sonar through Ray
 Theory and Hilbert Maps}
-\foreigntitle{Underwater Simulation and Mapping of Imaging Sonar through Ray
+\foreigntitle{Underwater Simulation and Mapping using Imaging Sonar through Ray
 Theory and Hilbert Maps}
+\abstitle{SIMULA\c{C}\~AO E MAPEAMENTO SUBAQU\'ATICO POR SONARES IMAGING,
+ATRAV\'ES DA TEORIA DE RAIOS E HILBERT MAPS}
 %\title{Simulação e Mapeamento subaquático por Imaging Sonar, através de teoria
 %geométrica de raios e aprendizado em espaços de Hilbert}
 %\foreigntitle{Imaging Sonar Underwater Simulation and Mapping through ray
@@ -124,35 +127,38 @@ Theory and Hilbert Maps}
 \keyword{Sonar} \keyword{3D Mapping}
 \keyword{Simulation} \keyword{Underwater}
 \maketitle
+
 \frontmatter
 
-% \dedication{Mammy.}
-% 
-% \chapter*{Agradecimentos}
-% %%%
-% A Zeus,
+\dedication{To those who came before me.}
+
+\input{Chap0/agradecimentos}
+
 \begin{abstract}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ABSTRACT
 \input{Chap0/abstract}
 \end{abstract}
+
 \begin{foreignabstract}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ABSTRACT
 \input{Chap0/abstract_en}
 \end{foreignabstract}
 
 \tableofcontents
 \listoffigures
-\noindent
+\printloabbreviations
+
+%\noindent
 \mainmatter
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \include{Chap1/Intro}
 \include{Chap2/SonarSimulation}
 \include{Chap3/Math}
 \include{Chap4/Mapping}
 \include{Chap5/Conclusion}
+
 \backmatter
-\bibliographystyle{formating/coppe-unsrt}
+\bibliographystyle{coppe-unsrt}
 \bibliography{biblio}
 
 \end{document}

@@ -279,7 +279,7 @@ FUNCTION {format.issn}
 FUNCTION {format.url}
 { url empty$
     { "" }
-    { new.block "Dispon{\' i}vel em: \textless\url{" url * "}\textgreater " * }
+    { new.block "Available at: \textless\url{" url * "}\textgreater " * }
   if$
 }
 
@@ -653,7 +653,7 @@ FUNCTION {format.thesis.type}
 
 FUNCTION {format.tr.number}
 { type empty$
-    { "Relat{\'o}rio T{\'e}cnico" }
+    { "Technical report" }
     'type
   if$
   number empty$
@@ -999,7 +999,7 @@ FUNCTION {phdthesis}
   new.block
   format.btitle "title" output.check
   new.block
-  "Tese de Doutorado" format.thesis.type output.nonnull
+  "Ph.D. Thesis" format.thesis.type output.nonnull
   school "school" output.check
   address output
   format.date "year" output.check

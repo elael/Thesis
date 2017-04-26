@@ -1,0 +1,35 @@
+
+\begin{theglossary}
+  \makeatletter
+  \item [2.5D] Pseudo-three dimensional, Elevation map, p. 
+		\hyperpage{vi}
+  \item [2D] Two dimensional, p. \hyperpage{vi}
+  \item [3D] Three dimensional, p. \hyperpage{1}
+  \item [BRDF] Bidirectional Reflectance Distribution Function, p. 
+		\hyperpage{22}
+  \item [BTDF] Transmitted Scatter Distribution Function, p. 
+		\hyperpage{22}
+  \item [DOF] Degree of Freedom, p. \hyperpage{51}
+  \item [DST] Dempster\IeC {\textendash }Shafer theory, p. 
+		\hyperpage{49}
+  \item [EM] Expectation Maximization, p. \hyperpage{49}
+  \item [FEM] Finite Element Method, p. \hyperpage{14}
+  \item [GPOM] Gaussian Process Occupancy Maps, p. \hyperpage{51}
+  \item [ISO] International Organization for Standardization, p. 
+		\hyperpage{24}
+  \item [LIDAR] Light Detection And Ranging, p. \hyperpage{vi}
+  \item [MLS] Multi Layer Surface, p. \hyperpage{50}
+  \item [MLT] Metropolis Light Transport, p. \hyperpage{30}
+  \item [NLL] Negative Log Likehood, p. \hyperpage{45}
+  \item [RBF] Radial   Basis Fucntion, p. \hyperpage{43}
+  \item [RKHS] Reproducing Kernel Hilbert Space, p. \hyperpage{41}
+  \item [RUAV] Rotary Unmanned Aerial Vehicle, p. \hyperpage{51}
+  \item [SGD] Stochastic Gradient Descent, p. \hyperpage{54}
+  \item [SLAM] Simultaneous Localization and Mapping, p. \hyperpage{vi}
+  \item [Sonar] Sound Navigation And Ranging, p. \hyperpage{vi}
+  \item [TVG] Time Varying Gain, p. \hyperpage{7}
+  \item [a.k.a.] also known as, p. \hyperpage{10}
+  \item [r.h.s.] right hand side, p. \hyperpage{17}
+  \item [r.m.s.] Root mean squared, p. \hyperpage{6}
+  \item [w.r.t.] with respect to, p. \hyperpage{9}
+  \end{theglossary}

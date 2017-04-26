@@ -2,12 +2,12 @@
 
 \subsection{The Evaluation Functional}
 \label{ss:eval_func}
-A \textit{Reproducing Kernel Hilbert Space}, RKHS for short, is a special kind
-of Hilbert Space of functions. In a RKHS, closeness in the sense of the metric is
-actual pontwise proximity. That is to say, if two real-valued functions $f$ and
-$g$ of a (non-empty) set $\mathcal{X}$ belong to a RKHS $\hs$ ($f,g \in \hs
+A \textit{Reproducing Kernel Hilbert Space}, RKHS\abbrev{RKHS}{Reproducing
+Kernel Hilbert Space} for short, is a special kind of Hilbert Space of functions. In a RKHS, closeness in the sense of the metric is
+actual pointwise proximity. That is to say, if two real-valued functions $f$ and
+$g$ on a (non-empty) set $\mathcal{X}$ belong to a RKHS $\hs$ ($f,g \in \hs
 \subset \mathbb{R}^\mathcal{X}$), then whenever $\hnorm{f-g}$ is small so is
-$\abs{f(x)-g(x)}$ for all $x \in \mathcal{X}$\cite{berlinet2011reproducing}.
+$\abs{f(x)-g(x)}$ for all $x \in \mathcal{X}$~\cite{berlinet2011reproducing}.
 
 A more formal and useful characterization of a RKHS is consequence of studying
 linear operators on Hilbert Spaces. The evaluation functional \(\delta_x: \hs \to
@@ -20,25 +20,26 @@ Although $L^2[a,b]$ is not a RKHS (it is not even a proper space of functions,
 but instead a space of classes of equivalences of functions), its bandlimited
 ($L^2 \cap L^1$) version $PW_\pi := \left\{f\in L^2(\mathbb{R}) |~
 \text{supp}~\mathcal{F}(f) \subseteq [-\pi,\pi]\right\}$, for example, has a
-continuous evaluation functional. Here $\mathcal{F}:L^2(\mathbb{R})\to
-L^2[-\pi,\pi]$ is the fourier transform\cite{trefethen1996finite}:
+continuous evaluation functional. Here, $\mathcal{F}:L^2(\mathbb{R})\to
+L^2[-\pi,\pi]$ is the fourier transform~\cite{trefethen1996finite}:
 
 \begin{subequations}
 \begin{equation}
 \mathcal{F}(f) = \frac{1}{\sqrt{2\pi}}\int f(t)\mathrm{e}^{-i\omega t}\dif t
-\qquad f \in L^2(\mathbb{R})
+\qquad f \in L^2(\mathbb{R})\,,
 \end{equation}
 \begin{equation}
 \label{eq:inv_fourier}
 \mathcal{F}^{-1}(\hat f) = \frac{1}{\sqrt{2\pi}}\int_{-\pi}^\pi
-\hat f(\omega)\mathrm{e}^{i\omega t}\dif \omega \qquad \hat f \in L^2[-\pi,\pi]
+\hat f(\omega)\mathrm{e}^{i\omega t}\dif \omega \qquad \hat f \in
+L^2[-\pi,\pi]\,.
 \end{equation}
 \end{subequations}
 
 The proof of continuity for the evaluation functional on $PW_\pi$ relies on the
-inverse Fourier transform \ref{eq:inv_fourier}, Cauchy-Schwarz's and Parseval's
-theorems, used on equations \ref{eq:cont_four}, \ref{eq:cont_cs} and
-\ref{eq:cont_par} respectively.
+inverse Fourier transform (\ref{eq:inv_fourier}), Cauchy-Schwarz's and Parseval's
+theorems, used on equations (\ref{eq:cont_four}), (\ref{eq:cont_cs}) and
+(\ref{eq:cont_par}) respectively.
 For $f,g \in PW_\pi$ it goes as follows:
 
 \begin{subequations}
@@ -82,11 +83,11 @@ The important idea of pointwise convergence can be recovered:
 \begin{align}
 \abs{f(x)-g(x)} &= \abs{\delta_x(f-g)}\\
 			  &= \abs{\hip{f-g}{k_x}}\\
-			  &\leq \hnorm{f-g}\hnorm{k_x}\label{eq:pw_cs_ineq}
+			  &\leq \hnorm{f-g}\hnorm{k_x}\label{eq:pw_cs_ineq}\,,
 \end{align}
 \end{subequations}
-
-Where Cauchy-Schwarz inequality was used on line \ref{eq:pw_cs_ineq} and
+%
+where Cauchy-Schwarz inequality was used on line (\ref{eq:pw_cs_ineq}) and
 \(\hnorm{k_x}\) acts as a scaling factor the closeness at each specific $x$.
 
 The evaluation functional represented in $\hs$ as $k_x$ can be seen as a
@@ -111,7 +112,8 @@ f(x) = \hip{K(x,\parm)}{f} \qquad f \in \hs
 
 Examples of common used kernels:
 \begin{itemize}
-  \item Gaussian Kernel/Radial Basis Fucntion Kernel (RBF)
+  \item Gaussian Kernel/Radial Basis Fucntion Kernel (RBF\abbrev{RBF}{Radial
+  Basis Fucntion})
   \begin{equation}
   \label{eq:rbf}
   K(x,y) = \e^{-\gamma\norm{x-y}^2} \qquad \gamma \in \mathbb{R}^+
@@ -136,7 +138,7 @@ Examples of common used kernels:
   \end{equation*}
 \end{itemize}
 
-Its possible to operate with kernels and generate new valid kernels. If
+It is possible to operate with kernels and generate new valid kernels. If
 $K_1,K_2$ are kernels for $\hs_1$ and $\hs_2$, respectively, then for any
 $\alpha,\beta \in \mathbb{R}_{\scriptstyle\geq0}$ it is possible to construct $K
 = \alpha K_1 + \beta K_2$ as a kernel for the RKHS $\hs = \alpha\hs_1 +
@@ -157,6 +159,7 @@ through the kernel:
 \label{eq:feature_kernel}
 K(x,y)=\hip{\varphi(x)}{\varphi(y)} \qquad x,y \in \mathcal{X}
 \end{equation}
+
 For example, if $\mathcal{X}$ is already a RKHS by itself, then feature
 map $\varphi(x)=x$ reconstruct the Linear Kernel. Also, a sequence of functions
 $f_i \in \mathbb{R}^\mathcal{X}, \forall i \in \mathbb{N}$ that $\{f_i(x)\}

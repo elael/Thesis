@@ -1,11 +1,11 @@
 \section{Sonar}
 
 % Throughout this thesis only one type of sonar is considered, the mechanical
-% imaging active sonar (section \ref{ss:avaible_models}). Sonars have a common
+% imaging active sonar (Section \ref{ss:avaible_models}). Sonars have a common
 % underlying principle of operation, but vary greatly on aplication and hardware constituition.
 
 Throughout this thesis one specific type of sonar will be considered, the
-mechanical imaging active sonar (section \ref{ss:avaible_models}). Sonars have a common
+mechanical imaging active sonar (Section \ref{ss:avaible_models}). Sonars have a common
 underlying principle of operation, but vary greatly on application and hardware
 constitution.
 
@@ -18,37 +18,37 @@ important to have a clear concept of sound.
 \subsection{Physics of Sound}
 
 The phenomenon that humans perceive as sound is a pressure wave which
-amplitude excesses the medium's mean pressure \cite{FEYNMAN}. It can be
+amplitude excesses the mean pressure of the medium~\cite{FEYNMAN}. It can be
 referred to as \textit{compressional} or \textit{longitudinal} waves, contrasting with
 \textit{transversal waves}. The difference between these two kinds of waves
 %% SrJ?: "particles" ?
 relies on the direction of the movement of the particles, being parallel or
-perpendicular to the propagation of the wave, respectively\cite{BRUNEAU}.
+perpendicular to the propagation of the wave, respectively~\cite{BRUNEAU}.
 
 On the particular, but common, condition of low energy
-phenomena\cite{Lefebvre} (with some other suitable requirements\footnote{A
+phenomena~\cite{Lefebvre} (with some other suitable requirements\footnote{A
 perfect simple fluid in an initial state of stationary homogeneous equilibrium})
 the pressure perturbation wave can be described as the \textit{D'Alembert
 equation}
  
 \begin{equation}\label{eq:lambert}
-\nabla^2 \Phi - \frac{1}{c^2_0}\frac{\partial^2}{\partial t^2} \Phi = 0
+\nabla^2 \Phi - \frac{1}{c^2_0}\frac{\partial^2}{\partial t^2} \Phi = 0\,,
 \end{equation}
+%
+where $c_0$
+is the local sound speed and $\Phi$ is the velocity potential, a scalar field
+that helps describing the sound propagation. Its relation to sound pressure is
 
-where $\Phi$ is the velocity potential, a scalar field that helps describing the
-sound propagation. Its relation to sound pressure is
-
-\[ p =  -\rho \frac{\partial}{\partial t}\Phi \]
-
+\[ p =  -\rho \frac{\partial}{\partial t}\Phi\,, \]
+%
 which can be directly described as:
 
 \begin{equation} \label{eq:wave}
-\nabla^2 p - \frac{1}{c^2_0}\frac{\partial^2}{\partial t^2} p = 0
+\nabla^2 p - \frac{1}{c^2_0}\frac{\partial^2}{\partial t^2} p = 0\,,
 \end{equation} 
- 
-Where $p$ is the pressure deviation from the mediums, $\rho$ the density, $c_0$
-is the local sound speed and $\nabla^2$ stands for the Laplace operator. These equations are
-only valid in free space (no source), however discrete variations of the medium
+% 
+where $p$ is the pressure deviation from the mediums, $\rho$ the density and
+$\nabla^2$ stands for the Laplace operator. These equations are only valid in free space (no source), however discrete variations of the medium
 are treated as boundary conditions, giving origin to reflection and refraction.
 
 Besides pressure, sound has another important derived property: intensity. Much
@@ -57,28 +57,28 @@ measures the mean value of the sound energy flux (i.e. energy rate
 per area):
 
 \begin{equation}\label{eq:intensity_mean}
-\vec{I} = \overline{p\vec{v}}
+\vec{I} = \overline{p\vec{v}}\,,
 \end{equation}
-
-Where $\vec{I}$ represents the \textit{acoustic intensity} vector, $\vec{v}$ the
+%
+where $\vec{I}$ represents the \textit{acoustic intensity} vector, $\vec{v}$ the
 \textit{acoustic velocity} (i.e. the velocity of a particle in the medium) and
-overline the mean over some time period. The \textit{acoustic
-velocity} can also be derived from the velocity potential $\Phi$ as:
+overline (e.g. $\overline{p\vec{v}}$) the mean over some time period. The
+\textit{acoustic velocity} can also be derived from the velocity potential $\Phi$ as:
 
-\[ \vec{v} = \nabla \Phi\]
+\[ \vec{v} = \nabla \Phi\,.\]
 
 When considering a wave far from its source, solutions to the equation
-\ref{eq:wave} give rise to a \textit{plane wave}( where the coherent wave front
-propagate in a plane). It makes clear the relationship between $\vec{v}$ and
+(\ref{eq:wave}) give rise to a \textit{plane wave} (where the coherent wave
+front propagate in a plane). It makes clear the relationship between $\vec{v}$ and
 $p$:
 
-\[ \vec{v} = \frac{p}{\rho c_0} \vec{n_0} \]
-
-Where $\vec{n_0}$ is the unit normal vector to the wavefront. Plugging it back
-to \ref{eq:intensity_mean}:
+\[ \vec{v} = \frac{p}{\rho c_0} \vec{n_0}\,, \]
+%
+where $\vec{n_0}$ is the unit normal vector to the wavefront. Plugging it back
+to (\ref{eq:intensity_mean}):
 
 \begin{equation}\label{eq:intensity_pressure}
-\vec{I} = \tfrac{1}{\rho c_0} \overline{p^2} \vec{n_0}
+\vec{I} = \tfrac{1}{\rho c_0} \overline{p^2} \vec{n_0}\,.
 \end{equation}
 
 This equation shows the proportionality between the \textit{acoustic
@@ -93,27 +93,26 @@ the medium.
 
 Because the acoustic intensity (and related quantities) varies in orders of
 magnitude while propagating, it is common to quantify it on a logarithmic scale,
-specifically \textit{decibels} (dB)\cite{LURTON}:
+specifically \textit{decibels} (dB)~\cite{LURTON}:
 
 \begin{equation}\label{eq:dB}
-I_{dB} = 10~\log_{10}\left(\frac{I}{I_0}\right)
+I_{dB} = 10~\log_{10}\left(\frac{I}{I_0}\right)\,.
 \end{equation} 
 
-Here $I_{dB}$ is the intensity measured in \textit{decibels}, $I$ is the
+Here, $I_{dB}$ is the intensity measured in \textit{decibels}, $I$ is the
 intensity value and $I_0$ a reference intensity values, usually defined somewhere near the
 source. In the case of reflected/refracted wave, $I_0$ may also refers to
 the intensity of the incoming wave. A direct relation between the magnitude of
-intensity and pressure is found by applying equation \ref{eq:intensity_pressure}
-on equation\ref{eq:dB}:
+intensity and pressure is found by applying equation
+(\ref{eq:intensity_pressure}) on equation (\ref{eq:dB}):
 
 \begin{equation}\label{eq:dB2}
-I_{dB} = 20~\log_{10}\left(\frac{p_{\text{rms}}}{p_0}\right)
+I_{dB} = 20~\log_{10}\left(\frac{p_{\text{rms}}}{p_0}\right)\,,
 \end{equation}
-
-Where $p_{\text{rms}}$ is the \textit{rms} (Root mean squared) value of the
-wave's pressure ({\small $\sqrt{\text{\tiny \(\overline{p^2}\)}}$}) and $p_0$ is
+%
+where $p_{\text{rms}}$ is the r.m.s.\abbrev{r.m.s.}{Root mean squared} value of the wave's pressure ({\small $\sqrt{\text{\tiny \(\overline{p^2}\)}}$}) and $p_0$ is
 a pressure value of reference, for underwater acoustics this value is the
-micro Pascal (\(p_0 = 1~\mu\text{Pa} \))\cite{LURTON}.
+micro Pascal (\(p_0 = 1~\mu\text{Pa} \))~\cite{LURTON}.
 
 
 \subsection{Sonar Principle of Operation}
@@ -127,7 +126,7 @@ sound waves.
 %% SrJ?: cute, but doubtful ...
 The history of sonar is considered as having began on the year of 1490 through
 the statement of Leonardo Da Vinci aforementioned on the epigraph 
-of this chapter\cite{fahy1998fundamentals}. That was the birth of
+of this chapter~\cite{fahy1998fundamentals}. That was the birth of
 \textit{passive sonar}'s technology, where the objective is to listen (receive
 and process sound waves) the noise from ships, animals and other objects in an
 attempt to detect and recognize its origin. 
@@ -143,9 +142,9 @@ devised, those would be called \textit{active sonars}.
 \subsubsection{Active Sonar}
 
 The concept of an \textit{active sonar}, one that emits a sound wave and detects
-its return (as in figure \ref{fig:sonar_principle}), is much recent. The
+its return (as in Figure \ref{fig:sonar_principle}), is much recent. The
 loss of the \textit{HMS Titanic} due to a collision with an iceberg during its
-first voyage on April 15 of 1912 \cite{histsonar} fostered the development of a sonar
+first voyage on April 15 of 1912~\cite{histsonar} fostered the development of a sonar
 to detect objects kilometers away. Also, during World War I,
 Allied shipping losses to U-boat attacks further stimulated advances on
 techniques for uncovering of submerged enemies.
@@ -161,29 +160,29 @@ techniques for uncovering of submerged enemies.
 
 Active sonars are ranging sensor and the way they infer distance is by measuring
 the time between the emission and reception of an acoustic pulse (a time bounded
-sound wave) like on \ref{fig:sonar_principle}. Given the mean sound speed of the
-medium throughout the path traveled by the pulse, one can infer range\cite{LURTON}:
+sound wave) like on (\ref{fig:sonar_principle}). Given the mean sound speed of
+the medium throughout the path traveled by the pulse, one can infer range~\cite{LURTON}:
 
 \begin{equation}
-R = \frac{c_0 \Delta t}{2}
+R = \frac{c_0 \Delta t}{2}\,,
 \label{eq:delaytodistance}
 \end{equation}
-
-
-Where $R$ is the distance between the source and the target, $c_0$ is the mean
+%
+where $R$ is the distance between the source and the target, $c_0$ is the mean
 sound speed, $\Delta t$ is the delay between pulse emission and reception, and
 the denominator $2$ is a consequence of time measuring the two way
 trip of the pulse. When the medium cannot be considered homogeneous, as in long distance travels in
-the ocean, additional effects must be taken into account~\cite{Etter2013}.
+the ocean, additional effects must be taken into account~\cite{Etter2013} (e.g.
+medium stratification).
 
 Active sonars outputs is influenced by various factors, some considered to be
 more relevant will be further explored in this section: multipaths, spatial
 resolution, bearing indistinguishability and propagation loss compensation
-(TVG).
+(TVG\abbrev{TVG}{Time Varying Gain}).
 
 % When the sound wave travels long distances in the ocean,
 % sound speed may vary greatly, so, special care should be
-% taken\cite{Etter2013}.stratify the environment by same sound speed layers
+% taken~\cite{Etter2013}.stratify the environment by same sound speed layers
 
 %% SrJ: no transition ....
 
@@ -199,10 +198,10 @@ Besides sound speed variation, another common issue is \textit{multipath}. The
 moment a sound wave encounters an interface (e.g. an obstacle like the sea floor
 or the water surface), it does not fully bounce back to the source, it also undergoes
 reflection in other directions. Thus, an echo that has traveled a longer
-path may also arrive, causing a naive application of equation \ref{eq:delaytodistance} to
-predict the presence of an object further away (figure \ref{fig:multipath}). For
-low-frequency stable signals, the contribution of all multipaths creates an
-interference pattern\cite{LURTON}, a fact that will not be further explored. 
+path may also arrive, causing a naive application of equation
+(\ref{eq:delaytodistance}) to predict the presence of an object further away
+(Figure \ref{fig:multipath}). For low-frequency stable signals, the contribution
+of all multipaths creates an interference pattern~\cite{LURTON}, a fact that will not be further explored. 
 
 \begin{figure}
 	\centering
@@ -210,30 +209,30 @@ interference pattern\cite{LURTON}, a fact that will not be further explored.
 	\caption{Visualization of a multipath for a high frequency short pulse (much
 	smaller than delay times). Black vectors show the path taken by the sound
 	wave. Red dashed vector shows the calculated distance by equation
-	\ref{eq:delaytodistance}.}
+	(\ref{eq:delaytodistance}).}
 	\label{fig:multipath}
 \end{figure}
 
-\subsubsection{Sonar Resolution and CHIRP Pulses}
+\subsubsection{Sonar Resolution and Chirp Pulses}
 
 The minimum distance (or echo delay) that can be resolved by the sonar, depends
-on the type of pulse emitted (figure \ref{fig:chirpresolution}). There are two
+on the type of pulse emitted (Figure \ref{fig:chirpresolution}). There are two
 main types of pulse:
-\textit{single frequency} and \textit{chirp}\cite{chirp,gaussianchirp}. Some
+\textit{single frequency} and \textit{chirp}~\cite{chirp,gaussianchirp}. Some
 sonars use dual frequency to overcome the trade-off between reach and
 resolution, given that low-frequency has a longer range and high-frequency a better resolution.
 
 For single frequency sonar, the limit resolution ($\delta R$) depends directly
 on the pulse length ($\Delta\text{L}$):
 
-\[ \delta R = \frac{c_0~\Delta\text{L}}{2} \] 
+\[ \delta R = \frac{c_0~\Delta\text{L}}{2}\,. \] 
 
 However, that limitation can be overcome by the use of pulse compression (a
 cross-correlation filter like matched filters). In this case, a linear varying
 frequency signal (chirp), or similar multifrequency systems, has its resolution
 related to the bandwidth ($\Delta \text{BW}$):
 
-\[ \delta R = \frac{c_0}{2~\Delta \text{BW}} \]
+\[ \delta R = \frac{c_0}{2~\Delta \text{BW}}\,. \]
 
 \begin{figure}
 	\centering
@@ -269,16 +268,16 @@ received signal incoming from some direction. The concept of a 2-way beam
 shape follows directly as the net result of transmission and reception.
 Mathematically, it results in squaring the beam shape. All these concepts are
 meaningful only if sufficiently far from the source, a region called
-far field\cite{beamwidth}.
+far field~\cite{beamwidth}.
 
 The \textit{beamwidth}, in turn, is a simplifying concept. The conventional
 definition is the point where intensity reaches $70\%$ of its peak value,
 or $-3\text{dB}$. The 2-way beam shape reduces the \textit{beamwidth} to about
-$72\%$ w.r.t. the 1-way beam beamwidth. If the diameter ($D$) of the transducer
-is large compared to the acoustic wavelength ($\lambda$), the
-\textit{beamwidth}($\beta$) can be approximated as:
+$72\%$ w.r.t.\abbrev{w.r.t.}{with respect to} the 1-way beam beamwidth. If the
+diameter ($D$) of the transducer is large compared to the acoustic wavelength ($\lambda$), the
+\textit{beamwidth} ($\beta$) can be approximated as:
 
-\[ \beta \approx \sin^{-1}\left(\frac{\lambda}{D} \right) \]
+\[ \beta \approx \sin^{-1}\left(\frac{\lambda}{D} \right)\,. \]
 
 \begin{figure}[h]
 	\centering
@@ -290,7 +289,7 @@ is large compared to the acoustic wavelength ($\lambda$), the
 
 On the other hand, there are hydrophone arrays that can infer the sound
 direction by relating the spacing between the transducers with the signal
-difference received by each of them \cite{bearing,beamforming}. One technique is
+difference received by each of them~\cite{bearing,beamforming}. One technique is
 very similar to \textit{multilateration}, simply compute the distance measured
 by each transducer and use this information to compute the direction of the
 incoming sound wave.
@@ -304,13 +303,14 @@ array and, thus, can be used to find which direction gives the strongest echo.
 This is known as \textit{beamforming}.
 
 The sequence of transducers can be made into a two dimensional array
-(a.k.a. a grid), making it possible to detect a full 3D direction.
+(a.k.a.\abbrev{a.k.a.}{also known as} a grid), making it possible to detect a
+full 3D direction.
 
 \subsubsection{TVG - Time Varying Gain}\label{sss:tvg}
 
 As sound waves propagates, they lose intensity through spreading and absorption.
 Spreading loss is usually considered to be and inverse quadratic
-law\cite{Etter2013}, as this is the closed surface area progression for
+law~\cite{Etter2013}, as this is the closed surface area progression for
 a time-like wavefront. But for cylindrical spreading it is a simple inverse law,
 and for perfect plane wave there is no loss.
 
@@ -319,14 +319,14 @@ slow exponential decay. Together with spreading, they are referred as
 Transmission Loss ($\text{TL}$), in decibels (dB):
 
 \begin{equation*}
-\text{TL} = 20\log_{10}(r) + \alpha r
+\text{TL} = 20\log_{10}(r) + \alpha r\,,
 \end{equation*}
-
-Where $r$ is the wave's total traveled distance and $\alpha$ a water dependent
+%
+where $r$ is the wave's total traveled distance and $\alpha$ a water dependent
 parameter (with order of magnitude of $\approx 10^{-2} \text{dB}/m$). Sonars use
 this equation, with a saturation around $40$dB, to compensate for the echo
-loss\cite{chu2006time}. And, as distance is inferred from time measurements,
-this compensative gain is named Time Varying Gain (TGV). \citet{chew2013object}
+loss~\cite{chu2006time}. And, as distance is inferred from time measurements,
+this compensative gain is named Time Varying Gain (TGV).~\citet{chew2013object}
 estimated TGV gain for a Tritech's Micron sonar and suggests that it agrees with
 the expected.
 
@@ -335,18 +335,18 @@ the expected.
 \label{ss:avaible_models}
  
 Active Sonars, besides having a common working principle, present themselves in
-different models for different applications. \citet{sonars:16} summarized the
+different models for different applications.~\citet{sonars:16} summarized the
 most relevant ones.
 
 \subsubsection{Mechanically Scanning}
 
-As seen on subsection \ref{sss:bearing}, it is possible to use the beam shape as
+As seen in Subsection \ref{sss:bearing}, it is possible to use the beam shape as
 a way to reduce the number of possible incoming directions for an echo. This is
 the idea behind a mechanically scanning sonar, where the transducer is
 mechanically rotated to cover all or part of the $360^o$.
 
-The angular step between different hydrophone's positions is dependent on the
-desired resolution, smaller steps gives a better resolution, but takes longer
+The angular step between different hydrophone positions is dependent on the
+desired resolution, smaller steps give a better resolution, but it takes longer
 by doing so.
 
 \begin{enumerate}
@@ -358,10 +358,10 @@ by doing so.
   sea floor.
   \item \textbf{Imaging} - its fan shaped narrow beam covers a wider area than
   the profiling type, making it very useful for navigation and obstacle
-  avoidance on ROVs\footnote{Remotely Operated underwater Vehicle}. As its beam
+  avoidance on ROVs\footnote{Remotely Operated underwater Vehicle.}. As its beam
   is wide, it usually hits the surface obliquely, receiving several echos per
   acoustic pulse. Each echo is displayed at a distance determined by equation
-  \ref{eq:delaytodistance} and with its strength mapped to a color scale.
+  (\ref{eq:delaytodistance}) and with its strength mapped to a color scale.
   \item \textbf{Side Scan} (a.k.a. towfish) - Can be either mounted on each side
       %% SrJ?: not sure about the beam shape, for the sidescan is usually more
       % of
@@ -378,7 +378,7 @@ by doing so.
 \subsubsection{Multibeam}
 
 Multibeam sonar are based on the technique of \textit{beamforming} (described
-on section \ref{sss:bearing}). It has several hydrophones, rendering it able to
+in Section \ref{sss:bearing}). It has several hydrophones, rendering it able to
 scan an underwater region with no moving parts.
 
 %% SrJ: actually, in the multibeam world, the only difference between profiling

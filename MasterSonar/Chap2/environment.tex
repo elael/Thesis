@@ -2,8 +2,8 @@
 
 Extensive literature have been written on ocean environment, from modeling its
 behavior to measuring its properties. Different simulation techniques have also
-been explored\cite{Etter2013}. The modeling presented here, although simple,
-completely suits the needs of a ray tracing technique, presented on section
+been explored~\cite{Etter2013}. The modeling presented here, although simple,
+completely suits the needs of a ray tracing technique, presented in Section
 \ref{ss:raytheory}.
 
 \subsection{Modeling}
@@ -15,8 +15,8 @@ which defines the shape of the object, the other is acoustic, expressing how
 does it interact with sound.
 
 For the geometric part, two basic functions have to be provided: \textbf{intersection}
-and \textbf{normal}. \textbf{Intersection} takes a ray, defined by a origin point and a
-direction, and outputs the distance to the first intersection point with the
+and \textbf{normal}. \textbf{Intersection} takes a ray, defined by an origin
+point and a direction, and outputs the distance to the first intersection point with the
 object. If no intersection point is found, the distance is defined to be
 infinity. \textbf{Normal} receives a point on the surface of the object and
 return the normal vector at such a point. Algorithm \ref{alg:rectangle}
@@ -101,7 +101,7 @@ center and radius.
 \subsection{Characterization}
 \label{ss:characterization}
 
-Instead of defining a full BRDF (explained on section
+Instead of defining a full BRDF (explained in Section
 \ref{sss:rays}), three parameters are considered: \textbf{diffusion coefficient},
 \textbf{specular coefficient} and \textbf{shininess}. All three parameters may
 change at every point on the surface of an object, thus defining a texture, but
@@ -113,19 +113,19 @@ respectively, fractions of incident energy over a surface patch that reflects
 diffusely (as a lambertian reflector) and specularly. Reflections near
 specularity are weighed as Phong reflection for a less unrealiscaly abrupt
 change in reflection intensity. The \textbf{shininess} is the Phong parameter.
-These concepts are described in section \ref{sss:rays}.
+These concepts are described in Section \ref{sss:rays}.
 
 The actual values used came from a collection of sources in addition to
 experimentation and tacit knowledge (from previous sonar use), as these are
 difficult information to find in the literature.
 
-For concrete, \citet{chirp} studies the \textbf{reflection coefficient}, sum of
+For concrete,~\citet{chirp} studies the \textbf{reflection coefficient}, sum of
 \textbf{diffusion coefficient} and \textbf{specular coefficient}, to
 characterize the concrete's quality following earlier measurements of
-\citet{leslie1949ultrasonic}. The table provided on the article can be used in
-the other direction, to simulate such a concrete quality. The individual values of \textbf{diffusion coefficient} and \textbf{specular coefficient} still
-have to be determined and come from an educated guess based on considerations on
-smoothness by \citet{Etter2013}, which claims that most of the energy goes as
+~\citet{leslie1949ultrasonic}. The table provided on the article
+(Table \ref{tb:concrete}) can be used in the other direction, to simulate such a
+concrete quality. The individual values of \textbf{diffusion coefficient} and \textbf{specular coefficient} still have to be determined and come from an educated guess based on considerations on
+smoothness by~\citet{Etter2013}, which claims that most of the energy goes as
 specular reflection for smooth surfaces. For
 simulation purposes it has been assumed values between 80\% to 95\% of the
 reflected energy to be specular.
@@ -142,19 +142,20 @@ Poor & $0.48$-$0.62$  \\
 Very Poor & $0.48$ or less  \\
 \end{tabular}
 \caption{Quality of Concrete and Reflection Coefficient.
-(\citet{chirp,leslie1949ultrasonic})}
+(~\citet{chirp,leslie1949ultrasonic})}
+\label{tb:concrete}
 \end{table}
 
-\citet{Etter2013}, also, provides equations relating wind speed with water
+~\citet{Etter2013}, also, provides equations relating wind speed with water
 surface reflection coefficient, which varies according to its roughness caused
 by the wind. For calm waters, there is almost no transmitted energy and all
 reflected energy is specular. For other materials, estimated values come from
-models as the one provided by \citet{miller2015real} on
-figure\ref{fig:materials}.
+models as the one provided by~\citet{miller2015real} on
+Figure \ref{fig:materials}.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\textwidth]{Chap2/fig/materials}
-	\caption{Materials reflective characteristics from \citet{miller2015real}.}
+	\caption{Materials reflective characteristics from~\citet{miller2015real}.}
 	\label{fig:materials}
 \end{figure}

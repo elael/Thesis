@@ -3,7 +3,7 @@
 \textit{Computational ocean
 acoustics} explores algorithms that model
 the ocean as an acoustic medium. Works on this matter are well documented by
-\citet{Etter2013}. Most of these works focus on very long range simulations,
+~\citet{Etter2013}. Most of these works focus on very long range simulations,
 with its most important features been the ocean floor and sub-bottom region.
 
 This work aims to reconstruct and simulate near-range partially closed
@@ -19,22 +19,22 @@ simplicity, performance and accuracy. There are several possible techniques with
 different applications and assumptions, this chapter will cover the most
 classic ones and further explore \textit{ray theory}, which has been used for
 the simulation presented here. For a more comprehensive view on this and other
-techniques, see \citet{LURTON,jensen2011computational}.
+techniques, see~\citet{LURTON,jensen2011computational}.
 
 \subsection{Techniques Overview}
 \label{ss:simuloverview}
 
 The idea behind sound simulation techniques is to solve the wave
-equation (eq. \ref{eq:wave}) considering all the physical interfaces as boundary
-conditions. The equation, however, cannot be analytically solved due to common
+equation (\ref{eq:wave}) considering all the physical interfaces as
+boundary conditions. The equation, however, cannot be analytically solved due to common
 present discontinuities caused by occlusions, specular highlights and other
 facts that result in large variations of field over small regions of the
-domain of integration\cite{funkhouser2003survey}.
+domain of integration~\cite{funkhouser2003survey}.
 
 The single most important reason that differentiates the several approaches
 described here is the \textit{wave frequency}. For high-frequency (where sound
 speed do not vary much in a wavelength scale) geometric methods (ray theory) are
-justifiable and preferable (in the computational sense) \cite{urick1979}. In the
+justifiable and preferable (in the computational sense)~\cite{urick1979}. In the
 case of low/mid - frequency or in the presence of caustics\footnote{A region of
 high constructive interference that geometrically gives a point of infinity
 rays convergence.}, other wave methods (e.g. finite elements, normal modes,
@@ -46,25 +46,27 @@ parabolic approximation) should be applied.
 %% SrJ: (fourier transform and all that)
 Instead of using the full wave equation, the methods work with a simplified
 time-independent version. As it is a linear equation, it can be assumed that the
-equation \ref{eq:wave}
+equation (\ref{eq:wave})
 
-\[ \nabla^2 p = \frac{1}{c^2_0}\frac{\partial^2}{\partial t^2} p \]
-
-has a solution where time dependence is a harmonic function:
+\[ \nabla^2 p = \frac{1}{c^2_0}\frac{\partial^2}{\partial t^2} p \,,\]
+%
+has a solution where time dependence is an harmonic function, as the standard
+method for solving linear differential equations:
 
 \begin{equation}
 \label{eq:pressurepsi}
-p(\coord{x},t) = \Re(\psi(\coord{x})\mathrm{e}^{-i\omega t})
+p(\coord{x},t) = \Re(\psi(\coord{x})\mathrm{e}^{-i\omega t})\,,
 \end{equation}
-
-Here $\coord{x}$ is the space coordinate while $t$ is the time. The exponential
-function considered is the complex exponential with $i$ being the imaginary unit.
+%
+where $\coord{x}$ is the space coordinate while $t$ is the time and $\omega$
+interpreted as angular frequency.
+The exponential function considered is the complex exponential with $i$ being the imaginary unit.
 The real part $\Re(\parm)$ is taken as $p$ is real-valued, but $\psi(\coord{x})$
 is a complex-valued function over space.
 %\[ \frac{\partial}{\partial t}\psi = 0 \]
 %\[ \nabla^2 \vartheta = 0 \]
 
-Substituting it back into \ref{eq:wave}, gives
+Substituting it back into (\ref{eq:wave}), gives
 (dropping explicit parameters again):
 
 \[ \Re(\nabla^2 \psi \mathrm{e}^{-i\omega t}) =
@@ -78,8 +80,8 @@ terms:
 
 \[ \Re((\nabla^2 \psi -k^2 \psi) \mathrm{e}^{-i\omega t}) = 0\]
 
-As the harmonic $\mathrm{e}^{-i\omega t}$ is equivalent to a rotation in the complex
-plane, the equation will be satisfied for all $t$ if:
+As the harmonic $\mathrm{e}^{-i\omega t}$ is equivalent to a rotation in the
+complex plane, the equation will be satisfied for all $t$ if:
 
 \begin{equation}
 \label{eq:helmholtz}
@@ -112,40 +114,43 @@ plane, the equation will be satisfied for all $t$ if:
 % (\frac{d^2}{dt^2} + \omega^2)\vartheta = 0
 % \end{equation}
 
-Equation \ref{eq:helmholtz} is known as the (homogeneous) \textit{Helmholtz
+Equation (\ref{eq:helmholtz}) is known as the (homogeneous) \textit{Helmholtz
 equation} and describe the time-independent part of the wave propagation. The
 values of $k$ and $\omega$ can be physically interpreted as the spatial and
 temporal angular frequency of the wave. As the wave equation is 
 linear, superposition applies, being reasonable to take into consideration one
-wave frequency at a time and superpose all these harmonics by Fourier synthesis\cite{Lefebvre}.
+wave frequency at a time and superpose all these harmonics by Fourier synthesis~\cite{Lefebvre}.
 
 Fourier synthesis is the calculation by \textit{Helmholtz
 equation} of each independent frequency: 
 
-\[ \psi_\omega(\coord{x}) = \int_{-\infty}^\infty p(\coord{x},t)\mathrm{e}^{i\omega t}\dif t \]
+\[ \psi_\omega(\coord{x}) = \int_{-\infty}^\infty
+p(\coord{x},t)\mathrm{e}^{i\omega t}\dif t \,,\]
+%
+and reconstruct the wave equation back by:
 
-And reconstruct the wave equation back by:
-
-\[ p(\coord{x},t) = \int_{-\infty}^\infty\psi_\omega(\coord{x})\mathrm{e}^{-i\omega t}\dif\omega \]
+\[ p(\coord{x},t) =
+\int_{-\infty}^\infty\psi_\omega(\coord{x})\mathrm{e}^{-i\omega t}\dif\omega
+\,.\]
 
 These equations are the inverse and forward Fourier transform, respectively.
 
-\subsubsection{FEM - Finite Element Method}
+\subsubsection{FEM - Finite Element Method}\abbrev{FEM}{Finite Element Method}
 
 Finite Element Methods try to numerically find a solution to the wave equation
 by discretizing space, and time in some cases. It considers the equation
-\ref{eq:wave} for inside the environment and the boundary conditions:
+(\ref{eq:wave}) for inside the environment and the boundary conditions:
 
 \[  \frac{\partial}{\partial \mathbf{n}}p= -\rho_0 \frac{\partial^2
-x_n}{\partial t^2} \quad \text{on the source} \]
+x_n}{\partial t^2} \quad \text{on the source}\,, \]
 
 \[  c_0 \frac{\partial}{\partial \mathbf{n}}p= - \frac{1-R_c}{1+R_c}
-\frac{\partial}{\partial t} p \quad \text{on other interfaces} \]
-
-Where $\mathbf{n}$ is the normal direction of the surface, $\rho_0$ is the
+\frac{\partial}{\partial t} p \quad \text{on other interfaces}\,, \]
+%
+where $\mathbf{n}$ is the normal direction of the surface, $\rho_0$ is the
 medium density and $x_n$ is the displacement of the acoustic membrane. The
 reflection coefficient $R_c$ might depend on the interface, but as FEM are used
-for small frequency bands, it is a minor problem\cite{deines2006comparative}.
+for small frequency bands, it is a minor problem~\cite{deines2006comparative}.
 
 To create a linear system, the pressure function is approximated by a
 superposition of functions, e.g. sum of piecewise quadratic functions \(
@@ -157,8 +162,8 @@ differential equations:
 M\ddot{p} + D\dot{p} + Kp &= Fu \\
 y &= Pp
 \end{align*}
-
-With \(M,D,K\) being \(N \times N \) matrices, $p$ being the vector with
+%
+with \(M,D,K\) being \(N \times N \) matrices, $p$ being the vector with
 coefficients $p_i$, $Fu$ the input converted into a force and $P$ some selection
 matrix to output the pressure on the desired points. This model can be written
 and solved as generalized state-space model:
@@ -195,27 +200,27 @@ B =
 C =
   \begin{bmatrix}
     P & 0 
-  \end{bmatrix}
+  \end{bmatrix}\,,
 \]
  
  There can be made more simplifications, but it is enough to highlight the
- limitations of the method (For more details, refer to
- \citet{deines2006comparative}). The dimension of the state is related to
- the number of functions used to approximate $N$ (two times without any further
- simplification) that depends on the frequency:
+ limitations of the method (for more details, refer to
+~\citet{deines2006comparative}). The dimension of the state is twice
+ the number $N$ of functions used in the approximation and that depends on the
+ frequency:
  
- \[N = \left(\frac{nLf}{c_0}\right)^3 \]
- 
- Where $L$ is a typical dimension in the environment, $f = \frac{\omega}{2\pi}$
+ \[N = \left(\frac{nLf}{c_0}\right)^3\,, \]
+ %
+ where $L$ is a typical dimension in the environment, $f = \frac{\omega}{2\pi}$
  the frequency and $n$ the number of elements per wave, that should be 3 ou 4
- for a good approximation\cite{deines2006comparative}.
+ for a good approximation~\cite{deines2006comparative}.
  
  Given that the size of the state increases as the cube of the frequency, the
  technique can only be applied to low-frequency signals, which is not applicable
  to high-frequency sonar as envisioned by this work. 
 
 There is also a boundary method that uses surface integral form of the wave
-equation, but suffers from similar restrictions. \citet{funkhouser2003survey}
+equation, but suffers from similar restrictions.~\citet{funkhouser2003survey}
 gives a brief introduction of the subject.
 
 \subsubsection{Ray theory}
@@ -232,30 +237,30 @@ sound waves have mid-wavelength ($10$--$10^{-3}$m) while visible light has a
 much shorter wavelength ($\approx10^{-6}$m).
 
 To describe the ray from the wave theory, one starts by solving the Helmholtz
-equation \ref{eq:helmholtz} with a generic complex function of space
-through a polar decomposition\cite{buckingham1992ocean,torres2007modeling}:
+equation (\ref{eq:helmholtz}) with a generic complex function of space
+through a polar decomposition~\cite{buckingham1992ocean,torres2007modeling}:
 
 \begin{equation}
 \label{eq:psi}
-\psi(\coord{x}) = \mathcal{A}(\coord{x})\mathrm{e}^{iw\tau(\coord{x})}
+\psi(\coord{x}) = \mathcal{A}(\coord{x})\mathrm{e}^{i\omega\tau(\coord{x})}\,.
 \end{equation}
 
 
-Here $\tau(\coord{x})$ can be interpreted as the time it takes the sound to
+Here, $\tau(\coord{x})$ can be interpreted as the time it takes the sound to
 reach the location $\coord{x}$ and $\mathcal{A}(\coord{x})$ the amplitude of the
-signal at that point. Substituting it back to \ref{eq:helmholtz} and
+signal at that point. Substituting it back to (\ref{eq:helmholtz}) and
 separating real and imaginary parts, two equations can be obtained (omitting
 arguments):
 
 \begin{subequations}
 \begin{equation}
 \label{eq:preeikonal}
-\frac{\nabla^2\mathcal{A}}{\mathcal{A}} - (w\nabla \tau)^2 + k^2 = 0
+\frac{\nabla^2\mathcal{A}}{\mathcal{A}} - (\omega\nabla \tau)^2 + k^2 = 0\,,
 \end{equation}
 
 \begin{equation}
 \label{eq:preeikonalamp}
-2(\nabla\mathcal{A} \cdot \nabla \tau) + \mathcal{A}\nabla^2 \tau = 0
+2(\nabla\mathcal{A} \cdot \nabla \tau) + \mathcal{A}\nabla^2 \tau = 0\,.
 \end{equation}
 \end{subequations}
 
@@ -264,101 +269,101 @@ much on the wavelength scale, mathematically expressed as:
 
 \begin{equation}
 \label{eq:highfrequency}
-\frac{\nabla^2\mathcal{A}}{\mathcal{A}} \ll k^2
+\frac{\nabla^2\mathcal{A}}{\mathcal{A}} \ll k^2\,.
 \end{equation}
 
-Applying this approximation to \ref{eq:preeikonal} and using the
+Applying this approximation to (\ref{eq:preeikonal}) and using the
 fact that \(\omega = kc_0 \):
 
 \begin{equation}
 \label{eq:eikonal}
-\norm{ \nabla \tau } = \frac{1}{c_0}
+\norm{ \nabla \tau } = \frac{1}{c_0}\,.
 \end{equation}
 
-The equation \ref{eq:eikonal} is known as the \textit{Eikonal equation} and
-defines the surfaces of constant phase. Equation \ref{eq:preeikonalamp}, called
+The equation (\ref{eq:eikonal}) is known as the \textit{Eikonal equation} and
+defines the surfaces of constant phase. Equation (\ref{eq:preeikonalamp}), called
 the transport equation, can then be used to find the pressure amplitude of the
 wave. However,  when considering intensity, conservation of energy can be used as
-will be seen later on subsection \ref{ss:raytheory}.
+will be seen later in Subsection \ref{ss:raytheory}.
 
 The rays are, by definition, the perpendicular lines to the wavefronts defined
-by equation \ref{eq:eikonal}. Which, with length parametrization, is:
+by equation (\ref{eq:eikonal}) which, with length parametrization, is:
 
 \begin{equation}
 \label{eq:ray}
-\frac{\dif r}{\dif s} = c_0 \nabla\tau
+\frac{\dif r}{\dif s} = c_0 \nabla\tau\,,
 \end{equation}
-
-Where $r(s)$ is the path follow by the ray, and $s$ the ray length. To verify
-that it is a length parametrization, square \ref{eq:ray} and use \ref{eq:eikonal} to find:
+%
+where $r(s)$ is the path follow by the ray, and $s$ the ray length. To verify
+that it is a length parametrization, one has to square (\ref{eq:ray}) and use
+(\ref{eq:eikonal}) to find:
 
 \begin{equation*}
-\norm{\frac{\dif r}{\dif s}} = 1 
+\norm{\frac{\dif r}{\dif s}} = 1\,,
 \end{equation*}
-
-Showing that it is a unit norm tangent vector. To find the ray path, first take
-the gradient of \ref{eq:eikonal} squared:
+%
+showing that it is a unit norm tangent vector. To find the ray path, first take
+the gradient of (\ref{eq:eikonal}) squared:
 
 \begin{subequations}
 \begin{equation}
-\nabla(\norm{ \nabla \tau }^2) = \nabla\left(\frac{1}{c_0^2}\right)
+\nabla(\norm{ \nabla \tau }^2) = \nabla\left(\frac{1}{c_0^2}\right)\,,
 \end{equation}
 \begin{equation}
-2\coord{H}(\tau)\nabla\tau = 2\frac{1}{c_0}\nabla\left(\frac{1}{c_0}\right)
+2\coord{H}(\tau)\nabla\tau = 2\frac{1}{c_0}\nabla\left(\frac{1}{c_0}\right)\,,
 \end{equation}
 \begin{equation}
 \label{eq:t_hessiantau}
-c_0\coord{H}(\tau)\nabla\tau = \nabla\left(\frac{1}{c_0}\right)
+c_0\coord{H}(\tau)\nabla\tau = \nabla\left(\frac{1}{c_0}\right)\,.
 \end{equation}
 \end{subequations}
 
-The \(\coord{H}(\parm)\) is the Hessian. Also, the derivative of
-\ref{eq:ray} (divided by $c_0$) w.r.t.
-$s$ is:
+\(\coord{H}(\parm)\) is the Hessian. The derivative of
+(\ref{eq:ray}) (divided by $c_0$) w.r.t. $s$ is:
 
 
 \begin{subequations}
 \begin{equation}
 \frac{\dif}{\dif s}\left(\frac{1}{c_0}\frac{\dif r}{\dif s}\right)
-=\frac{\dif}{\dif s}(\nabla\tau)
+=\frac{\dif}{\dif s}(\nabla\tau)\,,
 \end{equation}
 \begin{equation}
 \label{eq:t_dergrad}
 \frac{\dif}{\dif s}\left(\frac{1}{c_0}\frac{\dif r}{\dif s}\right)
-=\coord{H}(\tau)\frac{\dif r}{\dif s}
+=\coord{H}(\tau)\frac{\dif r}{\dif s}\,.
 \end{equation}
 \end{subequations}
 
-Using \ref{eq:ray} and \ref{eq:t_hessiantau} in the r.h.s. of
-\ref{eq:t_dergrad}:
+Using (\ref{eq:ray}) and (\ref{eq:t_hessiantau}) in the
+r.h.s.\abbrev{r.h.s.}{right hand side} of (\ref{eq:t_dergrad}):
 
 \begin{subequations}
 \begin{equation}
 \frac{\dif}{\dif s}\left(\frac{1}{c_0}\frac{\dif r}{\dif s}\right)
-=\coord{H}(\tau)(c_0\nabla\tau)
+=\coord{H}(\tau)(c_0\nabla\tau)\,,
 \end{equation}
 \begin{equation}
 \label{eq:raydirection}
 \frac{\dif}{\dif s}\left(\frac{1}{c_0}\frac{\dif r}{\dif s}\right)
-=\nabla\left(\frac{1}{c_0}\right)
+=\nabla\left(\frac{1}{c_0}\right)\,.
 \end{equation}
 \end{subequations}
 
-The equation \ref{eq:raydirection} can now be integrated to give the ray path.
+The equation (\ref{eq:raydirection}) can now be integrated to give the ray path.
 Considering the important case of constant sound velocity $c_0$ (as assumed
 elsewhere in this work):
 
-\[ \nabla\left(\frac{1}{c_0}\right) = 0 \]
+\[ \nabla\left(\frac{1}{c_0}\right) = 0 \,.\]
 
-So, \ref{eq:raydirection} (with \ref{eq:ray}) can be easily
+So, (\ref{eq:raydirection}) (with (\ref{eq:ray})) can be easily
 solved to:
 
 \begin{equation}
 \label{eq:sray}
-r(s) = r_0 + (c_0\nabla\tau_0)s
+r(s) = r_0 + (c_0\nabla\tau_0)s\,,
 \end{equation}
 
-Where $r_0$ is the ray origin, $\nabla\tau_0$ is the gradient of $\tau$ anywhere
+where $r_0$ is the ray origin, $\nabla\tau_0$ is the gradient of $\tau$ anywhere
 %% SrJ?: "an affine space" OK, either you go all the way or you don't. You can't
 %% SrJ: drop something like this at this point, it's ridiculous
 %% SrJ: (my advice is "don't", this is engineering, not math, R^3 is an affine
@@ -375,53 +380,53 @@ the first variation of the time functional is zero:
 
 \begin{equation*}
 \delta T[C] = \delta \int \frac{1}{c_0(\coord{x})}
-\norm{\coord{x}'} \dif s = 0
+\norm{\coord{x}'} \dif s = 0\,.
 \end{equation*}
 
-Here $\coord{x}(s)$ is a parametrization of the path $C$, $x'(s)$ the tangent
-vector at $s$ and the whole integral $T[\parm]$ is the time to follow the path
+Here, $\coord{x}(s)$ is a parametrization of the path $C$, $\coord{x}'(s)$ the
+tangent vector at $s$ and the integral $T[\parm]$ is the time to traverse
 $C$. The \textit{Euler-Lagrange equations} give
 
 
 \begin{equation*}
 \nabla\left(\frac{1}{c_0}\norm{\coord{x}'}\right) - \frac{\dif}{\dif s}
-\nabla'\left(\frac{1}{c_0} \norm{\coord{x}'}\right) = 0
+\nabla'\left(\frac{1}{c_0} \norm{\coord{x}'}\right) = 0\,,
 \end{equation*}
-
+%
 where $\nabla'$ is the gradient taken on the tangent space containing
 $\coord{x}'$, which becomes:
 
 \begin{equation*}
 \norm{\coord{x}'}\nabla\left(\frac{1}{c_0}\right) =
 \frac{\dif}{\dif s}\left( \frac{1}{c_0}
-\frac{\coord{x}'}{\norm{\coord{x}'}}\right)
+\frac{\coord{x}'}{\norm{\coord{x}'}}\right)\,.
 \end{equation*}
 
 By considering a length parametrization $r$ such that $\norm{r'}=1$, the
-result is the same as \ref{eq:raydirection}, so all the results follow.
+result is the same as (\ref{eq:raydirection}), so all the results follow.
 
 It is important to highlight that this simplification relies only on the
-high-frequency assumption \cite{national1969physics}, given at equation
-\ref{eq:highfrequency}. A more complete mathematical description of the physics
-behind ray theory can be found at \citet{Lefebvre}.
+high-frequency assumption~\cite{national1969physics}, given at equation
+(\ref{eq:highfrequency}). A more complete mathematical description of the physics
+behind ray theory can be found at~\citet{Lefebvre}.
 
-A important result, commonly applied on algorithms derived from ray theory, is
+An important result, commonly applied on algorithms derived from ray theory, is
 the summation of energy/intensity of incoherent rays at a point. It starts by
 taking the norm of the intensity (\ref{eq:intensity_pressure}) and applying the
-pressure definition to it (\ref{eq:pressurepsi}) to get\footnote{Here
+pressure definition to it (\ref{eq:pressurepsi}) to get\footnote{Here,
 $\mathbb{E}[\parm]$ means the expectation for clarity.}
 
 
 \begin{equation}\label{eq:intensity_psi}
-I = g_0~\mathbb{E}[\abs{\psi}^2]
+I = g_0~\mathbb{E}[\abs{\psi}^2]\,,
 \end{equation}
-
+%
 where $g_0 = \tfrac{1}{\rho c_0}$ (the inverse of the characteristic impedance),
 $I$ the intensity and $\phi$ the wave.
-For a single ray, (\ref{eq:psi}) it is:
+For a single ray, (\ref{eq:psi}) becomes:
 
 \begin{equation*}
-I = g_0~\mathbb{E}[\abs{\mathcal{A}}^2]
+I = g_0~\mathbb{E}[\abs{\mathcal{A}}^2]\,.
 \end{equation*}
 
 To consider the contribution of a set of incoherent rays $\psi_i$ (i.e.
@@ -431,18 +436,18 @@ To consider the contribution of a set of incoherent rays $\psi_i$ (i.e.
 uncorrelated), the total $\psi$ becomes:
 
 \begin{equation}\label{eq:wavesum}
-\psi = \sum_i \psi_i 
+\psi = \sum_i \psi_i \,,
 \end{equation}
-
-With the established fact that the expected value of a wave is zero (i.e. the
+%
+with the established fact that the expected value of a wave is zero (i.e. the
 mean pressure variation is zero), the condition
-becomes\footnote{Here $\psi_i^*$ is the complex conjugate of $\psi_i$ for
+becomes\footnote{Here, $\psi_i^*$ is the complex conjugate of $\psi_i$ for
 better reading.}:
 
 
 \begin{equation}
 \label{eq:wave_uncorr}
-\text{cov}(\psi_i,\psi_j) = \mathbb{E}[\psi_i \psi_j^*] = 0
+\text{cov}(\psi_i,\psi_j) = \mathbb{E}[\psi_i \psi_j^*] = 0\,.
 \end{equation}
 
 The resulting equation of the intensity (\ref{eq:intensity_psi}) for a
@@ -458,21 +463,21 @@ g_0~\mathbb{E}\left[ (\sum_i \psi_i)(\sum_j \psi_j)^*\right] \\
 g_0~\mathbb{E}\left[\sum_{i \neq j} \psi_i \psi_j^*\right] \\
 & = g0~\sum_i \mathbb{E}\left[\abs{\psi_i}^2\right]  + g_0~\sum_{i \neq j}
 \mathbb{E}[\psi_i \psi_j^*] \\
-& = \sum_i g_0\mathbb{E}\left[\abs{\psi_i}^2\right]
+& = \sum_i g_0\mathbb{E}\left[\abs{\psi_i}^2\right]\,,
 \end{split}
 \end{equation*}
 
 Which implies:
 \begin{equation}
 \label{eq:intensity_sum}
-I = \sum_i I_i
+I = \sum_i I_i\,.
 \end{equation}
 
 This assumption of incoherent rays will be a common point among ray tracing
 algorithm, mainly because it implies the summation of ray intensities $I_i$ to a
 single intensity. It is a reasonable assumption on mildly complex environments
-with diffuse (scattering) surfaces, which is explained on Ray Theory subsection
-\ref{ss:raytheory}.
+with diffuse (scattering) surfaces, which is explained by Ray Theory
+in Subsection \ref{ss:raytheory}.
 
 
 \subsubsection{Normal modes}
@@ -480,66 +485,66 @@ with diffuse (scattering) surfaces, which is explained on Ray Theory subsection
 When there is a preferred direction, or a general axis symmetric medium, like the
 ocean (which is generally treated as a horizontally stratified medium), a
 cylindrical parametrization becomes a useful coordinate system. The principal
-axis, in our case depth, contain the superposition of normal modes while the other
-dimensions carry the traveling wave.
+axis, in our case depth, contains the superposition of normal modes while the
+other dimensions carry the traveling wave.
 
 There are slightly different mathematical approaches to Normal Modes Theory in
-the literature\cite{Etter2013,urick1979,buckingham1992ocean}. The following
-brief description rely on the techniques of \citet{Etter2013}. Writing the
-solution of \ref{eq:helmholtz} as a product of a ``depth'' (principal
+the literature~\cite{Etter2013,urick1979,buckingham1992ocean}. The following
+brief description rely on the techniques of~\citet{Etter2013}. Writing the
+solution of (\ref{eq:helmholtz}) as a product of a ``depth'' (principal
 axis) function $N(z)$ and a horizontal range function $H(r)$:
 
-\[ \psi = N(z)H(r) \]
-
- Leads to a separation of variables on the ODE, with $k_0$ as separation
+\[ \psi = N(z)H(r) \,,\]
+%
+ leads to a separation of variables on the ODE, with $k_0$ as separation
  constant: %Yield to
  
  \begin{subequations}
  \begin{equation}
  \label{eq:normalmode}
- \fdif{z}N + (k^2 - k_0^2)N = 0
+ \fdif{z}N + (k^2 - k_0^2)N = 0\,,
  \end{equation}
  \begin{equation}
  \label{eq:normaltraveling}
- \fdifn{r}{2}H + \inv{r}\fdif{r}H + k_0^2H = 0
+ \fdifn{r}{2}H + \inv{r}\fdif{r}H + k_0^2H = 0\,.
  \end{equation}
  \end{subequations}
  
- The normal mode equation \ref{eq:normalmode} describes the pressure field along
- the depth. Equation \ref{eq:normaltraveling}, on
+ The normal mode equation (\ref{eq:normalmode}) describes the pressure field along
+ the depth. Equation (\ref{eq:normaltraveling}), on
  the other hand, describes the traveling portion of the wave, that
  happens in the horizontal plane.
  The full solution for $\psi$ is found by solving both equations. The equation
- \ref{eq:normalmode} is a classic eigenvalue problem for the differential
+ (\ref{eq:normalmode}) is a classic eigenvalue problem for the differential
  operator, whose solutions, including boundary conditions, are known as
- Green's function $G$ \cite{desanto2012scalar}. The horizontal equation
- \ref{eq:normaltraveling} is a zero-order Bessel equation, so it may have its
+ Green's function $G$~\cite{desanto2012scalar}. The horizontal equation
+ (\ref{eq:normaltraveling}) is a zero-order Bessel equation, so it may have its
  solution written in terms of the zero order Henkel function of the first kind
  ($H_0^{(1)}$)\footnote{$H_0^{(1)}(x) = J_0(x)+iY(x)$, where $J_0$ and $Y_0$
  are the zero-order Bessel functions of first and second order, respectively.
- More details on these functions, see \citet{abramowitz1964handbook}}. Putting
+ More details on these functions, see~\citet{abramowitz1964handbook}.}. Putting
  these solutions together, for a monochromatic point source:
  
  \begin{equation}
  \label{eq:normalmono}
- \psi(z,r) = \int_{-\infty}^{\infty} G(z,z_s;k_0)H_0^{(1)}(k_0r)k_0\dif k_0
+ \psi(z,r) = \int_{-\infty}^{\infty} G(z,z_s;k_0)H_0^{(1)}(k_0r)k_0\dif k_0\,,
  \end{equation}
- 
-Where $z_s$ is the source position on the principal axis. The evaluation of the
+%
+where $z_s$ is the source position on the principal axis. The evaluation of the
 integral as it appears is impractical, thus some simplifications are required.
 
 The Green's function $G$ can be expanded as a bilinear summation of orthonormal
-functions ($u_ n$), the \textit{normal modes}\cite{baker2003green}, weighted by
+functions ($u_ n$), the \textit{normal modes}~\cite{baker2003green}, weighted by
 using their respective eigenvalues ($k_n$), the natural frequencies. The real
-integral of \ref{eq:normalmono} can be evaluated through \textit{contour
+integral of (\ref{eq:normalmono}) can be evaluated through \textit{contour
 integration} to exploit the residue of the poles present on the natural
 frequencies. But this requires choosing a Riemann
 sheet for the integral and evaluate the branch line integral
-separately\cite{jensen2011computational,worzel1948propagation}:
+separately~\cite{jensen2011computational,worzel1948propagation}:
 
 \begin{equation}
 \psi = \oint \sum_n{\frac{u_n(z)\overline{u_n(z_s)}}{k^2 -
-k_n^2}H_0^{(1)}(k_0r)k_0\dif k_0} + I_{\text{branch-cut}}
+k_n^2}H_0^{(1)}(k_0r)k_0\dif k_0} + I_{\text{branch-cut}}\,.
 \end{equation}
 
 The branch line integral $I_{\text{branch-cut}}$ can be physically interpreted
@@ -552,35 +557,35 @@ depth, the branch line term is ignored in most theoretical developments.
 
 Therefore, by assuming a far-field approximation ($k_0r \ll 1$), besides
 disregard the branch line integral, it is possible to consider an asymptotic expansion for the
-Hankel function and evaluate the contour integral, obtaining\cite{Etter2013}:
+Hankel function and evaluate the contour integral, obtaining~\cite{Etter2013}:
 
 \begin{equation}
 \label{eq:normalsolution}
 \psi =
-g(r)\sum_n{\frac{u_n(z)\overline{u_n(z_s)}}{\sqrt{k_n}}\mathrm{e}^{i(k_nr-\tfrac{\pi}{4})-\delta_nr}}
+g(r)\sum_n{\frac{u_n(z)\overline{u_n(z_s)}}{\sqrt{k_n}}\mathrm{e}^{i(k_nr-\tfrac{\pi}{4})-\delta_nr}}\,.
 \end{equation}
 
-Here $g(r)$ is a general function of the range and $\delta_n$ the attenuation
+Here, $g(r)$ is a general function of the range and $\delta_n$ the attenuation
 coefficient. In practice, the summation ranges over only a bounded number of
 modes, but this number increases with frequency, which leaves it as undesirable
 for high-frequency waves. 
 
 One of the advantages of normal modes over ray theory lies on the fact that, for
 each source/receiver position, the ray approach have to run a full simulation of
-the rays, while the normal modes have a closed form (like \ref{eq:normalsolution}) that easily adapts to new combinations of these
+the rays, while the normal modes have a closed form (like (\ref{eq:normalsolution})) that easily adapts to new combinations of these
 parameters. In contrast, normal modes are constrained by the source frequency,
 in fact by the number of modes to be computed, and generally requires deeper
 knowledge of the environment. The attenuation
-coefficient($\delta_n$) in the ocean, for example, depends on water absorption,
+coefficient ($\delta_n$) in the ocean, for example, depends on water absorption,
 ocean sediment layer absorptions, compressional and shear attenuation on the
 basement, measures of the modes interactions with both sediment and
-basement(compressional and shear mechanisms) and statistics on the
+basement (compressional and shear mechanisms) and statistics on the
 water-sediment boundary and sea surface as well.
 
 \subsubsection{Parabolic approximation}
 
-The parabolic approximation replaces the Helmholtz equation \ref{eq:helmholtz},
-which is a elliptic partial differential equation, by a simplified parabolic
+The parabolic approximation replaces the Helmholtz equation (\ref{eq:helmholtz}),
+which is an elliptic partial differential equation, by a simplified parabolic
 %% SrJ?: give me your time travelling machine ...
 version. This approximation dates back to the middle of the $\mathrm{XXI}$
 century, in the context of tropospheric radio wave propagation.
@@ -588,51 +593,51 @@ century, in the context of tropospheric radio wave propagation.
 The normal mode solution do not handle well non-stratified mediums. To overcome
 this limitation parabolic approximation is constructed to handle slow varying
 mediums. The variation is made explicit by $k = k_0n(r,z)$, where $n(r,z)$ is a
-sound refractive index\cite{LURTON}. The Helmholtz equation becomes:
+sound refractive index~\cite{LURTON}. The Helmholtz equation becomes:
 
 \begin{equation}
 \label{eq:varyhelmholtz}
-(\nabla^2 - k_0^2n^2(r,z))\psi = 0 
+(\nabla^2 - k_0^2n^2(r,z))\psi = 0\,.
 \end{equation}
 
 The solutions are assumed to have a fast varying horizontal field
 $H_0^{(1)}(k_0r)$ and overall slow fluctuations $F(r,z)$:
 
 \begin{equation*}
-\psi(r,z) = F(r,z)H_0^{(1)}(k_0r)
+\psi(r,z) = F(r,z)H_0^{(1)}(k_0r)\,.
 \end{equation*}
 
 Assuming asymptotic behavior to the Hankel function (similar to normal modes
-development) and applying it to \ref{eq:varyhelmholtz}:
+development) and applying it to (\ref{eq:varyhelmholtz}):
 
 \begin{equation}
 \label{eq:preparabolic}
-\fdifn{r}{2}F + 2ik_0\fdif{r}F + \fdifn{z}{2}F + k_0^2(n^2-1)F = 0
+\fdifn{r}{2}F + 2ik_0\fdif{r}F + \fdifn{z}{2}F + k_0^2(n^2-1)F = 0\,.
 \end{equation}
 
 By the assumption that $F(r,z)$ is a slow varying field, the $\fdifn{r}{2}F$
-term is neglected and \ref{eq:preparabolic} gives rise to the parabolic
-equation. \citet{LURTON} proceeds further by discretizing the horizontal
+term is neglected and (\ref{eq:preparabolic}) gives rise to the parabolic
+equation.~\citet{LURTON} proceeds further by discretizing the horizontal
 directions, without defining explicit dependence on the Hankel function, and
 using an approximation for the differentials on $z$ through pseudo-differential
 operator.
 
 The parabolic equation can then be solved numerically, but the grid size vary
 with frequency, becoming costly for high-frequency waves. For more
-details, see \citet{jensen2011computational}.
+details, see~\citet{jensen2011computational}.
 
 \subsection{Ray Theory}
 \label{ss:raytheory}
 
 Ray Theory provides a good way to treat high-frequency sound propagation,
-far from caustics, that retain an intuitive meaning. Introduced in subsection
+far from caustics, that retain an intuitive meaning. Introduced in Subsection
 \ref{ss:simuloverview}, it is very similar to its electromagnetic counterpart.
 Each ray carries an energy density from the source that decays as it travels
 through the medium (Transmission loss). When it encounters an obstacle (e.g. sea floor, sea
 surface, man made surfaces), it (back)scatter to the source
-(equation~\ref{eq:preeikonalamp}). That is the
+(\ref{eq:preeikonalamp}). That is the
 classical (non-multipath) description
-\cite{LURTON,Etter2013,miller2015real,bell1997application}, summarized by a
+~\cite{LURTON,Etter2013,miller2015real,bell1997application}, summarized by a
 sonar equation as:
 
 \begin{equation}
@@ -641,18 +646,18 @@ sonar equation as:
 \end{equation}
 
 Each of these acronyms corresponds to energy (intensity), or energy variation,
-written in decibels \ref{eq:dB}:
+written in decibels (\ref{eq:dB}):
 \begin{enumerate}
   \item RL is the Received Level - $10\log_{10}([\text{Received
   intensity}]/[\text{reference intensity\footnotemark}])$
-  \footnotetext{Intensity of plane wave with pressure amplitude of 1 $\mu$Pa}
+  \footnotetext{Intensity of plane wave with pressure amplitude of 1 $\mu$Pa.}
   \item SL is the Source Level - $10\log_{10}([\text{Intensity at
   1m\footnotemark}]/[\text{reference
   intensity}])$
-  \footnotetext{for an equivalent omnidirectional source}
+  \footnotetext{for an equivalent omnidirectional source.}
   \item DI is the Directivity Index - $10\log_{10}([\text{Directional
   loss\footnotemark}])$
-  \footnotetext{with respect to an omnidirectional source}
+  \footnotetext{with respect to an omnidirectional source.}
   \item TL is the Transmission loss - Intensity loss through absorption and
   spreading while propagating (in dB).
   %% SrJ: I don't get the difference between TS and RL
@@ -666,8 +671,10 @@ Equation (\ref{eq:sonareq}) does not fully describes how the simulation
 using ray theory should work, but gives a good insight on the elements that must
 be considered. SL can be inferred by the sonar power and efficiency, DI comes
 from the sonar beam pattern, TL is dependent on the medium, but is compensated
-by the sonar TVG (see subsection \ref{sss:tvg}) and TS is defined by a material
-dependent BRDF (Bidirectional Reflectance Distribution Function), described further ahead.
+by the sonar TVG (see Subsection \ref{sss:tvg}) and TS is defined by a material
+dependent BRDF\abbrev{BRDF}{Bidirectional Reflectance
+Distribution Function} (Bidirectional Reflectance
+Distribution Function), described further ahead.
 
 \subsubsection{Ray Interaction}
 
@@ -675,7 +682,7 @@ For a more faithful sonar response, advanced simulation techniques based on ray
 theory can be applied. And, thus, requires careful consideration on the most
 important interactions of the rays with the interfaces, namely:
 \textbf{transmitted rays}, \textbf{reflected rays}  and \textbf{scattered rays},
-see figure \ref{fig:brdfbtdf}.
+see Figure \ref{fig:brdfbtdf}.
 
 \subsubsection{Transmitted Rays}
 When a radiant energy, in this setup represented by a ray, hits a point on a
@@ -683,8 +690,9 @@ surface (or a general interface) part of the energy is absorbed, part is
 transmitted and, yet, another part bounces back Transmitted rays represent the
 energy that goes through the interface, their intensity for each direction is
 %% BDTF -> "Transmitted Scatter" ?
-mathematically defined by the BTDF (Transmitted Scatter Distribution
-Function)\cite{bartell1981theory} (see \citet{rober2007ray} for an acoustic
+mathematically defined by the BTDF\abbrev{BTDF}{Transmitted Scatter Distribution
+Function} (Transmitted Scatter Distribution
+Function)~\cite{bartell1981theory} (see~\citet{rober2007ray} for an acoustic
 approach).
 
 
@@ -700,27 +708,27 @@ approach).
 \label{sss:rays}
 The treatment for reflected and scattered rays starts together by means of the
 BRDF (Bidirectional Reflectance Distribution
-Function)\cite{blake1995remote,miller2015real,durany2015analytical}, which works
+Function)~\cite{blake1995remote,miller2015real,durany2015analytical}, which works
 similar to BTDF. On perfect smooth surfaces, its BRDF exhibits a single
 direction, the specular reflection, where the ray intensity is non-zero at the
 same plane of incident ray and the same angle with the surface normal vector.
 This kind of reflection is responsible for mirror like effects, e.g. sound that hits
-the still water surface from within\cite{LURTON,Etter2013}.
+the still water surface from within~\cite{LURTON,Etter2013}.
 
 The other extreme case is the perfect diffuse reflection (usually called scatter
 in acoustics), where a rough surface reflects same perceived energy (radiance)
 in all directions, thus following a cosine law (Lambert's Cosine Law) with
 respect to the incident and reflected(scattered) angles
-\cite{united1977geometrical,cox2004acoustic}:
+~\cite{united1977geometrical,cox2004acoustic}:
 
 \begin{equation}
 \label{eq:lambertian}
-I_r \propto	 I_i \cos(\theta_i) \cos(\theta_r)
+I_r \propto	 I_i \cos(\theta_i) \cos(\theta_r)\,,
 \end{equation}
-
-Where $I_i$,  $I_r$ and $\theta_i$, $\theta_r$ are the intensity and angle with
+%
+where $I_i$,  $I_r$ and $\theta_i$, $\theta_r$ are the intensity and angle with
 the surface normal for the incident and reflected rays,
-respectively (figure \ref{fig:ray_reflect}). The proportionality constant is
+respectively (Figure \ref{fig:ray_reflect}). The proportionality constant is
 material dependent and should not exceed $\nicefrac{1}{\pi}$, because that would violate
 energy conservation.
 
@@ -728,49 +736,49 @@ If incoming and reflected rays have the same direction, the angle is the same
 and the situation is called a \textit{backscatter}:
 
 \begin{equation*}
-I_r \propto I_i \cos^2(\theta_i)
+I_r \propto I_i \cos^2(\theta_i)\,.
 \end{equation*}
 
 There is some confusion in the literature about the cosine being or not
-squared\cite{durany2015analytical,cox2006tutorial,cox2004acoustic,jones2009modelling,LURTON,Etter2013}.
+squared~\cite{durany2015analytical,cox2006tutorial,cox2004acoustic,jones2009modelling,LURTON,Etter2013}.
 Possible explanations are mixing intensity information with pressure
 or related quantities, as intensity and radiance. This cosine law, for a single
 scatter, describes the Target Strength, in $\text{dB}$:
 
 \begin{equation*}
-\text{TS} = A + 20\log_{10}(\cos(\theta_i))
+\text{TS} = A + 20\log_{10}(\cos(\theta_i))\,.
 \end{equation*}
 
-Here $A$ is the equivalent of the proportionality constant. Under the assumption
-of no energy loss through transmission or absorption,
+Here, $A$ is the equivalent of the proportionality constant. Under the
+assumption of no energy loss through transmission or absorption,
 $A=-10\log_{10}(\pi)\text{dB} \approx -5\text{dB}$. More realistic values vary
 from $-17\text{dB}$ for basalt ridge cliffs to $-27\text{dB}$ for sediment
-pond\cite{dunn2015springer}.
+pond~\cite{dunn2015springer}.
 Transmission and reflection between multiple sediment layers at the bottom of
 the ocean can be treated as a single entity, subbottom scattering, that introduces a
-delay and a displacement of the reflection\cite{Etter2013}, that case will not
+delay and a displacement of the reflection~\cite{Etter2013}, that case will not
 be covered by the simulation procedure proposed in this thesis. A remarkable
 property of the scattered rays is the incoherence which makes possible to add
 the energy (intensity) contributions for each ray directly, according to
-equation \ref{eq:intensity_sum}.
+equation (\ref{eq:intensity_sum}).
 
 Rough ocean surface, in the presence of wind, also backscatters, but not as a
 perfect scatter. Its scattering properties have been modeled in a variety of
-ways\cite{jones2009modelling}, like Kirchhoff model\cite{dunn2015springer}:
+ways~\cite{jones2009modelling}, like Kirchhoff model~\cite{dunn2015springer}:
 
 \begin{equation*}
-\text{TS} = -10~\Gamma^2\log_{10}(e) \approx -4.34~\Gamma^2
+\text{TS} = -10~\Gamma^2\log_{10}(e) \approx -4.34~\Gamma^2\,,
 \end{equation*}
-
-Where $\Gamma = 2kh\cos(\theta_i)$, $k$ is the acoustic wavenumber (equation
-\ref{eq:helmholtz}), $h$ is the rms height of the surface.
+%
+where $\Gamma = 2kh\cos(\theta_i)$, $k$ is the acoustic wavenumber
+(\ref{eq:helmholtz}), $h$ is the r.m.s. height of the surface.
 
 A general surface does not follow neither a perfect cosine law nor is a perfect
 reflector, but is useful to model as a compromise of
-both\cite{cox2006tutorial,vorlander2000definition}, even some standards for
-acoustic measurement (e.g. ISO) split between these two types of
-reflection\cite{rindel2001scattering}. A absorption/transmission factor $\alpha$
-defines the fraction of the energy that does not reflect back, and a scattering
+both~\cite{cox2006tutorial,vorlander2000definition}, even some standards for
+acoustic measurement (e.g. ISO\abbrev{ISO}{International Organization for
+Standardization}) split between these two types of reflection~\cite{rindel2001scattering}. An absorption/transmission factor
+$\alpha$ defines the fraction of the energy that does not reflect back, and a scattering
 factor $\delta$ the fraction of the reflected energy that is scattered (figure
 \ref{fig:scatter}).
 
@@ -784,19 +792,19 @@ factor $\delta$ the fraction of the reflected energy that is scattered (figure
 This weighting concept is explored to create a full BRDF function as
 $\rho(\vec{i},\vec{r}) = (1-\alpha)(\delta \rho_\text{scat}(\vec{i},\vec{r}) +
 (1-\delta) \rho_\text{spec}(\vec{i},\vec{r}) )$. For a numerical treatment, one
-option is to discretize the solid angles as \citet{siltanen2007room} describes,
+option is to discretize the solid angles as~\citet{siltanen2007room} describes;
 another is to model as computer graphics, where, instead of a single direction
 for the specular reflection, the specular reflection is a smooth function of the
 reflected direction with a peak at the actual specular direction. This smooth
 function creates a better transition from specular to scatter reflection. A
-standard model is Phong reflection\cite{phong1975illumination}:
+standard model is Phong reflection~\cite{phong1975illumination}:
 
 \begin{equation}
 \label{eq:phong}
-I_r \propto	 I_i \cos(\theta_s)^\nu
+I_r \propto	 I_i \cos(\theta_s)^\nu\,.
 \end{equation} 
 
-Here $\theta_s$ is the angle between the reflected direction and the specular
+Here, $\theta_s$ is the angle between the reflected direction and the specular
 direction. And $\nu$ a shininess constant describing how concetrated the
 specular reflection is. In the limit of $\nu \to \infty$ it becomes a perfect mirror.
 
@@ -817,8 +825,8 @@ specular reflection is. In the limit of $\nu \to \infty$ it becomes a perfect mi
 \subsubsection{Ray Tracing}
 
 Ray Tracing was originally an algorithm that used ray theory
-(described earlier in section \ref{sss:raytheory}) for computer graphics with a
-rationale very similar to the sonar equation \ref{eq:sonareq}. It traced a ray to every point on the scene
+(described earlier in Section \ref{sss:raytheory}) for computer graphics with a
+rationale very similar to the sonar equation (\ref{eq:sonareq}). It traced a ray to every point on the scene
 from the source and the receiver, then computed the intensity of each color,
 ignoring multiple reflections. 
 
@@ -833,20 +841,20 @@ aurelization (sound renderization) as well.
 Among the most common techniques are \textbf{Image Source}, \textbf{Beam
 Tracing}, \textbf{Metropolis Transport} and \textbf{Path Tracing}. Their
 standard implementation assume homogeneous medium, effectively propagating rays
-as straight lines. An important alternative, which also overcome sharp shadows
-and caustics issues, is \textit{Gaussian Beam}, it evaluates the acoustic field
-at every point by adding contributions of each ray. The name comes from the fact
+as straight lines. An important alternative, which also overcomes sharp shadows
+and caustics issues, is \textit{Gaussian Beam}, that evaluates the acoustic
+field at every point by adding contributions of each ray. The name comes from the fact
 that weight of a ray decays in the paraxial direction as a gaussian. It is
-typically more computationally more costly than other ray tracing, but have
+typically computationally more costly than other ray tracing, but have
 applications for inhomogeneous open environments as described by
-\citet{traceroutdoor}.
+~\citet{traceroutdoor}.
 
 \subsubsection{Image Source}
 
 This method focus on environments composed by segments on the 2D case or
 polygonal slices of planes on the 3D case. It works best on box like
 environments, for this creates a perfect tiling of
-space\cite{funkhouser2003survey} (see figure \ref{fig:tillingsource}).
+space~\cite{funkhouser2003survey} (see Figure \ref{fig:tillingsource}).
 
 For each reflective surface, a virtual source is created on the reflected
 position of the source, these are the primary virtual sources. A virtual source
@@ -877,7 +885,7 @@ visibility of a virtual source must be validated before adding its contribution.
 \end{figure}
 
 The method does not direct implement the ideia of sound scattering, but there
-are some possible extensions\cite{chandak2011fast}. In practice, for more
+are some possible extensions~\cite{chandak2011fast}. In practice, for more
 complex environments, only a few early reflection are generated. The number
 $O(n^r)$ of sources, where $n$ is the number of surface planes and $r$ the
 number of reflections, that must be created and validated grows exponentially
@@ -886,7 +894,7 @@ fast.
 \subsubsection{Beam Tracing}
 
 Beam Trancing uses pyramidals beams, a collection of rays, instead of single
-infinitesimal rays to calculate reflections \cite{funkhouser2003survey}. The
+infinitesimal rays to calculate reflections~\cite{funkhouser2003survey}. The
 solid angle on the source that describes available sound directions can be
 subdivided in pyramidal beams without overlap, avoiding sampling issues. These
 pyramidal beams exploit the spacial relation between nearby rays, being able to
@@ -920,16 +928,16 @@ Path Tracing is a recursive solution to the wave equation simplification used in
 ray theory. That can be written, in terms of the radiance $\ell$ (the ray
 energy - acoustic energy per unit of surface area per unit of solid angle), as an
 integral equation, the \textit{room acoustics rendering
-equation}\cite{siltanen2007room}:
+equation}~\cite{siltanen2007room}:
 
 \begin{equation}
 \label{eq:roomacoustics}
 \ell (\coord{p},\Omega) = \ell_0(\coord{p},\Omega) + \int_\mathcal{G}
 R(\coord{x},\coord{p},\Omega) \ell
-(\coord{x},\overrightarrow{\coord{x}\coord{p}} ) \dif\mu(\coord{x})
+(\coord{x},\overrightarrow{\coord{x}\coord{p}} ) \dif\mu(\coord{x})\,,
 \end{equation}
-
-Where $\mathcal{G}$ is the two dimensional subset of $\mathbb{R}^3$ comprising
+%
+where $\mathcal{G}$ is the two dimensional subset of $\mathbb{R}^3$ comprising
 all surfaces, $\coord{p}$ is a point over a surface, $\dif\mu(\coord{x})$ is the
 surface area differential at point $\coord{x}$, $\Omega$ is the outgoing
 %% SrJ: I don't understand the "source point" comment ... It's surface radiance
@@ -941,22 +949,22 @@ $\coord{p}$ and $\coord{x}$:
 \begin{equation}
 \label{eq:reflectionkernel}
 R(\coord{x},\coord{p},\Omega) =
-\mathfrak{a}(\norm{\coord{p}-\coord{x}})\rho_\coord{p}(\overrightarrow{\coord{x}\coord{p}},\Omega)\cos(\theta_i)\cos(\theta_r)
+\mathfrak{a}(\norm{\coord{p}-\coord{x}})\rho_\coord{p}(\overrightarrow{\coord{x}\coord{p}},\Omega)\cos(\theta_i)\cos(\theta_r)\,.
 \end{equation}
 
 When there is no visibility from  $\coord{x}$ to $\coord{p}$,
-$R(\coord{p},\coord{x},\Omega) = 0$. Here
+$R(\coord{p},\coord{x},\Omega) = 0$. Here,
 $\rho_\coord{p}(\overrightarrow{\coord{x}\coord{p}},\Omega)$ is the BDRF at the
 point $\coord{p}$ with incoming direction $\overrightarrow{\coord{x}\coord{p}}$
 %% SrJ?: omega is not a direction, but the incoming energy, or ?
 and outgoing energy direction $\Omega$, $\theta_i$ and $\theta_r$ are the
 incoming and reflected angles with surface's normal at point $\coord{p}$ for directions $\overrightarrow{\coord{x}\coord{p}}$
-and $\Omega$ respectively. Factor $\mathfrak{a}(\norm{\coord{p}-\coord{x}})$ is
+and $\Omega$, respectively. Factor $\mathfrak{a}(\norm{\coord{p}-\coord{x}})$ is
 the decay dependent on the distance $\norm{\coord{p}-\coord{x}}$ caused
 by spreading and absoption, usually an inverse squared times an exponential
-factor (commented on subsection \ref{sss:tvg}).
+factor (commented in Subsection \ref{sss:tvg}).
 
-The solution to equation \ref{eq:roomacoustics} is a Neumann series:
+The solution to equation (\ref{eq:roomacoustics}) is a Neumann series:
 
 
 
@@ -966,35 +974,35 @@ The solution to equation \ref{eq:roomacoustics} is a Neumann series:
 \label{eq:neumannincrement}
 \ell_{n+1} (\coord{p},\Omega) = \int_\mathcal{G}
 R(\coord{x},\coord{p},\Omega) \ell_n
-(\coord{x},\overrightarrow{\coord{x}\coord{p}} ) \dif\mu(\coord{x})
+(\coord{x},\overrightarrow{\coord{x}\coord{p}} ) \dif\mu(\coord{x})\,,
 \end{equation}
 
 \begin{equation}
 \label{eq:neumannsummation}
-\ell (\coord{p},\Omega) = \sum_{n=0}^\infty \ell_n (\coord{p},\Omega) 
+\ell (\coord{p},\Omega) = \sum_{n=0}^\infty \ell_n (\coord{p},\Omega) \,.
 \end{equation}
 \end{subequations}
 
-For the actual computation, the summation on equation \ref{eq:neumannsummation}
+For the actual computation, the summation on equation (\ref{eq:neumannsummation})
 is truncated at some reasonable value of $n$, which is the number of
 reflections being considered, and the integral on equation
-\ref{eq:neumannincrement} can be approximated using, for example, a Monte Carlo
+(\ref{eq:neumannincrement}) can be approximated using, for example, a Monte Carlo
 method applying importance sampling w.r.t. the function $R(\parm,\parm,\parm)$
-(\citet{munjal2013formulas} describes briefly such an algorithm).
+(~\citet{munjal2013formulas} describe briefly such an algorithm).
 When scattering is not strong enough, it is a common practice to consider only
 specular directions. 
 
 Besides the success of computer graphics using the same technique, in the end of
 the last century there were still some concerns regarding the theoretical
 validity, manly because it was shown to be
-uncomputable \cite{reif1994computability}. That is, it was impossible to say if
+uncomputable~\cite{reif1994computability}. That is, it was impossible to say if
 a ray would ever reach a certain point. Later, this decade, it was shown by
-\citet{blakey2014ray} that, if one considers computational finite precision, it
+~\citet{blakey2014ray} that, if one considers computational finite precision, it
 can be proven to be computable.
 
 In the case of sonar, the only important point to measure the sound intensity is
 on the sonar itself. A simplified approach for the integral on equation
-\ref{eq:neumannincrement} is to consider only the specular direction (where it
+(\ref{eq:neumannincrement}) is to consider only the specular direction (where it
 is supposed to have greater radiance) and the scattered direction into the
 sonar, assuming the other scattered directions will die out without much
 affecting the sonar response.
@@ -1002,8 +1010,8 @@ affecting the sonar response.
 
 \subsubsection{Metropolis Transport}
 
-Metropolis Light Transport (MLT) is an incremental development over Path
-Tracing.
+Metropolis Light Transport (MLT\abbrev{MLT}{Metropolis Light Transport}) is an
+incremental development over Path Tracing.
 It records the path taken by a ray as a tree where each reflection point is a node. By
 adding, removing or changing nodes, it is able to better explore the space
 without ruling out the work done to produce a path from source to detector.
@@ -1016,41 +1024,41 @@ result.
 
 At the cost of added complexity, MLT gives better results specially around
 caustics and difficult to reach regions (e.g. through a narrow aperture)
-without degrading performance. The original paper by \citet{veach1997metropolis}
+without degrading performance. The original paper by~\citet{veach1997metropolis}
 explains with great clarity the math behind as well as the results and
 interpretations.
 
 
 % 
 % 
-% rough water surface scattering - \citet{jones2009modelling}d
+% rough water surface scattering -~\citet{jones2009modelling}d
 % 
 % Many materials follow Lambert's law closely in scat-
 % tering light and it is also a good approximation for
-% backscattering of sound by rough - \citet{blake1995remote}d
+% backscattering of sound by rough -~\citet{blake1995remote}d
 % 
-% Ray Trace Lambert (cosseno duplo) - \citet{cox2004acoustic}d
+% Ray Trace Lambert (cosseno duplo) -~\citet{cox2004acoustic}d
 % 
-% Deep BRDF compare with Lambert - \citet{miller2015real}d
+% Deep BRDF compare with Lambert -~\citet{miller2015real}d
 % 
-% Analytical BRDF - \citet{durany2015analytical}d
+% Analytical BRDF -~\citet{durany2015analytical}d
 % 
-% Monte Carlo - \citet{munjal2013formulas}d
+% Monte Carlo -~\citet{munjal2013formulas}d
 % 
-% Image source, scattering ray theory - \citet{chandak2011fast} d
+% Image source, scattering ray theory -~\citet{chandak2011fast} d
 % 
-% Image source, Beam tracing - \citet{funkhouser2003survey}d
+% Image source, Beam tracing -~\citet{funkhouser2003survey}d
 % 
-% Split scattering/reflection measurement - \citet{vorlander2000definition}d
+% Split scattering/reflection measurement -~\citet{vorlander2000definition}d
 % 
-% Local acoustic Energy Exchange (but no Lambert) - \citet{rober2007ray}d
+% Local acoustic Energy Exchange (but no Lambert) -~\citet{rober2007ray}d
 % 
-% The room acoustic rendering equation (most of all)- \citet{siltanen2007room}d
+% The room acoustic rendering equation (most of all)-~\citet{siltanen2007room}d
 % 
-% Backscattering single consideration - \citet{LURTON,Etter2013}d
+% Backscattering single consideration -~\citet{LURTON,Etter2013}d
 % 
-% ISO and AES scattering measuring - \citet{rindel2001scattering}d
+% ISO and AES scattering measuring -~\citet{rindel2001scattering}d
 % 
-% Scattering coefficients (+ too deep) - \citet{cox2006tutorial}d
+% Scattering coefficients (+ too deep) -~\citet{cox2006tutorial}d
 % 
-% Workflow simulation - \citet{bell1997simulation}
+% Workflow simulation -~\citet{bell1997simulation}

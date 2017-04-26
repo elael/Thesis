@@ -2,7 +2,7 @@
 \section{Map Learning}
 
 Map learning is an iterative optimization process to find the $\coord{w}$ that
-minimizes $\text{NLL}_{\text{reg}}(\coord{w})$, equation \ref{eq:finitenll}. As
+minimizes $\text{NLL}_{\text{reg}}(\coord{w})$, equation (\ref{eq:finitenll}). As
 it is a convex function, gradient descent method would find it global
 minimum. The gradient of the objective function is:
 
@@ -10,12 +10,12 @@ minimum. The gradient of the objective function is:
 \label{eq:fullgrad}
 \nabla\text{NLL}_{\text{reg}}(\coord{w}) =  \sum_{i=1}^n
 -y_i\hat\varphi(x_i)(1+\exp(y_i~ \coord{w}\cdot\hat\varphi(x_i)))^{-1}
-+\lambda\nabla\mathcal{S}(\coord{w})
++\lambda\nabla\mathcal{S}(\coord{w})\,.
 \end{equation}
 
 The gradient $\nabla\mathcal{S}(\coord{w})$ is calculated using
 sub-differentials, as the $\ell_1$ part of an elastic-net
-$\mathcal{S}(\coord{w})$, equation \ref{eq:elasticnet}, is non-differentiable at
+$\mathcal{S}(\coord{w})$, equation (\ref{eq:elasticnet}), is non-differentiable at
 $\coord{w}=\mathbf{0}$.
 
 The gradient descent method generates a sequence of approximated values for
@@ -23,35 +23,35 @@ $\coord{w}$ by descending on the gradient direction:
 
 \begin{equation}
 \label{eq:gd}
-\coord{w}_{t+1}=\coord{w}_{t}-\eta\nabla\text{NLL}_{\text{reg}}(\coord{w}_t)
+\coord{w}_{t+1}=\coord{w}_{t}-\eta\nabla\text{NLL}_{\text{reg}}(\coord{w}_t)\,,
 \end{equation}
-
-Where $\eta\in\mathbb{R}^+$ is a step value and $\coord{w}_t$ is a sequence of
+%
+where $\eta\in\mathbb{R}^+$ is a step value and $\coord{w}_t$ is a sequence of
 approximations. The issue with this approach is the cost of computing
 $\nabla\text{NLL}_{\text{reg}}(\coord{w})$ for a whole map, the summation of
-equation \ref{eq:fullgrad} ranges over all sampled points from all beams from
-all measurements, with sampling as in section \ref{s:ism}, and it is computed
+equation (\ref{eq:fullgrad}) ranges over all sampled points from all beams from
+all measurements, with sampling as in Section \ref{s:ism}, and it is computed
 at every step of $\coord{w}_t$.
 
 \subsection{Stochastic Gradient Descent - SGD}
 
-To overcame the sampling size issue of gradient descent, stochastic gradient
-descent proposes the use of a single, or small batch, of samples at
+To overcame the sampling size issue of gradient descent\abbrev{SGD}{Stochastic
+Gradient Descent}, stochastic gradient descent proposes the use of a single, or small batch, of samples at
 a time. One first shuffle the training samples~\cite{bottou2012stochastic} then
 directly update $\coord{w}_t$ as:
 
 \begin{subequations}
 \begin{equation}
 \label{eq:sgd}
-\coord{w}_{t+1}=\coord{w}_{t}-\eta_t\nabla\text{NLL}_{\text{reg}}(\coord{w}_t;(y_t,x_t))
+\coord{w}_{t+1}=\coord{w}_{t}-\eta_t\nabla\text{NLL}_{\text{reg}}(\coord{w}_t;(y_t,x_t))\,,
 \end{equation}
 \begin{equation}
 \nabla\text{NLL}_{\text{reg}}(\coord{w}_t;(y_t,x_t)) = -y_t\hat\varphi(x_t)(1+\exp(y_t~ \coord{w}\cdot\hat\varphi(x_t)))^{-1}
-+\lambda\nabla\mathcal{S}(\coord{w})
++\lambda\nabla\mathcal{S}(\coord{w})\,,
 \end{equation}
 \end{subequations}
-
-Where $(y_t,x_t)$ are the shuffled version of $(y_i,x_i)$. The mini-batch
+%
+where $(y_t,x_t)$ are the shuffled version of $(y_i,x_i)$. The mini-batch
 variation~\cite{li2014efficient} of this method takes partition the set of
 samples $\underset{\scriptscriptstyle k}{\sqcup}I_k = \{(y_i,x_i)|i=1\ldots n\}$ and suffle,
 then the update equation becomes:
@@ -74,23 +74,23 @@ and $\sum_t \eta_t = \infty$. A classic choice for $\eta_t$ is
 
 \begin{equation}
 \label{eq:classicstep}
-\eta_t = \frac{\eta_0}{1+\nicefrac{t}{n}}
+\eta_t = \frac{\eta_0}{1+\nicefrac{t}{n}}\,.
 \end{equation}
 
 Where $\eta_0$ is an initial step determined from a small sample
 and $n$ is the number of samples. Variations of this form also are
-commum, \citet{ramos2016hilbert} provides another choice:
+commum,~\citet{ramos2016hilbert} provides another choice:
 
 \begin{equation*}
-\eta_t = \frac{1}{\lambda\alpha_2(t_0+t)}
+\eta_t = \frac{1}{\lambda\alpha_2(t_0+t)}\,.
 \end{equation*}
 
-Where $\lambda$ is the regulator gain, equation \ref{eq:minibatch}, $\alpha_2$
-is the $\ell_2$ elastic-net gain, equation \ref{eq:elasticnet}, and $t_0$ is
-chosen form a small sample test. However, \citet{tsuruoka2009stochastic} adopts
+Where $\lambda$ is the regulator gain, equation (\ref{eq:minibatch}), $\alpha_2$
+is the $\ell_2$ elastic-net gain, equation (\ref{eq:elasticnet}), and $t_0$ is
+chosen form a small sample test. However,~\citet{tsuruoka2009stochastic} adopts
 an exponential decay for $\eta_t$, which is not compliant with theoretical
 requirements, and they had a better result than using equation
-\ref{eq:classicstep}. The reason provided was that a harmonic progression
+(\ref{eq:classicstep}). The reason provided was that an harmonic progression
 decays too fast at the beginning and too slowly at the end. As a trade-off, this
 work employs a theoretically valid step that do not suffer
 from the aforementioned limitations:
@@ -98,10 +98,10 @@ from the aforementioned limitations:
 \begin{equation}
 \label{eq:leariningrate}
 \eta_t = \frac{\eta_0}{2}\left(\frac{1}{(1+\nicefrac{t}{n})\log_n(n+t)} +
-k_1\e^{-\nicefrac{t}{n}}\right)
+k_1\e^{-\nicefrac{t}{n}}\right)\,,
 \end{equation}
-
-Where $\eta_0$, similarly to the classical case, is an initial step. The
+%
+where $\eta_0$, similarly to the classical case, is an initial step. The
 rationale is to accommodate a slower decay at the beginning,
 dictated by the exponential component, and faster at the end without losing the
 divergence, as $\sum_x x\log x$ still divergent. Faster decaying end rates can

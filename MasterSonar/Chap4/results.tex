@@ -20,30 +20,31 @@ as illustrated in Algorithm \ref{alg:mapping}.
 \ForAll{$\mathbf{P}_k$}
 \ForAll{$\mathbf{b}\in I_k$}
 \State $\mathbf{b} = \mathrm{threshold}(\mathbf{b})$
-\Comment{Classify empty/full, section \ref{s:ism}}
+\Comment{Classify empty/full, Section \ref{s:ism}}
 \State $e_i = \mathrm{empty\_samples}(\mathbf{b})$
-\Comment{Sample first empty bins, section \ref{ss:isfm}}
+\Comment{Sample first empty bins, Section \ref{ss:isfm}}
 \State $f_i^{(z)} = \mathrm{full\_samples}(\mathbf{b})$
-\Comment{Sample from every $z$ full bin, section \ref{ss:isfm}}
+\Comment{Sample from every $z$ full bin, Section \ref{ss:isfm}}
 \State $\text{feats}=\{\}$
+\Comment{Empty set initialization}
 
 \ForAll{$e_i$}
 \State $\text{feats}=\text{feats}\cup\{\hat\varphi(e_i)\}$
-\Comment{equation \ref{eq:nystrom}}
+\Comment{equation (\ref{eq:nystrom})}
 \EndFor
 
 \ForAll{$f^{(z)}$}
 \State
 $\text{feats}=\text{feats}\cup\{\mathbb{E}_i[{
 \hat\varphi(f_i^{(z)})}]\}$
-\Comment{equation \ref{eq:embedding}}
+\Comment{equation (\ref{eq:embedding})}
 \EndFor
 \EndFor
 
 \State $\coord{w} {-=}
 \eta_k\nabla\text{NLL}_{\text{reg}}(\coord{w}_t;\text{feats})$ 
-\Comment{equation \ref{eq:leariningrate} on a variant of
-\ref{eq:minibatch}}
+\Comment{equation (\ref{eq:leariningrate}) on a variant of
+(\ref{eq:minibatch})}
 \EndFor
 \State \textbf{return} $\coord{w}$
 \EndProcedure
@@ -57,8 +58,15 @@ different meaning:
 \begin{equation*}
 \nabla\text{NLL}_{\text{reg}}(\coord{w}_t;\text{feats}) =
 \sum_{\hat{\mathbf{\varphi}}\in \text{feats}}
--y_t\hat{\mathbf{\varphi}}(1+\exp(y_i~ \coord{w}\cdot\hat{\mathbf{\varphi}})^{-1} +\lambda\nabla\mathcal{S}(\coord{w})
+-y_t\hat{\mathbf{\varphi}}(1+\exp(y_i~
+\coord{w}\cdot\hat{\mathbf{\varphi}}))^{-1} +\lambda\nabla\mathcal{S}(\coord{w})
 \end{equation*}
+
+The plataform used for carrying out numerical simulation was develloped using
+Python programing language (\url{https://www.python.org/}). NumPy
+scientific library (\url{http://www.numpy.org/}) was employed for
+linear algebra manipulation. And Matplotlib
+library (\url{https://matplotlib.org/}) was used for the cross sectional plots.
 
 
 \subsection{Results}
@@ -66,8 +74,8 @@ different meaning:
 Although the algorithm generates a 3D representation of an environment, results
 displayed here are plane cuts of this reconstruction only for better
 appreciation. The environment considered here is the 4x5 semi-infinity box of
-section \ref{eq:boxlikenv}. There were used $3000$ inducing points (dimension of
-the feature map approximation - section \ref{sss:hilbertcontinuousmap}) and $21$
+section (\ref{eq:boxlikenv}). There were used $3000$ inducing points (dimension of
+the feature map approximation - Section \ref{sss:hilbertcontinuousmap}) and $21$
 measurements from $7$ different positions in $3$ ortogonal orientations each
 from the sonar simulation. Different fractions of the number of beams were
 explored on three figures \ref{fig:ten_map}, \ref{fig:thir_map} and
@@ -76,7 +84,7 @@ the value of the occupancy $p(x;\coord{w})$.
 
 Figure \ref{fig:one_map} shows a different setup, it used only one sonar
 position oriented in $3$ different ways. The figure is divided into two pairs of
-images, each using a diffent fraction of the total number of beams.
+images, each using a distinct fraction of the total number of beams.
 
 \begin{figure}[ht]
     \centering

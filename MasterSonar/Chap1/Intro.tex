@@ -3,7 +3,7 @@
 %% SrJ: add explanations about profiling vs. imaging: size of beam and
 %% SrJ: implications (ambiguities)
 
-Underwater mapping and simulation are dual processes, while the latter produce
+Underwater mapping and simulation are dual processes; while the latter produce
 sonar responses for a given environment, the former use these responses to infer
 the surroundings. As such, simulation is a flexible way of generating data with
 a known ground truth to test a mapping algorithm. However, to achieve a correct
@@ -16,8 +16,8 @@ Profilings and imaging sonars are two classes of sonars whose differences lie
 in the aperture of their sound beams. Profiling sonars have a narrow sound beam
 and they are considered the laser scanner analog for underwater mapping,
 even though profilings still have much wider beam than lasers. The simplest
-approaches to underwater 3D mapping focus on applying laser scanner techniques
-to profiling sonars, e.g. point cloud reconstruction.
+approaches to underwater 3D\abbrev{3D}{Three dimensional} mapping focus on
+applying laser scanner techniques to profiling sonars, e.g. point cloud reconstruction.
 % % SrJ: they don't really "give more information". They cover more space per %
 % SrJ: beam, but the information is more ambiguous
  On the other hand, imaging sonars are usually
@@ -43,7 +43,8 @@ multiple sensor data to characterize the surroundings. However, how this
 characterization might be represented depends on the application.
 
 A SLAM (\textbf{S}imultaneous \textbf{L}ocalization \textbf{a}nd
-\textbf{M}apping) system has no intrinsic need for a human readable map.
+\textbf{M}apping)~\cite{thrunprob} system has no intrinsic need for a human readable
+map.
 In such a system, it could be interesting to store the map information only
 through its most representative features, but even for SLAM that is not always
 the case. It is often implemented as a grid with empty/full cells or even as a
@@ -53,8 +54,8 @@ The mapping of underwater environments is not just a part of a SLAM system. It
 has importance on its own, it can be used for humans to visualize things that
 could not be seeing otherwise. If the map is to be seen by a human it should
 store and merge information about the environment, so that it can be displayed
-as a usual map, 3D or 2D depending on the case. This representation also guides
-how the data could be stored, e.g. if it wants to show a surface, it can be
+as the usual map, 3D or 2D depending on the case. This representation also
+guides how the data could be stored, e.g. if it wants to show a surface, it can be
 stored as an elevation map, or if one wants to see a 3D object it can be stored
 as a point cloud, a 3D grid, a continuous map, etc.
 
